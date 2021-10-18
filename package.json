@@ -1,0 +1,65 @@
+{
+  "name": "@haru-team/client",
+  "description": "Search for a Pokémon by their name in Discord.",
+  "version": "0.3.1",
+  "type": "module",
+  "repository": "github:Sayakie/PixelPokedex",
+  "homepage": "https://github.com/Sayakie/PixelPokedex#README",
+  "author": "Sayakie <sayakie@kakao.com>",
+  "bugs": {
+    "url": "https://github.com/Sayakie/PixelPokedex/issues",
+    "email": "sayakie@kakao.com"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": "^16.6",
+    "pnpm": "^6"
+  },
+  "devEngines": {
+    "node": "^16.10",
+    "pnpm": "^6.16"
+  },
+  "scripts": {
+    "preinstall": "npx -y only-allow pnpm",
+    "postinstall": "node scripts/check-dev-engines.mjs package.json && node scripts/dev-patch.mjs",
+    "start": "node dist/index.js",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@barreljs/json-keys": "^0.0.2",
+    "@sapphire/framework": "^1.0.2",
+    "@types/i18next-fs-backend": "^1.1.2",
+    "discord.js": "^13.2.0",
+    "dotenv": "^10.0.0",
+    "i18next": "^21.2.4",
+    "i18next-fs-backend": "^1.1.1",
+    "keyv": "^4.0.3",
+    "keyv-file": "^0.2.0",
+    "korean-regexp": "^1.0.9",
+    "picocolors": "^0.2.1",
+    "semver": "^7.3.5",
+    "walk-sync": "^3.0.0",
+    "zx": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/keyv": "^3.1.3",
+    "@types/node": "^16.11.0",
+    "@types/prettier": "^2.4.1",
+    "@types/semver": "^7.3.8",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-sort-keys-fix": "^1.1.2",
+    "prettier": "^2.4.1",
+    "ts-patch": "^1.4.4",
+    "typescript": "^4.5.0-dev.20211015",
+    "typescript-transform-paths": "^3.3.1"
+  }
+}

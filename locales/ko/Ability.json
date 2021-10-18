@@ -1,0 +1,1070 @@
+{
+  "adaptability": {
+    "name": "적응력",
+    "description": "타입이 같은 기술의 위력이 올라간다."
+  },
+  "aerilate": {
+    "name": "스카이스킨",
+    "description": "노말타입의 기술이 비행 타입이 된다."
+  },
+  "aftermath": {
+    "name": "유폭",
+    "description": "기절할 때 스친 상대에게 데미지를 준다."
+  },
+  "airlock": {
+    "name": "에어록",
+    "description": "날씨의 영향이 없어진다."
+  },
+  "analytic": {
+    "name": "애널라이즈",
+    "description": "가장 마지막에 기술을 쓰면 강해진다."
+  },
+  "angerpoint": {
+    "name": "분노의경혈",
+    "description": "급소에 맞으면 공격이 올라간다."
+  },
+  "anticipation": {
+    "name": "위험예지",
+    "description": "상대가 지닌 위험한 기술을 감지한다."
+  },
+  "arenatrap": {
+    "name": "개미지옥",
+    "description": "배틀에서 상대를 도망칠 수 없게 한다."
+  },
+  "aromaveil": {
+    "name": "아로마베일",
+    "description": "같은 편으로 향하는 멘탈 공격을 막는다."
+  },
+  "asone": {
+    "name": "혼연일체",
+    "description": "상대를 쓰러뜨릴 때마다 백마 탄 모습일 시 공격이, 흑마 탄 모습일 시 특수공격이 1랭크 상승한다."
+  },
+  "aurabreak": {
+    "name": "오라브레이크",
+    "description": "오라의 효과가 역전된다."
+  },
+  "baddreams": {
+    "name": "나이트메어",
+    "description": "잠듦 상태의 상대의 HP를 전체의 1/8 만큼 줄인다."
+  },
+  "ballfetch": {
+    "name": "볼줍기",
+    "description": "도구를 지니고 있지 않은 경우 첫 번째로 던져서 실패한 몬스터볼을 주워온다"
+  },
+  "battery": {
+    "name": "배터리",
+    "description": "같은 편 특수 기술의 위력을 올린다."
+  },
+  "battlearmour": {
+    "name": "전투무장",
+    "description": "상대의 공격이 급소에 맞지 않는다."
+  },
+  "battlebond": {
+    "name": "유대변화",
+    "description": "포켓몬을 기절시키면 지우의 개굴닌자로 폼체인지한다."
+  },
+  "beastboost": {
+    "name": "비스트부스트",
+    "description": "상대방을 쓰러트리면 가장 높은 능력이 오른다."
+  },
+  "berserk": {
+    "name": "발끈",
+    "description": "상대의 공격으로 HP가 절반이 되면 특수공격이 올라간다."
+  },
+  "bigpecks": {
+    "name": "부풀린가슴",
+    "description": "상대가 방어를 떨어뜨리지 못한다."
+  },
+  "blaze": {
+    "name": "맹화",
+    "description": "위급할때 불타입 기술의 위력이 오른다."
+  },
+  "bulletproof": {
+    "name": "방탄",
+    "description": "구슬이나 폭탄에 명중당하지 않는다."
+  },
+  "cheekpouch": {
+    "name": "볼주머니",
+    "description": "나무열매를 먹으면 HP도 회복된다."
+  },
+  "chillingneigh": {
+    "name": "백의울음",
+    "description": "상대를 쓰러뜨릴 때마다 공격이 1랭크 상승한다."
+  },
+  "chlorophyll": {
+    "name": "엽록소",
+    "description": "쾌청 상태일 때 스피드가 크게 상승한다."
+  },
+  "clearbody": {
+    "name": "클리어바디",
+    "description": "상대가 능력을 떨어뜨릴 수 없다."
+  },
+  "cloudnine": {
+    "name": "날씨부정",
+    "description": "날씨 효과를 무효화 한다."
+  },
+  "colorchange": {
+    "name": "변색",
+    "description": "받은 기술의 타입으로 변화한다"
+  },
+  "comatose": {
+    "name": "절대안깸",
+    "description": "잠듦을 제외한 모든 상태이상을 받지 않는다."
+  },
+  "competitive": {
+    "name": "승기",
+    "description": "능력이 내려가면 특수공격이 오른다."
+  },
+  "compoundeyes": {
+    "name": "복안",
+    "description": "기술의 명중률이 올라간다."
+  },
+  "contrary": {
+    "name": "심술꾸러기",
+    "description": "능력변화가 거꾸로 된다."
+  },
+  "corrosion": {
+    "name": "부식",
+    "description": "강철타입이나 독타입도 독 상태로 만들 수 있다."
+  },
+  "cottondown": {
+    "name": "솜털",
+    "description": "공격을 받으면 솜털을 흩뿌려 자신을 제외한 모든 포켓몬의 스피드를 떨어뜨린다."
+  },
+  "curiousmedicine": {
+    "name": "기묘한약",
+    "description": "같은 편의 능력 변화를 원래대로 되돌린다."
+  },
+  "cursedbody": {
+    "name": "저주받은바디",
+    "description": "공격당하면 가끔 사슬묶기한다."
+  },
+  "cutecharm": {
+    "name": "헤롱헤롱바디",
+    "description": "상대 포켓몬을 헤롱헤롱하게 만들 때가 있다."
+  },
+  "damp": {
+    "name": "습기",
+    "description": "누구도 자폭 할 수 없게 된다."
+  },
+  "dancer": {
+    "name": "무희",
+    "description": "누군가 춤 기술을 쓰면 자신도 이어서 춤 기술을 쓸 수 있다."
+  },
+  "darkaura": {
+    "name": "다크오라",
+    "description": "모든 악타입 기술의 위력이 오른다."
+  },
+  "dauntlessshield": {
+    "name": "불굴의방패",
+    "description": "등장했을 때 방어가 올라간다."
+  },
+  "dazzling": {
+    "name": "비비드바디",
+    "description": "상대를 놀라게 해서 이쪽을 향한 선제 기술을 사용할 수 없게 한다."
+  },
+  "defeatist": {
+    "name": "무기력",
+    "description": "HP가 절반이 되면 능력이 내려간다."
+  },
+  "defiant": {
+    "name": "오기",
+    "description": "능력이 내려가면 공격이 오른다."
+  },
+  "disguise": {
+    "name": "탈",
+    "description": "몸을 덮는 탈로 1번 공격을 막을 수 있다."
+  },
+  "download": {
+    "name": "다운로드",
+    "description": "상대의 방어,특방에 따라 자신의 공격이나 특공이 올라간다."
+  },
+  "dragonsmaw": {
+    "name": "용의턱",
+    "description": "드래곤 타입 기술의 위력이 1.5배 오른다."
+  },
+  "drizzle": {
+    "name": "잔비",
+    "description": "배틀에 나오면 비가 내리게 된다."
+  },
+  "drought": {
+    "name": "가뭄",
+    "description": "배틀에 나오면 날씨가 쾌청 상태가 된다."
+  },
+  "dryskin": {
+    "name": "건조피부",
+    "description": "더우면 HP가 줄어든다. 물로 HP를 회복한다."
+  },
+  "earlybird": {
+    "name": "일찍기상",
+    "description": "잠듦 상태에서 빨리 깨어난다."
+  },
+  "effectspore": {
+    "name": "포자",
+    "description": "스치면 독, 마비, 잠듦 상태가 될 때가 있다."
+  },
+  "electricsurge": {
+    "name": "일렉트릭메이커",
+    "description": "등장했을 때 일렉트릭필드를 사용한다."
+  },
+  "emergencyexit": {
+    "name": "위기회피",
+    "description": "HP가 절반이 되면 위험을 회피하기 위해 지닌 포켓몬으로 돌아간다."
+  },
+  "error": {
+    "name": "ィ゙ゃゾ┛A",
+    "description": "\u200b"
+  },
+  "fairyaura": {
+    "name": "페어리오라",
+    "description": "모든 페어리타입 기술의 위력이 오른다."
+  },
+  "filter": {
+    "name": "필터",
+    "description": "효과가 굉장한 기술의 위력을 약하게 한다."
+  },
+  "flamebody": {
+    "name": "불꽃몸",
+    "description": "접촉한 상대에게 화상을 입힐 때가 있다."
+  },
+  "flareboost": {
+    "name": "열폭주",
+    "description": "화상 상태가 되면 특수공격이 오른다."
+  },
+  "flashfire": {
+    "name": "타오르는불꽃",
+    "description": "불타입 기술을 받으면 불 타입 기술이 강해진다."
+  },
+  "flowergift": {
+    "name": "플라워기프트",
+    "description": "맑을 때 우리 편이 강해진다."
+  },
+  "flowerveil": {
+    "name": "플라워베일",
+    "description": "같은 편의 풀타입 포켓몬은 능력이 떨어지지 않는다."
+  },
+  "fluffy": {
+    "name": "복슬복슬",
+    "description": "상대로부터 받은 접촉하는 기술의 데미지를 반감시키지만 불꽃타입 기술의 데미지는 2배가 된다."
+  },
+  "forecast": {
+    "name": "기분파",
+    "description": "날씨에 따라 캐스퐁이 변화한다."
+  },
+  "forewarn": {
+    "name": "예지몽",
+    "description": "상대가 지닌 기술을 꿰뚫어볼 수 있다."
+  },
+  "friendguard": {
+    "name": "프렌드가드",
+    "description": "같은 편의 대미지를 줄일 수 있다."
+  },
+  "frisk": {
+    "name": "통찰",
+    "description": "상대가 지닌 물건을 알 수 있다."
+  },
+  "fullmetalbody": {
+    "name": "메탈프로텍트",
+    "description": "상대 기술이나 특성으로 능력을 떨어뜨릴 수 없다."
+  },
+  "furcoat": {
+    "name": "퍼코트",
+    "description": "물리 기술의 데미지가 절반이 된다."
+  },
+  "galewings": {
+    "name": "질풍날개",
+    "description": "비행타입의 기술이 먼저 나오게 된다."
+  },
+  "galvanize": {
+    "name": "일렉트릭스킨",
+    "description": "노말타입 기술이 전기타입이 된다.위력이 조금 올라간다."
+  },
+  "gluttony": {
+    "name": "먹보",
+    "description": "나무열매를 여느 때보다 빨리 사용한다."
+  },
+  "gooey": {
+    "name": "미끈미끈",
+    "description": "접촉한 상대의 스피드를 떨어뜨린다."
+  },
+  "gorillatactics": {
+    "name": "무아지경",
+    "description": "공격이 올라가지만 처음에 선택한 기술 외에는 쓸 수 없게 된다."
+  },
+  "grasspelt": {
+    "name": "풀모피",
+    "description": "그래스필드일 때 방어가 올라간다."
+  },
+  "grassysurge": {
+    "name": "그래스메이커",
+    "description": "등장했을 때 그래스필드를 사용한다."
+  },
+  "grimneigh": {
+    "name": "흑의울음",
+    "description": "상대를 쓰러뜨릴 때마다 특수공격이 1랭크 상승한다."
+  },
+  "gulpmissile": {
+    "name": "그대로꿀꺽미사일",
+    "description": "파도타기나 다이빙을 쓰면 먹이를 물어온다. 데미지를 받으면 먹이를 토해내서 공격한다."
+  },
+  "guts": {
+    "name": "근성",
+    "description": "상태이상이 되면 공격이 올라간다."
+  },
+  "harvest": {
+    "name": "수확",
+    "description": "사용한 나무열매를 몇 번이고 만들어낸다."
+  },
+  "healer": {
+    "name": "치유의마음",
+    "description": "같은 편의 상태이상을 가끔 치유한다."
+  },
+  "heatproof": {
+    "name": "내열",
+    "description": "불꽃 타입 기술의 데미지를 반감한다."
+  },
+  "heavymetal": {
+    "name": "헤비메탈",
+    "description": "몸무게가 2배가 된다."
+  },
+  "honeygather": {
+    "name": "꿀모으기",
+    "description": "달콤한꿀을 모아서 올 때가 있다."
+  },
+  "hugepower": {
+    "name": "천하장사",
+    "description": "자신의 공격 능력치가 2배가 된다."
+  },
+  "hungerswitch": {
+    "name": "꼬르륵스위치",
+    "description": "턴이 끝날 때마다 배부른 모양, 배고픈 모양, 배부른 모양... 으로 번갈아서 모습을 바꾼다."
+  },
+  "hustle": {
+    "name": "의욕",
+    "description": "공격은 높지만 빗나가기 쉽다."
+  },
+  "hydration": {
+    "name": "촉촉바디",
+    "description": "비가 오면 상태 이상이 회복된다."
+  },
+  "hypercutter": {
+    "name": "괴력집게",
+    "description": "상대가 공격을 떨어뜨리지 못한다."
+  },
+  "icebody": {
+    "name": "아이스바디",
+    "description": "싸라기눈 날씨일 때 매턴 전체 체력의 1/16씩 체력을 회복한다."
+  },
+  "iceface": {
+    "name": "아이스페이스",
+    "description": "물리공격을 머리의 얼음이 대신 맞아주지만 모습도 변한다. 얼음은 싸라기눈이 내리면 원래대로 돌아온다."
+  },
+  "icescales": {
+    "name": "얼음인분",
+    "description": "얼음인분의 보호를 받아 특수공격으로 받는 데미지가 절반이 된다"
+  },
+  "illuminate": {
+    "name": "발광",
+    "description": "야생 포켓몬과 만나기 쉬워진다."
+  },
+  "illusion": {
+    "name": "일루전",
+    "description": "맨 뒤의 포켓몬으로 변하여 나온다."
+  },
+  "immunity": {
+    "name": "면역",
+    "description": "독 상태가 되지 않는다."
+  },
+  "imposter": {
+    "name": "괴짜",
+    "description": "눈 앞의 상대방으로 변신해버린다."
+  },
+  "infiltrator": {
+    "name": "틈새포착",
+    "description": "상대방의 벽을 빠져나가 공격한다."
+  },
+  "innardsout": {
+    "name": "내용물분출",
+    "description": "상대가 쓰러뜨렸을 때 HP의 남은 양만큼 상대에게 데미지를 준다."
+  },
+  "innerfocus": {
+    "name": "정신력",
+    "description": "풀죽지 않는다."
+  },
+  "insomnia": {
+    "name": "불면",
+    "description": "잠듦 상태가 되지 않는다."
+  },
+  "intimidate": {
+    "name": "위협",
+    "description": "상대의 공격을 1랭크 떨어뜨린다."
+  },
+  "intrepidsword": {
+    "name": "불요의검",
+    "description": "등장했을 때 공격이 올라간다."
+  },
+  "ironbarbs": {
+    "name": "철가시",
+    "description": "닿은 상대방을 상처입힌다."
+  },
+  "ironfist": {
+    "name": "철주먹",
+    "description": "펀치를 사용하는 기술의 위력이 올라간다."
+  },
+  "justified": {
+    "name": "정의의마음",
+    "description": "악타입 가술을 받으면 공격이 오른다."
+  },
+  "keeneye": {
+    "name": "날카로운눈",
+    "description": "상대가 명중률을 떨어뜨리지 못한다."
+  },
+  "klutz": {
+    "name": "서투름",
+    "description": "지니고 있는 도구를 쓸 수 없다."
+  },
+  "leafguard": {
+    "name": "리프가드",
+    "description": "맑을 때는 상태 이상이 되지 않는다."
+  },
+  "levitate": {
+    "name": "부유",
+    "description": "땅타입의 기술을 받지 않는다."
+  },
+  "libero": {
+    "name": "리베로",
+    "description": "자신이 사용한 기술과 같은 타입으로 변화한다."
+  },
+  "lightmetal": {
+    "name": "라이트메탈",
+    "description": "몸무게가 절반이 된다."
+  },
+  "lightningrod": {
+    "name": "피뢰침",
+    "description": "전기타입의 기술을 모두 자신이 맞는다. 전기타입 기술을 맞으면 특수공격력이 상승한다."
+  },
+  "limber": {
+    "name": "유연",
+    "description": "마비 상태가 되지 않는다."
+  },
+  "liquidooze": {
+    "name": "해감액",
+    "description": "흡수한 상대의 HP를 줄인다."
+  },
+  "liquidvoice": {
+    "name": "촉촉보이스",
+    "description": "모든 소리 기술이 물타입이 된다."
+  },
+  "longreach": {
+    "name": "원격",
+    "description": "모든 기술을 상대에게 접촉하지 않고 사용할 수 있다."
+  },
+  "magicbounce": {
+    "name": "매직미러",
+    "description": "변화기술을 반사한다."
+  },
+  "magicguard": {
+    "name": "매직가드",
+    "description": "공격 이외에는 데미지를 입지 않는다."
+  },
+  "magician": {
+    "name": "매지션",
+    "description": "기술을 맞은 상대의 아이템을 빼앗아 버린다."
+  },
+  "magmaarmor": {
+    "name": "마그마의무장",
+    "description": "얼음 상태가 되지 않는다."
+  },
+  "magnetpull": {
+    "name": "자력",
+    "description": "강철타입의 포켓몬을 도망칠 수 없게 한다."
+  },
+  "marvelscale": {
+    "name": "이상한비늘",
+    "description": "상태 이상이 되면 방어가 올라간다."
+  },
+  "megalauncher": {
+    "name": "메가런처",
+    "description": "파동 기술의 위력이 강하다."
+  },
+  "merciless": {
+    "name": "무도한행동",
+    "description": "독 상태의 상대를 공격하면 반드시 급소에 맞는다."
+  },
+  "mimicry": {
+    "name": "의태",
+    "description": "필드의 상태에 따라 포켓몬의 타입이 변한다."
+  },
+  "minus": {
+    "name": "마이너스",
+    "description": "플러스/마이너스가 있으면 특수공격이 올라간다."
+  },
+  "mirrorarmor": {
+    "name": "미러아머",
+    "description": "자신이 받는 능력 다운 효과에 한해 되받아친다."
+  },
+  "mistysurge": {
+    "name": "미스트메이커",
+    "description": "등장했을 때 미스트필드를 사용한다."
+  },
+  "moldbreaker": {
+    "name": "틀깨기",
+    "description": "특성에 관계없이 상대에게 기술을 쓸 수 있다."
+  },
+  "moody": {
+    "name": "변덕쟁이",
+    "description": "능력이 오르거나 내리거나 한다."
+  },
+  "motordrive": {
+    "name": "전기엔진",
+    "description": "전기를 받으면 스피드가 올라간다."
+  },
+  "moxie": {
+    "name": "자기과신",
+    "description": "상대방을 쓰러트리면 공격이 오른다."
+  },
+  "multiscale": {
+    "name": "멀티스케일",
+    "description": "HP가 가득일 때 데미지가 줄어든다."
+  },
+  "multitype": {
+    "name": "멀티타입",
+    "description": "지니고 있는 플레이트에 따라 타입이 바뀐다."
+  },
+  "mummy": {
+    "name": "미라",
+    "description": "접촉한 상대방을 미라로 만든다."
+  },
+  "naturalcure": {
+    "name": "자연회복",
+    "description": "배틀에서 일단 물러나면 상태 이상이 회복된다."
+  },
+  "noguard": {
+    "name": "노가드",
+    "description": "서로의 기술이 반드시 명중한다."
+  },
+  "normalize": {
+    "name": "노말스킨",
+    "description": "사용하는 기술이 모두 노말 타입이 된다."
+  },
+  "neuroforce": {
+    "name": "브레인포스",
+    "description": "효과가 굉장한 공격의 위력이 더욱 올라간다."
+  },
+  "neutralizinggas": {
+    "name": "화학변화가스",
+    "description": "화학변화가스를 가진 포켓몬이 배틀에 나와 있으면 모든 포켓몬이 가진 특성의 효과가 사라지거나 발동하지 않게 된다."
+  },
+  "oblivious": {
+    "name": "둔감",
+    "description": "헤롱헤롱 상태가 되지 않는다."
+  },
+  "overcoat": {
+    "name": "방진",
+    "description": "날씨의 영향에 피해를 받지 않는다."
+  },
+  "overgrow": {
+    "name": "심록",
+    "description": "위급할 때 풀타입의 위력이 올라간다."
+  },
+  "owntempo": {
+    "name": "마이페이스",
+    "description": "혼란에 걸리지 않는다."
+  },
+  "parentalbond": {
+    "name": "부자유친",
+    "description": "공격기술로 공격후 절반의 위력으로 한번 더 공격한다."
+  },
+  "pastelveil": {
+    "name": "파스텔베일",
+    "description": "자신과 같은 편이 독의 상태 이상 효과를 받지 않게 된다."
+  },
+  "perishbody": {
+    "name": "멸망의바디",
+    "description": "접촉하는 기술을 받으면 3턴 후에 양쪽 모두 기절한다. 교체되면 효과가 없어진다."
+  },
+  "pickpocket": {
+    "name": "나쁜버릇",
+    "description": "접촉해 오는 상대방으로부터 도구를 훔친다."
+  },
+  "pickup": {
+    "name": "픽업",
+    "description": "포켓몬이 도구를 주워올 때가 있다."
+  },
+  "pixilate": {
+    "name": "페어리스킨",
+    "description": "노말타입의 기술이 페어리 타입이 된다."
+  },
+  "plus": {
+    "name": "플러스",
+    "description": "플러스, 마이너스가 있으면 특수공격이 올라간다."
+  },
+  "poisonheal": {
+    "name": "포이즌 힐",
+    "description": "독 상태가 되면 HP를 회복한다."
+  },
+  "poisonpoint": {
+    "name": "독가시",
+    "description": "접촉한 상대를 중독 시킬 때가 있다."
+  },
+  "poisontouch": {
+    "name": "독수",
+    "description": "접촉만으로 상대방을 독 상태로 만들 수 있다."
+  },
+  "powerconstruct": {
+    "name": "스웜체인지",
+    "description": "HP가 절반이 되면 셀들이 응원하러 달려와 퍼펙트폼으로 모습이 변한다."
+  },
+  "powerofalchemy": {
+    "name": "과학의힘",
+    "description": "쓰러진 같은 편의 특성을 이어받아 같은 특성으로 바뀐다."
+  },
+  "powerspot": {
+    "name": "파워스폿",
+    "description": "옆에 있기만 해도 기술의 위력이 올라간다."
+  },
+  "prankster": {
+    "name": "짓궂은마음",
+    "description": "변화기술을 선제공격할 수 있다."
+  },
+  "pressure": {
+    "name": "프레셔",
+    "description": "상대가 사용하는 기술의 PP를 많이 줄인다."
+  },
+  "prismarmor": {
+    "name": "프리즘아머",
+    "description": "효과가 굉장한 공격의 위력을 약하게 만든다."
+  },
+  "propellertail": {
+    "name": "스크루지느러미",
+    "description": "상대의 기술을 끌어모으는 특성이나 기술의 영향을 받지 않는다."
+  },
+  "protean": {
+    "name": "변환자재",
+    "description": "기술을 사용하면 그 기술의 타입으로 변한다."
+  },
+  "psychicsurge": {
+    "name": "사이코메이커",
+    "description": "등장했을 때 사이코필드를 사용한다."
+  },
+  "punkrock": {
+    "name": "펑크록",
+    "description": "소리 기술의 위력이 올라간다. 상대로 부터 받는 소리 기술의 데미지는 절반이 된다."
+  },
+  "purepower": {
+    "name": "순수한힘",
+    "description": "자신의 공격 능력치가 2배가 된다."
+  },
+  "queenlymajesty": {
+    "name": "여왕의위엄",
+    "description": "상대에게 위압감을 줘서 이쪽을 향한 선제 기술을 사용할 수 없게 한다."
+  },
+  "quickdraw": {
+    "name": "퀵드로",
+    "description": "상대보다 먼저 행동할 수도 있다"
+  },
+  "quickfeet": {
+    "name": "속보",
+    "description": "상태 이상이 되면 스피드가 올라간다."
+  },
+  "raindish": {
+    "name": "젖은접시",
+    "description": "비가 올 때 조금씩 HP를 회복한다."
+  },
+  "rattled": {
+    "name": "주눅",
+    "description": "주눅이 들어 스피드가 올라가는 타입이 있다."
+  },
+  "receiver": {
+    "name": "리시버",
+    "description": "쓰러진 같은 편의 특성을 이어받아 같은 특성이 된다."
+  },
+  "reckless": {
+    "name": "이판사판",
+    "description": "반동 데미지를 받는 기술이 강해진다."
+  },
+  "refrigerate": {
+    "name": "프리즈스킨",
+    "description": "사용하는 노말 타입 기술이 모두 얼음 타입이 된다."
+  },
+  "regenerator": {
+    "name": "재생력",
+    "description": "몬스터볼에 들어가면 HP가 조금 회복된다."
+  },
+  "ripen": {
+    "name": "숙성",
+    "description": "나무열매를 숙성시켜서 효과가 2배가 된다."
+  },
+  "rivalry": {
+    "name": "투쟁심",
+    "description": "성별이 같으면 공격이 올라간다."
+  },
+  "rkssystem": {
+    "name": "AR시스템",
+    "description": "지니고 있는 메모리로 자신의 타입이 변한다."
+  },
+  "rockhead": {
+    "name": "돌머리",
+    "description": "부딪쳐도 반동을 받지 않는다."
+  },
+  "roughskin": {
+    "name": "까칠한피부",
+    "description": "접촉한 상대에게 상처를 입힌다."
+  },
+  "runaway": {
+    "name": "도주",
+    "description": "야생 포켓몬으로부터 반드시 도망칠 수 있다."
+  },
+  "sandforce": {
+    "name": "모래의힘",
+    "description": "모래바람일 때 땅, 바위, 강철 기술이 강해진다."
+  },
+  "sandrush": {
+    "name": "모래헤치기",
+    "description": "모래바람일 때 스피드가 오른다. 그리고 모래바람에 의한 피해를 받지 않는다."
+  },
+  "sandspit": {
+    "name": "모래뿜기",
+    "description": "공격을 받으면 모래바람을 일으킨다."
+  },
+  "sandstream": {
+    "name": "모래날림",
+    "description": "배틀에 나오면 날씨가 모래바람 상태가 된다. 배틀이 끝날 때까지 날씨가 유지된다."
+  },
+  "sandveil": {
+    "name": "모래숨기",
+    "description": "모래바람으로 회피율이 올라간다."
+  },
+  "sapsipper": {
+    "name": "초식",
+    "description": "풀타입 기술을 받으면 공격이 오른다."
+  },
+  "schooling": {
+    "name": "어군",
+    "description": "HP가 많을 때 무리지어 강해진다. HP가 얼마 남지 않으면 무리는 뿔뿔이 흩어진다."
+  },
+  "scrappy": {
+    "name": "배짱",
+    "description": "고스트타입에 기술이 맞게 된다."
+  },
+  "screencleaner": {
+    "name": "배리어프리",
+    "description": "등장했을 때 상대와 같은 편의 빛의장막, 리플렉터, 오로라베일의 효과가 사라진다."
+  },
+  "serenegrace": {
+    "name": "하늘의은총",
+    "description": "기술의 추가 효과가 나오기 쉽다."
+  },
+  "shadowshield": {
+    "name": "스펙터가드",
+    "description": "HP가 꽉 찼을 때 받는 데미지가 줄어든다."
+  },
+  "shadowtag": {
+    "name": "그림자밟기",
+    "description": "상대의 그림자를 밟아 도망칠 수 없게 한다."
+  },
+  "shedskin": {
+    "name": "탈피",
+    "description": "상태 이상을 회복할 때가 있다."
+  },
+  "sheerforce": {
+    "name": "우격다짐",
+    "description": "위력이 강해지지만 추가효과가 없어진다."
+  },
+  "shellarmour": {
+    "name": "조가비갑옷",
+    "description": "상대의 공격이 급소에 맞지 않는다."
+  },
+  "shielddust": {
+    "name": "인분",
+    "description": "기술의 추가 효과를 받지 않는다."
+  },
+  "shieldsdown": {
+    "name": "리밋실드",
+    "description": "HP가 절반이 되면 껍질이 깨져 공격적으로 된다."
+  },
+  "simple": {
+    "name": "단순",
+    "description": "여느때보다 능력치 변화가 심하다."
+  },
+  "skilllink": {
+    "name": "스킬링크",
+    "description": "연속 기술을 많이 쓸 수 있다."
+  },
+  "slowstart": {
+    "name": "슬로스타트",
+    "description": "5턴 동안 공격과 스피드가 절반으로 감소한다."
+  },
+  "slushrush": {
+    "name": "눈치우기",
+    "description": "싸라기눈일 때 스피드가 오른다."
+  },
+  "sniper": {
+    "name": "스나이퍼",
+    "description": "급소에 맞혔을 때 위력이 올라간다."
+  },
+  "snowcloak": {
+    "name": "눈숨기",
+    "description": "싸라기눈 날씨일 때 회피율이 상승한다."
+  },
+  "snowwarning": {
+    "name": "눈퍼뜨리기",
+    "description": "배틀에 나올면 날씨가 싸라기눈 상태가 된다."
+  },
+  "solarpower": {
+    "name": "선파워",
+    "description": "쾌청한 날씨일때 특수공격력이 1.5배로 증가한다. 하지만 체력은 매턴마다 1/8씩 감소한다."
+  },
+  "solidrock": {
+    "name": "하드록",
+    "description": "효과가 굉장한 기술의 위력을 약하게 한다."
+  },
+  "soulheart": {
+    "name": "소울하트",
+    "description": "포켓몬이 기절할 때마다 특수공격이 올라간다"
+  },
+  "soundproof": {
+    "name": "방음",
+    "description": "소리 기술을 받지 않는다."
+  },
+  "speedboost": {
+    "name": "가속",
+    "description": "조금씩 스피드가 높아진다."
+  },
+  "stakeout": {
+    "name": "잠복",
+    "description": "교체로 나온 상대에게 2배의 데미지로 공격할 수 있다."
+  },
+  "stall": {
+    "name": "시간벌기",
+    "description": "이 특성을 지닌 포켓몬은 항상 상대방보다 늦게 공격한다."
+  },
+  "stalwart": {
+    "name": "굳건한신념",
+    "description": "상대의 기술을 끌어모으는 특성이나 기술의 영향을 받지 않는다."
+  },
+  "stamina": {
+    "name": "지구력",
+    "description": "공격을 받으면 방어가 올라간다."
+  },
+  "stancechange": {
+    "name": "배틀스위치",
+    "description": "배틀모드에서 모습이 바뀐다."
+  },
+  "static": {
+    "name": "정전기",
+    "description": "접촉한 상대를 마비시킬 때가 있다."
+  },
+  "steadfast": {
+    "name": "불굴의마음",
+    "description": "풀죽을 때마다 스피드가 올라간다."
+  },
+  "steamengine": {
+    "name": "증기기관",
+    "description": "물타입이나 불꽃타입 기술을 받으면 스피드가 매우 크게 올라간다."
+  },
+  "steelworker": {
+    "name": "강철술사",
+    "description": "강철타입 기술의 위력이 1.5배 오른다."
+  },
+  "steelyspirit": {
+    "name": "강철정신",
+    "description": "같은 편의 강철타입 공격의 위력이 올라간다."
+  },
+  "stench": {
+    "name": "악취",
+    "description": "야생 포켓몬이 접근하기 어려워진다. 공격할 시, 가끔 풀죽음 상태로 만든다."
+  },
+  "stickyhold": {
+    "name": "점착",
+    "description": "도구를 빼앗기지 않는다."
+  },
+  "stormdrain": {
+    "name": "마중물",
+    "description": "물타입 기술을 모두 자신이 맞는다. 물타입 기술을 맞으면 특수공격이 올라간다."
+  },
+  "strongjaw": {
+    "name": "옹골찬턱",
+    "description": "턱이 튼튼하여 무는 힘이 강하다."
+  },
+  "sturdy": {
+    "name": "옹골참",
+    "description": "일격 필살기가 통하지 않는다. 일격에 기절하지 않는다."
+  },
+  "suctioncups": {
+    "name": "흡반",
+    "description": "교체 시키는 기술이 효과를 발휘하지 못한다."
+  },
+  "superluck": {
+    "name": "대운",
+    "description": "모든 기술의 급소율이 1랭크 상승한다."
+  },
+  "surgesurfer": {
+    "name": "서핑테일",
+    "description": "일렉트릭필드일 때 스피드가 2배가 된다."
+  },
+  "swarm": {
+    "name": "벌레의알림",
+    "description": "위급할 때 벌레타입의 위력이 올라간다."
+  },
+  "sweetveil": {
+    "name": "스위트베일",
+    "description": "같은 편의 포켓몬이 잠들지 않게 된다."
+  },
+  "swiftswim": {
+    "name": "쓱쓱",
+    "description": "비가 올 때 스피드가 올라간다."
+  },
+  "symbiosis": {
+    "name": "공생",
+    "description": "같은 편에게 도구를 건네줄 수 있게 된다."
+  },
+  "synchronize": {
+    "name": "싱크로",
+    "description": "독, 마비, 화상을 상대에게 옮긴다."
+  },
+  "tangledfeet": {
+    "name": "갈지자걸음",
+    "description": "혼란에 빠져있으면 회피하기 쉬워진다."
+  },
+  "tanglinghair": {
+    "name": "컬리헤어",
+    "description": "공격으로 자신과 접촉한 상대의 스피드를 떨어뜨린다."
+  },
+  "technician": {
+    "name": "테크니션",
+    "description": "약한 기술의 위력이 올라간다."
+  },
+  "telepathy": {
+    "name": "텔레파시",
+    "description": "같은 편의 공격의 낌새를 읽고 기술을 받지 않는다."
+  },
+  "teravolt": {
+    "name": "테라볼티지",
+    "description": "특성에 관계없이 상대방에게 기술을 사용한다."
+  },
+  "thickfat": {
+    "name": "두꺼운지방",
+    "description": "불꽃과 얼음타입의 기술에 강하다."
+  },
+  "tintedlens": {
+    "name": "색안경",
+    "description": "효과가 별로인 기술이 강해진다."
+  },
+  "torrent": {
+    "name": "급류",
+    "description": "위급할 때 물타입의 위력이 올라간다."
+  },
+  "toughclaws": {
+    "name": "단단한발톱",
+    "description": "접촉하는 기술의 위력이 올라간다."
+  },
+  "toxicboost": {
+    "name": "독폭주",
+    "description": "독 상태가 되면 공격이 오른다."
+  },
+  "trace": {
+    "name": "트레이스",
+    "description": "상대와 같은 특성이 된다."
+  },
+  "transistor": {
+    "name": "트랜지스터",
+    "description": "전기 기술으로 인한 데미지 감소 및 다음 전기 기술(한 번 맞으면) 전원 공급"
+  },
+  "triage": {
+    "name": "힐링시프트",
+    "description": "회복 기술을 먼저 사용할 수 있다."
+  },
+  "truant": {
+    "name": "게으름",
+    "description": "연속으로 행동할 수 없다."
+  },
+  "turboblaze": {
+    "name": "터보블레이즈",
+    "description": "특성에 관계없이 상대방에게 기술을 사용한다."
+  },
+  "unaware": {
+    "name": "천진",
+    "description": "상대의 능력 변화를 무시한다."
+  },
+  "unburden": {
+    "name": "곡예",
+    "description": "도구가 없어지면 스피드가 올라간다."
+  },
+  "unnerve": {
+    "name": "긴장감",
+    "description": "상대방을 긴장시켜 나무열매를 먹지 못하게 한다."
+  },
+  "unseenfist": {
+    "name": "보이지않는주먹",
+    "description": "상대에게 접촉하는 기술을 사용할 경우, 방어 등을 무시하고 데미지를 줄 수 있다."
+  },
+  "victorystar": {
+    "name": "승리의별",
+    "description": "같은편의 명중률을 10% 올린다."
+  },
+  "vitalspirit": {
+    "name": "의기양양",
+    "description": "잠듦 상태가 되지 않는다."
+  },
+  "voltabsorb": {
+    "name": "축전",
+    "description": "전기를 받으면 회복한다."
+  },
+  "wanderingspirit": {
+    "name": "떠도는영혼",
+    "description": "접촉하는 기술로 공격해온 포켓몬과 특성이 바꾼다."
+  },
+  "waterabsorb": {
+    "name": "저수",
+    "description": "물을 받으면 회복한다."
+  },
+  "waterbubble": {
+    "name": "수포",
+    "description": "자신을 향하는 불꽃타입 기술의 위력을 떨어뜨린다. 화상을 입지 않는다."
+  },
+  "watercompaction": {
+    "name": "꾸덕꾸덕굳기",
+    "description": "물타입의 기술을 받으면 방어가 크게 올라간다."
+  },
+  "waterveil": {
+    "name": "수의베일",
+    "description": "화상 상태가 되지 않는다."
+  },
+  "weakarmor": {
+    "name": "깨어진갑옷",
+    "description": "물리공격을 받으면 방어가 내려가고 스피드가 오른다."
+  },
+  "whitesmoke": {
+    "name": "흰연기",
+    "description": "상대 포켓몬이 능력을 떨어뜨릴 수 없다."
+  },
+  "wimpout": {
+    "name": "도망태세",
+    "description": "HP가 절반이 되면 황급히 도망쳐서 지닌 포켓몬으로 돌아간다."
+  },
+  "wonderguard": {
+    "name": "불가사의부적",
+    "description": "효과가 굉장한 기술밖에 맞지 않는다."
+  },
+  "wonderskin": {
+    "name": "미라클스킨",
+    "description": "변화기술을 받기 힘든 몸으로 되어있다."
+  },
+  "zenmode": {
+    "name": "달마모드",
+    "description": "위험해지면 모습이 변화한다."
+  },
+  "deltastream": {
+    "name": "델타스트림",
+    "description": "비행타입의 약점이 없어지는 날씨로 만든다."
+  },
+  "desolateland": {
+    "name": "끝의 대지",
+    "description": "물타입의 공격을 받지 않는 날씨로 만든다."
+  },
+  "primordialsea": {
+    "name": "시작의 바다",
+    "description": "불꽃타입의 공격을 받지 않는 날씨로 만든다."
+  }
+}

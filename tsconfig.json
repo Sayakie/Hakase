@@ -1,0 +1,54 @@
+{
+  "compilerOptions": {
+    "target": "ES2021",
+    "lib": ["ES2021"],
+    "module": "esnext",
+    "rootDirs": ["./src", "./locales"],
+    "moduleResolution": "Node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@locales": ["./locales/index.mts"]
+    },
+    "typeRoots": [
+      "typings",
+      "vendor/@types",
+      "node_modules/@types"
+    ],
+    "plugins": [
+      { "transform": "typescript-transform-paths" }
+    ],
+    "outDir": "./dist",
+    "pretty": true,
+    "removeComments": true,
+    "importHelpers": false,
+    "importsNotUsedAsValues": "error",
+    "alwaysStrict": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "useDefineForClassFields": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/",
+    "locales/",
+    "scripts/",
+    "test/",
+    "typings/"
+  ],
+  "exclude": [
+    "node_modules/"
+  ]
+}
