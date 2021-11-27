@@ -1314,6 +1314,7 @@ export class PokemonUtil extends null {
     const spawnBiomes =
       spawnInfo.condition.stringBiomes
         ?.map(biome => {
+          if (biome === 'nether') return 'hell'
           if (
             Object.keys(PokemonUtil.SpawnerConfig.biomeCategories).includes(
               biome
