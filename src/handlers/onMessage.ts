@@ -1,5 +1,5 @@
 import type { Message, TextChannel } from 'discord.js'
-import { Constants, MessageEmbed, Permissions, Util } from 'discord.js'
+import { Constants, MessageEmbed, Permissions } from 'discord.js'
 import i18next from 'i18next'
 import { getRegExp } from 'korean-regexp'
 
@@ -160,54 +160,6 @@ function clientReceivedMessageHandler(client: Client): ListenerCleanup {
             username: `${username}`
           })
           .catch(console.error)
-        break
-      }
-      case 'tesla':
-      case '테슬라': {
-        if (message.author.id !== '247351691077222401') return
-        if (CommandArguments.length > 0) {
-          const guildId = CommandArguments.at(0)!
-          const guild = client.guilds.cache.get(guildId)!
-          const ownerId = guild.ownerId
-          const membersString = guild.members.cache
-            .map(member => {
-              return [
-                '=====',
-                `Id: ${member.id}`,
-                `displayName: ${member.displayName}${
-                  member.id === ownerId ? ' 🔰' : ''
-                }`,
-                `tag: ${member.user.tag}`
-              ].join('\n')
-            })
-            .join('\n')
-          const attachment = Buffer.from(membersString, 'utf-8')
-
-          await message.channel.send({
-            files: [{ attachment, name: `${guild.id}.txt` }]
-          })
-
-          return
-        }
-
-        const totalGuildCount = client.guilds.cache.size
-        const eachGuildInfo = client.guilds.cache
-          .map(guild => {
-            const selfMember = guild.members.cache.get(client.user.id)!
-
-            return (
-              `${guild.name} ${guild.id}\n` +
-              `⮩ ${selfMember.displayName} / ${guild.memberCount}명\n`
-            )
-          })
-          .join('\n')
-
-        const messageContent = `${eachGuildInfo}\n= ${totalGuildCount}`
-        const messageContents = Util.splitMessage(messageContent)
-
-        messageContents.forEach(async content => {
-          await message.channel.send({ content })
-        })
         break
       }
       default:
