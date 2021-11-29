@@ -2545,6 +2545,10 @@
     "name": "Porygon2",
     "description": "Porygon2 was created by humans using the power of science. The man-made Pokémon has been endowed with artificial intelligence that enables it to learn new gestures and emotions on its own."
   },
+  "porygon": {
+    "name": "Porygon",
+    "description": "Porygon is capable of reverting itself entirely back to program data and entering cyberspace. This Pokémon is copy-protected so it cannot be duplicated by copying."
+  },
   "primarina": {
     "name": "Primarina",
     "description": "To Primarina, every battle is a stage. It takes down its prey with beautiful singing and dancing."
