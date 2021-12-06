@@ -1,11 +1,6 @@
-import {
-  MessageActionRow,
-  MessageButton,
-  MessageEmbed,
-  MessageSelectMenu
-} from 'discord.js'
-import i18next from 'i18next'
-import { correctPostpositions } from 'korean-regexp'
+import { MessageActionRow, MessageButton, MessageEmbed } from 'discord.js'
+import i18next, { loadLanguages } from 'i18next'
+import mergeOptions from 'merge-options'
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
@@ -425,8 +420,7 @@ export class PokemonUtil extends null {
     return dropData.join('\n')
   }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  public static getEvolution__Unstable(
+  public static getEvolution(
     species: EnumSpecies,
     form: number = 0
   ): string[][] {
@@ -435,6 +429,11 @@ export class PokemonUtil extends null {
       | [number, number]
       | [number, number, number]
     const availableEvolutions = [] as string[][]
+
+    // Hotfix. Should be removal
+    if (species === EnumSpecies.Milcery) {
+      return this.getEvolution(EnumSpecies.Alcremie, 0)
+    }
 
     if (EnumForm.alolanForms.includes(species)) {
       availableForms.push(1)
@@ -503,14 +502,26 @@ export class PokemonUtil extends null {
 
       if (bs.preEvolutions.length > 0 && bs.evolutions.length === 0) {
         const name = species.getLocalizedName()
-        const namePrefix =
-          formInt > 0
-            ? i18next.t(
-                `Pixelmon:generic.form.${PokemonUtil.getRegionalNamespace(
-                  formInt
-                )}`
-              ) + ' '
-            : ''
+        let namePrefix
+        if (species === EnumSpecies.Alcremie) {
+          const formName = EnumAlcremie.values()
+            .filter(alcremie => alcremie.form === formInt)
+            .at(0)!.spriteSuffix
+          namePrefix =
+            i18next.t(
+              `Pixelmon:alcremie.form.${formName
+                .substring(1)
+                .replace(/-vanilla$/, '')}`
+            ) + ' '
+        } else
+          namePrefix =
+            formInt > 0
+              ? i18next.t(
+                  `Pixelmon:generic.form.${PokemonUtil.getRegionalNamespace(
+                    formInt
+                  )}`
+                ) + ' '
+              : ''
 
         evolution.add(`${namePrefix}${name}`)
       }
@@ -525,7 +536,7 @@ export class PokemonUtil extends null {
               ] as [EnumSpecies, number]
           )
           .forEach(([postSpecies, postForm]) => {
-            const postEvolutions = PokemonUtil.getEvolution__Unstable(
+            const postEvolutions = PokemonUtil.getEvolution(
               postSpecies,
               postForm
             )
@@ -533,35 +544,7 @@ export class PokemonUtil extends null {
             postEvolutions.forEach(postEvolutions => {
               availableEvolutions.push(postEvolutions)
             })
-
-            // postEvolutions.forEach(postEvolution => {
-            //   if (formInt > 0 || postForm > 0) {
-            //     const otherEvolution = new Set<string>()
-            //     postEvolution.forEach(otherEvolution.add, otherEvolution)
-
-            //     if (otherEvolution.size > 0) {
-            //       availableEvolutions.push([...otherEvolution])
-            //     }
-            //   } else {
-            //     postEvolution.forEach(evolution.add, evolution)
-            //   }
-            // })
-
-            // return [postSpecies, postForm] as [EnumSpecies, number]
           })
-        // .forEach(([species, formInt]) => {
-        //   const name = species.getLocalizedName()
-        //   const namePrefix =
-        //     formInt > 0
-        //       ? i18next.t(
-        //           `Pixelmon:${species
-        //             .getName()
-        //             .toLowerCase()}.form.${formInt}`
-        //         ) + ' '
-        //       : ''
-
-        //   evolution.add(`${namePrefix}${name}`)
-        // })
       }
 
       if (evolution.size > 0) {
@@ -572,84 +555,17 @@ export class PokemonUtil extends null {
     return availableEvolutions
   }
 
-  public static getEvolution(
-    species: EnumSpecies,
-    form: number = 0
-  ): Set<string> {
-    const bs = PokemonUtil.getBaseStats(species, form)
-    const evolutions = new Set<string>()
-
-    // Explore provided species's pre species
-    if (bs.preEvolutions.length > 0) {
-      const preEvolutions = [...bs.preEvolutions]
-
-      preEvolutions
-        .reverse()
-        .map(evolutionRaw => {
-          const spec = evolutionRaw.split(/\s+/)
-
-          const pokemonName = spec.shift()!
-          if (spec.length > 0) {
-            spec
-              .filter(spec => {
-                if (spec.startsWith('!')) return false
-
-                return true
-              })
-              .forEach(spec => {
-                const [key, value] = spec.split(':') as [string, string]
-
-                switch (key) {
-                  case 'f':
-                  case 'form': {
-                    form = Number(value)
-                    break
-                  }
-                  default:
-                    break
-                }
-              })
-          }
-
-          return pokemonName
-        })
-        .map(evolution => EnumSpecies.getFromName(evolution)!)
-        .forEach(evolution => evolutions.add(evolution.getLocalizedName()))
-    }
-
-    if (bs.preEvolutions.length > 0 && bs.evolutions.length === 0) {
-      evolutions.add(species.getLocalizedName())
-    }
-
-    if (bs.evolutions.length > 0) {
-      bs.evolutions
-        .map(
-          evolution =>
-            [
-              EnumSpecies.getFromName(evolution.to.name)!,
-              evolution.to.form ?? 0
-            ] as [EnumSpecies, number]
-        )
-        .map(([species, form]) => {
-          const newEvolutions = PokemonUtil.getEvolution(species, form)!
-
-          newEvolutions.forEach(evolutions.add, evolutions)
-
-          return species
-        })
-        .forEach(species => {
-          evolutions.add(species.getLocalizedName())
-        })
-    }
-
-    return evolutions
-  }
-
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  public static getEvolutionSpec__Unstable(
+  public static getEvolutionSpec(
     species: EnumSpecies,
     form: number = 0
   ): string {
+    // Hotfix.
+    if (species === EnumSpecies.Alcremie) {
+      return ''
+    } else if (species === EnumSpecies.Greninja && form === 2) {
+      return ''
+    }
+
     if (
       EnumForm.megaForms.includes(species) ||
       EnumForm.megaXYForms.includes(species)
@@ -739,8 +655,13 @@ export class PokemonUtil extends null {
               const biomes = condition.biomes
                 .map(biome => biome.replace(/^[^:]+/, '').substring(1))
                 .map(biome => i18next.t(`Biome:${biome}`, ''))
-                .join(', ')
-              const conditionSpec = `바이옴 ${biomes} 중 아무 곳이나 있을 때`
+
+              let conditionSpec
+              if (biomes.length > 1)
+                conditionSpec = `바이옴 ${biomes.join(
+                  ', '
+                )} 중 아무 곳이나 있을 때`
+              else conditionSpec = `바이옴 ${biomes[0]}에 있을 때`
 
               evolutionSpec.push(conditionSpec)
               break
@@ -832,183 +753,6 @@ export class PokemonUtil extends null {
             break
         }
       })
-
-    return evolutionSpec.map(e => e.trim()).join(' ')
-  }
-
-  public static getEvolutionSpec(
-    species: EnumSpecies,
-    form: number = 0
-  ): string {
-    const bs = PokemonUtil.getBaseStats(species, form)
-    const evolutionSpec = [] as string[]
-    let preForm = form
-
-    if (bs.preEvolutions.length > 0) {
-      const preEvolutions = bs.preEvolutions
-        .map(evolutionRaw => {
-          const spec = evolutionRaw.split(/\s+/)
-
-          const pokemonName = spec.shift()!
-          if (spec.length > 0) {
-            spec
-              .filter(spec => {
-                if (spec.startsWith('!')) return false
-
-                return true
-              })
-              .forEach(spec => {
-                const [key, value] = spec.split(':') as [string, string]
-
-                switch (key) {
-                  case 'f':
-                  case 'form': {
-                    preForm = Number(value)
-                    break
-                  }
-                  default:
-                    break
-                }
-              })
-          }
-
-          return pokemonName
-        })
-        .map(evolution => EnumSpecies.getFromName(evolution)!)
-      const preSpecies = preEvolutions.at(0)!
-      const preBaseStats = PokemonUtil.getBaseStats(preSpecies, preForm)
-
-      if (EnumForm.formList.has(preSpecies)) {
-        const enumForms = EnumForm.formList.get(preSpecies)!
-
-        const isFakeForm = enumForms
-          .filter(enumForm => enumForm.form === form)
-          .some(form => form.getFlags().includes(FormFlag.FakeForm))
-        if (isFakeForm) {
-          const defaultForm = enumForms
-            .filter(enumForm => enumForm.form === form)
-            .sort((a, b) => a.form - b.form)
-            .at(0)!.form
-
-          form = defaultForm
-        }
-      }
-
-      const name = preSpecies.getLocalizedName()
-      const namePrefix =
-        preForm > 0
-          ? i18next.t(
-              `Pixelmon:generic.form.${PokemonUtil.getRegionalNamespace(
-                preForm
-              )}`
-            ) + ' '
-          : ''
-
-      evolutionSpec.push(getPostPosition(`${namePrefix}${name}`, '이/가'))
-
-      if (preBaseStats.evolutions.length !== 0) {
-        const evolution = preBaseStats.evolutions
-          .filter(
-            evolution =>
-              evolution.to.name === species.getName() &&
-              (evolution.to.form ?? 0) === form
-          )
-          .at(0)!
-
-        evolution.conditions.forEach(condition => {
-          switch (condition.evoConditionType) {
-            case 'gender': {
-              const conditionSpec = `${condition.genders
-                .map(gender =>
-                  i18next.t(`Pixelmon:generic.form.${gender.toLowerCase()}`)
-                )
-                .join(', ')}`
-              evolutionSpec.unshift(conditionSpec)
-              break
-            }
-            case 'friendship': {
-              const conditionSpec = `친밀도 ${condition.friendship}일 때`
-              evolutionSpec.push(conditionSpec)
-              break
-            }
-            case 'moveType': {
-              const conditionSpec = `${i18next.t(
-                `type.${condition.type.toLowerCase()}`
-              )} 타입 기술을 배운 상태일 때`
-              evolutionSpec.push(conditionSpec)
-              break
-            }
-            case 'heldItem': {
-              const conditionSpec = `${correctPostpositions(
-                `${i18next.t(`Item:${condition.item.itemID}`)}을(를) `
-              )}장착 후`
-              evolutionSpec.push(conditionSpec)
-              break
-            }
-            case 'time': {
-              const conditionSpec = `${i18next.t(
-                `time.${condition.time.toLowerCase()}`
-              )}에`
-              evolutionSpec.push(conditionSpec)
-              break
-            }
-            case 'party': {
-              let conditionSpec = ''
-
-              // if ((condition.withPokemon?.length ?? 0) > 0) {
-              //   const $spec = [] as string[]
-
-              //   condition.withPokemon!.forEach(pokemon => {
-              //     PokemonUtil.pokemon
-              //   })
-              // }
-              if ((condition.withForms?.length ?? 0) > 0) {
-                condition.withForms!.forEach(form => {
-                  if (form === 'ALOLAN') {
-                    conditionSpec = '파티에 알로라 폼 포켓몬이 있을 때'
-                  }
-                })
-              }
-
-              evolutionSpec.push(conditionSpec)
-              break
-            }
-            default:
-              break
-          }
-        })
-
-        switch (evolution.evoType) {
-          case 'leveling': {
-            let evolutionType = ''
-            if (evolution.level) {
-              evolutionType = `레벨 ${evolution.level}${getDigitPron(
-                evolution.level
-              )}`
-            }
-
-            evolutionType += ' 레벨업'
-
-            evolutionSpec.push(evolutionType)
-            break
-          }
-          case 'interact': {
-            const evolutionType = `${getPostPosition(
-              i18next.t(`Item:${evolution.item!.itemID}`),
-              '으로/로'
-            )} 상호작용`
-            evolutionSpec.push(evolutionType)
-            break
-          }
-          case 'trade': {
-            evolutionSpec.push('교환진화')
-            break
-          }
-          default:
-            break
-        }
-      }
-    }
 
     return evolutionSpec.map(e => e.trim()).join(' ')
   }
@@ -1164,59 +908,60 @@ export class PokemonUtil extends null {
         const rows = Math.ceil(otherFormList.length / 5)
 
         if (rows > 1) {
-          const columns = Math.ceil(otherFormList.length / 25)
-          Array.from({ length: columns }).forEach((_, i) => {
-            const component = new MessageActionRow()
-            const selectMenu = new MessageSelectMenu().setCustomId(
-              `Pixelmon.${species.getName().toLowerCase()}.formselect.${i}`
-            )
-            const availableRangeStart = i * 25 + i
-            const availableRangeEnd = (i + 1) * 25 + i
-
-            otherFormList.forEach((enumForm, i) => {
-              if (i < availableRangeStart || i > availableRangeEnd) return
-              if (
-                component.components
-                  .filter(
-                    (component): component is MessageSelectMenu =>
-                      component.type === 'SELECT_MENU'
-                  )
-                  .some(component =>
-                    component.options.some(option =>
-                      option.value.includes(`form.${enumForm.form}`)
-                    )
-                  ) ||
-                components.some(({ components }) =>
-                  components
-                    .filter(
-                      (component): component is MessageSelectMenu =>
-                        component.type === 'SELECT_MENU'
-                    )
-                    .some(component =>
-                      component.options.some(option =>
-                        option.value.includes(`form.${enumForm.form}`)
-                      )
-                    )
-                )
-              )
-                return
-
-              otherFormList.forEach(enumForm => {
-                const formName =
-                  enumForm.$memo ??
-                  PokemonUtil.getFormNameFromSuffix(enumForm.spriteSuffix)
-                const label = i18next.t(
-                  `Pixelmon:${enumForm.species.toLowerCase()}.form.${formName}`
-                )
-
-                selectMenu.addOptions({ label, value: label })
-              })
-
-              selectMenu.setPlaceholder('폼을 선택하세요')
-              component.addComponents(selectMenu)
-              components.push(component)
-            })
-          })
+          // do nothing at this moment.
+          // const columns = Math.ceil(otherFormList.length / 25)
+          // Array.from({ length: columns }).forEach((_, i) => {
+          //   const component = new MessageActionRow()
+          //   const selectMenu = new MessageSelectMenu().setCustomId(
+          //     `Pixelmon.${species.getName().toLowerCase()}.formselect.${i}`
+          //   )
+          //   const availableRangeStart = i * 25 + i
+          //   const availableRangeEnd = (i + 1) * 25 + i
+          //
+          //   otherFormList.forEach((enumForm, i) => {
+          //     if (i < availableRangeStart || i > availableRangeEnd) return
+          //     if (
+          //       component.components
+          //         .filter(
+          //           (component): component is MessageSelectMenu =>
+          //             component.type === 'SELECT_MENU'
+          //         )
+          //         .some(component =>
+          //           component.options.some(option =>
+          //             option.value.includes(`form.${enumForm.form}`)
+          //           )
+          //         ) ||
+          //       components.some(({ components }) =>
+          //         components
+          //           .filter(
+          //             (component): component is MessageSelectMenu =>
+          //               component.type === 'SELECT_MENU'
+          //           )
+          //           .some(component =>
+          //             component.options.some(option =>
+          //               option.value.includes(`form.${enumForm.form}`)
+          //             )
+          //           )
+          //       )
+          //     )
+          //       return
+          //
+          //     otherFormList.forEach(enumForm => {
+          //       const formName =
+          //         enumForm.$memo ??
+          //         PokemonUtil.getFormNameFromSuffix(enumForm.spriteSuffix)
+          //       const label = i18next.t(
+          //         `Pixelmon:${enumForm.species.toLowerCase()}.form.${formName}`
+          //       )
+          //
+          //       selectMenu.addOptions({ label, value: label })
+          //     })
+          //
+          //     selectMenu.setPlaceholder('폼을 선택하세요')
+          //     component.addComponents(selectMenu)
+          //     components.push(component)
+          //   })
+          // })
         } else {
           Array.from({ length: rows }).forEach((_, i) => {
             const component = new MessageActionRow()
@@ -1290,10 +1035,20 @@ export class PokemonUtil extends null {
     }
 
     const spawnInfos =
-      PokemonUtil.Spawners.get(bs.pixelmonName) ??
+      PokemonUtil.Spawners.get(bs.pixelmonName.replaceAll('-', '')) ??
       ([{ condition: {}, spec: {} }] as SpawnInfo[])
-    const spawnInfo =
-      spawnInfos.find(({ spec }) => spec.form === form) ?? spawnInfos.at(0)!
+    let spawnInfo: SpawnInfo
+    const $spawnInfos = spawnInfos.filter(
+      ({ spec }) => (spec.form ?? form) === form
+    )
+    if ($spawnInfos.length > 1)
+      spawnInfo = $spawnInfos.reduce(
+        (acc, curr) => mergeOptions.call({ concatArrays: true }, acc, curr),
+        {} as SpawnInfo
+      )
+    else
+      spawnInfo =
+        spawnInfos.find(({ spec }) => spec.form === form) ?? spawnInfos.at(0)!
 
     const eggGroups = bs.eggGroups
       .map(eggGroup => i18next.t(`egg.${eggGroup.toLowerCase()}`))
@@ -1308,48 +1063,52 @@ export class PokemonUtil extends null {
       spawnInfo.condition.times
         ?.map(time => i18next.t(`time.${time.toLowerCase()}`))
         .join(', ') ??
-      (species.isLegendary()
+      (species.isLegendary() || EnumForm.fossilPokemons.includes(species)
         ? i18next.t('field.spawn.unknown')!
         : i18next.t('field.spawnTime.any')!)
-    const spawnBiomes =
-      spawnInfo.condition.stringBiomes
-        ?.map(biome => {
-          if (biome === 'nether') return 'hell'
-          if (
-            Object.keys(PokemonUtil.SpawnerConfig.biomeCategories).includes(
-              biome
-            )
-          ) {
-            const biomes = PokemonUtil.SpawnerConfig.biomeCategories[biome]!
+    let spawnBiomes: string
+    if (EnumForm.fossilPokemons.includes(species))
+      spawnBiomes = i18next.t('field.spawn.viaFossil')!
+    else
+      spawnBiomes =
+        spawnInfo.condition.stringBiomes
+          ?.map(biome => {
+            if (biome === 'nether') return 'hell'
+            if (
+              Object.keys(PokemonUtil.SpawnerConfig.biomeCategories).includes(
+                biome
+              )
+            ) {
+              const biomes = PokemonUtil.SpawnerConfig.biomeCategories[biome]!
 
-            return biomes
-            // return (
-            //   biomes
-            //     // .filter(
-            //     //   biome =>
-            //     //     biome.startsWith('minecraft:') || biome.startsWith('ultra_')
-            //     // )
-            //     .map(biome =>
-            //       biome.includes(':')
-            //         ? biome.replace(/^[^:]+/, '').substring(1)
-            //         : biome
-            //     )
-            // )
-          }
+              return biomes
+              // return (
+              //   biomes
+              //     // .filter(
+              //     //   biome =>
+              //     //     biome.startsWith('minecraft:') || biome.startsWith('ultra_')
+              //     // )
+              //     .map(biome =>
+              //       biome.includes(':')
+              //         ? biome.replace(/^[^:]+/, '').substring(1)
+              //         : biome
+              //     )
+              // )
+            }
 
-          return biome
-        })
-        .flat()
-        .map(biome => {
-          if (biome.includes(':')) {
-            return biome.replace(/^[^:]+/, '').substring(1)
-          }
+            return biome
+          })
+          .flat()
+          .map(biome => {
+            if (biome.includes(':')) {
+              return biome.replace(/^[^:]+/, '').substring(1)
+            }
 
-          return biome
-        })
-        .map(biome => i18next.t(`Biome:${biome}`, ''))
-        .filter(Boolean)
-        .join(', ') ?? i18next.t('field.spawn.unknown')!
+            return biome
+          })
+          .map(biome => i18next.t(`Biome:${biome}`, ''))
+          .filter(Boolean)
+          .join(', ') ?? i18next.t('field.spawn.unknown')!
 
     // ####################
     // #  SpawnInfos Meta
@@ -1402,13 +1161,11 @@ export class PokemonUtil extends null {
       .padEnd(5)
 
     const evolutionSet = new Set<string>()
-    const evolutions = PokemonUtil.getEvolution__Unstable(species)
+    const evolutions = PokemonUtil.getEvolution(species)
     evolutions
-      .map(evolution => `#  ${evolution.join('  ━➔  ')}`)
+      .map(evolution => `# ${evolution.join(' ━➔ ')}`)
       .forEach(evolutionSet.add, evolutionSet)
-    const evolutionSpec = PokemonUtil.getEvolutionSpec__Unstable(species, form)
-    // const evolutions = ([] as string[]).join('')
-    // const evolutionSpec = ([] as string[]).join('')
+    const evolutionSpec = PokemonUtil.getEvolutionSpec(species, form)
 
     let hiddenAbility = ''
     const isInlineEmbedField = spawnBiomes.length < 25 ? true : false
@@ -1521,16 +1278,18 @@ export class PokemonUtil extends null {
 
     // Easter-egg
     if (species.getName() === 'MissingNo') {
-      const randomSpecies = ArrayUtil.getRandomElement([
-        ...EnumSpecies.PokemonSet.values()
-      ])
       embed
-        .setThumbnail(thumbImageOverrideSet.missingNo)
+        .setThumbnail(undefined as never)
         .setDescription(
-          i18next.t(
-            `Pixelmon:${randomSpecies.getName().toLowerCase()}.description`
-          ) + '\n\u200b'
+          [
+            'Thank you for using the Hakase Pokedex bot.',
+            '**Created & Maintained by** <@!247351691077222401>, We are welcome DM whatever anything.',
+            '',
+            `포켓몬 도감봇 <@!847264173079134248>(을)를 사용해 주셔서 고마워요!`,
+            '<@!247351691077222401>(이)가 만들고 관리 중이에요. 궁금한 점이 있다면 DM 보내주세요.'
+          ].join('\n')
         )
+        .setFields([])
     } else if (species === EnumSpecies.Floette && form === 5) {
       embed.setThumbnail(thumbImageOverrideSet.floetteAz)
     }
