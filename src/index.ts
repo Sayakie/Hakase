@@ -46,6 +46,7 @@ const client = new Client({
     /* eslint-disable @typescript-eslint/naming-convention */
     BaseGuildEmojiManager: 0,
     GuildBanManager: 0,
+    GuildEmojiManager: 0,
     GuildInviteManager: 0,
     GuildStickerManager: 0,
     MessageManager: {
@@ -70,11 +71,18 @@ const client = new Client({
 
 function attachInterval(): void {
   attachInterval.timeoutId = setInterval(() => {
-    console.log(
-      pico.blue('[INFO]'),
-      `Serving ${pico.yellow(client.users.cache.size)} users ` +
-        `from ${pico.green(client.guilds.cache.size)} guilds.`
-    )
+    const content =
+      `Serving ${client.users.cache.size} users ` +
+      `from ${client.guilds.cache.size} guilds.`
+
+    console.log(pico.blue('[INFO]'), content)
+
+    if (client.isReady()) {
+      const channel = client.channels.cache.get('854304218223214602')
+      if (channel?.isText()) {
+        void channel.send({ content }).catch()
+      }
+    }
   }, 60000)
 }
 
