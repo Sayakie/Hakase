@@ -5,6 +5,7 @@
   "field.hatchTime": "부화 걸음 수",
   "field.catchRate": "포획률",
   "field.spawn.unknown": "출몰 정보 없음",
+  "field.spawn.viaFossil": "화석 복원기에서 복원",
   "field.spawnTime": "출몰 시간",
   "field.spawnTime.any": "항상",
   "field.spawnBiome": "출몰 바이옴",

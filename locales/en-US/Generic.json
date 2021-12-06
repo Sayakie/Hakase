@@ -5,6 +5,7 @@
   "field.hatchTime": "Hatch Time",
   "field.catchRate": "Catch Rate",
   "field.spawn.unknown": "Unknown",
+  "field.spawn.viaFossil": "Be obtained through a Fossil",
   "field.spawnTime": "Spawn Time",
   "field.spawnTime.any": "Any",
   "field.spawnBiome": "Spawn Biome",
