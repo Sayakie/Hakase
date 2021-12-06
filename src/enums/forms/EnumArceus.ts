@@ -66,7 +66,8 @@ export class EnumArceus {
 
   public static values(): EnumForm[] {
     return [
-      this.Normal,
+      this.Normal
+      /*
       this.Grass,
       this.Fire,
       this.Water,
@@ -84,6 +85,7 @@ export class EnumArceus {
       this.Ice,
       this.Dragon,
       this.Fairy
+      */
     ]
   }
 }
