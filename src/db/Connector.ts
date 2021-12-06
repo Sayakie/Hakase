@@ -1,5 +1,8 @@
 import type { Database } from 'better-sqlite3'
 import sqlite3 from 'better-sqlite3'
+import { join } from 'node:path'
+
+import { ConfigDirectory } from '@/utils/Constants.js'
 
 let connector: Database | null = null
 export function getConnector(): Database {
@@ -17,10 +20,14 @@ export async function setup(): Promise<Database> {
         throw new ReferenceError('Connector already initialised!')
       }
 
-      connector = sqlite3('hakase.db', { verbose: console.info })
+      connector = sqlite3(join(ConfigDirectory, 'hakase.db'), {
+        verbose: (...args: unknown[]) =>
+          console.info(...args.map(String.prototype.trim.bind(args)))
+      })
       connector.exec(`
         CREATE TABLE IF NOT EXISTS Guild (
           id        TEXT PRIMARY KEY,
+          prefix    TEXT,
           locale    TEXT,
           tier      INTEGER
         );
@@ -31,7 +38,7 @@ export async function setup(): Promise<Database> {
       `)
       resolve(connector)
     } catch (e) {
-      reject(`There was an error while setiing database up: ${e}`)
+      reject(`There was an error while setting database up: ${e}`)
     }
   })
 }

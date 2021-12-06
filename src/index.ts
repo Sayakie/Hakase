@@ -83,7 +83,7 @@ function attachInterval(): void {
         void channel.send({ content }).catch()
       }
     }
-  }, 60000)
+  }, 2 * 60 * 1000 /** 2 minutes */)
 }
 
 attachInterval.timeoutId = undefined as NodeJS.Timeout | undefined

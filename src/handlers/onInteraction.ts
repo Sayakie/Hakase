@@ -2,12 +2,18 @@ import type { Interaction, TextChannel } from 'discord.js'
 import { Constants, MessageEmbed } from 'discord.js'
 import i18next from 'i18next'
 
+import { getConnector } from '@/db/Connector.js'
 import { EnumSpecies } from '@/enums/EnumSpecies.js'
 import type { ListenerCleanup } from '@/handlers/Listener.js'
 import type { Client } from '@/structures/Client.js'
 import { PokemonUtil } from '@/utils/PokemonUtil.js'
 
 function clientInteractionHandler(client: Client): ListenerCleanup {
+  const connector = getConnector()
+  const getLocale = connector.prepare(`
+    SELECT locale FROM Guild WHERE id = ?
+  `)
+
   async function onInteraction(interaction: Interaction): Promise<void> {
     if (!interaction.isButton() || !interaction.inCachedGuild()) return
     if (interaction.deferred) return
@@ -16,8 +22,7 @@ function clientInteractionHandler(client: Client): ListenerCleanup {
     const [, speciesStr, type, formInt] = interaction.customId.split('.')
     const species = EnumSpecies.getFromName(speciesStr!)!
 
-    const guildConfigs = await client.guildConfigs.get(interaction.guildId)
-    const { locale } = guildConfigs ?? client.static.defaultGuildConfig
+    const { locale } = getLocale.get(interaction.guildId)
 
     if (i18next.language !== locale) {
       await i18next.changeLanguage(locale)

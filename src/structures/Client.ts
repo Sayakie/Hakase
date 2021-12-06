@@ -1,17 +1,11 @@
 import type { ClientOptions as DiscordClientOptions } from 'discord.js'
 import { Client as DiscordJSClient } from 'discord.js'
-import Keyv from 'keyv'
-import { KeyvFile } from 'keyv-file'
 import { readFileSync } from 'node:fs'
-import { basename, extname, join } from 'node:path'
+import { basename, extname } from 'node:path'
 
-import { getConnector, setup } from '@/db/Connector.js'
+import { setup } from '@/db/Connector.js'
 import type { ListenerStruct } from '@/handlers/Listener.js'
-import {
-  ClientStatus,
-  ConfigDirectory,
-  RootDirectory
-} from '@/utils/Constants.js'
+import { ClientStatus, RootDirectory } from '@/utils/Constants.js'
 import { Locale } from '@/utils/I18n.js'
 import { PokemonUtil } from '@/utils/PokemonUtil.js'
 import { Util } from '@/utils/Util.js'
@@ -60,27 +54,6 @@ export class Client extends DiscordJSClient<true> {
   public static readonly defaultOptions: Partial<ClientOptions> = {
     retryLimit: 10
   }
-
-  /**
-   * Represents default guild config.
-   *
-   * @readonly
-   * @type {GuildConfig}
-   */
-  public static readonly defaultGuildConfig: GuildConfig = {
-    channels: [],
-    locale: 'en-US',
-    prefix: '!',
-    version: '0.3.1'
-  }
-
-  /**
-   * The guild config set.
-   *
-   * @readonly
-   * @type {Keyv<GuildConfig>}
-   */
-  public readonly guildConfigs: Keyv<GuildConfig>
 
   /**
    * The commands that have been registered by the {@link Client}.
@@ -156,12 +129,6 @@ export class Client extends DiscordJSClient<true> {
       get: getPackageVersion
     })
 
-    this.guildConfigs = new Keyv<GuildConfig>({
-      store: new KeyvFile({
-        filename: join(ConfigDirectory, 'guilds.json'),
-        writeDelay: 1 << 7
-      })
-    })
     this.commands = new Map()
     this.interactions = new Map()
     this.handlers = new Set()
@@ -175,6 +142,7 @@ export class Client extends DiscordJSClient<true> {
   public async init(): Promise<void> {
     const locale = Locale.getInstance()
 
+    await setup().catch()
     await PokemonUtil.loadAllStats().catch()
     await PokemonUtil.loadAllForms().catch()
     await PokemonUtil.loadAllSpawners().catch()
@@ -184,7 +152,6 @@ export class Client extends DiscordJSClient<true> {
     await this.loadInteractions().catch(console.error)
     await this.loadHandlers().catch(console.error)
 
-    await setup().catch()
     await locale.init().catch()
 
     this.status = ClientStatus.INITIALIZED

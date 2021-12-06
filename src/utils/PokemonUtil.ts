@@ -1,5 +1,5 @@
 import { MessageActionRow, MessageButton, MessageEmbed } from 'discord.js'
-import i18next, { loadLanguages } from 'i18next'
+import i18next from 'i18next'
 import mergeOptions from 'merge-options'
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'

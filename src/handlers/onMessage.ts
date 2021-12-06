@@ -3,13 +3,21 @@ import { Constants, MessageEmbed, Permissions } from 'discord.js'
 import i18next from 'i18next'
 import { getRegExp } from 'korean-regexp'
 
+import { getConnector } from '@/db/Connector.js'
 import { EnumSpecies } from '@/enums/EnumSpecies.js'
 import type { ListenerCleanup } from '@/handlers/Listener.js'
 import type { Client } from '@/structures/Client.js'
 import { PokemonUtil } from '@/utils/PokemonUtil.js'
 
 function clientReceivedMessageHandler(client: Client): ListenerCleanup {
+  const connector = getConnector()
+  const getGuildConfig = connector.prepare(`
+    SELECT prefix, locale FROM Guild WHERE id = ?
+  `)
+
+  // TODO I know it messed up
   const Locale = ['en-US', 'ko'] as Locale[]
+
   async function onMessageCreate(message: Message): Promise<void> {
     // Aborts incoming from system
     if (message.system || message.author.system) return
@@ -26,8 +34,7 @@ function clientReceivedMessageHandler(client: Client): ListenerCleanup {
     // Aborts reference message
     if (message.reference) return
 
-    const guildConfigs = await client.guildConfigs.get(message.guildId!)
-    const { prefix, locale } = guildConfigs ?? client.static.defaultGuildConfig
+    const { prefix, locale } = getGuildConfig.get(message.guildId!)
 
     if (!message.cleanContent.startsWith(prefix)) return
 
@@ -42,6 +49,25 @@ function clientReceivedMessageHandler(client: Client): ListenerCleanup {
     }
 
     switch (CommandToken) {
+      case 'setprefix':
+      case '접두사설정': {
+        if (
+          !message.member!.permissions.has(Permissions.FLAGS.MANAGE_CHANNELS)
+        ) {
+          return
+        }
+
+        const args = CommandArguments.join(' ')
+
+        connector
+          .prepare(`UPDATE Guild SET prefix = @prefix WHERE ID = @id`)
+          .run({
+            id: message.guildId!,
+            prefix: args
+          })
+        await message.channel.send('```diff\n+ ✔ Done!\n```')
+        break
+      }
       case 'setlang':
       case '언어설정': {
         if (
@@ -57,14 +83,16 @@ function clientReceivedMessageHandler(client: Client): ListenerCleanup {
           )
           return
         }
-        await client.guildConfigs.set(message.guildId!, {
-          ...(guildConfigs ?? client.static.defaultGuildConfig),
-          ...{ locale: args }
-        })
+
+        connector
+          .prepare(`UPDATE Guild SET locale = @locale WHERE ID = @id`)
+          .run({
+            id: message.guildId!,
+            locale: args
+          })
         await message.channel.send('```diff\n+ ✔ Done!\n```')
         break
       }
-      case 'setch':
       case 'setchannel':
       case '채널설정': {
         if (
