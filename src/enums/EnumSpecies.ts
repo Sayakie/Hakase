@@ -999,7 +999,7 @@ export class EnumSpecies {
     for (const pokemon of EnumSpecies.PokemonSet) {
       if (
         pokemon.name.toLowerCase() === name.toLowerCase() ||
-        pokemon.getLocalizedName() === name.toLowerCase()
+        pokemon.getLocalizedName().toLowerCase() === name.toLowerCase()
       )
         return pokemon
     }

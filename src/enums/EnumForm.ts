@@ -133,6 +133,24 @@ export class EnumForm {
     EnumSpecies.Zigzagoon
   ]
 
+  public static readonly fossilPokemons = [
+    EnumSpecies.Omanyte,
+    EnumSpecies.Kabuto,
+    EnumSpecies.Aerodactyl,
+    EnumSpecies.Lileep,
+    EnumSpecies.Anorith,
+    EnumSpecies.Cranidos,
+    EnumSpecies.Shieldon,
+    EnumSpecies.Tirtouga,
+    EnumSpecies.Archen,
+    EnumSpecies.Tyrunt,
+    EnumSpecies.Amaura,
+    EnumSpecies.Dracozolt,
+    EnumSpecies.Arctozolt,
+    EnumSpecies.Dracovish,
+    EnumSpecies.Arctovish
+  ]
+
   public static readonly formList: ReadonlyMap<EnumSpecies, EnumForm[]> =
     new StackableMap()
 
