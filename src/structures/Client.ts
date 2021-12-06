@@ -5,7 +5,8 @@ import { KeyvFile } from 'keyv-file'
 import { readFileSync } from 'node:fs'
 import { basename, extname, join } from 'node:path'
 
-import type { ListenerStruct } from '@/handlers/Listener'
+import { getConnector, setup } from '@/db/Connector.js'
+import type { ListenerStruct } from '@/handlers/Listener.js'
 import {
   ClientStatus,
   ConfigDirectory,
@@ -183,7 +184,8 @@ export class Client extends DiscordJSClient<true> {
     await this.loadInteractions().catch(console.error)
     await this.loadHandlers().catch(console.error)
 
-    await locale.init()
+    await setup().catch()
+    await locale.init().catch()
 
     this.status = ClientStatus.INITIALIZED
   }
