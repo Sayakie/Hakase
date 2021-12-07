@@ -27,7 +27,6 @@
     "build": "tsc"
   },
   "dependencies": {
-    "@barreljs/json-keys": "^0.0.2",
     "@types/i18next-fs-backend": "^1.1.2",
     "better-sqlite3": "^7.4.5",
     "discord.js": "^13.3.1",
