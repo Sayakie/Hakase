@@ -1,10 +1,12 @@
 import { Intents, Options } from 'discord.js'
+import type { DotenvConfigOutput } from 'dotenv'
 import { config } from 'dotenv'
+import { access } from 'node:fs/promises'
 import { join } from 'node:path'
 import pico from 'picocolors'
 
 import { Client } from '@/structures/Client.js'
-import { SourceDirectory } from '@/utils/Constants.js'
+import { RootDirectory, SourceDirectory } from '@/utils/Constants.js'
 
 function harmonyTerminator(error: Error | string): void {
   error = error instanceof Error ? error : new Error(error)
@@ -35,7 +37,39 @@ process.on('uncaughtException', error => {
   console.error(error)
 })
 
-config()
+const { NODE_ENV = 'production' } = process.env
+await Promise.all(
+  ['.env', `.env.${NODE_ENV.toLowerCase()}`].map(
+    async file =>
+      await access(join(RootDirectory, file))
+        .then(() => file)
+        .catch(() => null)
+  )
+)
+  .then(unrefinedFiles => unrefinedFiles.filter(Boolean).map(String))
+  .then(files =>
+    files.map(
+      file =>
+        [file, config({ path: join(RootDirectory, file) })] as [
+          string,
+          DotenvConfigOutput
+        ]
+    )
+  )
+  .then(components => {
+    components
+      .filter(([, { error }]) => Boolean(error))
+      .forEach(([file, { error }], i, { length }) => {
+        console.log(
+          pico.red(`Failed to load environment variables from ${file}!`),
+          error
+        )
+
+        if (i === length - 1) {
+          throw error
+        }
+      })
+  })
 
 const client = new Client({
   commandsPath: join(SourceDirectory, 'commands'),
