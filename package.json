@@ -12,11 +12,11 @@
   },
   "license": "MIT",
   "engines": {
-    "node": "^16.6",
+    "node": ">=16.6",
     "pnpm": "^6"
   },
   "devEngines": {
-    "node": "^16.10",
+    "node": ">=16.10",
     "pnpm": "^6.16"
   },
   "scripts": {
