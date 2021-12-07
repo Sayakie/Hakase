@@ -23,6 +23,7 @@
     "preinstall": "npx -y only-allow pnpm",
     "postinstall": "node scripts/check-dev-engines.mjs package.json && node scripts/dev-patch.mjs",
     "start": "node dist/index.js",
+    "dev": "NODE_ENV=development node dist/index.js",
     "build": "tsc"
   },
   "dependencies": {
