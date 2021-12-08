@@ -1,6 +1,6 @@
 import { EnumForm } from '@/enums/EnumForm.js'
 
-const form = EnumForm.of('Generic')
+const form = EnumForm.of('Generic').addFlags('PinToPrefix')
 
 export class EnumMega {
   public static readonly Normal = form.clone().setForm(0).memo('normal')
