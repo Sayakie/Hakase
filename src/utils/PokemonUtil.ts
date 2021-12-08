@@ -132,7 +132,7 @@ export async function loadAllBaseStats(): Promise<
 export async function loadAllForms(): Promise<
   ReadonlyMap<EnumSpecies, EnumForm[]>
 > {
-  const formList = new Map<EnumSpecies, EnumForm[]>()
+  const formList = EnumForm.formList as Map<EnumSpecies, EnumForm[]>
 
   return new Promise<Map<EnumSpecies, EnumForm[]>>((resolve, reject) => {
     try {
@@ -259,6 +259,30 @@ export async function loadAllDrops(
   const drops = JSON.parse(dropsBuf.toString())
 
   return drops
+}
+
+export function getBaseStats(
+  baseStats: Awaited<ReturnType<typeof loadAllBaseStats>>,
+  species: EnumSpecies,
+  form: number = 0
+): BaseStats | null {
+  let bs = baseStats.get(species)
+  if (!bs) return null
+
+  if (EnumForm.formList.has(species)) {
+    const enumForms = EnumForm.formList.get(species)!
+
+    const hasFakeForm = enumForms
+      .filter(enumForm => enumForm.form === form)
+      .some(enumForm => enumForm.getFlags().includes(FormFlag.FakeForm))
+    if (hasFakeForm) return bs
+  }
+
+  if (form > 0) {
+    bs = mergeOptions(bs, bs.forms![`${form}`])
+  }
+
+  return bs!
 }
 
 export class PokemonUtil extends null {
