@@ -1,4 +1,5 @@
 import { EnumSpecies } from '@/enums/EnumSpecies.js'
+import type { Cloneable } from '@/utils/Cloneable.js'
 import type { FormFlag } from '@/utils/Constants.js'
 
 type FormFlag = keyof typeof FormFlag
@@ -18,7 +19,7 @@ class StackableMap<K extends EnumSpecies, V extends EnumForm[]> extends Map<
   }
 }
 
-export class EnumForm {
+export class EnumForm implements Cloneable<EnumForm> {
   public static readonly normalForms = [
     EnumSpecies.Arbok,
     EnumSpecies.Bidoof,
