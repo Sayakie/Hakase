@@ -5,4 +5,5 @@ node_modules
 test2.mjs
 dist
 data
+data.origin
 config
