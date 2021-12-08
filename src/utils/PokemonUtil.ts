@@ -108,7 +108,9 @@ const thumbnailUri = `https://img.pokemondb.net/sprites/home/normal`
 /** @inner */
 const sharedRandInt = -1
 
-export async function loadAllStats(): Promise<WeakMap<EnumSpecies, BaseStats>> {
+export async function loadAllBaseStats(): Promise<
+  WeakMap<EnumSpecies, BaseStats>
+> {
   const baseStatsMap = new WeakMap<EnumSpecies, BaseStats>()
 
   for await (const species of EnumSpecies.PokemonSet) {
@@ -127,7 +129,9 @@ export async function loadAllStats(): Promise<WeakMap<EnumSpecies, BaseStats>> {
   return baseStatsMap
 }
 
-export async function loadAllForms(): Promise<Map<EnumSpecies, EnumForm[]>> {
+export async function loadAllForms(): Promise<
+  ReadonlyMap<EnumSpecies, EnumForm[]>
+> {
   const formList = new Map<EnumSpecies, EnumForm[]>()
 
   return new Promise<Map<EnumSpecies, EnumForm[]>>((resolve, reject) => {
@@ -230,7 +234,9 @@ export async function loadSpawnerConfig(
   return spawnerConfig
 }
 
-export async function loadAllSpawnSets(): Promise<Map<string, SpawnInfo[]>> {
+export async function loadAllSpawnSets(): Promise<
+  ReadonlyMap<string, SpawnInfo[]>
+> {
   const spawnSets = new Map<string, SpawnInfo[]>()
   const spawnSetFileList = spawnSetFilePathList
     .map(filePath => Util.walk(filePath, { globs: ['**/*.json'] }))
