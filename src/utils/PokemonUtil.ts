@@ -93,6 +93,168 @@ function getPostPosition(str: string, post: string): string {
   else return `${str}${jong2}`
 }
 
+/** @private @since 2021-12-08 */
+const IntegerFormatter = new Intl.NumberFormat('en-IN')
+const dropFilePath = join(DataDirectory, 'pixelmon', 'drops')
+/** @deprecated For adapts only */
+const spawnSetFilePath = join(DataDirectory, 'pixelmon', 'spawning')
+const spawnSetFilePathList = [
+  join(spawnSetFilePath, 'standard'),
+  join(spawnSetFilePath, 'legendaries')
+]
+
+const spriteUri = `https://raw.githubusercontent.com/Sayakie/Riots/resources/sprites/pokemon`
+const thumbnailUri = `https://img.pokemondb.net/sprites/home/normal`
+/** @inner */
+const sharedRandInt = -1
+
+export async function loadAllStats(): Promise<WeakMap<EnumSpecies, BaseStats>> {
+  const baseStatsMap = new WeakMap<EnumSpecies, BaseStats>()
+
+  for await (const species of EnumSpecies.PokemonSet) {
+    const baseStatsPath = join(
+      DataDirectory,
+      'pixelmon',
+      'stats',
+      `${species.getNationalPokedexNumber()}.json`
+    )
+    const baseStatsBuf = await readFile(baseStatsPath)
+    const baseStats = JSON.parse(baseStatsBuf.toString())
+
+    baseStatsMap.set(species, baseStats)
+  }
+
+  return baseStatsMap
+}
+
+export async function loadAllForms(): Promise<Map<EnumSpecies, EnumForm[]>> {
+  const formList = new Map<EnumSpecies, EnumForm[]>()
+
+  return new Promise<Map<EnumSpecies, EnumForm[]>>((resolve, reject) => {
+    try {
+      formList.set(EnumSpecies.Aegislash, EnumAegislash.values())
+      formList.set(EnumSpecies.Alcremie, EnumAlcremie.values())
+      formList.set(EnumSpecies.Arceus, EnumArceus.values())
+      formList.set(EnumSpecies.Basculin, EnumBasculin.values())
+      formList.set(EnumSpecies.Burmy, EnumBurmy.values())
+      formList.set(EnumSpecies.Calyrex, EnumCalyrex.values())
+      formList.set(EnumSpecies.Castform, EnumCastform.values())
+      formList.set(EnumSpecies.Cherrim, EnumCherrim.values())
+      formList.set(EnumSpecies.Darmanitan, EnumDarmanitan.values())
+      formList.set(EnumSpecies.Deoxys, EnumDeoxys.values())
+      formList.set(EnumSpecies.Eiscue, EnumEiscue.values())
+      formList.set(EnumSpecies.Eternatus, EnumEternatus.values())
+      formList.set(
+        EnumSpecies.Flabebe,
+        EnumFlabebe.values().filter(({ form }) => form === 0)
+      )
+      formList.set(EnumSpecies.Floette, EnumFlabebe.values())
+      formList.set(
+        EnumSpecies.Florges,
+        EnumFlabebe.values().filter(({ form }) => form === 0)
+      )
+      formList.set(EnumSpecies.Gastrodon, EnumGastrodon.values())
+      formList.set(EnumSpecies.Giratina, EnumGiratina.values())
+      formList.set(EnumSpecies.Greninja, EnumGreninja.values())
+      formList.set(EnumSpecies.Groudon, EnumPrimal.values())
+      formList.set(EnumSpecies.Groudon, EnumGroudon.values())
+      formList.set(EnumSpecies.Hoopa, EnumHoopa.values())
+      formList.set(EnumSpecies.Keldeo, EnumKeldeo.values())
+      formList.set(EnumSpecies.Kyogre, EnumPrimal.values())
+      formList.set(EnumSpecies.Kyurem, EnumKyurem.values())
+      formList.set(EnumSpecies.Landorus, EnumTherian.values())
+      formList.set(EnumSpecies.Lycanroc, EnumLycanroc.values())
+      formList.set(EnumSpecies.Magearna, EnumMagearna.values())
+      formList.set(EnumSpecies.Meloetta, EnumMeloetta.values())
+      formList.set(EnumSpecies.Meowth, EnumMeowth.values())
+      formList.set(EnumSpecies.Mimikyu, EnumMimikyu.values())
+      formList.set(EnumSpecies.Minior, EnumMinior.values())
+      formList.set(EnumSpecies.Morpeko, EnumMorpeko.values())
+      formList.set(EnumSpecies.Necrozma, EnumNecrozma.values())
+      formList.set(EnumSpecies.Oricorio, EnumOricorio.values())
+      formList.set(EnumSpecies.Rotom, EnumRotom.values())
+      formList.set(EnumSpecies.Sawsbuck, SeasonForm.values())
+      formList.set(EnumSpecies.Shaymin, EnumShaymin.values())
+      formList.set(EnumSpecies.Shellos, EnumGastrodon.values())
+      formList.set(EnumSpecies.Silvally, EnumArceus.values())
+      formList.set(EnumSpecies.Thundurus, EnumTherian.values())
+      formList.set(EnumSpecies.Tornadus, EnumTherian.values())
+      formList.set(EnumSpecies.Toxtricity, EnumToxtricity.values())
+      formList.set(EnumSpecies.Unown, EnumUnown.values())
+      formList.set(EnumSpecies.Urshifu, EnumUrshifu.values())
+      formList.set(EnumSpecies.Vivillon, EnumVivillon.values())
+      formList.set(EnumSpecies.Wishiwashi, EnumWishiwashi.values())
+      formList.set(
+        EnumSpecies.Wormadam,
+        EnumBurmy.values().map(formEnum => formEnum.removeFlags('FakeForm'))
+      )
+      formList.set(EnumSpecies.Xerneas, EnumXerneas.values())
+      formList.set(EnumSpecies.Zygarde, EnumZygarde.values())
+      formList.set(EnumSpecies.Zacian, EnumHeroDuo.values())
+      formList.set(EnumSpecies.Zamazenta, EnumHeroDuo.values())
+
+      EnumForm.megaForms.forEach(species => {
+        formList.set(species, [EnumMega.Normal, EnumMega.Mega])
+      })
+
+      EnumForm.megaXYForms.forEach(species => {
+        formList.set(species, [EnumMega.Normal, EnumMega.MegaX, EnumMega.MegaY])
+      })
+
+      EnumForm.genderForms.forEach(species => {
+        formList.set(species, [EnumGender.Male, EnumGender.Female])
+      })
+
+      EnumForm.alolanForms.forEach(species => {
+        formList.set(species, [RegionalForm.Normal, RegionalForm.Alolan])
+      })
+
+      EnumForm.galarianForms.forEach(species => {
+        formList.set(species, [RegionalForm.Normal, RegionalForm.Galarian])
+      })
+
+      resolve(formList)
+    } catch {
+      reject(new Error('Failed to load all forms'))
+    }
+  })
+}
+
+export async function loadSpawnerConfig(
+  configFile = 'BetterSpawnerConfig.json'
+): Promise<SpawnerConfig> {
+  const spawnerConfigFile = join(spawnSetFilePath, configFile)
+  const spawnerConfigBuf = await readFile(spawnerConfigFile)
+  const spawnerConfig: SpawnerConfig = JSON.parse(spawnerConfigBuf.toString())
+
+  return spawnerConfig
+}
+
+export async function loadAllSpawnSets(): Promise<Map<string, SpawnInfo[]>> {
+  const spawnSets = new Map<string, SpawnInfo[]>()
+  const spawnSetFileList = spawnSetFilePathList
+    .map(filePath => Util.walk(filePath, { globs: ['**/*.json'] }))
+    .flat()
+
+  for await (const spawnSetFile of spawnSetFileList) {
+    const spawnSetBuf = await readFile(spawnSetFile)
+    const spawnSet: SpawnSet = JSON.parse(spawnSetBuf.toString())
+
+    spawnSets.set(spawnSet.id, spawnSet.spawnInfos)
+  }
+
+  return spawnSets
+}
+
+export async function loadAllDrops(
+  dropFile = 'pokedrops.json'
+): Promise<ReadonlyArray<PokeDrop>> {
+  const dropsBuf = await readFile(join(dropFilePath, dropFile))
+  const drops = JSON.parse(dropsBuf.toString())
+
+  return drops
+}
+
 export class PokemonUtil extends null {
   public static Stats: WeakMap<EnumSpecies, BaseStats> = new WeakMap()
   public static Drops: ReadonlyArray<PokeDrop> = []
