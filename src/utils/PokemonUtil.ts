@@ -288,6 +288,80 @@ export function getBaseStats(
   return bs!
 }
 
+export function getDrop(drop: PokeDrop): string {
+  type DropData = { [P in Extract<keyof PokeDrop, `${string}data`>]: number }
+  function generateDrop(
+    type: keyof DropData,
+    data: string,
+    min: number,
+    max: number
+  ): string {
+    const dropItemName = i18next.t(`Item:${data}`)
+    const emoji =
+      (Util.emojis[
+        Util.replaceEmojiKeyIfPossible(
+          data.replace(/^[^:]+/, '').substring(1)
+        ) as keyof typeof Util['emojis']
+      ] as '' | null) ?? ':grey_question:'
+
+    return `${emoji} | **\`${dropItemName.padEnd(
+      dropItemNameMaxLength - dropItemLengthOrder[type]
+    )} ${min} ~ ${max}개\`**`
+  }
+
+  const { maindropdata, optdrop1data, optdrop2data, raredropdata } = drop
+  const dropItemLengthOrder: DropData = {} as DropData
+  const dropItemNameLengthList = Object.entries({
+    maindropdata,
+    optdrop1data,
+    optdrop2data,
+    raredropdata
+  })
+    .filter(([, value]) => Boolean(value))
+    .map(([key, namespace]) => {
+      const localizedData = i18next.t(`Item:${namespace}`)
+      const length = localizedData
+        .split('')
+        .reduce((a, b) => a + (b.charCodeAt(0) >> 11 ? 2 : 1), 0)
+
+      return [key, length] as [keyof DropData, number]
+    })
+    .sort(([, lengthOfA], [, lengthOfB]) => lengthOfA - lengthOfB)
+    .map(([key, length], order, arr) => {
+      const [prevKey, prevLength] = arr.at(order - 1)!
+
+      let index = order
+      if (length === prevLength) {
+        index = dropItemLengthOrder[prevKey]!
+      }
+
+      dropItemLengthOrder[key] = index
+
+      return length
+    })
+
+  const dropItemNameMaxLength = dropItemNameLengthList.at(-1)!
+  const dropData: string[] = []
+
+  if (maindropdata) {
+    dropData.push(generateDrop('maindropdata', maindropdata, 1, 1))
+  }
+
+  if (optdrop1data) {
+    dropData.push(generateDrop('optdrop1data', optdrop1data, 1, 1))
+  }
+
+  if (optdrop2data) {
+    dropData.push(generateDrop('optdrop2data', optdrop2data, 1, 1))
+  }
+
+  if (raredropdata) {
+    dropData.push(generateDrop('raredropdata', raredropdata, 1, 1))
+  }
+
+  return dropData.join('\n')
+}
+
 export class PokemonUtil extends null {
   public static Stats: WeakMap<EnumSpecies, BaseStats> = new WeakMap()
   public static Drops: ReadonlyArray<PokeDrop> = []
