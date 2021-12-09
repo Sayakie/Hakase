@@ -566,12 +566,15 @@ export class PokemonUtil extends null {
       return ''
     }
 
+    // Handle for mega evolution or gender forms
     if (
       EnumForm.megaForms.includes(species) ||
-      EnumForm.megaXYForms.includes(species)
+      EnumForm.megaXYForms.includes(species) ||
+      EnumForm.genderForms.includes(species)
     ) {
       form = 0
     }
+
     const bs = PokemonUtil.getBaseStats(species, form)
     const evolutionSpec = [] as string[]
     let preForm = form
