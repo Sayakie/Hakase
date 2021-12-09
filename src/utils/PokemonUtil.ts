@@ -558,12 +558,12 @@ export class PokemonUtil extends null {
   public static getEvolutionSpec(
     species: EnumSpecies,
     form: number = 0
-  ): string {
+  ): string | null {
     // Hotfix.
     if (species === EnumSpecies.Alcremie) {
-      return ''
+      return null
     } else if (species === EnumSpecies.Greninja && form === 2) {
-      return ''
+      return null
     }
 
     // Handle for mega evolution or gender forms
