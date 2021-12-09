@@ -108,6 +108,17 @@ const thumbnailUri = `https://img.pokemondb.net/sprites/home/normal`
 /** @inner */
 const sharedRandInt = -1
 
+function prepareBaseStats(bs: BaseStats): BaseStats {
+  if (bs.forms != null && Object.keys(bs.forms).length > 0) {
+    Object.keys(bs.forms).forEach(form => {
+      const { forms, ...bsDefault } = bs // eslint-disable-line @typescript-eslint/no-unused-vars
+      bs.forms![form] = mergeOptions(bsDefault, bs.forms![form])
+    })
+  }
+
+  return bs
+}
+
 export async function loadAllBaseStats(): Promise<
   WeakMap<EnumSpecies, BaseStats>
 > {
@@ -121,7 +132,8 @@ export async function loadAllBaseStats(): Promise<
       `${species.getNationalPokedexNumber()}.json`
     )
     const baseStatsBuf = await readFile(baseStatsPath)
-    const baseStats = JSON.parse(baseStatsBuf.toString())
+    const baseStatsJson = JSON.parse(baseStatsBuf.toString())
+    const baseStats = prepareBaseStats(baseStatsJson)
 
     baseStatsMap.set(species, baseStats)
   }
@@ -268,15 +280,6 @@ export function getBaseStats(
 ): BaseStats | null {
   let bs = baseStats.get(species)
   if (!bs) return null
-
-  if (EnumForm.formList.has(species)) {
-    const enumForms = EnumForm.formList.get(species)!
-
-    const hasFakeForm = enumForms
-      .filter(enumForm => enumForm.form === form)
-      .some(enumForm => enumForm.getFlags().includes(FormFlag.FakeForm))
-    if (hasFakeForm) return bs
-  }
 
   if (form > 0) {
     bs = mergeOptions(bs, bs.forms![`${form}`])
