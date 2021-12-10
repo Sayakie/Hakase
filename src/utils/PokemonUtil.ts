@@ -294,6 +294,20 @@ export function getBaseStats(
   return bs!
 }
 
+export function getPokeDropFromSpecies(
+  drop: ReadonlyArray<PokeDrop>,
+  species: EnumSpecies,
+  variant: number = 0
+): PokeDrop | null {
+  const dropInfo = drop.find(
+    ({ pokemon, form }) =>
+      pokemon === species.getName() && (form ?? variant) === variant
+  )
+
+  if (dropInfo) return dropInfo
+  return null
+}
+
 export function getDrop(drop: PokeDrop): string {
   type DropData = { [P in Extract<keyof PokeDrop, `${string}data`>]: number }
   function generateDrop(
