@@ -108,6 +108,12 @@ const thumbnailUri = `https://img.pokemondb.net/sprites/home/normal`
 /** @inner */
 const sharedRandInt = -1
 
+/**
+ * Prepares the given `baseStats` to expand forms if needed.
+ *
+ * @param {BaseStats} bs The base stats to prepare.
+ * @returns {BaseStats} The prepared base stats.
+ */
 function prepareBaseStats(bs: BaseStats): BaseStats {
   if (bs.forms != null && Object.keys(bs.forms).length > 0) {
     Object.keys(bs.forms).forEach(form => {
@@ -344,19 +350,47 @@ export function getDrop(drop: PokeDrop): string {
   const dropData: string[] = []
 
   if (maindropdata) {
-    dropData.push(generateDrop('maindropdata', maindropdata, 1, 1))
+    dropData.push(
+      generateDrop(
+        'maindropdata',
+        maindropdata,
+        drop.maindropmin,
+        drop.maindropmax
+      )
+    )
   }
 
   if (optdrop1data) {
-    dropData.push(generateDrop('optdrop1data', optdrop1data, 1, 1))
+    dropData.push(
+      generateDrop(
+        'optdrop1data',
+        optdrop1data,
+        drop.optdrop1min,
+        drop.optdrop1max
+      )
+    )
   }
 
   if (optdrop2data) {
-    dropData.push(generateDrop('optdrop2data', optdrop2data, 1, 1))
+    dropData.push(
+      generateDrop(
+        'optdrop2data',
+        optdrop2data,
+        drop.optdrop2min,
+        drop.optdrop2max
+      )
+    )
   }
 
   if (raredropdata) {
-    dropData.push(generateDrop('raredropdata', raredropdata, 1, 1))
+    dropData.push(
+      generateDrop(
+        'raredropdata',
+        raredropdata,
+        drop.raredropmin,
+        drop.raredropmax
+      )
+    )
   }
 
   return dropData.join('\n')
