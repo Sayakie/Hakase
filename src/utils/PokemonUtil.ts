@@ -242,14 +242,15 @@ export async function loadAllDrops(
 export function getBaseStats(
   baseStats: Awaited<ReturnType<typeof loadAllBaseStats>>,
   species: EnumSpecies,
-  form: number = 0
+  variant: number = 0
 ): BaseStats | null {
   let bs = baseStats.get(species)
-  if (!bs) return null
 
-  if (form > 0) {
-    bs = mergeOptions(bs, bs.forms![`${form}`])
+  if (variant > 0) {
+    bs = bs?.forms?.[variant] ?? undefined
   }
+
+  if (!bs) return null
 
   return bs!
 }
