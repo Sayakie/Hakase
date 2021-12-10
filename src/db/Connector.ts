@@ -2,7 +2,7 @@ import type { Database } from 'better-sqlite3'
 import sqlite3 from 'better-sqlite3'
 import { join } from 'node:path'
 
-import { ConfigDirectory } from '@/utils/Constants.js'
+import { DataDirectory } from '@/utils/Constants.js'
 
 let connector: Database | null = null
 export function getConnector(): Database {
@@ -20,7 +20,7 @@ export async function setup(): Promise<Database> {
         throw new ReferenceError('Connector already initialised!')
       }
 
-      connector = sqlite3(join(ConfigDirectory, 'hakase.db'), {
+      connector = sqlite3(join(DataDirectory, 'hakase.db'), {
         verbose: (...args: unknown[]) =>
           console.info(...args.map(String.prototype.trim.bind(args)))
       })
