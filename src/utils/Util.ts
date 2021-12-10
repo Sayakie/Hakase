@@ -30,6 +30,52 @@ export const walkDefaultOptions: WalkOptions = {
   includeBasePath: true
 }
 
+export function walk(
+  directory: string,
+  walkOptions?: WalkOptions
+): ReadonlyArray<string> {
+  walkOptions = mergeOptions(walkDefaultOptions, walkOptions)
+
+  return walkSync(directory, walkOptions)
+}
+
+/**
+ * Constructs an enumeration with keys equal to their value.
+ *
+ * @param {string[]} keys An array of keys
+ * @returns {Record<string, string>} An enumeration with keys equal to their value
+ */
+export function keyMirror<T extends string>(
+  keys: T[] | ReadonlyArray<T>
+): { readonly [P in T]: P }
+export function keyMirror(
+  keys: string[] | ReadonlyArray<string>
+): Record<string, string> {
+  return (keys as string[]).reduce((mirror, key) => {
+    mirror[key] = key
+
+    return mirror
+  }, {} as Record<string, string>)
+}
+
+export function createEnum<T extends ReadonlyArray<string>>(
+  keys: [...T] | Readonly<T>
+): {
+  [V in T[number]]: {
+    [K in Exclude<keyof T, keyof unknown[]>]: V extends T[K] ? K : never
+  }[Exclude<keyof T, keyof unknown[]>]
+} & {
+  [K in Exclude<keyof T, keyof unknown[]>]: T[K]
+}
+export function createEnum(keys: string[]): Record<string, string | number> {
+  return keys.reduce((mirror, key, index) => {
+    mirror[key] = index
+    mirror[index] = key
+
+    return mirror
+  }, {} as Record<string, string | number>)
+}
+
 export function generateWebhookTemplate(p: TemplateParameters): {
   avatarUrl: string
   components: MessageActionRow[]
