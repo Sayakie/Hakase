@@ -54,14 +54,6 @@ import { ArrayUtil } from '@/utils/ArrayUtil.js'
 import { DataDirectory } from '@/utils/Constants.js'
 import { Util } from '@/utils/Util.js'
 
-const dropFilePath = join(DataDirectory, 'pixelmon', 'drops')
-/** @deprecated For adapts only */
-const spawnSetFilePath = join(DataDirectory, 'pixelmon', 'spawning')
-const spawnSetFilePathList = [
-  join(spawnSetFilePath, 'standard'),
-  join(spawnSetFilePath, 'legendaries')
-]
-
 const spriteUri = `https://raw.githubusercontent.com/Sayakie/Riots/resources/sprites/pokemon`
 const thumbnailUri = `https://img.pokemondb.net/sprites/home/normal`
 /** @inner */
@@ -87,9 +79,8 @@ function prepareBaseStats(bs: BaseStats): BaseStats {
   return bs
 }
 
-export async function loadAllBaseStats(): Promise<
-  WeakMap<EnumSpecies, BaseStats>
-> {
+export type BaseStatsLink = WeakMap<EnumSpecies, BaseStats>
+export async function loadAllBaseStats(): Promise<BaseStatsLink> {
   const baseStatsMap = new WeakMap<EnumSpecies, BaseStats>()
 
   for await (const species of EnumSpecies.PokemonSet) {
@@ -109,9 +100,8 @@ export async function loadAllBaseStats(): Promise<
   return baseStatsMap
 }
 
-export async function loadAllForms(): Promise<
-  ReadonlyMap<EnumSpecies, EnumForm[]>
-> {
+export type FormLink = ReadonlyMap<EnumSpecies, EnumForm[]>
+export async function loadAllForms(): Promise<FormLink> {
   const formList = EnumForm.formList as Map<EnumSpecies, EnumForm[]>
 
   return new Promise<Map<EnumSpecies, EnumForm[]>>((resolve, reject) => {
@@ -207,18 +197,24 @@ export async function loadAllForms(): Promise<
 export async function loadSpawnerConfig(
   configFile = 'BetterSpawnerConfig.json'
 ): Promise<SpawnerConfig> {
-  const spawnerConfigFile = join(spawnSetFilePath, configFile)
-  const spawnerConfigBuf = await readFile(spawnerConfigFile)
+  const filePathDefault = join(DataDirectory, 'pixelmon', 'spawning')
+  const filePath = join(filePathDefault, configFile)
+  const spawnerConfigBuf = await readFile(filePath)
   const spawnerConfig: SpawnerConfig = JSON.parse(spawnerConfigBuf.toString())
 
   return spawnerConfig
 }
 
-export async function loadAllSpawnSets(): Promise<
-  ReadonlyMap<string, SpawnInfo[]>
-> {
+export type SpawnSets = ReadonlyMap<string, SpawnInfo[]>
+export async function loadAllSpawnSets(): Promise<SpawnSets> {
+  const filePath = join(DataDirectory, 'pixelmon', 'spawning')
+  const filePathList = [
+    join(filePath, 'standard'),
+    join(filePath, 'legendaries')
+  ]
+
   const spawnSets = new Map<string, SpawnInfo[]>()
-  const spawnSetFileList = spawnSetFilePathList
+  const spawnSetFileList = filePathList
     .map(filePath => Util.walk(filePath, { globs: ['**/*.json'] }))
     .flat()
 
@@ -232,9 +228,11 @@ export async function loadAllSpawnSets(): Promise<
   return spawnSets
 }
 
+export type PokeDrops = ReadonlyArray<PokeDrop>
 export async function loadAllDrops(
   dropFile = 'pokedrops.json'
-): Promise<ReadonlyArray<PokeDrop>> {
+): Promise<PokeDrops> {
+  const dropFilePath = join(DataDirectory, 'pixelmon', 'drops')
   const dropsBuf = await readFile(join(dropFilePath, dropFile))
   const drops = JSON.parse(dropsBuf.toString())
 
