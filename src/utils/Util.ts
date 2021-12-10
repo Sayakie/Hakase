@@ -993,7 +993,7 @@ export function generateBaseTemplate({
   )
   if (spawnInfoSpecs.length > 1) {
     spawnInfo = spawnInfoSpecs.reduce(
-      (acc, curr) => mergeOptions.call({ concatArray: true }, acc, curr),
+      (acc, curr) => mergeOptions.call({ concatArrays: true }, acc, curr),
       {} as SpawnInfo
     )
   } else {
