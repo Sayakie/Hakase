@@ -96,7 +96,7 @@ declare interface BaseStats {
   levelUpMoves?: Record<string, string[]>
   tutorMoves?: string[]
   eggMoves?: string[]
-  forms?: Record<string, NestedBaseStats>
+  forms?: Record<string, BaseStats>
   form?: number
   hmMoves?: []
   trMoves?: string[]
