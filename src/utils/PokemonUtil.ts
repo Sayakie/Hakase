@@ -324,8 +324,8 @@ export function getDrop(drop: PokeDrop): string {
         ) as keyof typeof Util['emojis']
       ] as '' | null) ?? ':grey_question:'
 
-    return `${emoji} | **\`${dropItemName.padEnd(
-      dropItemNameMaxLength - dropItemLengthOrder[type]
+    return `${emoji} | **\`${dropItemName}${``.padEnd(
+      dropItemNameMaxLength - dropItemNameLengthList[dropItemLengthOrder[type]]!
     )} ${min} ~ ${max}개\`**`
   }
 
