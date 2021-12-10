@@ -240,7 +240,7 @@ export async function loadAllDrops(
 }
 
 export function getBaseStats(
-  baseStats: Awaited<ReturnType<typeof loadAllBaseStats>>,
+  baseStats: BaseStatsLink,
   species: EnumSpecies,
   variant: number = 0
 ): BaseStats | null {
