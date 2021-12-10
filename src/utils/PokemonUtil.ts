@@ -410,6 +410,80 @@ export function getDrop(drop: PokeDrop): string {
   return dropData.join('\n')
 }
 
+export function getSpriteUri(
+  species: EnumSpecies,
+  variant: number = 0
+): string {
+  const pokedex = species.getNationalPokedexNumber()
+  let resourceSuffix = ''
+
+  if (EnumForm.normalForms.includes(species)) {
+    resourceSuffix = '-normal'
+  } else if (EnumForm.formList.has(species)) {
+    const forms = EnumForm.formList
+      .get(species)!
+      .filter(form => form.form === variant)
+
+    if (forms.length > 1) {
+      resourceSuffix =
+        forms[sharedRandInt]?.spriteSuffix ??
+        ArrayUtil.getRandomElement(forms).spriteSuffix
+    } else {
+      resourceSuffix = forms.at(0)!.spriteSuffix
+    }
+  }
+
+  return `${spriteUri}/${pokedex}${resourceSuffix}.png`
+}
+
+export function getThumbnailUri(
+  species: EnumSpecies,
+  variant: number = 0
+): string {
+  let thumbUri = thumbnailUri
+  let resource = species.getName().toLowerCase()
+  let resourceSuffix = ''
+
+  if (EnumForm.formList.has(species)) {
+    const forms = EnumForm.formList
+      .get(species)!
+      .filter(form => form.form === variant)
+    let form: EnumForm
+
+    if (forms.length > 1) {
+      form = forms[sharedRandInt] ?? ArrayUtil.getRandomElement(forms)
+    } else {
+      form = forms.at(0)!
+    }
+
+    resourceSuffix = form.imageSuffix ?? form.spriteSuffix
+  }
+
+  if (species === EnumSpecies.MrMime) {
+    resource = 'mr-mime'
+  } else if (species === EnumSpecies.MimeJr) {
+    resource = 'mime-jr'
+  } else if (species === EnumSpecies.MrRime) {
+    resource = 'mr-rime'
+  } else if (
+    species === EnumSpecies.Frillish ||
+    species === EnumSpecies.Hippopotas ||
+    species === EnumSpecies.Jellicent ||
+    species === EnumSpecies.Pyroar ||
+    species === EnumSpecies.Unfezant ||
+    species === EnumSpecies.Wobbuffet
+  ) {
+    resourceSuffix = resourceSuffix.includes('male') ? '' : '-f'
+  } else if (species.getName().startsWith('Tapu')) {
+    resource = species.getName().toLowerCase().replaceAll('tapu', 'tapu-')
+    resourceSuffix = ''
+  } else if (species === EnumSpecies.Unown) {
+    thumbUri = thumbUri.replace('home/normal', 'home/shiny')
+  }
+
+  return `${thumbUri}/${resource}${resourceSuffix}.png`
+}
+
 export class PokemonUtil extends null {
   public static Stats: WeakMap<EnumSpecies, BaseStats> = new WeakMap()
   public static Drops: ReadonlyArray<PokeDrop> = []
