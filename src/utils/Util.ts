@@ -66,14 +66,13 @@ export function createEnum<T extends ReadonlyArray<string>>(
   }[Exclude<keyof T, keyof unknown[]>]
 } & {
   [K in Exclude<keyof T, keyof unknown[]>]: T[K]
-}
-export function createEnum(keys: string[]): Record<string, string | number> {
-  return keys.reduce((mirror, key, index) => {
+} {
+  return (keys as T).reduce((mirror, key, index) => {
     mirror[key] = index
     mirror[index] = key
 
     return mirror
-  }, {} as Record<string, string | number>)
+  }, {} as any) // eslint-disable-line @typescript-eslint/no-explicit-any
 }
 
 export function generateWebhookTemplate(p: TemplateParameters): {
