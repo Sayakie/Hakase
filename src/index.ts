@@ -141,7 +141,8 @@ await client
       const emojiSet = JSON.parse(emojiSetBuf.toString())
 
       Object.keys(emojiSet).forEach(emoji => {
-        emojis[emojiSet] = emojiSet[emoji]
+        const emojiSnowflake = emojiSet[emoji]
+        emojis[emoji] = `<:${emoji}:${emojiSnowflake}>`
       })
     }
   })
