@@ -96,7 +96,7 @@ declare interface BaseStats {
   levelUpMoves?: Record<string, string[]>
   tutorMoves?: string[]
   eggMoves?: string[]
-  forms?: Record<string, NestedBaseStats>
+  forms?: Record<string, BaseStats>
   form?: number
   hmMoves?: []
   trMoves?: string[]
@@ -153,7 +153,12 @@ declare type Time =
   | 'Dusk'
   | 'Dawn'
 
-declare type EvolutionType = 'leveling' | 'interact' | 'trade' | 'ticking'
+declare type EvolutionType =
+  | 'leveling'
+  | 'interact'
+  | 'trade'
+  | 'ticking'
+  | 'Unknown'
 
 // TODO - its messy up
 declare type EvolutionCondition =
@@ -244,6 +249,9 @@ declare type EvolutionCondition =
   | {
       evoConditionType: 'status'
       type: 'Burn'
+    }
+  | {
+      evoConditionType: 'Unknown'
     }
 
 declare interface Aggression {

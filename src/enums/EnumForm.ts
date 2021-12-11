@@ -1,4 +1,5 @@
 import { EnumSpecies } from '@/enums/EnumSpecies.js'
+import type { Cloneable } from '@/utils/Cloneable.js'
 import type { FormFlag } from '@/utils/Constants.js'
 
 type FormFlag = keyof typeof FormFlag
@@ -9,6 +10,9 @@ class StackableMap<K extends EnumSpecies, V extends EnumForm[]> extends Map<
 > {
   public set(key: K, value: V): this {
     if (this.has(key)) {
+      value.forEach((v, i) => {
+        this.get(key)!.some(f => f.form === v.form) && value.splice(i, 1)
+      })
       super.set(key, this.get(key)!.concat(value) as V)
     } else {
       super.set(key, value)
@@ -18,12 +22,14 @@ class StackableMap<K extends EnumSpecies, V extends EnumForm[]> extends Map<
   }
 }
 
-export class EnumForm {
+export class EnumForm implements Cloneable<EnumForm> {
   public static readonly normalForms = [
     EnumSpecies.Arbok,
     EnumSpecies.Bidoof,
     EnumSpecies.Genesect,
+    EnumSpecies.Meowth,
     EnumSpecies.Sandile,
+    EnumSpecies.Slowbro,
     EnumSpecies.Spheal,
     EnumSpecies.Solgaleo
   ]
@@ -101,6 +107,7 @@ export class EnumForm {
     EnumSpecies.Graveler,
     EnumSpecies.Grimer,
     EnumSpecies.Marowak,
+    EnumSpecies.Meowth,
     EnumSpecies.Muk,
     EnumSpecies.Ninetales,
     EnumSpecies.Persian,

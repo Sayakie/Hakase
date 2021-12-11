@@ -1,12 +1,19 @@
 import { Intents, Options } from 'discord.js'
 import type { DotenvConfigOutput } from 'dotenv'
 import { config } from 'dotenv'
-import { access } from 'node:fs/promises'
+import { access, readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import pico from 'picocolors'
 
 import { Client } from '@/structures/Client.js'
-import { RootDirectory, SourceDirectory } from '@/utils/Constants.js'
+import {
+  DataDirectory,
+  emojis,
+  RootDirectory,
+  SourceDirectory
+} from '@/utils/Constants.js'
+import { Locale } from '@/utils/I18n.js'
+import { walk } from '@/utils/Util.js'
 
 function harmonyTerminator(error: Error | string): void {
   error = error instanceof Error ? error : new Error(error)
@@ -122,5 +129,27 @@ function attachInterval(): void {
 
 attachInterval.timeoutId = undefined as NodeJS.Timeout | undefined
 
-await client.init().catch(harmonyTerminator)
+await client
+  .init()
+  .then(async () => {
+    const emojiPathList = walk(join(DataDirectory, 'emoji'), {
+      globs: ['**/*.json']
+    })
+
+    for await (const emojiPath of emojiPathList) {
+      const emojiSetBuf = await readFile(emojiPath)
+      const emojiSet = JSON.parse(emojiSetBuf.toString())
+
+      Object.keys(emojiSet).forEach(emoji => {
+        const emojiSnowflake = emojiSet[emoji]
+        emojis[emoji] = `<:${emoji}:${emojiSnowflake}>`
+      })
+    }
+  })
+  .then(async () => {
+    const locale = Locale.getInstance()
+
+    await locale.init().catch()
+  })
+  .catch(harmonyTerminator)
 await client.login().then(attachInterval).catch(harmonyTerminator)

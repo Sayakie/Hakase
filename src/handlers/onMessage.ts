@@ -1,13 +1,15 @@
 import type { Message, TextChannel } from 'discord.js'
 import { Constants, MessageEmbed, Permissions } from 'discord.js'
 import i18next from 'i18next'
-import { getRegExp } from 'korean-regexp'
+import { getPhonemes, getRegExp } from 'korean-regexp'
 
 import { getConnector } from '@/db/Connector.js'
 import { EnumSpecies } from '@/enums/EnumSpecies.js'
 import type { ListenerCleanup } from '@/handlers/Listener.js'
 import type { Client } from '@/structures/Client.js'
-import { PokemonUtil } from '@/utils/PokemonUtil.js'
+import { spawnerConfig, spawnSets } from '@/utils/Constants.js'
+import { getBaseStats } from '@/utils/PokemonUtil.js'
+import { generateWebhookTemplate } from '@/utils/Util.js'
 
 function clientReceivedMessageHandler(client: Client): ListenerCleanup {
   const connector = getConnector()
@@ -137,16 +139,29 @@ function clientReceivedMessageHandler(client: Client): ListenerCleanup {
 
         if (!species) {
           const embed = new MessageEmbed()
-          const relatedMatchSet = [...EnumSpecies.PokemonSet.values()].filter(
-            pokemon =>
-              getRegExp(args, {
-                fuzzy: true,
-                global: true,
-                ignoreCase: true,
-                ignoreSpace: true,
-                initialSearch: true
-              }).test(pokemon.getLocalizedName())
+          const pokemonSet = [...EnumSpecies.PokemonSet.values()]
+          const relatedMatchSet = pokemonSet.filter(pokemon =>
+            getRegExp(args, {
+              fuzzy: true,
+              global: true,
+              ignoreCase: true,
+              ignoreSpace: true,
+              initialSearch: true
+            }).test(pokemon.getLocalizedName())
           )
+
+          if (relatedMatchSet.length === 0) {
+            relatedMatchSet.push(
+              ...pokemonSet.filter(pokemon =>
+                getRegExp(
+                  args
+                    .split('')
+                    .map(v => getPhonemes(v).initial)
+                    .join('')
+                ).test(pokemon.getLocalizedName())
+              )
+            )
+          }
 
           if (relatedMatchSet.length === 0) {
             embed
@@ -172,13 +187,16 @@ function clientReceivedMessageHandler(client: Client): ListenerCleanup {
           return
         }
 
-        const baseStats = PokemonUtil.getBaseStats(species)
+        const bs = getBaseStats(species)!
+        const spawnInfos =
+          spawnSets.get(bs.pixelmonName.replaceAll('-', '')) ??
+          ([{ condition: {}, spec: {} }] as SpawnInfo[])
         const {
           avatarUrl: avatarURL,
           components,
           embed,
           username
-        } = PokemonUtil.generateWebhookTemplate(baseStats)
+        } = generateWebhookTemplate({ bs, spawnInfos, spawnerConfig })
 
         await webhook
           .send({
