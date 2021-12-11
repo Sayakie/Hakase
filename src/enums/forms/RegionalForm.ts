@@ -18,4 +18,8 @@ export class RegionalForm {
     .setForm(2)
     .setSpriteSuffix('-galar')
     .setImageSuffix('-galarian')
+
+  public static values(): EnumForm[] {
+    return [this.Normal, this.Alolan, this.Galarian]
+  }
 }
