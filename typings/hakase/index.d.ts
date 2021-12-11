@@ -250,6 +250,9 @@ declare type EvolutionCondition =
       evoConditionType: 'status'
       type: 'Burn'
     }
+  | {
+      evoConditionType: 'Unknown'
+    }
 
 declare interface Aggression {
   timid: number
