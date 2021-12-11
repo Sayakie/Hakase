@@ -1,7 +1,7 @@
 import type { Message, TextChannel } from 'discord.js'
 import { Constants, MessageEmbed, Permissions } from 'discord.js'
 import i18next from 'i18next'
-import { getRegExp } from 'korean-regexp'
+import { getPhonemes, getRegExp } from 'korean-regexp'
 
 import { getConnector } from '@/db/Connector.js'
 import { EnumSpecies } from '@/enums/EnumSpecies.js'
@@ -139,16 +139,29 @@ function clientReceivedMessageHandler(client: Client): ListenerCleanup {
 
         if (!species) {
           const embed = new MessageEmbed()
-          const relatedMatchSet = [...EnumSpecies.PokemonSet.values()].filter(
-            pokemon =>
-              getRegExp(args, {
-                fuzzy: true,
-                global: true,
-                ignoreCase: true,
-                ignoreSpace: true,
-                initialSearch: true
-              }).test(pokemon.getLocalizedName())
+          const pokemonSet = [...EnumSpecies.PokemonSet.values()]
+          const relatedMatchSet = pokemonSet.filter(pokemon =>
+            getRegExp(args, {
+              fuzzy: true,
+              global: true,
+              ignoreCase: true,
+              ignoreSpace: true,
+              initialSearch: true
+            }).test(pokemon.getLocalizedName())
           )
+
+          if (relatedMatchSet.length === 0) {
+            relatedMatchSet.push(
+              ...pokemonSet.filter(pokemon =>
+                getRegExp(
+                  args
+                    .split('')
+                    .map(v => getPhonemes(v).initial)
+                    .join('')
+                ).test(pokemon.getLocalizedName())
+              )
+            )
+          }
 
           if (relatedMatchSet.length === 0) {
             embed
