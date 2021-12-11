@@ -1,3 +1,30 @@
 {
-  "type.leveling": "레벨업"
+  "type": {
+    "leveling": "레벨업",
+    "levelingTo": "{{0}}(으)로 레벨업",
+    "interact": "상호작용",
+    "interactWith": "{{0}}(와)과 상호작용",
+    "trade": "교환진화",
+    "ticking": ""
+  },
+  "condition": {
+    "biome_zero": "{{0}} 바이옴 안에 있을 때",
+    "biome_other": "{{0}} 바이옴 안에 있고",
+    "biomes_zero": "{{0}} 바이옴 중에 있을 때",
+    "biomes_other": "{{0}} {{count}} 바이옴 중에 있고",
+    "chance_zero": "{{0}}% 확률로",
+    "chance_other": "{{0}}% 확률로",
+    "evolutionRock_zero": "{{1}} 블럭 범위 안에 {{0}}이 있을 때",
+    "evolutionRock_other": "{{1}} 블럭 범위 안에 {{0}}이 있고",
+    "friendship_zero": "친밀도가 {{0}}이상일 때",
+    "friendship_other": "친밀도가 {{0}}이상이고",
+    "healthAbsense_zero": "기절하지 않고 49 이상의 누적데미지를 입었을 때",
+    "healthAbsense_other": "기절하지 않고 49 이상의 누적데미지를 입은 후",
+    "moveType_zero": "{{0}} 타입일 때",
+    "moveType_other": "{{0}} 타입이고",
+    "time_zero": "{{0}} 시간일 때",
+    "time_other": "{{0}} 시간에",
+    "withinStructure_zero": "{{0}} 지역 안에 있을 때",
+    "withinStructure_other": "{{0}} 지역 안에 있고"
+  }
 }
