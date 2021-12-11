@@ -153,7 +153,12 @@ declare type Time =
   | 'Dusk'
   | 'Dawn'
 
-declare type EvolutionType = 'leveling' | 'interact' | 'trade' | 'ticking'
+declare type EvolutionType =
+  | 'leveling'
+  | 'interact'
+  | 'trade'
+  | 'ticking'
+  | 'Unknown'
 
 // TODO - its messy up
 declare type EvolutionCondition =
