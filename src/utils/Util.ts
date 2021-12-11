@@ -206,7 +206,20 @@ export function generateBaseTemplate({
   }
 
   // Add a button for the drops
-  // TODO
+  if (pokeDrops.some(({ pokemon }) => pokemon === species.getName())) {
+    const button = new MessageButton()
+      .setStyle('DANGER')
+      .setCustomId(
+        `Pixelmon.${species.getName().toLowerCase()}.dropItem.${variant}`
+      )
+      .setLabel(i18next.t('field.drops'))
+
+    if ((components.at(0)?.components.length ?? Number.MAX_VALUE) < 5) {
+      components.at(0)?.addComponents([button])
+    } else {
+      components.push(new MessageActionRow().addComponents([button]))
+    }
+  }
 
   let spawnInfo: SpawnInfo
   const spawnInfoSpecs = spawnInfos.filter(
