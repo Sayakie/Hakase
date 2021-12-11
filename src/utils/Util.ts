@@ -7,8 +7,9 @@ import walkSync from 'walk-sync'
 import { EnumForm } from '@/enums/EnumForm.js'
 import { EnumSpecies } from '@/enums/EnumSpecies.js'
 import { ArrayUtil } from '@/utils/ArrayUtil.js'
-import { FormFlag } from '@/utils/Constants.js'
+import { FormFlag, pokeDrops } from '@/utils/Constants.js'
 import {
+  getEvolutionEntities,
   getSpriteUri,
   getThumbnailUri,
   setSharedRandInt
@@ -184,6 +185,23 @@ export function generateBaseTemplate({
           components.push(row)
         })
       }
+    }
+  }
+
+  // Add a button for the evolution entities or specs
+  const evolutionEntities = getEvolutionEntities(species, variant)
+  if (evolutionEntities.length > 0 && evolutionEntities.at(0)!.length > 1) {
+    const button = new MessageButton()
+      .setStyle('PRIMARY')
+      .setCustomId(
+        `Pixelmon.${species.getName().toLowerCase()}.evolution.${variant}`
+      )
+      .setLabel(i18next.t('field.evolution'))
+
+    if ((components.at(0)?.components.length ?? Number.MAX_VALUE) < 5) {
+      components.at(0)?.addComponents([button])
+    } else {
+      components.push(new MessageActionRow().addComponents([button]))
     }
   }
 

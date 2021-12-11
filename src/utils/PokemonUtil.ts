@@ -50,7 +50,11 @@ import { EnumZygarde } from '@/enums/forms/EnumZygarde.js'
 import { RegionalForm } from '@/enums/forms/RegionalForm.js'
 import { SeasonForm } from '@/enums/forms/SeasonForm.js'
 import { ArrayUtil } from '@/utils/ArrayUtil.js'
-import { DataDirectory, emojis } from '@/utils/Constants.js'
+import {
+  baseStats as baseStatsLink,
+  DataDirectory,
+  emojis
+} from '@/utils/Constants.js'
 import { walk } from '@/utils/Util.js'
 
 const spriteUri = `https://raw.githubusercontent.com/Sayakie/Riots/resources/sprites/pokemon`
@@ -238,11 +242,10 @@ export async function loadAllDrops(
 }
 
 export function getBaseStats(
-  baseStats: BaseStatsLink,
   species: EnumSpecies,
   variant: number = 0
 ): BaseStats | null {
-  let bs = baseStats.get(species)
+  let bs = baseStatsLink.get(species)
 
   if (variant > 0) {
     bs = bs?.forms?.[variant] ?? undefined
@@ -436,4 +439,316 @@ export function getThumbnailUri(
   }
 
   return `${thumbUri}/${resource}${resourceSuffix}.png`
+}
+
+export type ParsedSpec = Array<[string, string | number | boolean]>
+export function parseEvolutionSpec(
+  specRaw: string
+): [EnumSpecies, ParsedSpec] | null {
+  const [pokemonName, ...spec] = specRaw.split(/\s/)
+  if (!pokemonName) return null
+
+  const species = EnumSpecies.getFromName(pokemonName)
+  const specKeySet: ParsedSpec = []
+  if (!species) return null
+  if (spec.length > 0) {
+    spec.forEach(s => {
+      if (s.startsWith('!')) {
+        s = s.substring(1)
+        specKeySet.push([s, false])
+      } else {
+        const [key, value] = s.split(':')
+
+        switch (key) {
+          case 'f':
+          case 'form': {
+            specKeySet.push(['form', Number(value)])
+          }
+        }
+      }
+    })
+  }
+
+  return [species, specKeySet]
+}
+
+export function getEvolutionEntities(
+  species: EnumSpecies,
+  variant: number = 0
+): string[][] {
+  const availableEvolutions: string[][] = []
+
+  /**
+   * Mega forms does not have any evolution data.
+   */
+  if (
+    variant > 0 &&
+    (EnumForm.megaForms.includes(species) ||
+      EnumForm.megaXYForms.includes(species))
+  ) {
+    return availableEvolutions
+  }
+
+  const evolution = new Set<string>()
+  const bs = getBaseStats(species, variant)
+
+  if (bs === null) return availableEvolutions
+  if (bs.preEvolutions.length > 0) {
+    // Copy the pre-evolutions.
+    // This is because the pre-evolutions are may affect polluting the evolution data.
+    const preEvolutions = [...bs.preEvolutions]
+
+    // Legacy pre-evolutions was inversed the order.
+    if (species.getNationalPokedexInteger() < 722) {
+      preEvolutions.reverse()
+    }
+
+    preEvolutions
+      .map(parseEvolutionSpec)
+      .filter<Exclude<ReturnType<typeof parseEvolutionSpec>, null>>(
+        (it): it is Exclude<ReturnType<typeof parseEvolutionSpec>, null> =>
+          it !== null
+      )
+      .map(([species, spec]) => {
+        const [, preVariant] = spec.find(([key]) => key === 'form') ?? [null, 0]
+
+        let prefix = ''
+        if (
+          preVariant > 0 &&
+          (EnumForm.alolanForms.includes(species) ||
+            EnumForm.galarianForms.includes(species))
+        ) {
+          const formName = RegionalForm.values()
+            .filter(({ form }) => form === preVariant)
+            .at(0)!
+            .spriteSuffix.replace(/^-/, '')
+          prefix = i18next.t(`Pixelmon:generic.form.${formName}`) + ' '
+        }
+
+        evolution.add(`${prefix}${species.getLocalizedName()}`)
+      })
+  }
+
+  if (/* bs.preEvolutions.length > 0 && */ bs.evolutions.length === 0) {
+    let prefix = ''
+    if (
+      variant > 0 &&
+      (EnumForm.alolanForms.includes(species) ||
+        EnumForm.galarianForms.includes(species))
+    ) {
+      const formName = RegionalForm.values()
+        .filter(({ form }) => form === variant)
+        .at(0)!
+        .spriteSuffix.replace(/^-/, '')
+      prefix = i18next.t(`Pixelmon:generic.form.${formName}`) + ' '
+    }
+    evolution.add(`${prefix}${species.getLocalizedName()}`)
+  }
+
+  if (bs.evolutions.length > 0) {
+    bs.evolutions
+      .map<[EnumSpecies, number]>(postEvolution => [
+        EnumSpecies.getFromName(postEvolution.to.name)!,
+        postEvolution.to.form ?? 0
+      ])
+      .forEach(([postSpecies, postVariant]) => {
+        const postEvolutions = getEvolutionEntities(postSpecies, postVariant)
+
+        availableEvolutions.push(postEvolutions.at(0)!)
+        /* postEvolutions.forEach(postEvolution => {
+            availableEvolutions.push(postEvolution)
+          }) */
+      })
+  }
+
+  if (evolution.size > 0) {
+    availableEvolutions.push([...evolution])
+  }
+
+  return availableEvolutions.filter(Boolean)
+}
+
+export function getEvolutionSpec(
+  species: EnumSpecies,
+  variant: number = 0
+): string[] | null {
+  if (
+    variant > 0 &&
+    (EnumForm.megaForms.includes(species) ||
+      EnumForm.megaXYForms.includes(species) ||
+      EnumForm.genderForms.includes(species))
+  ) {
+    return null
+  }
+
+  const bs = getBaseStats(species, variant)
+  if (!bs || bs.preEvolutions.length === 0) {
+    return null
+  }
+
+  let order = -1
+  // Legacy pre-evolutions was inversed the order.
+  if (species.getNationalPokedexInteger() < 722) {
+    order = 0
+  }
+  const [preSpecies, parsedSpec] = parseEvolutionSpec(
+    bs.preEvolutions.at(order)!
+  ) ?? [EnumSpecies.MissingNo, [['form', 0]]]
+  const [, preVariant] = parsedSpec.find(([key]) => key === 'form') ?? [null, 0]
+  const preBaseStats = getBaseStats(preSpecies, Number(preVariant))
+  if (!preBaseStats) return null
+
+  const evolutionSpecs: string[] = []
+  preBaseStats.evolutions
+    .filter(
+      ({ to }) =>
+        (to.name === species.getName() && (to.form ?? 0) === variant) ||
+        (to.name === EnumSpecies.Alcremie.getName() && (to.form ?? 0) % 9 === 0)
+    )
+    .forEach(evolution => {
+      const evolutionSpec: string[] = []
+      evolutionSpec.push(preSpecies.getLocalizedName())
+
+      if (evolution.conditions.length > 0) {
+        evolution.conditions.forEach((condition, i, arr) => {
+          const count = arr.length - 1 === i ? 0 : 1
+          console.log({ count })
+          let isAnti = false,
+            text = ''
+          if (condition.evoConditionType === 'biome') {
+            if (condition.biomes.length > 1) {
+              text = i18next.t('Evolution:condition.biomes', {
+                '0': condition.biomes
+                  .map(b => !b.includes(':') || b.replace(/^[^:]+.:/, ''))
+                  .map(b => i18next.t(`Biome:${b}`))
+                  .join(', '),
+                count
+              })
+            } else {
+              text = i18next.t('Evolution:condition.biome', {
+                '0': i18next.t(
+                  `Biome:${condition.biomes.at(0)!.replace(/^[^:]+.:/, '')}`
+                ),
+                count
+              })
+            }
+          } else if (condition.evoConditionType === 'chance') {
+            const chance = (condition.chance * 100).toFixed(2)
+
+            text = i18next.t('Evolution:condition.chance', {
+              '0': chance,
+              count
+            })
+          } else if (condition.evoConditionType === 'evolutionRock') {
+            const { evolutionRock, maxRangeSquared: range } = condition
+
+            text = i18next.t('Evolution:condition.evolutionRock', {
+              '0': i18next.t(`Evolution:${evolutionRock}`),
+              '1': range,
+              count
+            })
+          } else if (condition.evoConditionType === 'evolutionScroll') {
+            // TODO
+          } else if (condition.evoConditionType === 'friendship') {
+            const text = i18next.t('Evolution:condition.friendship', {
+              '0': condition.friendship,
+              count
+            })
+            evolutionSpec.push(`  ${text}`)
+          } else if (condition.evoConditionType === 'gender') {
+            const gender = condition.genders.join(' ')
+
+            evolutionSpec.join(`to evolve with ${gender} gender`)
+          } else if (condition.evoConditionType === 'healthAbsence') {
+            text = i18next.t(`Evolution:condition.healthAbsense`, {
+              count
+            })
+          } else if (condition.evoConditionType === 'heldItem') {
+            evolutionSpec.push(`to evolve by holding ${condition.item.itemID}`)
+          } else if (condition.evoConditionType === 'highAltitude') {
+            // TODO. I have no idea about this property
+          } else if (condition.evoConditionType === 'invert') {
+            // TODO Invert condition
+            isAnti = true
+          } else if (condition.evoConditionType === 'move') {
+            // TODO Get move from attackIndex
+            // condition.attackIndex
+          } else if (condition.evoConditionType === 'moveType') {
+            const text = i18next.t('Evolution:condition.moveType', {
+              '0': i18next.t(`type.${condition.type.toLowerCase()}`),
+              count
+            })
+            evolutionSpec.push(`  ${text}`)
+          } else if (condition.evoConditionType === 'nature') {
+            if (condition.natures.length > 1) {
+              evolutionSpec.push(
+                `to evolve with ${condition.natures.join(' or ')} nature`
+              )
+            } else {
+              evolutionSpec.push(
+                `to evolve with ${condition.natures.at(0)!} nature`
+              )
+            }
+          } else if (condition.evoConditionType === 'ores') {
+            // TODO
+          } else if (condition.evoConditionType === 'party') {
+            // TODO Should have alolan or galarian pokemons in party storage
+          } else if (condition.evoConditionType === 'statRatio') {
+            // TODO
+          } else if (condition.evoConditionType === 'status') {
+            // TODO
+          } else if (condition.evoConditionType === 'time') {
+            const text = i18next.t('Evolution:condition.time', {
+              '0': i18next.t(`time.${condition.time.toLowerCase()}`),
+              count
+            })
+            evolutionSpec.push(`  ${text}`)
+          } else if (condition.evoConditionType === 'weather') {
+            // TODO
+          } else if (condition.evoConditionType === 'withinStructure') {
+            text = i18next.t('Evolution:condition.withinStructure', {
+              '0': i18next.t(`Structure:${condition.structure}`),
+              count
+            })
+          }
+
+          evolutionSpec.push(text)
+        })
+      }
+
+      // Add evolution types
+      if (evolution.evoType === 'leveling') {
+        let text
+        if (evolution.level) {
+          text = i18next.t('Evolution:type.levelingTo', {
+            '0': evolution.level
+          })
+        } else {
+          text = i18next.t('Evolution:type.leveling')
+        }
+
+        evolutionSpec.push(text)
+      } else if (evolution.evoType === 'interact') {
+        let text
+        if (evolution.item) {
+          text = i18next.t('Evolution:type.interactWith', {
+            '0': i18next.t(`Item:${evolution.item.itemID}`)
+          })
+        } else {
+          text = i18next.t('Evolution:type.interact')
+        }
+
+        evolutionSpec.push(text)
+      } else if (evolution.evoType === 'trade') {
+        const text = i18next.t('Evolution:type.trade')
+        evolutionSpec.push(text)
+      } else if (evolution.evoType === 'ticking') {
+        const text = i18next.t('Evolution:type.ticking')
+        evolutionSpec.push(text)
+      }
+
+      evolutionSpecs.push(evolutionSpec.join(' '))
+    })
+
+  return evolutionSpecs
 }

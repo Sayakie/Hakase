@@ -7,7 +7,9 @@ import { getConnector } from '@/db/Connector.js'
 import { EnumSpecies } from '@/enums/EnumSpecies.js'
 import type { ListenerCleanup } from '@/handlers/Listener.js'
 import type { Client } from '@/structures/Client.js'
-import { PokemonUtil } from '@/utils/PokemonUtil.js'
+import { spawnerConfig, spawnSets } from '@/utils/Constants.js'
+import { getBaseStats } from '@/utils/PokemonUtil.js'
+import { generateWebhookTemplate } from '@/utils/Util.js'
 
 function clientReceivedMessageHandler(client: Client): ListenerCleanup {
   const connector = getConnector()
@@ -172,13 +174,16 @@ function clientReceivedMessageHandler(client: Client): ListenerCleanup {
           return
         }
 
-        const baseStats = PokemonUtil.getBaseStats(species)
+        const bs = getBaseStats(species)!
+        const spawnInfos =
+          spawnSets.get(bs.pixelmonName.replaceAll('-', '')) ??
+          ([{ condition: {}, spec: {} }] as SpawnInfo[])
         const {
           avatarUrl: avatarURL,
           components,
           embed,
           username
-        } = PokemonUtil.generateWebhookTemplate(baseStats)
+        } = generateWebhookTemplate({ bs, spawnInfos, spawnerConfig })
 
         await webhook
           .send({

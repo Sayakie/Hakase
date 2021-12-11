@@ -6,7 +6,16 @@ import { getConnector } from '@/db/Connector.js'
 import { EnumSpecies } from '@/enums/EnumSpecies.js'
 import type { ListenerCleanup } from '@/handlers/Listener.js'
 import type { Client } from '@/structures/Client.js'
-import { PokemonUtil } from '@/utils/PokemonUtil.js'
+import { pokeDrops, spawnerConfig, spawnSets } from '@/utils/Constants.js'
+import {
+  getBaseStats,
+  getDrop,
+  getEvolutionEntities,
+  getEvolutionSpec,
+  getPokeDropFromSpecies,
+  getSpriteUri
+} from '@/utils/PokemonUtil.js'
+import { generateWebhookTemplate } from '@/utils/Util.js'
 
 function clientInteractionHandler(client: Client): ListenerCleanup {
   const connector = getConnector()
@@ -34,6 +43,10 @@ function clientInteractionHandler(client: Client): ListenerCleanup {
       await $dropItem(interaction, species, Number(formInt)).catch(
         console.error
       )
+    } else if (type === 'evolution') {
+      await $evolution(interaction, species, Number(formInt)).catch(
+        console.error
+      )
     }
 
     await interaction.deferUpdate()
@@ -42,7 +55,7 @@ function clientInteractionHandler(client: Client): ListenerCleanup {
   async function $form(
     interaction: Interaction,
     species: EnumSpecies,
-    form: number
+    variant: number
   ): Promise<void> {
     const webhooks = await (interaction.channel as TextChannel).fetchWebhooks()
     const webhook = webhooks.find(webhook => webhook.name === 'HakasePokedex')
@@ -51,13 +64,16 @@ function clientInteractionHandler(client: Client): ListenerCleanup {
       return
     }
 
-    const baseStats = PokemonUtil.getBaseStats(species, form)
+    const bs = getBaseStats(species, variant)!
+    const spawnInfos =
+      spawnSets.get(bs.pixelmonName.replaceAll('-', '')) ??
+      ([{ condition: {}, spec: {} }] as SpawnInfo[])
     const {
       avatarUrl: avatarURL,
       components,
       embed,
       username
-    } = PokemonUtil.generateWebhookTemplate(baseStats, form)
+    } = generateWebhookTemplate({ bs, spawnInfos, spawnerConfig, variant })
 
     await webhook.send({
       avatarURL,
@@ -70,7 +86,7 @@ function clientInteractionHandler(client: Client): ListenerCleanup {
   async function $dropItem(
     interaction: Interaction,
     species: EnumSpecies,
-    form: number
+    variant: number
   ): Promise<void> {
     const webhooks = await (interaction.channel as TextChannel).fetchWebhooks()
     const webhook = webhooks.find(webhook => webhook.name === 'HakasePokedex')
@@ -79,21 +95,72 @@ function clientInteractionHandler(client: Client): ListenerCleanup {
       return
     }
 
-    const baseStats = PokemonUtil.getBaseStats(species, form)
-    const dropInfo = PokemonUtil.getDrop(species, form)
-    const { avatarUrl: avatarURL, username } =
-      PokemonUtil.generateWebhookTemplate(baseStats, form)
+    const pokeDrop = getPokeDropFromSpecies(pokeDrops, species, variant)!
+    const dropInfo = getDrop(pokeDrop)
+    const avatarURL = getSpriteUri(species, variant)
+    const username = i18next.t('field.drop', {
+      '0': species.getLocalizedName()
+    })
 
-    const embed = new MessageEmbed().addField(
-      ':meat_on_bone: 드롭 아이템',
-      dropInfo
-    )
+    const embed = new MessageEmbed().setDescription(dropInfo)
 
     await webhook.send({
       avatarURL,
       embeds: [embed],
       username: `${username}`
     })
+  }
+
+  async function $evolution(
+    interaction: Interaction,
+    species: EnumSpecies,
+    variant: number
+  ): Promise<void> {
+    const webhooks = await (interaction.channel as TextChannel).fetchWebhooks()
+    const webhook = webhooks.find(webhook => webhook.name === 'HakasePokedex')
+
+    if (!webhook) {
+      return
+    }
+
+    const evolutionSet = new Set<string>()
+    const evolutions = getEvolutionEntities(species, variant)
+    evolutions
+      .map(evolution => `# ${evolution.join(' ━➔ ')}`)
+      .forEach(evolutionSet.add, evolutionSet)
+    const evolutionSpec = getEvolutionSpec(species, variant)
+
+    if (evolutionSet.size > 0) {
+      const avatarURL = getSpriteUri(species, variant)
+      const username = i18next.t('field.evolutionEntityOf', {
+        '0': species.getLocalizedName()
+      })
+      const embed = new MessageEmbed().addField(
+        ':whale: ' + i18next.t('field.evolutionEntity'),
+        [
+          '```md',
+          [...evolutionSet].filter(phase => phase.includes('━➔')).join('\n'),
+          '```'
+        ].join('\n')
+      )
+
+      if (evolutionSpec !== null) {
+        embed.addField(
+          ':sparkles: ' + i18next.t('field.evolution'),
+          [
+            '```cs',
+            `${evolutionSpec.map(s => `# ${s}`).join('\n')}`,
+            '```'
+          ].join('\n')
+        )
+      }
+
+      await webhook.send({
+        avatarURL,
+        embeds: [embed],
+        username: `${username}`
+      })
+    }
   }
 
   client.on(Constants.Events.INTERACTION_CREATE, onInteraction)
