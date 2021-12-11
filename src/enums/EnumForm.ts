@@ -25,6 +25,7 @@ export class EnumForm implements Cloneable<EnumForm> {
     EnumSpecies.Bidoof,
     EnumSpecies.Genesect,
     EnumSpecies.Sandile,
+    EnumSpecies.Slowbro,
     EnumSpecies.Spheal,
     EnumSpecies.Solgaleo
   ]
