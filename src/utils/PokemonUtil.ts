@@ -31,7 +31,6 @@ import { EnumLycanroc } from '@/enums/forms/EnumLycanroc.js'
 import { EnumMagearna } from '@/enums/forms/EnumMagearna.js'
 import { EnumMega } from '@/enums/forms/EnumMega.js'
 import { EnumMeloetta } from '@/enums/forms/EnumMeloetta.js'
-import { EnumMeowth } from '@/enums/forms/EnumMeowth.js'
 import { EnumMimikyu } from '@/enums/forms/EnumMimikyu.js'
 import { EnumMinior } from '@/enums/forms/EnumMinior.js'
 import { EnumMorpeko } from '@/enums/forms/EnumMorpeko.js'
@@ -140,7 +139,6 @@ export async function loadAllForms(): Promise<FormLink> {
       formList.set(EnumSpecies.Lycanroc, EnumLycanroc.values())
       formList.set(EnumSpecies.Magearna, EnumMagearna.values())
       formList.set(EnumSpecies.Meloetta, EnumMeloetta.values())
-      formList.set(EnumSpecies.Meowth, EnumMeowth.values())
       formList.set(EnumSpecies.Mimikyu, EnumMimikyu.values())
       formList.set(EnumSpecies.Minior, EnumMinior.values())
       formList.set(EnumSpecies.Morpeko, EnumMorpeko.values())
