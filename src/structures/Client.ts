@@ -6,9 +6,7 @@ import { basename, extname } from 'node:path'
 import { setup } from '@/db/Connector.js'
 import type { ListenerStruct } from '@/handlers/Listener.js'
 import { ClientStatus, RootDirectory } from '@/utils/Constants.js'
-import { Locale } from '@/utils/I18n.js'
-import { PokemonUtil } from '@/utils/PokemonUtil.js'
-import { Util } from '@/utils/Util.js'
+import { walk } from '@/utils/Util.js'
 
 type ArtifactPaths = 'commandsPath' | 'interactionsPath' | 'handlersPath'
 
@@ -140,19 +138,11 @@ export class Client extends DiscordJSClient<true> {
   }
 
   public async init(): Promise<void> {
-    const locale = Locale.getInstance()
-
     await setup().catch()
-    await PokemonUtil.loadAllStats().catch()
-    await PokemonUtil.loadAllForms().catch()
-    await PokemonUtil.loadAllSpawners().catch()
-    await PokemonUtil.loadAllDrops().catch()
 
     await this.loadCommands().catch(console.error)
     await this.loadInteractions().catch(console.error)
     await this.loadHandlers().catch(console.error)
-
-    await locale.init().catch()
 
     this.status = ClientStatus.INITIALIZED
   }
@@ -194,7 +184,7 @@ export class Client extends DiscordJSClient<true> {
   }
 
   private async loadHandlers(): Promise<void> {
-    const handlerFilePathList = Util.walk(this.$options.handlersPath)
+    const handlerFilePathList = walk(this.$options.handlersPath)
 
     for await (const handlerFilePath of handlerFilePathList) {
       const filenameWithExtension = basename(handlerFilePath)
