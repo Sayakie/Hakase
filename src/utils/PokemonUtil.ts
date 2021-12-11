@@ -50,8 +50,8 @@ import { EnumZygarde } from '@/enums/forms/EnumZygarde.js'
 import { RegionalForm } from '@/enums/forms/RegionalForm.js'
 import { SeasonForm } from '@/enums/forms/SeasonForm.js'
 import { ArrayUtil } from '@/utils/ArrayUtil.js'
-import { DataDirectory } from '@/utils/Constants.js'
-import { Util } from '@/utils/Util.js'
+import { DataDirectory, emojis } from '@/utils/Constants.js'
+import { walk } from '@/utils/Util.js'
 
 const spriteUri = `https://raw.githubusercontent.com/Sayakie/Riots/resources/sprites/pokemon`
 const thumbnailUri = `https://img.pokemondb.net/sprites/home/normal`
@@ -213,7 +213,7 @@ export async function loadAllSpawnSets(): Promise<SpawnSets> {
 
   const spawnSets = new Map<string, SpawnInfo[]>()
   const spawnSetFileList = filePathList
-    .map(filePath => Util.walk(filePath, { globs: ['**/*.json'] }))
+    .map(filePath => walk(filePath, { globs: ['**/*.json'] }))
     .flat()
 
   for await (const spawnSetFile of spawnSetFileList) {
@@ -276,12 +276,7 @@ export function getDrop(drop: PokeDrop): string {
     max: number
   ): string {
     const dropItemName = i18next.t(`Item:${data}`)
-    const emoji =
-      (Util.emojis[
-        Util.replaceEmojiKeyIfPossible(
-          data.replace(/^[^:]+/, '').substring(1)
-        ) as keyof typeof Util['emojis']
-      ] as '' | null) ?? ':grey_question:'
+    const emoji = emojis[data.replace(/^[^:]+./, '')] ?? ':grey_question:'
 
     return `${emoji} | **\`${dropItemName}${``.padEnd(
       dropItemNameMaxLength - dropItemNameLengthList[dropItemLengthOrder[type]]!

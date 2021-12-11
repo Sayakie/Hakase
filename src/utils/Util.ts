@@ -20,7 +20,7 @@ interface TemplateParameters {
   bs: BaseStats
   spawnInfos: SpawnInfo[]
   spawnerConfig: SpawnerConfig
-  variant: number
+  variant?: number
 }
 
 export const walkDefaultOptions: WalkOptions = {
@@ -123,7 +123,7 @@ export function generateBaseTemplate({
       const currentFormName =
         currentForm.$memo ?? currentForm.spriteSuffix.replace(/^-/, '')
       const formName = i18next.t(
-        `Pixelmon:${species.getName().toLowerCase()}.form.${currentFormName}`
+        `Pixelmon:${currentForm.species.toLowerCase()}.form.${currentFormName}`
       )
 
       if (currentFormFlags.includes(FormFlag.PinToPrefix)) {
@@ -147,23 +147,38 @@ export function generateBaseTemplate({
           row.addComponents(
             otherFormList
               .slice(i * 5, i * 5 + 5)
-              .map(({ form: variant, spriteSuffix, $memo }) => {
-                const formName = $memo ?? spriteSuffix.replace(/^-/, '')
-                const label = i18next.t(
-                  `Pixelmon:${species.getName().toLowerCase()}.form.${formName}`
-                )
+              .map(
+                ({
+                  form: variant,
+                  species: fakeSpecies,
+                  spriteSuffix,
+                  $memo
+                }) => {
+                  if (
+                    row.components.some(component =>
+                      component.customId!.endsWith(`form.${variant}`)
+                    )
+                  ) {
+                    return null as unknown as MessageButton
+                  }
 
-                const button = new MessageButton()
-                  .setStyle('SUCCESS')
-                  .setCustomId(
-                    `Pixelmon.${species
-                      .getName()
-                      .toLowerCase()}.form.${variant}`
+                  const formName = $memo ?? spriteSuffix.replace(/^-/, '')
+                  const label = i18next.t(
+                    `Pixelmon:${fakeSpecies.toLowerCase()}.form.${formName}`
                   )
-                  .setLabel(label)
 
-                return button
-              })
+                  const button = new MessageButton()
+                    .setStyle('SUCCESS')
+                    .setCustomId(
+                      `Pixelmon.${species
+                        .getName()
+                        .toLowerCase()}.form.${variant}`
+                    )
+                    .setLabel(label)
+
+                  return button
+                }
+              )
           )
 
           components.push(row)
@@ -237,6 +252,9 @@ export function generateBaseTemplate({
     .toString()
     .padStart(4)
     .padEnd(5)
+  const evYields = (Object.keys(bs.evYields) as Stat[]).map(
+    stat => `${stat}: ${bs.evYields[stat]}`
+  )
 
   let hiddenAbility = ''
   const isInlineEmbedField = spawnBiomes.length < 25 ? true : false
@@ -258,7 +276,7 @@ export function generateBaseTemplate({
       true
     )
     .addField(
-      ':shield ' + i18next.t('field.ability'),
+      ':shield: ' + i18next.t('field.ability'),
       bs.abilities
         .map((ability, index) => {
           if (!ability) return null
@@ -304,16 +322,18 @@ export function generateBaseTemplate({
     embed.addField('\u200b', '\u200b', true)
   }
 
-  embed.addField(
-    ':hibiscus: ' + i18next.t('field.stats'),
-    '```ml\n' +
-      `+-------------------------+-------+\n` +
-      `|  HP Atk Def SpA SpD Spe | Total |\n` +
-      `+-------------------------+-------+\n` +
-      `| ${stats} | ${totalStats} |\n` +
-      `+-------------------------+-------+\n` +
-      '\n```'
-  )
+  embed
+    .addField(
+      ':hibiscus: ' + i18next.t('field.stats'),
+      '```ml\n' +
+        `+-------------------------+-------+\n` +
+        `|  HP Atk Def SpA SpD Spe | Total |\n` +
+        `+-------------------------+-------+\n` +
+        `| ${stats} | ${totalStats} |\n` +
+        `+-------------------------+-------+\n` +
+        '\n```'
+    )
+    .setFooter(`${i18next.t('field.evYields')}: ${evYields}`)
 
   // Cleanup
   setSharedRandInt(-1)
