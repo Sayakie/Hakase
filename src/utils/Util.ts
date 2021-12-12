@@ -10,6 +10,7 @@ import { ArrayUtil } from '@/utils/ArrayUtil.js'
 import { FormFlag, pokeDrops } from '@/utils/Constants.js'
 import {
   getEvolutionEntities,
+  getMove,
   getSpriteUri,
   getThumbnailUri,
   setSharedRandInt
@@ -197,6 +198,22 @@ export function generateBaseTemplate({
         `Pixelmon.${species.getName().toLowerCase()}.evolution.${variant}`
       )
       .setLabel(i18next.t('field.evolution'))
+
+    if ((components.at(0)?.components.length ?? Number.MAX_VALUE) < 5) {
+      components.at(0)?.addComponents([button])
+    } else {
+      components.push(new MessageActionRow().addComponents([button]))
+    }
+  }
+
+  const moves = getMove(species, variant)
+  if (moves && Object.values(moves).length > 0) {
+    const button = new MessageButton()
+      .setStyle('SECONDARY')
+      .setCustomId(
+        `Pixelmon.${species.getName().toLowerCase()}.move.${variant}`
+      )
+      .setLabel(i18next.t('field.move'))
 
     if ((components.at(0)?.components.length ?? Number.MAX_VALUE) < 5) {
       components.at(0)?.addComponents([button])
