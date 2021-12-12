@@ -73,10 +73,37 @@ export function setSharedRandInt(i: number): void {
  */
 function prepareBaseStats(bs: BaseStats): BaseStats {
   if (bs.forms != null && Object.keys(bs.forms).length > 0) {
+    const species = EnumSpecies.getFromName(bs.pixelmonName)!
+
+    /* eslint-disable @typescript-eslint/no-unused-vars */
     Object.keys(bs.forms).forEach(form => {
-      const { forms, ...bsDefault } = bs // eslint-disable-line @typescript-eslint/no-unused-vars
+      const { forms, ...bsExcludeForms } = bs
+      let bsDefault = bsExcludeForms
+      if (
+        EnumForm.alolanForms.includes(species) ||
+        EnumForm.galarianForms.includes(species)
+      ) {
+        const {
+          trMoves,
+          hmMoves,
+          tmMoves1,
+          tmMoves2,
+          tmMoves3,
+          tmMoves4,
+          tmMoves5,
+          tmMoves6,
+          tmMoves7,
+          tmMoves8,
+          transferMoves,
+          ...bsExcludeMoves
+        } = bsExcludeForms
+
+        bsDefault = bsExcludeMoves
+      }
+
       bs.forms![form] = mergeOptions(bsDefault, bs.forms![form])
     })
+    /* eslint-enable */
   }
 
   return bs
@@ -703,7 +730,10 @@ export function getEvolutionSpec(
               count
             })
           } else if (condition.evoConditionType === 'heldItem') {
-            evolutionSpec.push(`to evolve by holding ${condition.item.itemID}`)
+            text = i18next.t('Evolution:condition.heldItem', {
+              '0': i18next.t(`Item:${condition.item.itemID}`),
+              count
+            })
           } else if (condition.evoConditionType === 'highAltitude') {
             // TODO. I have no idea about this property
           } else if (condition.evoConditionType === 'invert') {
@@ -797,4 +827,70 @@ export function getEvolutionSpec(
     })
 
   return evolutionSpecs
+}
+
+function $getMove(
+  moves: string[] | Record<string, string[]> | undefined
+): string | null {
+  if (!moves) return null
+
+  const toMask = (s: string): string =>
+    i18next.t(`Move:${s.replace(/\s/g, '_').toLowerCase()}.name`)
+  if (Array.isArray(moves)) {
+    return moves.map(toMask).join(', ')
+  } else {
+    return Object.values(moves)
+      .map($moves => $moves.map(toMask).join(', '))
+      .join(', ')
+  }
+}
+
+// export type MoveType = 'physical' | 'special' | 'status'
+export type MoveType = 'tr' | 'tm' | 'levelUp' | 'transfer' | 'tutor'
+export function getMove(
+  species: EnumSpecies,
+  variant: number = 0
+): { [M in MoveType]: string | null } | null {
+  const bs = getBaseStats(species, variant)
+  if (!bs) return null
+
+  const {
+    trMoves,
+    tmMoves1,
+    tmMoves2,
+    tmMoves3,
+    tmMoves4,
+    tmMoves5,
+    tmMoves6,
+    tmMoves7,
+    tmMoves8,
+    tutorMoves,
+    transferMoves,
+    levelUpMoves
+  } = bs
+
+  const tr = $getMove(trMoves)
+  const tm = [
+    $getMove(tmMoves1),
+    $getMove(tmMoves2),
+    $getMove(tmMoves3),
+    $getMove(tmMoves4),
+    $getMove(tmMoves5),
+    $getMove(tmMoves6),
+    $getMove(tmMoves7),
+    $getMove(tmMoves8)
+  ]
+    .filter(Boolean)
+    .join(', ')
+  const tutor = $getMove(tutorMoves)
+  const transfer = $getMove(transferMoves)
+  const levelUp = $getMove(levelUpMoves)
+
+  return {
+    levelUp,
+    tm,
+    tr,
+    transfer,
+    tutor
+  }
 }

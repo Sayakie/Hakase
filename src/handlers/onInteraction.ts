@@ -6,12 +6,18 @@ import { getConnector } from '@/db/Connector.js'
 import { EnumSpecies } from '@/enums/EnumSpecies.js'
 import type { ListenerCleanup } from '@/handlers/Listener.js'
 import type { Client } from '@/structures/Client.js'
-import { pokeDrops, spawnerConfig, spawnSets } from '@/utils/Constants.js'
+import {
+  emojis,
+  pokeDrops,
+  spawnerConfig,
+  spawnSets
+} from '@/utils/Constants.js'
 import {
   getBaseStats,
   getDrop,
   getEvolutionEntities,
   getEvolutionSpec,
+  getMove,
   getPokeDropFromSpecies,
   getSpriteUri
 } from '@/utils/PokemonUtil.js'
@@ -47,6 +53,8 @@ function clientInteractionHandler(client: Client): ListenerCleanup {
       await $evolution(interaction, species, Number(formInt)).catch(
         console.error
       )
+    } else if (type === 'move') {
+      await $move(interaction, species, Number(formInt)).catch(console.error)
     }
 
     await interaction.deferUpdate()
@@ -161,6 +169,56 @@ function clientInteractionHandler(client: Client): ListenerCleanup {
         username: `${username}`
       })
     }
+  }
+
+  async function $move(
+    interaction: Interaction,
+    species: EnumSpecies,
+    variant: number
+  ): Promise<void> {
+    const webhooks = await (interaction.channel as TextChannel).fetchWebhooks()
+    const webhook = webhooks.find(webhook => webhook.name === 'HakasePokedex')
+
+    if (!webhook) {
+      return
+    }
+
+    const moves = getMove(species, variant)!
+    const avatarURL = getSpriteUri(species, variant)
+    const username = i18next.t('field.moveOf', {
+      '0': species.getLocalizedName()
+    })
+    const embed = new MessageEmbed()
+
+    if (moves.tr) {
+      embed.addField(':cd: ' + i18next.t('field.tr'), moves.tr, false)
+    }
+
+    if (moves.tm && moves.tm.length < 1000) {
+      embed.addField(':minidisc: ' + i18next.t('field.tm'), moves.tm, false)
+    }
+
+    if (moves.tutor) {
+      embed.addField(
+        emojis['heart_scale'] + ' ' + i18next.t('field.tutor'),
+        moves.tutor,
+        false
+      )
+    }
+
+    if (moves.levelUp) {
+      embed.addField(
+        ':rosette: ' + i18next.t('field.levelUp'),
+        moves.levelUp,
+        false
+      )
+    }
+
+    await webhook.send({
+      avatarURL,
+      embeds: [embed],
+      username: `${username}`
+    })
   }
 
   client.on(Constants.Events.INTERACTION_CREATE, onInteraction)

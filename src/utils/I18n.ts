@@ -73,6 +73,7 @@ export class Locale {
         'Evolution',
         'Generic',
         'Item',
+        'Move',
         'Pixelmon'
       ],
       preload: ['en-US', 'ko']
