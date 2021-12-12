@@ -505,7 +505,7 @@ export function getEvolutionEntities(
 
     preEvolutions
       .map(parseEvolutionSpec)
-      .filter<Exclude<ReturnType<typeof parseEvolutionSpec>, null>>(
+      .filter(
         (it): it is Exclude<ReturnType<typeof parseEvolutionSpec>, null> =>
           it !== null
       )
