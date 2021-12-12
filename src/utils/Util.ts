@@ -254,16 +254,20 @@ export function generateBaseTemplate({
         // Hotfix. Should be on the top of this handler
         if (biome === 'nether') return 'hell'
         if (Object.keys(spawnerConfig.biomeCategories).includes(biome)) {
-          return spawnerConfig.biomeCategories[biome]
+          return spawnerConfig.biomeCategories[biome]!
         }
 
         return biome
       })
       .flatMap(biomes => {
+        function splitNamespaceIfExists(biome: string): string {
+          if (biome.includes(':')) return biome.replace(/^[^:]+./, '')
+          return biome
+        }
         if (Array.isArray(biomes)) {
-          return biomes.map(biome => biome.replace(/^[^:]+./, ''))
+          return biomes.map(splitNamespaceIfExists)
         } else {
-          return biomes?.replace(/^[^:]+./, '')
+          return splitNamespaceIfExists(biomes)
         }
       })
       .map(biome => i18next.t(`Biome:${biome}`, ''))
