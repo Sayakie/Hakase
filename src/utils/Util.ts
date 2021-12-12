@@ -263,7 +263,7 @@ export function generateBaseTemplate({
         if (Array.isArray(biomes)) {
           return biomes.map(biome => biome.replace(/^[^:]+./, ''))
         } else {
-          return biomes
+          return biomes?.replace(/^[^:]+./, '')
         }
       })
       .map(biome => i18next.t(`Biome:${biome}`, ''))
