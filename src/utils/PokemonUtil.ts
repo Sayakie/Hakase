@@ -612,7 +612,7 @@ export function getEvolutionSpec(
       if (evolution.conditions.length > 0) {
         evolution.conditions.forEach((condition, i, arr) => {
           const count = arr.length - 1 === i ? 0 : 1
-          console.log({ count })
+
           let isAnti = false,
             text = ''
           if (condition.evoConditionType === 'biome') {
