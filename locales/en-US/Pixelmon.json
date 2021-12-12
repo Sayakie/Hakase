@@ -3660,7 +3660,7 @@
     "description": "They’re weak, so they move in schools. However, they can also often be seen all alone, having strayed from the school.",
     "form": {
       "solo": "Solo",
-      "school": "school"
+      "school": "School"
     }
   },
   "wobbuffet": {

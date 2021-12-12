@@ -11,7 +11,7 @@
     "biome_zero": "{{0}} 바이옴 안에 있을 때",
     "biome_other": "{{0}} 바이옴 안에 있고",
     "biomes_zero": "{{0}} 바이옴 중에 있을 때",
-    "biomes_other": "{{0}} {{count}} 바이옴 중에 있고",
+    "biomes_other": "{{0}} 바이옴 중에 있고",
     "chance_zero": "{{0}}% 확률로",
     "chance_other": "{{0}}% 확률로",
     "evolutionRock_zero": "{{1}} 블럭 범위 안에 {{0}}이 있을 때",
