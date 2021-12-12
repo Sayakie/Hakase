@@ -73,10 +73,37 @@ export function setSharedRandInt(i: number): void {
  */
 function prepareBaseStats(bs: BaseStats): BaseStats {
   if (bs.forms != null && Object.keys(bs.forms).length > 0) {
+    const species = EnumSpecies.getFromName(bs.pixelmonName)!
+
+    /* eslint-disable @typescript-eslint/no-unused-vars */
     Object.keys(bs.forms).forEach(form => {
-      const { forms, ...bsDefault } = bs // eslint-disable-line @typescript-eslint/no-unused-vars
+      const { forms, ...bsExcludeForms } = bs
+      let bsDefault = bsExcludeForms
+      if (
+        EnumForm.alolanForms.includes(species) ||
+        EnumForm.galarianForms.includes(species)
+      ) {
+        const {
+          trMoves,
+          hmMoves,
+          tmMoves1,
+          tmMoves2,
+          tmMoves3,
+          tmMoves4,
+          tmMoves5,
+          tmMoves6,
+          tmMoves7,
+          tmMoves8,
+          transferMoves,
+          ...bsExcludeMoves
+        } = bsExcludeForms
+
+        bsDefault = bsExcludeMoves
+      }
+
       bs.forms![form] = mergeOptions(bsDefault, bs.forms![form])
     })
+    /* eslint-enable */
   }
 
   return bs
