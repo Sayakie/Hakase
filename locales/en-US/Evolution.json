@@ -28,6 +28,8 @@
     "gender_other": "from a {{0}}",
     "healthAbsense_zero": "it takes {{0}}HP damage without fainting",
     "healthAbsense_other": "it takes {{0}}HP damage without fainting",
+    "heldItem_zero": "by helding {{0}}",
+    "heldItem_other": "by helding {{0}}",
     "moveType_zero": "knows {{0}}-type move",
     "moveType_other": "knows {{0}}-type move",
     "time_zero": "during the {{0}} time",
