@@ -1020,7 +1020,7 @@ export class EnumSpecies {
   }
 
   public getLocalizedName(): string {
-    return i18next.t(`Pixelmon:${this.name.toLowerCase()}.name`)
+    return i18next.t(`Pixelmon:${this.name.toLowerCase()}.name`) || this.name
   }
 
   public getNationalPokedexNumber(): string {
