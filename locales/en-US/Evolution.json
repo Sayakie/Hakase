@@ -1,0 +1,38 @@
+{
+  "when": " when",
+  "and": "and",
+  "andAlt": " and ",
+  "or": "or",
+  "orAlt": " or ",
+  "type": {
+    "leveling": "leveled up",
+    "levelingTo": "to level {{0}}",
+    "interact": "exposed",
+    "interactWith": "exposed to {{0}}",
+    "trade": "trading",
+    "tradeWith": "trading with {{0}}",
+    "ticking": ""
+  },
+  "condition": {
+    "biome_zero": "while in a {{0}} biome",
+    "biome_other": "while in a {{0}} biome",
+    "biomes_zero": "while in a {{0}} biome",
+    "biomes_other": "while in a {{0}} biome",
+    "chance_zero": "{{0}}% percent chance",
+    "chance_other": "{{0}}% percent chance",
+    "evolutionRock_zero": "within {{1}} blocks of a {{0}}",
+    "evolutionRock_other": "within {{1}} blocks of a {{0}}",
+    "friendship_zero": "with at least {{0}} friendship",
+    "friendship_other": "with at least {{0}} friendship",
+    "gender_zero": "from a {{0}}",
+    "gender_other": "from a {{0}}",
+    "healthAbsense_zero": "it takes {{0}}HP damage without fainting",
+    "healthAbsense_other": "it takes {{0}}HP damage without fainting",
+    "moveType_zero": "knows {{0}}-type move",
+    "moveType_other": "knows {{0}}-type move",
+    "time_zero": "during the {{0}} time",
+    "time_other": "during the {{0}} time",
+    "withinStructure_zero": "in a {{0}}",
+    "withinStructure_other": "in a {{0}}"
+  }
+}

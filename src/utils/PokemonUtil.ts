@@ -601,13 +601,45 @@ export function getEvolutionSpec(
   const evolutionSpecs: string[] = []
   preBaseStats.evolutions
     .filter(
-      ({ to }) =>
-        (to.name === species.getName() && (to.form ?? 0) === variant) ||
-        (to.name === EnumSpecies.Alcremie.getName() && (to.form ?? 0) % 9 === 0)
+      ({ to }) => to.name === species.getName() && (to.form ?? 0) === variant
     )
     .forEach(evolution => {
       const evolutionSpec: string[] = []
-      evolutionSpec.push(preSpecies.getLocalizedName())
+      evolutionSpec.push(
+        preSpecies.getLocalizedName() + i18next.t('Evolution:when')
+      )
+
+      if (i18next.language !== 'ko') {
+        if (evolution.evoType === 'leveling') {
+          let text
+          if (evolution.level) {
+            text = i18next.t('Evolution:type.levelingTo', {
+              '0': evolution.level
+            })
+          } else {
+            text = i18next.t('Evolution:type.leveling')
+          }
+
+          evolutionSpec.push(text)
+        } else if (evolution.evoType === 'interact') {
+          let text
+          if (evolution.item) {
+            text = i18next.t('Evolution:type.interactWith', {
+              '0': i18next.t(`Item:${evolution.item.itemID}`)
+            })
+          } else {
+            text = i18next.t('Evolution:type.interact')
+          }
+
+          evolutionSpec.push(text)
+        } else if (evolution.evoType === 'trade') {
+          const text = i18next.t('Evolution:type.trade')
+          evolutionSpec.push(text)
+        } else if (evolution.evoType === 'ticking') {
+          const text = i18next.t('Evolution:type.ticking')
+          evolutionSpec.push(text)
+        }
+      }
 
       if (evolution.conditions.length > 0) {
         evolution.conditions.forEach((condition, i, arr) => {
@@ -621,7 +653,7 @@ export function getEvolutionSpec(
                 '0': condition.biomes
                   .map(b => !b.includes(':') || b.replace(/^[^:]+.:/, ''))
                   .map(b => i18next.t(`Biome:${b}`))
-                  .join(', '),
+                  .join(i18next.t('Evolution:orAlt')),
                 count
               })
             } else {
@@ -650,17 +682,24 @@ export function getEvolutionSpec(
           } else if (condition.evoConditionType === 'evolutionScroll') {
             // TODO
           } else if (condition.evoConditionType === 'friendship') {
-            const text = i18next.t('Evolution:condition.friendship', {
+            text = i18next.t('Evolution:condition.friendship', {
               '0': condition.friendship,
               count
             })
-            evolutionSpec.push(`  ${text}`)
           } else if (condition.evoConditionType === 'gender') {
-            const gender = condition.genders.join(' ')
+            const gender = condition.genders
+              .map(gender =>
+                i18next.t(`Pixelmon:generic.form.${gender.toLowerCase()}`)
+              )
+              .join(i18next.t('Evolution.or'))
 
-            evolutionSpec.join(`to evolve with ${gender} gender`)
+            text = i18next.t('Evolution:condition.gender', {
+              '0': gender,
+              count
+            })
           } else if (condition.evoConditionType === 'healthAbsence') {
             text = i18next.t(`Evolution:condition.healthAbsense`, {
+              '0': condition.health,
               count
             })
           } else if (condition.evoConditionType === 'heldItem') {
@@ -674,11 +713,10 @@ export function getEvolutionSpec(
             // TODO Get move from attackIndex
             // condition.attackIndex
           } else if (condition.evoConditionType === 'moveType') {
-            const text = i18next.t('Evolution:condition.moveType', {
+            text = i18next.t('Evolution:condition.moveType', {
               '0': i18next.t(`type.${condition.type.toLowerCase()}`),
               count
             })
-            evolutionSpec.push(`  ${text}`)
           } else if (condition.evoConditionType === 'nature') {
             if (condition.natures.length > 1) {
               evolutionSpec.push(
@@ -698,11 +736,12 @@ export function getEvolutionSpec(
           } else if (condition.evoConditionType === 'status') {
             // TODO
           } else if (condition.evoConditionType === 'time') {
-            const text = i18next.t('Evolution:condition.time', {
-              '0': i18next.t(`time.${condition.time.toLowerCase()}`),
+            text = i18next.t('Evolution:condition.time', {
+              '0': i18next
+                .t(`time.${condition.time.toLowerCase()}`)
+                .toLowerCase(),
               count
             })
-            evolutionSpec.push(`  ${text}`)
           } else if (condition.evoConditionType === 'weather') {
             // TODO
           } else if (condition.evoConditionType === 'withinStructure') {
@@ -716,38 +755,45 @@ export function getEvolutionSpec(
         })
       }
 
-      // Add evolution types
-      if (evolution.evoType === 'leveling') {
-        let text
-        if (evolution.level) {
-          text = i18next.t('Evolution:type.levelingTo', {
-            '0': evolution.level
-          })
-        } else {
-          text = i18next.t('Evolution:type.leveling')
-        }
+      if (i18next.language === 'ko') {
+        // Add evolution types
+        if (evolution.evoType === 'leveling') {
+          let text
+          if (evolution.level) {
+            text = i18next.t('Evolution:type.levelingTo', {
+              '0': evolution.level
+            })
+          } else {
+            text = i18next.t('Evolution:type.leveling')
+          }
 
-        evolutionSpec.push(text)
-      } else if (evolution.evoType === 'interact') {
-        let text
-        if (evolution.item) {
-          text = i18next.t('Evolution:type.interactWith', {
-            '0': i18next.t(`Item:${evolution.item.itemID}`)
-          })
-        } else {
-          text = i18next.t('Evolution:type.interact')
-        }
+          evolutionSpec.push(text)
+        } else if (evolution.evoType === 'interact') {
+          let text
+          if (evolution.item) {
+            text = i18next.t('Evolution:type.interactWith', {
+              '0': i18next.t(`Item:${evolution.item.itemID}`)
+            })
+          } else {
+            text = i18next.t('Evolution:type.interact')
+          }
 
-        evolutionSpec.push(text)
-      } else if (evolution.evoType === 'trade') {
-        const text = i18next.t('Evolution:type.trade')
-        evolutionSpec.push(text)
-      } else if (evolution.evoType === 'ticking') {
-        const text = i18next.t('Evolution:type.ticking')
-        evolutionSpec.push(text)
+          evolutionSpec.push(text)
+        } else if (evolution.evoType === 'trade') {
+          const text = i18next.t('Evolution:type.trade')
+          evolutionSpec.push(text)
+        } else if (evolution.evoType === 'ticking') {
+          const text = i18next.t('Evolution:type.ticking')
+          evolutionSpec.push(text)
+        }
       }
 
-      evolutionSpecs.push(evolutionSpec.join(' '))
+      evolutionSpecs.push(
+        evolutionSpec
+          .join(' ')
+          .trim()
+          .replace(/\s{2,}/g, ' ')
+      )
     })
 
   return evolutionSpecs

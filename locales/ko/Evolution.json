@@ -1,10 +1,16 @@
 {
+  "when": "(이)가",
+  "and": "그리고",
+  "andAlt": ", ",
+  "or": "또는",
+  "orAlt": ", ",
   "type": {
     "leveling": "레벨업",
     "levelingTo": "{{0}}(으)로 레벨업",
     "interact": "상호작용",
     "interactWith": "{{0}}(와)과 상호작용",
     "trade": "교환진화",
+    "tradeWith": "{{0}}(와)과 상호작용",
     "ticking": ""
   },
   "condition": {
@@ -18,10 +24,12 @@
     "evolutionRock_other": "{{1}} 블럭 범위 안에 {{0}}이 있고",
     "friendship_zero": "친밀도가 {{0}}이상일 때",
     "friendship_other": "친밀도가 {{0}}이상이고",
-    "healthAbsense_zero": "기절하지 않고 49 이상의 누적데미지를 입었을 때",
-    "healthAbsense_other": "기절하지 않고 49 이상의 누적데미지를 입은 후",
-    "moveType_zero": "{{0}} 타입일 때",
-    "moveType_other": "{{0}} 타입이고",
+    "gender_zero": "성별이 {{0}}일 때",
+    "gender_other": "성별이 {{0}}이고",
+    "healthAbsense_zero": "기절하지 않고 {{0}} 이상의 누적데미지를 입었을 때",
+    "healthAbsense_other": "기절하지 않고 {{0}} 이상의 누적데미지를 입은 후",
+    "moveType_zero": "{{0}} 타입 기술을 배우고 있을 때",
+    "moveType_other": "{{0}} 타입 기술을 배우고 있고",
     "time_zero": "{{0}} 시간일 때",
     "time_other": "{{0}} 시간에",
     "withinStructure_zero": "{{0}} 지역 안에 있을 때",
