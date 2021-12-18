@@ -454,6 +454,7 @@ export function getThumbnailUri(
   } else if (
     species === EnumSpecies.Frillish ||
     species === EnumSpecies.Hippopotas ||
+    species === EnumSpecies.Hippowdon ||
     species === EnumSpecies.Jellicent ||
     species === EnumSpecies.Pyroar ||
     species === EnumSpecies.Unfezant ||

@@ -90,6 +90,7 @@ export class EnumForm implements Cloneable<EnumForm> {
     EnumSpecies.Combee,
     EnumSpecies.Frillish,
     EnumSpecies.Hippopotas,
+    EnumSpecies.Hippowdon,
     EnumSpecies.Indeedee,
     EnumSpecies.Jellicent,
     EnumSpecies.Meowstic,
