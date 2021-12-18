@@ -443,7 +443,9 @@ export function getThumbnailUri(
     resourceSuffix = form.imageSuffix ?? form.spriteSuffix
   }
 
-  if (species === EnumSpecies.MrMime) {
+  if (species === EnumSpecies.Jirachi) {
+    return `https://cdn.discordapp.com/attachments/873927999261642822/921560707617681458/32a924544eb0501ca7d9369bf049932ac9d5acb689a35eed3f1665cdbfe40c2669d5a4a51b2e4101db06ffa65e0b4251afc4fac40beb92a237f310b41157cd8c737520372e87278041ea56d325dfb93b.gif`
+  } else if (species === EnumSpecies.MrMime) {
     resource = 'mr-mime'
   } else if (species === EnumSpecies.MimeJr) {
     resource = 'mime-jr'
