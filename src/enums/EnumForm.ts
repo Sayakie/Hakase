@@ -11,7 +11,8 @@ class StackableMap<K extends EnumSpecies, V extends EnumForm[]> extends Map<
   public set(key: K, value: V): this {
     if (this.has(key)) {
       value.forEach((v, i) => {
-        this.get(key)!.some(f => f.form === v.form) && value.splice(i, 1)
+        this.get(key)!.some(f => f.form === v.form) &&
+          value.splice(value.indexOf(v), 1)
       })
       super.set(key, this.get(key)!.concat(value) as V)
     } else {
