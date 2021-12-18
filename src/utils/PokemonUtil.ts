@@ -415,6 +415,8 @@ export function getSpriteUri(
     } else {
       resourceSuffix = forms.at(0)!.spriteSuffix
     }
+  } else if (species === EnumSpecies.Lunatone) {
+    resourceSuffix = '-gibbous'
   }
 
   return `${spriteUri}/${pokedex}${resourceSuffix}.png`
