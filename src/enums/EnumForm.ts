@@ -237,6 +237,11 @@ export class EnumForm implements Cloneable<EnumForm> {
   }
 
   public clone(): EnumForm {
-    return EnumForm.of(this.species).addFlags(this.getFlags()).memo(this.$memo)
+    return EnumForm.of(this.species)
+      .setForm(this.form)
+      .setSpriteSuffix(this.spriteSuffix)
+      .setImageSuffix(this.imageSuffix!)
+      .addFlags(this.getFlags())
+      .memo(this.$memo)
   }
 }
