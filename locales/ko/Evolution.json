@@ -1,16 +1,16 @@
 {
-  "when": "(이)가",
+  "when": "이(가)",
   "and": "그리고",
   "andAlt": ", ",
   "or": "또는",
   "orAlt": ", ",
   "type": {
     "leveling": "레벨업",
-    "levelingTo": "{{0}}(으)로 레벨업",
+    "levelingTo": "{{0}}으(로) 레벨업",
     "interact": "상호작용",
-    "interactWith": "{{0}}(와)과 상호작용",
+    "interactWith": "{{0}}와(과) 상호작용",
     "trade": "교환진화",
-    "tradeWith": "{{0}}(와)과 상호작용",
+    "tradeWith": "{{0}}와(과) 상호작용",
     "ticking": ""
   },
   "condition": {

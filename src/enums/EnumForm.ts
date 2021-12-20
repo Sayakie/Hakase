@@ -10,10 +10,9 @@ class StackableMap<K extends EnumSpecies, V extends EnumForm[]> extends Map<
 > {
   public set(key: K, value: V): this {
     if (this.has(key)) {
-      value.forEach((v, i) => {
-        this.get(key)!.some(f => f.form === v.form) &&
-          value.splice(value.indexOf(v), 1)
-      })
+      // value
+      //   .filter(form => !this.get(key)!.includes(form))
+      //   .map(form => super.set(key, [...this.get(key)!, form] as V))
       super.set(key, this.get(key)!.concat(value) as V)
     } else {
       super.set(key, value)
@@ -243,5 +242,9 @@ export class EnumForm implements Cloneable<EnumForm> {
       .setImageSuffix(this.imageSuffix!)
       .addFlags(this.getFlags())
       .memo(this.$memo)
+  }
+
+  public equals(another: EnumForm): boolean {
+    return this.species === another.species && this.form === another.form
   }
 }

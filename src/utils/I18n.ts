@@ -68,13 +68,14 @@ export class Locale {
       initImmediate: false,
       load: 'all',
       ns: this.options.defaultNamespaces ?? [
-        'Ability',
-        'Biome',
-        'Evolution',
-        'Generic',
-        'Item',
-        'Move',
-        'Pixelmon'
+        `Ability`,
+        `Biome`,
+        `Evolution`,
+        `Generic`,
+        `Item`,
+        `Misc`,
+        `Move`,
+        `Pixelmon`
       ],
       preload: ['en-US', 'ko']
     })

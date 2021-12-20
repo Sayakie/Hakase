@@ -39,6 +39,7 @@ import { EnumOricorio } from '@/enums/forms/EnumOricorio.js'
 import { EnumPrimal } from '@/enums/forms/EnumPrimal.js'
 import { EnumRotom } from '@/enums/forms/EnumRotom.js'
 import { EnumShaymin } from '@/enums/forms/EnumShaymin.js'
+import { EnumSlowpoke } from '@/enums/forms/EnumSlowpoke.js'
 import { EnumTherian } from '@/enums/forms/EnumTherian.js'
 import { EnumToxtricity } from '@/enums/forms/EnumToxtricity.js'
 import { EnumUnown } from '@/enums/forms/EnumUnown.js'
@@ -53,9 +54,11 @@ import { ArrayUtil } from '@/utils/ArrayUtil.js'
 import {
   baseStats as baseStatsLink,
   DataDirectory,
-  emojis
+  emojis,
+  FormFlag,
+  pokeDrops
 } from '@/utils/Constants.js'
-import { walk } from '@/utils/Util.js'
+import { getPostPosition, walk } from '@/utils/Util.js'
 
 const spriteUri = `https://raw.githubusercontent.com/Sayakie/Riots/resources/sprites/pokemon`
 const thumbnailUri = `https://img.pokemondb.net/sprites/home/normal`
@@ -178,6 +181,8 @@ export async function loadAllForms(): Promise<FormLink> {
       formList.set(EnumSpecies.Rotom, EnumRotom.values())
       formList.set(EnumSpecies.Sawsbuck, SeasonForm.values())
       formList.set(EnumSpecies.Shaymin, EnumShaymin.values())
+      formList.set(EnumSpecies.Slowpoke, EnumSlowpoke.values())
+      formList.set(EnumSpecies.Slowking, EnumSlowpoke.values())
       formList.set(EnumSpecies.Shellos, EnumGastrodon.values())
       formList.set(EnumSpecies.Silvally, EnumArceus.values())
       formList.set(EnumSpecies.Thundurus, EnumTherian.values())
@@ -215,6 +220,9 @@ export async function loadAllForms(): Promise<FormLink> {
       EnumForm.galarianForms.forEach(species => {
         formList.set(species, [RegionalForm.Normal, RegionalForm.Galarian])
       })
+
+      // Fallback
+      // EnumForm.galarianForms.p
 
       resolve(formList)
     } catch {
@@ -275,20 +283,50 @@ export function getBaseStats(
   let bs = baseStatsLink.get(species)
 
   if (variant > 0) {
-    bs = bs?.forms?.[variant] ?? undefined
+    if (species === EnumSpecies.Slowpoke && variant == 2) {
+      bs = bs!.forms![1]
+    } else {
+      bs = bs?.forms?.[variant]
+    }
   }
 
   if (!bs) return null
-
   return bs!
 }
 
+export function getPokemonName(bs: BaseStats, variant: number = 0): string {
+  let [prefix, suffix] = [``, ``]
+  const species = EnumSpecies.getFromName(bs.pixelmonName)!
+
+  if (EnumForm.formList.has(species)) {
+    const forms = EnumForm.formList.get(species)!
+    const currentForm = ArrayUtil.getRandomElement(
+      forms.filter(({ form }) => form === variant)
+    )
+    const currentFormFlags = currentForm.getFlags()
+    if (variant > 0 || currentFormFlags.includes(FormFlag.ExposeMeta)) {
+      const currentFormName =
+        currentForm.$memo ?? currentForm.spriteSuffix.replace(/^-/, '')
+      const formName = i18next.t(
+        `Pixelmon:${currentForm.species.toLowerCase()}.form.${currentFormName}`
+      )
+
+      if (currentFormFlags.includes(FormFlag.PinToPrefix)) {
+        prefix = `${formName} `
+      } else {
+        suffix = ` - ${formName}`
+      }
+    }
+  }
+
+  return `${prefix}${species.getLocalizedName()}${suffix}`
+}
+
 export function getPokeDropFromSpecies(
-  drop: ReadonlyArray<PokeDrop>,
   species: EnumSpecies,
   variant: number = 0
 ): PokeDrop | null {
-  const dropInfo = drop.find(
+  const dropInfo = pokeDrops.find(
     ({ pokemon, form }) =>
       pokemon === species.getName() && (form ?? variant) === variant
   )
@@ -306,7 +344,8 @@ export function getDrop(drop: PokeDrop): string {
     max: number
   ): string {
     const dropItemName = i18next.t(`Item:${data}`)
-    const emoji = emojis[data.replace(/^[^:]+./, '')] ?? ':grey_question:'
+    const emojiId = data.replace(/^[^:]+./, '')
+    const emoji = emojis[emojiId] ?? ':grey_question:'
 
     return `${emoji} | **\`${dropItemName}${``.padEnd(
       dropItemNameMaxLength - dropItemNameLengthList[dropItemLengthOrder[type]]!
@@ -481,7 +520,7 @@ export function parseEvolutionSpec(
   if (!pokemonName) return null
 
   const species = EnumSpecies.getFromName(pokemonName)
-  const specKeySet: ParsedSpec = []
+  const specKeySet: ParsedSpec = [['_id', -1]]
   if (!species) return null
   if (spec.length > 0) {
     spec.forEach(s => {
@@ -516,24 +555,30 @@ export function getEvolutionEntities(
   if (
     variant > 0 &&
     (EnumForm.megaForms.includes(species) ||
-      EnumForm.megaXYForms.includes(species))
+      EnumForm.megaXYForms.includes(species)) &&
+    !(
+      EnumForm.alolanForms.includes(species) ||
+      EnumForm.galarianForms.includes(species)
+    )
   ) {
     return availableEvolutions
   }
 
   const evolution = new Set<string>()
   const bs = getBaseStats(species, variant)
-
   if (bs === null) return availableEvolutions
   if (bs.preEvolutions.length > 0) {
     // Copy the pre-evolutions.
     // This is because the pre-evolutions are may affect polluting the evolution data.
-    const preEvolutions = [...bs.preEvolutions]
+    const preEvolutions = [...bs.preEvolutions].reverse()
 
     // Legacy pre-evolutions was inversed the order.
-    if (species.getNationalPokedexInteger() < 722) {
-      preEvolutions.reverse()
-    }
+    // if (
+    //   species.getNationalPokedexInteger() >= 722 &&
+    //   species.getNationalPokedexInteger() < 810
+    // ) {
+    //   preEvolutions.reverse()
+    // }
 
     preEvolutions
       .map(parseEvolutionSpec)
@@ -561,20 +606,21 @@ export function getEvolutionEntities(
       })
   }
 
-  if (/* bs.preEvolutions.length > 0 && */ bs.evolutions.length === 0) {
-    let prefix = ''
-    if (
-      variant > 0 &&
-      (EnumForm.alolanForms.includes(species) ||
-        EnumForm.galarianForms.includes(species))
-    ) {
-      const formName = RegionalForm.values()
-        .filter(({ form }) => form === variant)
-        .at(0)!
-        .spriteSuffix.replace(/^-/, '')
-      prefix = i18next.t(`Pixelmon:generic.form.${formName}`) + ' '
-    }
-    evolution.add(`${prefix}${species.getLocalizedName()}`)
+  if (bs.preEvolutions.length > 0 && bs.evolutions.length === 0) {
+    evolution.add(getPokemonName(bs, variant))
+    // let prefix = ''
+    // if (
+    //   variant > 0 &&
+    //   (EnumForm.alolanForms.includes(species) ||
+    //     EnumForm.galarianForms.includes(species))
+    // ) {
+    //   const formName = RegionalForm.values()
+    //     .filter(({ form }) => form === variant)
+    //     .at(0)!
+    //     .spriteSuffix.replace(/^-/, '')
+    //   prefix = i18next.t(`Pixelmon:generic.form.${formName}`) + ' '
+    // }
+    // evolution.add(`${prefix}${species.getLocalizedName()}`)
   }
 
   if (bs.evolutions.length > 0) {
@@ -608,7 +654,11 @@ export function getEvolutionSpec(
     variant > 0 &&
     (EnumForm.megaForms.includes(species) ||
       EnumForm.megaXYForms.includes(species) ||
-      EnumForm.genderForms.includes(species))
+      EnumForm.genderForms.includes(species)) &&
+    !(
+      EnumForm.alolanForms.includes(species) ||
+      EnumForm.galarianForms.includes(species)
+    )
   ) {
     return null
   }
@@ -618,15 +668,19 @@ export function getEvolutionSpec(
     return null
   }
 
-  let order = -1
+  const order = 0
   // Legacy pre-evolutions was inversed the order.
-  if (species.getNationalPokedexInteger() < 722) {
-    order = 0
-  }
+  // if (
+  //   species.getNationalPokedexInteger() >= 722 &&
+  //   species.getNationalPokedexInteger() < 810
+  // ) {
+  //   order = 0
+  // }
   const [preSpecies, parsedSpec] = parseEvolutionSpec(
     bs.preEvolutions.at(order)!
   ) ?? [EnumSpecies.MissingNo, [['form', 0]]]
   const [, preVariant] = parsedSpec.find(([key]) => key === 'form') ?? [null, 0]
+
   const preBaseStats = getBaseStats(preSpecies, Number(preVariant))
   if (!preBaseStats) return null
 
@@ -638,7 +692,7 @@ export function getEvolutionSpec(
     .forEach(evolution => {
       const evolutionSpec: string[] = []
       evolutionSpec.push(
-        preSpecies.getLocalizedName() + i18next.t('Evolution:when')
+        getPokemonName(preBaseStats, variant) + i18next.t('Evolution:when')
       )
 
       if (i18next.language !== 'ko') {
@@ -823,15 +877,10 @@ export function getEvolutionSpec(
         }
       }
 
-      evolutionSpecs.push(
-        evolutionSpec
-          .join(' ')
-          .trim()
-          .replace(/\s{2,}/g, ' ')
-      )
+      evolutionSpecs.push(evolutionSpec.join(' '))
     })
 
-  return evolutionSpecs
+  return evolutionSpecs.map(getPostPosition)
 }
 
 function $getMove(

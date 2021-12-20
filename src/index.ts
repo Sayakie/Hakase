@@ -133,7 +133,16 @@ await client
   .init()
   .then(async () => {
     const emojiPathList = walk(join(DataDirectory, 'emoji'), {
-      globs: ['**/*.json']
+      globs: ['**/*.json'],
+      ignore: [`injectEmojiSet.json`]
+    })
+    const mixinEmojisBuf = await readFile(
+      join(DataDirectory, 'emoji', 'injectEmojiSet.json')
+    )
+    const mixinEmojisKeySet = JSON.parse(mixinEmojisBuf.toString())
+    const mixinEmojis: Record<string, string> = {}
+    Object.keys(mixinEmojisKeySet).forEach(mixinEmoji => {
+      mixinEmojis[mixinEmoji] = mixinEmojisKeySet[mixinEmoji]
     })
 
     for await (const emojiPath of emojiPathList) {
@@ -142,7 +151,8 @@ await client
 
       Object.keys(emojiSet).forEach(emoji => {
         const emojiSnowflake = emojiSet[emoji]
-        emojis[emoji] = `<:${emoji}:${emojiSnowflake}>`
+
+        emojis[emoji] = `<:${mixinEmojis[emoji] ?? emoji}:${emojiSnowflake}>`
       })
     }
   })

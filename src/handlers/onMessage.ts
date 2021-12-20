@@ -141,24 +141,25 @@ function clientReceivedMessageHandler(client: Client): ListenerCleanup {
           const embed = new MessageEmbed()
           const pokemonSet = [...EnumSpecies.PokemonSet.values()]
           const relatedMatchSet = pokemonSet.filter(pokemon =>
-            getRegExp(args, {
+            getRegExp(pokemon.getLocalizedName(), {
               fuzzy: true,
               global: true,
               ignoreCase: true,
               ignoreSpace: true,
               initialSearch: true
-            }).test(pokemon.getLocalizedName())
+            }).test(args)
           )
 
           if (relatedMatchSet.length === 0) {
             relatedMatchSet.push(
               ...pokemonSet.filter(pokemon =>
                 getRegExp(
-                  args
-                    .split('')
+                  pokemon
+                    .getLocalizedName()
+                    .split(``)
                     .map(v => getPhonemes(v).initial)
-                    .join('')
-                ).test(pokemon.getLocalizedName())
+                    .join(``)
+                ).test(args)
               )
             )
           }
@@ -166,16 +167,28 @@ function clientReceivedMessageHandler(client: Client): ListenerCleanup {
           if (relatedMatchSet.length === 0) {
             embed
               .setColor('#F52831')
-              .setDescription(':loudspeaker: 찾은 포켓몬이 없습니다!')
+              .setDescription(
+                `:loudspeaker: ` + i18next.t(`Misc:pokemon.notFound`)
+              )
           } else {
+            let relatedMatches = relatedMatchSet
+              .map(species => species.getLocalizedName())
+              .join(', ')
+
+            if (relatedMatches.length > 1000) {
+              relatedMatches =
+                relatedMatches.substring(
+                  0,
+                  relatedMatches.lastIndexOf(',') - 1
+                ) + '...'
+            }
+
             embed
               .setColor('#F5605C')
               .setDescription(
-                '비슷한 포켓몬을 찾았습니다.' +
+                i18next.t(`Misc:pokemon.findSimilar`) +
                   '```fix\n' +
-                  relatedMatchSet
-                    .map(species => species.getLocalizedName())
-                    .join(', ') +
+                  relatedMatches +
                   '\n```'
               )
           }

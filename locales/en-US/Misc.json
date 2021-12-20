@@ -1,0 +1,6 @@
+{
+  "pokemon": {
+    "notFound": "Could not find any Pokémon with that name.",
+    "findSimilar": "Did you mean:"
+  }
+}
