@@ -192,7 +192,6 @@ export function generateBaseTemplate({
               )
               .setLabel(label)
 
-            console.log({ customId: button.customId, label })
             row.addComponents(button)
           }
         )
