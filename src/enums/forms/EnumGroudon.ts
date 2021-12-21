@@ -1,7 +1,6 @@
 import { EnumForm } from '@/enums/EnumForm.js'
-import { FormFlag } from '@/utils/Constants.js'
 
-const form = EnumForm.of('Groudon').addFlags(FormFlag.PinToPrefix)
+const form = EnumForm.of('Groudon').addFlags(`PinToPrefix`)
 
 export class EnumGroudon {
   public static readonly Meta = form
