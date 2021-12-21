@@ -820,6 +820,39 @@ export function getEvolutionSpec(
             // TODO
           } else if (condition.evoConditionType === 'party') {
             // TODO Should have alolan or galarian pokemons in party storage
+            if (condition.withPokemon.length > 0) {
+              const pokemons = condition.withPokemon
+                .map(it => EnumSpecies.getFromName(it))
+                .filter((it): it is Exclude<typeof it, null> => it !== null)
+                .map(it => it.getLocalizedName())
+                .join(i18next.t(`Evolution:andAlt`))
+
+              text = i18next.t(`Evolution:condition.partyWithPokemon`, {
+                '0': pokemons,
+                count
+              })
+            } else if (condition.withTypes.length > 0) {
+              const types = condition.withTypes.map(it =>
+                i18next.t(`type.${it.toLowerCase()}`)
+              )
+
+              text = i18next.t(`Evolution:condition.partyWithType`, {
+                '0': types.join(i18next.t(`Evolution:andAlt`)),
+                count
+              })
+              // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+            } else if (condition.withForms.length > 0) {
+              const forms = condition.withForms.map(it =>
+                it === `ALOLAN`
+                  ? i18next.t(`Pixelmon:generic.form.alola`)
+                  : i18next.t(`Pixelmon:generic.form.galar`)
+              )
+
+              text = i18next.t(`Evolution:condition.partyWithForm`, {
+                '0': forms.join(i18next.t(`Evolution:andAlt`)),
+                count
+              })
+            }
           } else if (condition.evoConditionType === 'statRatio') {
             // TODO
           } else if (condition.evoConditionType === 'status') {
