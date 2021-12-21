@@ -216,9 +216,9 @@ declare type EvolutionCondition =
     }
   | {
       evoConditionType: 'party'
-      withPokemon?: string[]
-      withTypes?: Type[]
-      withForms?: ['ALOLAN' | 'GALAR']
+      withPokemon: string[]
+      withTypes: Type[]
+      withForms: ['ALOLAN' | 'GALAR']
     }
   | {
       evoConditionType: 'chance'
