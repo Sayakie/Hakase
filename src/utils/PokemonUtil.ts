@@ -691,8 +691,22 @@ export function getEvolutionSpec(
     )
     .forEach(evolution => {
       const evolutionSpec: string[] = []
+      let prefix = ``
+      if (
+        preVariant > 0 &&
+        (EnumForm.alolanForms.includes(preSpecies) ||
+          EnumForm.galarianForms.includes(preSpecies))
+      ) {
+        const formName = RegionalForm.values()
+          .filter(({ form }) => form === preVariant)
+          .at(0)!
+          .spriteSuffix.replace(/^-/, '')
+        prefix = i18next.t(`Pixelmon:generic.form.${formName}`) + ' '
+      }
       evolutionSpec.push(
-        getPokemonName(preBaseStats, variant) + i18next.t('Evolution:when')
+        prefix +
+          getPokemonName(preBaseStats, variant) +
+          i18next.t('Evolution:when')
       )
 
       if (i18next.language !== 'ko') {
