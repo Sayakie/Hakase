@@ -286,10 +286,13 @@ export function generateBaseTemplate({
   const eggCycles = Number(String((bs.eggCycles + 1) * 255))
   const catchRate = String(bs.catchRate)
 
-  const spawnTimes =
-    spawnInfo.condition.times
-      ?.map(time => i18next.t(`time.${time.toLowerCase()}`))
-      .join(', ') ?? i18next.t('field.spawn.unknown')!
+  const spawnTimes = [
+    ...new Set<string>(
+      spawnInfo.condition.times?.map(time =>
+        i18next.t(`time.${time.toLowerCase()}`)
+      ) ?? [i18next.t(`field.spawn.unknown`)]
+    )
+  ].join(', ')
 
   const spawnBiomes =
     spawnInfo.condition.stringBiomes
