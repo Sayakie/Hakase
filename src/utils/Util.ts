@@ -7,7 +7,7 @@ import walkSync from 'walk-sync'
 
 import { EnumForm } from '@/enums/EnumForm.js'
 import { EnumSpecies } from '@/enums/EnumSpecies.js'
-import { ArrayUtil } from '@/utils/ArrayUtil.js'
+import * as ArrayUtil from '@/utils/ArrayUtil.js'
 import { pokeDrops } from '@/utils/Constants.js'
 import {
   getEvolutionSpec,
