@@ -7,6 +7,7 @@ import walkSync from 'walk-sync'
 
 import { EnumForm } from '@/enums/EnumForm.js'
 import { EnumSpecies } from '@/enums/EnumSpecies.js'
+import { NullPointerException } from '@/errors/NullPointerException.mjs'
 import * as ArrayUtil from '@/utils/ArrayUtil.js'
 import { pokeDrops } from '@/utils/Constants.js'
 import {
@@ -16,6 +17,23 @@ import {
   getThumbnailUri,
   setSharedRandInt
 } from '@/utils/PokemonUtil.js'
+
+/**
+ * @param value The value to check
+ * @param message The message to send if the value is nullish
+ * @returns true if the value is not nullish and false otherwise
+ * @throws {@link NullPointerException} if the value is nullish
+ */
+export function requireNonNull<T>(
+  value: T | null | undefined,
+  message: string
+): value is T {
+  if (value == null) {
+    throw new NullPointerException(message)
+  }
+
+  return true
+}
 
 const numericFormatter = new Intl.NumberFormat('en-IN')
 

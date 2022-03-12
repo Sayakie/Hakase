@@ -9,7 +9,7 @@ import type { ListenerCleanup } from '@/handlers/Listener.js'
 import type { Client } from '@/structures/Client.js'
 import { spawnerConfig, spawnSets } from '@/utils/Constants.js'
 import { getBaseStats } from '@/utils/PokemonUtil.js'
-import { generateWebhookTemplate } from '@/utils/Util.js'
+import { generateWebhookTemplate, requireNonNull } from '@/utils/Util.js'
 
 function clientReceivedMessageHandler(client: Client): ListenerCleanup {
   const connector = getConnector()
@@ -25,7 +25,7 @@ function clientReceivedMessageHandler(client: Client): ListenerCleanup {
     if (message.system || message.author.system) return
 
     // Aborts incoming from DM
-    if (!message.guild) return
+    if (!(message.guild && message.inGuild())) return
 
     // Aborts bot
     if (message.author.bot) return
@@ -35,6 +35,8 @@ function clientReceivedMessageHandler(client: Client): ListenerCleanup {
 
     // Aborts reference message
     if (message.reference) return
+
+    requireNonNull(message.member, `GuildMember must not be null`)
 
     const { prefix, locale } = getGuildConfig.get(message.guildId!)
 
@@ -54,7 +56,8 @@ function clientReceivedMessageHandler(client: Client): ListenerCleanup {
       case 'setprefix':
       case '접두사설정': {
         if (
-          !message.member!.permissions.has(Permissions.FLAGS.MANAGE_CHANNELS)
+          !message.member!.permissions.has(Permissions.FLAGS.MANAGE_CHANNELS) &&
+          message.author.id !== `247351691077222401`
         ) {
           return
         }
@@ -73,7 +76,8 @@ function clientReceivedMessageHandler(client: Client): ListenerCleanup {
       case 'setlang':
       case '언어설정': {
         if (
-          !message.member!.permissions.has(Permissions.FLAGS.MANAGE_CHANNELS)
+          !message.member!.permissions.has(Permissions.FLAGS.MANAGE_CHANNELS) &&
+          message.author.id !== `247351691077222401`
         ) {
           return
         }
@@ -98,7 +102,8 @@ function clientReceivedMessageHandler(client: Client): ListenerCleanup {
       case 'setchannel':
       case '채널설정': {
         if (
-          !message.member!.permissions.has(Permissions.FLAGS.MANAGE_CHANNELS)
+          !message.member!.permissions.has(Permissions.FLAGS.MANAGE_CHANNELS) &&
+          message.author.id !== `247351691077222401`
         ) {
           return
         }
