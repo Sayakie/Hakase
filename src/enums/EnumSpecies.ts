@@ -986,8 +986,7 @@ export class EnumSpecies {
     private readonly nationalDex: number,
     private readonly name: string
   ) {
-    const PokemonSet = EnumSpecies.PokemonSet as Set<EnumSpecies>
-    PokemonSet.add(this)
+    ;(EnumSpecies.PokemonSet as Set<EnumSpecies>).add(this)
   }
 
   public static hasPokemon(name: string): boolean {
@@ -1029,6 +1028,10 @@ export class EnumSpecies {
 
   public getNationalPokedexInteger(): number {
     return this.nationalDex
+  }
+
+  public equals(other: EnumSpecies): boolean {
+    return this.nationalDex === other.nationalDex && this.name === other.name
   }
 
   public toString(): string {

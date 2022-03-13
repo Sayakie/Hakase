@@ -50,7 +50,7 @@ import { EnumXerneas } from '@/enums/forms/EnumXerneas.js'
 import { EnumZygarde } from '@/enums/forms/EnumZygarde.js'
 import { RegionalForm } from '@/enums/forms/RegionalForm.js'
 import { SeasonForm } from '@/enums/forms/SeasonForm.js'
-import { ArrayUtil } from '@/utils/ArrayUtil.js'
+import * as ArrayUtil from '@/utils/ArrayUtil.js'
 import {
   baseStats as baseStatsLink,
   DataDirectory,

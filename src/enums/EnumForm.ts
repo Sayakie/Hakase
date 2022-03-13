@@ -162,15 +162,17 @@ export class EnumForm implements Cloneable<EnumForm> {
   public static readonly formList: ReadonlyMap<EnumSpecies, EnumForm[]> =
     new StackableMap()
 
-  public readonly species: string
-  public readonly flags: ReadonlySet<keyof typeof FormFlag> = new Set()
-  public form = -1
-  public spriteSuffix = ''
+  public form: number
+  public spriteSuffix: string
   public imageSuffix: string | undefined
   public $memo: string | undefined
 
-  private constructor(species: string) {
-    this.species = species
+  private constructor(
+    public readonly species: string,
+    public readonly flags: ReadonlySet<keyof typeof FormFlag> = new Set()
+  ) {
+    this.form = -1
+    this.spriteSuffix = ``
   }
 
   public static of(species: string): EnumForm {
@@ -246,5 +248,9 @@ export class EnumForm implements Cloneable<EnumForm> {
 
   public equals(another: EnumForm): boolean {
     return this.species === another.species && this.form === another.form
+  }
+
+  public toString(): string {
+    return `EnumForm<${this.species}>`
   }
 }
