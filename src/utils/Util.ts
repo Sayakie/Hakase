@@ -27,12 +27,10 @@ import {
 export function requireNonNull<T>(
   value: T | null | undefined,
   message: string
-): value is T {
+): asserts value is T {
   if (value == null) {
     throw new NullPointerException(message)
   }
-
-  return true
 }
 
 const numericFormatter = new Intl.NumberFormat('en-IN')
