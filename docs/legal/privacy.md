@@ -1,5 +1,6 @@
 # Privacy Policy
-***Effective Date:** March 02, 2022*
+***This document is a draft and has no legal effect until futher notice.***
+<!-- ***Effective Date:** March 02, 2022* -->
 
 Welcome to Hakase's Privacy Policy. Team dareharu ("dareharu", "haru", "we" and "us") is dedicated to protect the privacy rights of our users ("you", "user", "users" or “your”). This document is a legal agreement between you and us.
 
@@ -7,7 +8,7 @@ This Privacy Policy (the "Policy") describes the ways we collect, store, use, an
 
 By using the Service, you are expressing your agreement to this Policy and the processing of your data, including your personal information in the manner provided in this Policy. If you do not agree to these terms, please do not use the Service.
 
-Your privacy is important to us. If you have any question or if you would like to bring a privacy concern to our attention, please contact us at legal@temp.gg. An agent will handle your request shortly.
+Your privacy is important to us. If you have any question or if you would like to bring a privacy concern to our attention, please contact us at [Hakase@Discord Support Server](https://discord.gg/mCNVD9WgNQ). An agent will handle your request shortly.
 
 ## Storage of data provided by users
 We collect information from you when you voluntarily provide such information, such as when you register for access to the Services or use certain Services. Information we collect may include but not be limited to:
@@ -50,7 +51,7 @@ The content generated and/or submited to our Service belongs to their respective
 
 By submiting your content in our Service as stated in our Terms of Service, you grant the rights to our agents, handling legal and copyright inquiries, to act on your behalf and request the deletion of any illegal copy of the Information stored by third-party services.
 
-This process ONLY begins once an email is issued to our legal team from the respective owners of the Content, with a statement mentioning explicitely that their Information is listed by Third Party Sites without their Consent. You can contact our legal team by emailing us at [Hakase@Discord Support Server](https://discord.gg/zX3fkxZp). Owners may be invited to complete some additional steps to verify their identity.
+This process ONLY begins once an email is issued to our legal team from the respective owners of the Content, with a statement mentioning explicitely that their Information is listed by Third Party Sites without their Consent. You can contact our legal team by emailing us at [Hakase@Discord Support Server](https://discord.gg/mCNVD9WgNQ). Owners may be invited to complete some additional steps to verify their identity.
 
 ### Data Retention and Deletion
 The user content submitted within our services such as contents ("Discord Message") are immediately deleted once Our bot detects it. The retention does not vary depending of the individual issuing the deletion.
@@ -71,4 +72,4 @@ While we attempt to ensure the integrity and security of our network and systems
 ### Changes to this Policy
 The contents of this statement may be altered at any time, at our discretion. We encourage you to periodically review this page for the latest information on our privacy practices.
 
-For any question regarding our policies, please reach out our team at [Hakase@Discord Support Server](https://discord.gg/zX3fkxZp).
+For any question regarding our policies, please reach out our team at [Hakase@Discord Support Server](https://discord.gg/mCNVD9WgNQ).
