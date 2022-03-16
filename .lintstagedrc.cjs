@@ -1,3 +1,3 @@
 module.exports = {
-  "src/**/*.?({m,c})ts": "pnpm run lint:fix"
+  "src/**/*.?({m,c})ts": "eslint --fix"
 }
