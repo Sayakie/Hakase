@@ -24,6 +24,7 @@ specifiers:
   eslint-plugin-sort-keys-fix: ^1.1.2
   i18next: ^21.6.14
   i18next-fs-backend: ^1.1.4
+  immutable: ^4.0.0
   jest: ^27.5.1
   korean-regexp: ^1.0.9
   lint-staged: ^12.3.5
@@ -45,6 +46,7 @@ dependencies:
   dotenv: 16.0.0
   i18next: 21.6.14
   i18next-fs-backend: 1.1.4
+  immutable: 4.0.0
   korean-regexp: 1.0.9
   merge-options: 3.0.4
   picocolors: 1.0.0
@@ -2718,6 +2720,10 @@ packages:
   /ignore/5.2.0:
     resolution: {integrity: sha512-CmxgYGiEPCLhfLnpPp1MoRmifwEIOgjcHXxOBjv7mY96c+eWScsOP9c112ZyLdWHi0FxHjI+4uVhKYp/gcdRmQ==}
     engines: {node: '>= 4'}
+
+  /immutable/4.0.0:
+    resolution: {integrity: sha512-zIE9hX70qew5qTUjSS7wi1iwj/l7+m54KWU247nhM3v806UdGj1yDndXj+IOYxxtW9zyLI+xqFNZjTuDaLUqFw==}
+    dev: false
 
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}

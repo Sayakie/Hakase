@@ -18,7 +18,7 @@ const [ALWAYS, NEVER] = [`always`, `never`]
 /** @type {ESLintOptions} */
 module.exports = {
   env: {
-    mocha: true,
+    jest: true,
     node: true
   },
   extends: [
@@ -56,7 +56,7 @@ module.exports = {
     ecmaFeatures: {
       experimentalObjectRestSpread: true
     },
-    ecmaVersion: 2020,
+    ecmaVersion: 2022,
     extraFileExtensions: [`.cjs`, `.mjs`, `.cts`, `.mts`],
     project: `tsconfig.json`,
     sourceType: `module`,
@@ -148,12 +148,7 @@ module.exports = {
       }
     ],
     '@typescript-eslint/no-dynamic-delete': [WARN],
-    '@typescript-eslint/no-explicit-any': [
-      ERROR,
-      {
-        fixToUnknown: true
-      }
-    ],
+    '@typescript-eslint/no-explicit-any': [WARN],
     '@typescript-eslint/no-extraneous-class': [
       ERROR,
       {
@@ -227,7 +222,7 @@ module.exports = {
       }
     ],
     'import/no-mutable-exports': [ERROR],
-    'import/no-namespace': [WARN],
+    // 'import/no-namespace': [WARN],
     // 'import/order': [ERROR, { 'newlines-between': 'always' }],
     'no-tabs': [ERROR, { allowIndentationTabs: false }],
     'node/no-missing-import': [OFF],
