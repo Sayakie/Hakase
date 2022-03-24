@@ -3,12 +3,11 @@
     "target": "ES2021",
     "lib": ["ES2021"],
     "module": "esnext",
-    "rootDirs": ["./src", "./locales"],
+    "rootDirs": ["./src"],
     "moduleResolution": "Node",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "@locales": ["./locales/index.mts"]
+      "io/github/sayakie/hakase/*": ["./src/*"]
     },
     "typeRoots": [
       "typings",
@@ -39,7 +38,8 @@
     "noFallthroughCasesInSwitch": true,
     "noPropertyAccessFromIndexSignature": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true
   },
   "include": [
     "src/",

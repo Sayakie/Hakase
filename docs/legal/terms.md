@@ -1,7 +1,8 @@
 # Terms of Service
-***Effective Date:** March 02, 2022*
+***This document is a draft and has no legal effect until futher notice.***
+<!-- ***Effective Date:** March 02, 2022* -->
 
-Welcome to Hakase, a service provided by Team dareharu. Please read on to learn the rules and restrictions that govern your use of our websites, products, services, proprietary bots, and other applications (the "Services"). If you have any questions, comments, or concerns regarding these terms or the Services, please contact us at [Hakase@Discord Support Server](https://discord.gg/zX3fkxZp).
+Welcome to Hakase, a service provided by Team dareharu. Please read on to learn the rules and restrictions that govern your use of our websites, products, services, proprietary bots, and other applications (the "Services"). If you have any questions, comments, or concerns regarding these terms or the Services, please contact us at [Hakase@Discord Support Server](https://discord.gg/mCNVD9WgNQ).
 
 These Terms of Service (the "Terms") are a binding contract between you and Team dareharu ("dareharu", "haru", "we" and "us"). Your use of the Services in any way means that you agree to all of these Terms, and these Terms will remain in effect while you use the Services.
 
@@ -25,7 +26,7 @@ This will let Team dareharu to terminate upon violations of any of these restric
 
 As stated on our [Privacy policy](./privacy.md), by uploading your content on Team dareharu, you are allowing us to store, process your data in order to make our services work and contact third-party services to request the removal of any copy of your data at your request.
 
-If you believe that your Content has been copied in a way that constitutes copyright infringement, please report this by contacting our legal department at [Hakase@Discord Support Server](https://discord.gg/zX3fkxZp).
+If you believe that your Content has been copied in a way that constitutes copyright infringement, please report this by contacting our legal department at [Hakase@Discord Support Server](https://discord.gg/mCNVD9WgNQ).
 
 ## Disclaimer
 All the materials on Team dareharu's Website are provided "as is". Team dareharu makes no warranties, may it be expressed or implied, therefore negates all other warranties. Furthermore, Team dareharu does not make any representations concerning the accuracy or reliability of the use of the materials on its Website or otherwise relating to such materials or any sites linked to this Website.

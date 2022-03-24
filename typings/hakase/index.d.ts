@@ -1,3 +1,9 @@
+declare type If<T extends boolean, A, B = null> = T extends true
+  ? A
+  : T extends false
+  ? B
+  : A | B
+
 declare type Locale = 'en-US' | 'ko'
 
 declare interface GuildConfig {

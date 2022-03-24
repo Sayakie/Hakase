@@ -1,0 +1,8 @@
+{
+  "name": "eslint-plugin-prefer-early-return",
+  "version": "41.2.0",
+  "files": [
+    "eslint-plugin-prefer-early-return.cjs"
+  ],
+  "main": "eslint-plugin-prefer-early-return.cjs"
+}

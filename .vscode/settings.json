@@ -3,5 +3,9 @@
   "editor.codeActionsOnSave": {
     "source.organizeImports": false
   },
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "docwriter.progress.trackMethods": false,
+  "docwriter.progress.trackFunctions": false,
+  "docwriter.progress.trackClasses": false,
+  "docwriter.progress.trackTypes": false
 }
