@@ -1,6 +1,6 @@
 {
   "name": "@dareharu/hakase",
-  "description": "Use the advanced search to explore Pixelmon Pokémon by type, weakness, Ability, and more in Discord!",
+  "description": "Use the advanced search to explore Pixelmon Pokémon by type, weakness, ability, and more in Discord!",
   "version": "0.2.0-alpha",
   "type": "module",
   "repository": "github:Sayakie/Hakase",
