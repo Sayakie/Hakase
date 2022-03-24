@@ -902,15 +902,11 @@ export abstract class Species implements Comparable {
   public static readonly Spectrier = SpeciesImpl.of(897, 'Spectrier')
   public static readonly Calyrex = SpeciesImpl.of(898, 'Calyrex')
 
-  protected static readonly legendaries: Set<Species> = new Set()
-  protected static readonly ultrabeasts: Set<Species> = new Set()
-  protected static readonly allPokemons: Set<Species> = new Set()
-
   protected constructor(
     protected readonly dex: number,
     protected readonly name: string
   ) {
-    Species.allPokemons.add(this)
+    SpeciesImpl.allPokemons.add(this)
   }
 
   /**
@@ -919,7 +915,7 @@ export abstract class Species implements Comparable {
    * @returns {ReadonlySet<Species>} The immutable set of species that are considered legendary
    */
   public static getLegendaries(): ReadonlySet<Species> {
-    return new Set(Species.legendaries)
+    return new Set(SpeciesImpl.legendaries)
   }
 
   /**
@@ -928,7 +924,7 @@ export abstract class Species implements Comparable {
    * @returns {ReadonlySet<Species>} The immutable set of species that are considered ultrabeast
    */
   public static getUltrabeasts(): ReadonlySet<Species> {
-    return new Set(Species.ultrabeasts)
+    return new Set(SpeciesImpl.ultrabeasts)
   }
 
   /**
@@ -937,7 +933,7 @@ export abstract class Species implements Comparable {
    * @returns {ReadonlySet<Species>} The readonly set of all the pokemon species
    */
   public static getAllPokemons(): ReadonlySet<Species> {
-    return new Set([...Species.allPokemons])
+    return new Set(SpeciesImpl.allPokemons)
   }
 
   /**
@@ -958,7 +954,7 @@ export abstract class Species implements Comparable {
    * @see {@link has has()}
    */
   public static getFromName(name: string): Species | null {
-    for (const pokemon of Species.allPokemons) {
+    for (const pokemon of SpeciesImpl.allPokemons) {
       if (
         pokemon.getName().toLowerCase() === name.toLowerCase() ||
         pokemon.getLocalizedName().toLowerCase() === name.toLowerCase()
@@ -976,7 +972,7 @@ export abstract class Species implements Comparable {
    * @returns {Species | null} The species that matches the given pokedex, or null if no such species exists.
    */
   public static getFromDex(dex: number | string): Species | null {
-    for (const species of Species.allPokemons) {
+    for (const species of SpeciesImpl.allPokemons) {
       if (
         (typeof dex === `number` &&
           species.getNationalPokedex().asNumber() === dex) ||

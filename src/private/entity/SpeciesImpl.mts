@@ -1,9 +1,12 @@
 import i18next from 'i18next'
 import { Species } from 'io/github/sayakie/hakase/entity/Species.mjs'
-import { asserts } from 'io/github/sayakie/hakase/util/asserts.mjs'
 import { toStringHelper } from 'io/github/sayakie/hakase/util/function.mjs'
 
 export class SpeciesImpl extends Species {
+  public static readonly legendaries: Set<Species> = new Set()
+  public static readonly ultrabeasts: Set<Species> = new Set()
+  public static readonly allPokemons: Set<Species> = new Set()
+
   /**
    * Creates an EnumSpecies from the given dex number and name.
    *
@@ -21,11 +24,11 @@ export class SpeciesImpl extends Species {
   }
 
   public isLegendary(): boolean {
-    return Species.legendaries.has(this)
+    return SpeciesImpl.legendaries.has(this)
   }
 
   public isUltraBeast(): boolean {
-    return Species.ultrabeasts.has(this)
+    return SpeciesImpl.ultrabeasts.has(this)
   }
 
   public getName(): string {
@@ -74,9 +77,6 @@ export class SpeciesImpl extends Species {
   }
 
   static {
-    asserts<Set<Species>>(Species.legendaries)
-    asserts<Set<Species>>(Species.ultrabeasts)
-
     const legendaries = [
       Species.MissingNo,
 
@@ -178,7 +178,7 @@ export class SpeciesImpl extends Species {
       Species.Xurkitree
     ]
 
-    legendaries.forEach(Species.legendaries.add, Species.legendaries)
-    ultrabests.forEach(Species.ultrabeasts.add, Species.ultrabeasts)
+    legendaries.forEach(SpeciesImpl.legendaries.add, SpeciesImpl.legendaries)
+    ultrabests.forEach(SpeciesImpl.ultrabeasts.add, SpeciesImpl.ultrabeasts)
   }
 }
