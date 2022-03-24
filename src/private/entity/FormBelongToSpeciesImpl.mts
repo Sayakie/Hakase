@@ -12,10 +12,12 @@ export class FormBelongToSpeciesBuilderImpl
 {
   public $species: Species | null
   public $form: number
+  public $flags: number
 
   public constructor() {
     this.$species = null
     this.$form = -1
+    this.$flags = 0
   }
 
   public species(species: Species): this {
@@ -31,9 +33,16 @@ export class FormBelongToSpeciesBuilderImpl
     return this
   }
 
+  public flags(flags: number): this {
+    this.$flags = flags
+
+    return this
+  }
+
   public from(value: FormBelongToSpecies): this {
     this.$species = value.species
     this.$form = value.form
+    this.$flags = value.flags
 
     return this
   }
@@ -41,6 +50,7 @@ export class FormBelongToSpeciesBuilderImpl
   public reset(): this {
     this.$species = null
     this.$form = -1
+    this.$flags = 0
 
     return this
   }
@@ -54,14 +64,23 @@ export class FormBelongToSpeciesBuilderImpl
 }
 
 export class FormBelongToSpeciesImpl extends FormBelongToSpecies {
+  public static readonly EMPTY: FormBelongToSpecies =
+    new FormBelongToSpeciesImpl({
+      $flags: 0,
+      $form: -1,
+      $species: null
+    } as FormBelongToSpeciesBuilderImpl)
+
   public species: Species
   public form: number
+  public flags: number
 
   public constructor(builder: FormBelongToSpeciesBuilderImpl) {
     super()
 
     this.species = builder.$species!
     this.form = builder.$form
+    this.flags = builder.$flags
   }
 
   public builder(): FormBelongToSpeciesBuilderImpl {

@@ -1,14 +1,15 @@
-import { Species } from 'io/github/sayakie/hakase/entity/Species.mjs'
+import type { Species } from 'io/github/sayakie/hakase/entity/Species.mjs'
 import type { Cloneable } from 'io/github/sayakie/hakase/util/Cloneable.mjs'
 import type { Comparable } from 'io/github/sayakie/hakase/util/Comparable.mjs'
 import type { ResettableBuilder } from 'io/github/sayakie/hakase/util/ResettableBuilder.mjs'
 
-import { FormBelongToSpeciesBuilderImpl } from '../private/entity/FormBelongToSpeciesImpl.mjs'
+import { FormBelongToSpeciesImpl } from '../private/entity/FormBelongToSpeciesImpl.mjs'
 
 export interface FormBelongToSpeciesBuilder
   extends ResettableBuilder<FormBelongToSpecies, FormBelongToSpeciesBuilder> {
   species(species: Species): this
   form(form: number): this
+  flags(...flags: number[]): this
   build(): FormBelongToSpecies
 }
 
@@ -50,11 +51,15 @@ export abstract class FormBelongToSpecies
    */
   public static readonly fossilPokemons: ReadonlySet<Species> = new Set()
 
+  /**
+   * Represents a form belonging to a species that is not existent.
+   */
   public static readonly EMPTY: FormBelongToSpecies =
-    new FormBelongToSpeciesBuilderImpl().species(Species.MissingNo).build()
+    FormBelongToSpeciesImpl.EMPTY
 
   public abstract readonly species: Species
   public abstract readonly form: number
+  public abstract readonly flags: number
 
   public abstract builder(): FormBelongToSpeciesBuilder
 
