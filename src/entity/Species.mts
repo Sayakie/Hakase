@@ -902,8 +902,8 @@ export abstract class Species implements Comparable {
   public static readonly Spectrier = SpeciesImpl.of(897, 'Spectrier')
   public static readonly Calyrex = SpeciesImpl.of(898, 'Calyrex')
 
-  protected static readonly legendaries: Species[] = []
-  protected static readonly ultrabeasts: Species[] = []
+  protected static readonly legendaries: Set<Species> = new Set()
+  protected static readonly ultrabeasts: Set<Species> = new Set()
   protected static readonly allPokemons: Set<Species> = new Set()
 
   protected constructor(
@@ -914,21 +914,21 @@ export abstract class Species implements Comparable {
   }
 
   /**
-   * Gets the immutable readonly array of species that are considered legendary.
+   * Gets the immutable set of species that are considered legendary.
    *
-   * @returns {ReadonlyArray<Species>} The immutable array of legendary pokemons
+   * @returns {ReadonlySet<Species>} The immutable set of species that are considered legendary
    */
-  public static getLegendaries(): ReadonlyArray<Species> {
-    return [...Species.legendaries]
+  public static getLegendaries(): ReadonlySet<Species> {
+    return new Set(Species.legendaries)
   }
 
   /**
-   * Gets the immutable readonly array of species that are considered ultrabeast.
+   * Gets the immutable set of species that are considered ultrabeasts.
    *
-   * @returns {ReadonlyArray<Species>} The immutable array of ultrabeast pokemons
+   * @returns {ReadonlySet<Species>} The immutable set of species that are considered ultrabeast
    */
-  public static getUltrabeasts(): ReadonlyArray<Species> {
-    return [...Species.ultrabeasts]
+  public static getUltrabeasts(): ReadonlySet<Species> {
+    return new Set(Species.ultrabeasts)
   }
 
   /**

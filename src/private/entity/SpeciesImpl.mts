@@ -1,5 +1,6 @@
 import i18next from 'i18next'
 import { Species } from 'io/github/sayakie/hakase/entity/Species.mjs'
+import { asserts } from 'io/github/sayakie/hakase/util/asserts.mjs'
 import { toStringHelper } from 'io/github/sayakie/hakase/util/function.mjs'
 
 export class SpeciesImpl extends Species {
@@ -20,11 +21,11 @@ export class SpeciesImpl extends Species {
   }
 
   public isLegendary(): boolean {
-    return Species.legendaries.some(legendary => legendary === this)
+    return Species.legendaries.has(this)
   }
 
   public isUltraBeast(): boolean {
-    return Species.ultrabeasts.some(ultrabeast => ultrabeast === this)
+    return Species.ultrabeasts.has(this)
   }
 
   public getName(): string {
@@ -73,7 +74,10 @@ export class SpeciesImpl extends Species {
   }
 
   static {
-    Species.legendaries.concat([
+    asserts<Set<Species>>(Species.legendaries)
+    asserts<Set<Species>>(Species.ultrabeasts)
+
+    const legendaries = [
       Species.MissingNo,
 
       /** Generation 1 */
@@ -158,9 +162,9 @@ export class SpeciesImpl extends Species {
       Species.Glastrier,
       Species.Spectrier,
       Species.Calyrex
-    ])
+    ]
 
-    Species.ultrabeasts.concat([
+    const ultrabests = [
       Species.Blacephalon,
       Species.Buzzwole,
       Species.Celesteela,
@@ -172,6 +176,9 @@ export class SpeciesImpl extends Species {
       Species.Kartana,
       Species.Stakataka,
       Species.Xurkitree
-    ])
+    ]
+
+    legendaries.forEach(Species.legendaries.add, Species.legendaries)
+    ultrabests.forEach(Species.ultrabeasts.add, Species.ultrabeasts)
   }
 }
