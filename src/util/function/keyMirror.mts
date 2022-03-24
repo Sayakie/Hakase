@@ -1,4 +1,4 @@
-/* eslint-disable no-redeclare */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Constructs an enumeration object with each string as the key and the same
  * string as the value.
@@ -15,4 +15,4 @@ export function keyMirror<T extends string>(
     return mirror
   }, {} as any)
 }
-/* eslint-enable no-redeclare */
+/* eslint-enable @typescript-eslint/no-explicit-any */
