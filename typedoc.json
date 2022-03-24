@@ -1,0 +1,4 @@
+{
+  "entryPoints": ["src/Client.mts"],
+  "out": "docs-test"
+}
