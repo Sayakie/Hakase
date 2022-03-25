@@ -110,6 +110,7 @@ export class FormBelongToSpeciesImpl extends FormBelongToSpecies {
     asserts<Set<Species>>(FormBelongToSpecies.genderForms)
     asserts<Set<Species>>(FormBelongToSpecies.alolanForms)
     asserts<Set<Species>>(FormBelongToSpecies.galarianForms)
+    asserts<Set<Species>>(FormBelongToSpecies.hisuianForms)
     asserts<Set<Species>>(FormBelongToSpecies.fossilPokemons)
 
     const normalForms = [
@@ -226,6 +227,14 @@ export class FormBelongToSpeciesImpl extends FormBelongToSpecies {
       Species.Zigzagoon
     ]
 
+    const hisuianForms = [
+      Species.Growlithe,
+      Species.Arcanine,
+      Species.Voltorb,
+      Species.Electrode,
+      Species.Braviary
+    ]
+
     const fossilPokemons = [
       Species.Omanyte,
       Species.Kabuto,
@@ -267,6 +276,10 @@ export class FormBelongToSpeciesImpl extends FormBelongToSpecies {
     galarianForms.forEach(
       FormBelongToSpecies.galarianForms.add,
       FormBelongToSpecies.galarianForms
+    )
+    hisuianForms.forEach(
+      FormBelongToSpecies.hisuianForms.add,
+      FormBelongToSpecies.hisuianForms
     )
     fossilPokemons.forEach(
       FormBelongToSpecies.fossilPokemons.add,

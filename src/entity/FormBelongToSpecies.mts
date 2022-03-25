@@ -47,6 +47,11 @@ export abstract class FormBelongToSpecies
   public static readonly galarianForms: ReadonlySet<Species> = new Set()
 
   /**
+   * Collection of all species whom have hisuian forms.
+   */
+  public static readonly hisuianForms: ReadonlySet<Species> = new Set()
+
+  /**
    * Collection of all pokemons whom would be fossilized.
    */
   public static readonly fossilPokemons: ReadonlySet<Species> = new Set()
