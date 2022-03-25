@@ -1,9 +1,11 @@
 import type { Species } from 'io/github/sayakie/hakase/entity/Species.mjs'
+import {
+  FormBelongToSpeciesBuilderImpl,
+  FormBelongToSpeciesImpl
+} from 'io/github/sayakie/hakase/private/entity/FormBelongToSpeciesImpl.mjs'
 import type { Cloneable } from 'io/github/sayakie/hakase/util/Cloneable.mjs'
 import type { Comparable } from 'io/github/sayakie/hakase/util/Comparable.mjs'
 import type { ResettableBuilder } from 'io/github/sayakie/hakase/util/ResettableBuilder.mjs'
-
-import { FormBelongToSpeciesImpl } from '../private/entity/FormBelongToSpeciesImpl.mjs'
 
 export interface FormBelongToSpeciesBuilder
   extends ResettableBuilder<FormBelongToSpecies, FormBelongToSpeciesBuilder> {
@@ -65,6 +67,10 @@ export abstract class FormBelongToSpecies
   public abstract readonly species: Species
   public abstract readonly form: number
   public abstract readonly flags: number
+
+  public static builder(): FormBelongToSpeciesBuilder {
+    return new FormBelongToSpeciesBuilderImpl()
+  }
 
   public abstract builder(): FormBelongToSpeciesBuilder
 
