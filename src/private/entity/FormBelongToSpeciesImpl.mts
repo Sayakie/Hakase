@@ -13,11 +13,15 @@ export class FormBelongToSpeciesBuilderImpl
   public $species: Species | null
   public $form: number
   public $flags: number
+  public $spriteSuffix: string | null
+  public $imageSuffix: string | null
 
   public constructor() {
     this.$species = null
     this.$form = -1
     this.$flags = 0
+    this.$spriteSuffix = null
+    this.$imageSuffix = null
   }
 
   public species(species: Species): this {
@@ -39,10 +43,24 @@ export class FormBelongToSpeciesBuilderImpl
     return this
   }
 
+  public spriteSuffix(spriteSuffix: string): this {
+    this.$spriteSuffix = spriteSuffix
+
+    return this
+  }
+
+  public imageSuffix(imageSuffix: string): this {
+    this.$imageSuffix = imageSuffix
+
+    return this
+  }
+
   public from(value: FormBelongToSpecies): this {
     this.$species = value.species
     this.$form = value.form
     this.$flags = value.flags
+    this.$spriteSuffix = value.spriteSuffix
+    this.$imageSuffix = value.imageSuffix
 
     return this
   }
@@ -51,6 +69,8 @@ export class FormBelongToSpeciesBuilderImpl
     this.$species = null
     this.$form = -1
     this.$flags = 0
+    this.$spriteSuffix = null
+    this.$imageSuffix = null
 
     return this
   }
@@ -74,6 +94,8 @@ export class FormBelongToSpeciesImpl extends FormBelongToSpecies {
   public species: Species
   public form: number
   public flags: number
+  public spriteSuffix: string | null
+  public imageSuffix: string | null
 
   public constructor(builder: FormBelongToSpeciesBuilderImpl) {
     super()
@@ -81,6 +103,8 @@ export class FormBelongToSpeciesImpl extends FormBelongToSpecies {
     this.species = builder.$species!
     this.form = builder.$form
     this.flags = builder.$flags
+    this.spriteSuffix = builder.$spriteSuffix
+    this.imageSuffix = builder.$imageSuffix
   }
 
   public builder(): FormBelongToSpeciesBuilderImpl {

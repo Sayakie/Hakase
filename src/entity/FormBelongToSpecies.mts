@@ -12,6 +12,8 @@ export interface FormBelongToSpeciesBuilder
   species(species: Species): this
   form(form: number): this
   flags(...flags: number[]): this
+  spriteSuffix(spriteSuffix: string): this
+  imageSuffix(imageSuffix: string): this
   build(): FormBelongToSpecies
 }
 
@@ -67,6 +69,8 @@ export abstract class FormBelongToSpecies
   public abstract readonly species: Species
   public abstract readonly form: number
   public abstract readonly flags: number
+  public abstract readonly spriteSuffix: string | null
+  public abstract readonly imageSuffix: string | null
 
   public static builder(): FormBelongToSpeciesBuilder {
     return new FormBelongToSpeciesBuilderImpl()
