@@ -58,7 +58,7 @@ module.exports = {
     },
     ecmaVersion: 2022,
     extraFileExtensions: [`.cjs`, `.mjs`, `.cts`, `.mts`],
-    project: `tsconfig.json`,
+    project: `tsconfig.eslint.json`,
     sourceType: `module`,
     tsconfigRootDir: __dirname
   },

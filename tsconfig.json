@@ -10,9 +10,9 @@
       "io/github/sayakie/hakase/*": ["./src/*"]
     },
     "typeRoots": [
-      "typings",
-      "vendor/@types",
-      "node_modules/@types"
+      "./typings",
+      "./vendor/@types",
+      "./node_modules/@types"
     ],
     "plugins": [
       { "transform": "typescript-transform-paths" }
@@ -42,11 +42,7 @@
     "resolveJsonModule": true
   },
   "include": [
-    "src/",
-    "locales/",
-    "scripts/",
-    "test/",
-    "typings/"
+    "src/"
   ],
   "exclude": [
     "node_modules/"
