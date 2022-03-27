@@ -16,13 +16,13 @@ export const EnumBurmy = {
   Sandy: FormBelongToSpecies.builder()
     .species(Species.Burmy)
     .form(1)
-    .flags(FormFlag.AlterForm, FormFlag.DisplayFormName)
+    .flags(FormFlag.DefaultForm, FormFlag.DisplayFormName)
     .spriteSuffix(`-sandy`)
     .build(),
   Trash: FormBelongToSpecies.builder()
     .species(Species.Burmy)
     .form(2)
-    .flags(FormFlag.AlterForm, FormFlag.DisplayFormName)
+    .flags(FormFlag.DefaultForm, FormFlag.DisplayFormName)
     .spriteSuffix(`-trash`)
     .build(),
 
