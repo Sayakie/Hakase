@@ -6,7 +6,7 @@ import { IllegalArgumentException } from 'io/github/sayakie/hakase/util/exceptio
 /**
  * A variant of primal forms.
  */
-export const MegaForm = {
+export const PrimalForm = {
   Normal: FormBelongToSpecies.builder()
     .species(Species.MissingNo)
     .form(0)
@@ -24,7 +24,7 @@ export const MegaForm = {
    * @returns {FormBelongToSpecies[]} All mega forms
    */
   values(): FormBelongToSpecies[] {
-    return [MegaForm.Normal, MegaForm.Primal]
+    return [PrimalForm.Normal, PrimalForm.Primal]
   },
 
   /**
@@ -37,9 +37,9 @@ export const MegaForm = {
   valueOf(value: `Normal` | `Primal` | null): FormBelongToSpecies {
     switch (value?.toLowerCase()) {
       case `normal`:
-        return MegaForm.Normal
+        return PrimalForm.Normal
       case `primal`:
-        return MegaForm.Primal
+        return PrimalForm.Primal
       default:
         throw new IllegalArgumentException(`Unknown value: ${value}`)
     }
