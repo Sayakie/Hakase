@@ -9,11 +9,51 @@ import type { ResettableBuilder } from 'io/github/sayakie/hakase/util/Resettable
 
 export interface FormBelongToSpeciesBuilder
   extends ResettableBuilder<FormBelongToSpecies, FormBelongToSpeciesBuilder> {
+  /**
+   * Sets the species of this form.
+   *
+   * @param {Species} species The species of this form
+   * @returns {this} This builder, for chaining
+   */
   species(species: Species): this
+
+  /**
+   * Sets the form integer of this form.
+   *
+   * @param {number} form The form integer of this form
+   * @returns {this} This builder, for chaining
+   */
   form(form: number): this
+
+  /**
+   * Sets the flags of this form.
+   *
+   * @param {...number} flags The flags of this form
+   * @returns {this} This builder, for chaining
+   */
   flags(...flags: number[]): this
+
+  /**
+   * Sets the sprite suffix of this form.
+   *
+   * @param {string} spriteSuffix The sprite suffix of this form
+   * @returns {this} This builder, for chaining
+   */
   spriteSuffix(spriteSuffix: string): this
+
+  /**
+   * Sets the image suffix of this form.
+   *
+   * @param {string} imageSuffix The image suffix of this form
+   * @returns {this} This builder, for chaining
+   */
   imageSuffix(imageSuffix: string): this
+
+  /**
+   * Builds the {@link FormBelongToSpecies} from the values in this builder.
+   *
+   * @returns {FormBelongToSpecies} The FormBelongToSpecies
+   */
   build(): FormBelongToSpecies
 }
 
