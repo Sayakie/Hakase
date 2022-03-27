@@ -37,8 +37,11 @@ export class FormBelongToSpeciesBuilderImpl
     return this
   }
 
-  public flags(flags: number): this {
-    this.$flags = flags
+  public flags(...flags: number[]): this {
+    this.$flags |= flags.reduce((acc, flag) => {
+      checkState(flag > -1, `flag must be greater than -1 (was ${flag})`)
+      return acc | flag
+    }, 0)
 
     return this
   }
