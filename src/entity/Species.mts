@@ -901,7 +901,7 @@ export abstract class Species implements Comparable {
   public static readonly Glastrier = SpeciesImpl.of(896, 'Glastrier')
   public static readonly Spectrier = SpeciesImpl.of(897, 'Spectrier')
   public static readonly Calyrex = SpeciesImpl.of(898, 'Calyrex')
-  public static readonly Wyrdeer = SpeciesImpl.of(899, 'Wyrdeer ')
+  public static readonly Wyrdeer = SpeciesImpl.of(899, 'Wyrdeer')
 
   protected constructor(
     protected readonly dex: number,
