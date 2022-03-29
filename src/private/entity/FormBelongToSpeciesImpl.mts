@@ -1,3 +1,4 @@
+import { FormFlag } from 'io/github/sayakie/hakase/Constant.mjs'
 import type { FormBelongToSpeciesBuilder } from 'io/github/sayakie/hakase/entity/FormBelongToSpecies.mjs'
 import { FormBelongToSpecies } from 'io/github/sayakie/hakase/entity/FormBelongToSpecies.mjs'
 import { Species } from 'io/github/sayakie/hakase/entity/Species.mjs'
@@ -114,6 +115,26 @@ export class FormBelongToSpeciesImpl extends FormBelongToSpecies {
     return new FormBelongToSpeciesBuilderImpl().from(this)
   }
 
+  public isDefaultForm(): boolean {
+    return this.compareForm(FormFlag.DefaultForm)
+  }
+
+  public isMegaForm(): boolean {
+    return this.compareForm(FormFlag.MegaForm)
+  }
+
+  public isAlolan(): boolean {
+    return this.compareForm(FormFlag.AlolanForm)
+  }
+
+  public isGalarian(): boolean {
+    return this.compareForm(FormFlag.GalarianForm)
+  }
+
+  public isHisuian(): boolean {
+    return this.compareForm(FormFlag.HisuianForm)
+  }
+
   public equals(other: any): boolean {
     if (this === other) {
       return true
@@ -128,6 +149,10 @@ export class FormBelongToSpeciesImpl extends FormBelongToSpecies {
 
   public clone(): FormBelongToSpecies {
     return this.builder().build()
+  }
+
+  private compareForm(formFlag: number): boolean {
+    return (this.flags & formFlag) === formFlag
   }
 
   static {

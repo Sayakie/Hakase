@@ -118,6 +118,12 @@ export abstract class FormBelongToSpecies
 
   public abstract builder(): FormBelongToSpeciesBuilder
 
+  public abstract isDefaultForm(): boolean
+  public abstract isMegaForm(): boolean
+  public abstract isAlolan(): boolean
+  public abstract isGalarian(): boolean
+  public abstract isHisuian(): boolean
+
   public abstract equals(other: any): boolean
   public abstract clone(): FormBelongToSpecies
 }
