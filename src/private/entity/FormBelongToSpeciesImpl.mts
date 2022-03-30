@@ -47,14 +47,14 @@ export class FormBelongToSpeciesBuilderImpl
     return this
   }
 
-  public spriteSuffix(spriteSuffix: string): this {
-    this.$spriteSuffix = spriteSuffix
+  public spriteSuffix(spriteSuffix?: string): this {
+    this.$spriteSuffix = spriteSuffix || null
 
     return this
   }
 
-  public imageSuffix(imageSuffix: string): this {
-    this.$imageSuffix = imageSuffix
+  public imageSuffix(imageSuffix?: string): this {
+    this.$imageSuffix = imageSuffix || null
 
     return this
   }

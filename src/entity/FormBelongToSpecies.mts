@@ -36,18 +36,18 @@ export interface FormBelongToSpeciesBuilder
   /**
    * Sets the sprite suffix of this form.
    *
-   * @param {string} spriteSuffix The sprite suffix of this form
+   * @param {?string | null} [spriteSuffix] The sprite suffix of this form
    * @returns {this} This builder, for chaining
    */
-  spriteSuffix(spriteSuffix: string): this
+  spriteSuffix(spriteSuffix?: string): this
 
   /**
    * Sets the image suffix of this form.
    *
-   * @param {string} imageSuffix The image suffix of this form
+   * @param {?string | null} [imageSuffix] The image suffix of this form
    * @returns {this} This builder, for chaining
    */
-  imageSuffix(imageSuffix: string): this
+  imageSuffix(imageSuffix?: string): this
 
   /**
    * Builds the {@link FormBelongToSpecies} from the values in this builder.
