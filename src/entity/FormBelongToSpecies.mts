@@ -63,7 +63,7 @@ export abstract class FormBelongToSpecies
   /**
    * Collection of all species whom legacy normal forms exist for.
    */
-  public static readonly normalForms: ReadonlySet<Species> = new Set()
+  public static readonly customNormalForms: ReadonlySet<Species> = new Set()
 
   /**
    * Collection of all species whom have mega evolution forms.

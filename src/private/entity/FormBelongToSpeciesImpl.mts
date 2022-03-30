@@ -156,7 +156,7 @@ export class FormBelongToSpeciesImpl extends FormBelongToSpecies {
   }
 
   static {
-    asserts<Set<Species>>(FormBelongToSpecies.normalForms)
+    asserts<Set<Species>>(FormBelongToSpecies.customNormalForms)
     asserts<Set<Species>>(FormBelongToSpecies.megaForms)
     asserts<Set<Species>>(FormBelongToSpecies.megaXYForms)
     asserts<Set<Species>>(FormBelongToSpecies.genderForms)
@@ -306,8 +306,8 @@ export class FormBelongToSpeciesImpl extends FormBelongToSpecies {
     ]
 
     normalForms.forEach(
-      FormBelongToSpecies.normalForms.add,
-      FormBelongToSpecies.normalForms
+      FormBelongToSpecies.customNormalForms.add,
+      FormBelongToSpecies.customNormalForms
     )
     megaForms.forEach(
       FormBelongToSpecies.megaForms.add,
