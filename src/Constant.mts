@@ -33,10 +33,16 @@ export const ClientStatus = createEnum(
   toUpperCase(['Initializing', 'Initialized', 'Ready', 'Deferred', 'Destroyed'])
 )
 
-export const enum FormFlags {
-  ExposeMeta = 0x1,
-  FakeForm = 0x2,
-  PinToPrefix = 0x4
+export const enum FormFlag {
+  DefaultForm = 0x1,
+  AlterForm = 0x2,
+  UnreleasedForm = 0x4,
+  GenderlessForm = 0x8,
+  GenderForm = 0x10,
+  MegaForm = 0x20,
+  AlolanForm = 0x40,
+  GalarianForm = 0x80,
+  HisuianForm = 0x100,
+  UnownForm = 0x200,
+  DisplayFormName = 0x400
 }
-
-// export const FormFlag = keyMirror(['ExposeMeta', 'FakeForm', 'PinToPrefix'])
