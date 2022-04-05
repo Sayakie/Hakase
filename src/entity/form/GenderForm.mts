@@ -29,11 +29,9 @@ export const GenderForm = {
    * Returns all gender forms.
    * @returns {FormBelongToSpecies[]} All gender forms
    */
-  values: (): FormBelongToSpecies[] => [
-    GenderForm.Male,
-    GenderForm.Female,
-    GenderForm.None
-  ],
+  values(): FormBelongToSpecies[] {
+    return [GenderForm.Male, GenderForm.Female, GenderForm.None]
+  },
 
   /**
    * Returns the form with the given name that is a member of this enum.
@@ -42,7 +40,7 @@ export const GenderForm = {
    * @returns {FormBelongToSpecies} The form with the given name.
    * @throws {IllegalArgumentException} If the given name is not a member of this enum.
    */
-  get: (value: `Male` | `Female` | `None` | null): FormBelongToSpecies => {
+  valueOf(value: `Male` | `Female` | `None` | null): FormBelongToSpecies {
     switch (value?.toLowerCase()) {
       case `male`:
         return GenderForm.Male
