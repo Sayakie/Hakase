@@ -1,5 +1,6 @@
 import { SlashCommandBuilder } from '@discordjs/builders'
-import { VersionChoice } from 'io/github/sayakie/hakase/Constant.mjs'
+
+import { VersionChoice } from '../../Constant.mjs'
 
 export const versionCommand = new SlashCommandBuilder()
   .setName(`version`)

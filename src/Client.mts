@@ -4,9 +4,10 @@ import type {
   ClientOptions as DiscordJSClientOptions
 } from 'discord.js'
 import { Client as DiscordJSClient } from 'discord.js'
-import { Messages } from 'io/github/sayakie/hakase/Message.mjs'
-import { ClientImpl } from 'io/github/sayakie/hakase/private/ClientImpl.mjs'
-import type { Identifiable } from 'io/github/sayakie/hakase/util/Identifiable.mjs'
+
+import { Messages } from './Message.mjs'
+import { ClientImpl } from './private/ClientImpl.mjs'
+import type { Identifiable } from './util/Identifiable.mjs'
 
 /**
  * An options for a {@link Client}.

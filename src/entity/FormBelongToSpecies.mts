@@ -1,11 +1,11 @@
-import type { Species } from 'io/github/sayakie/hakase/entity/Species.mjs'
+import type { Species } from '../entity/Species.mjs'
 import {
   FormBelongToSpeciesBuilderImpl,
   FormBelongToSpeciesImpl
-} from 'io/github/sayakie/hakase/private/entity/FormBelongToSpeciesImpl.mjs'
-import type { Cloneable } from 'io/github/sayakie/hakase/util/Cloneable.mjs'
-import type { Comparable } from 'io/github/sayakie/hakase/util/Comparable.mjs'
-import type { ResettableBuilder } from 'io/github/sayakie/hakase/util/ResettableBuilder.mjs'
+} from '../private/entity/FormBelongToSpeciesImpl.mjs'
+import type { Cloneable } from '../util/Cloneable.mjs'
+import type { Comparable } from '../util/Comparable.mjs'
+import type { ResettableBuilder } from '../util/ResettableBuilder.mjs'
 
 export interface FormBelongToSpeciesBuilder
   extends ResettableBuilder<FormBelongToSpecies, FormBelongToSpeciesBuilder> {

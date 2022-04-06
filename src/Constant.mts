@@ -4,10 +4,11 @@
  */
 
 import { Constants } from 'discord.js'
-import { toUpperCase } from 'io/github/sayakie/hakase/util/ArrayUtil.mjs'
-import { createEnum } from 'io/github/sayakie/hakase/util/function.mjs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+
+import { toUpperCase } from './util/ArrayUtil.mjs'
+import { createEnum } from './util/function.mjs'
 
 /* eslint-disable @typescript-eslint/naming-convention */
 export const Events = {

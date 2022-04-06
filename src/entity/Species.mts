@@ -1,5 +1,5 @@
-import { SpeciesImpl } from 'io/github/sayakie/hakase/private/entity/SpeciesImpl.mjs'
-import type { Comparable } from 'io/github/sayakie/hakase/util/Comparable.mjs'
+import { SpeciesImpl } from '../private/entity/SpeciesImpl.mjs'
+import type { Comparable } from '../util/Comparable.mjs'
 
 export abstract class Species implements Comparable {
   public static readonly MissingNo = SpeciesImpl.of(0, 'MissingNo')

@@ -1,7 +1,7 @@
-import { FormFlag } from 'io/github/sayakie/hakase/Constant.mjs'
-import { FormBelongToSpecies } from 'io/github/sayakie/hakase/entity/FormBelongToSpecies.mjs'
-import { Species } from 'io/github/sayakie/hakase/entity/Species.mjs'
-import { IllegalArgumentException } from 'io/github/sayakie/hakase/util/exception.mjs'
+import { FormFlag } from '../../Constant.mjs'
+import { FormBelongToSpecies } from '../../entity/FormBelongToSpecies.mjs'
+import { Species } from '../../entity/Species.mjs'
+import { IllegalArgumentException } from '../../util/exception.mjs'
 
 /**
  * A variant of primal forms.

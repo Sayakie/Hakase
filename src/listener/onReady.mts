@@ -1,6 +1,7 @@
-import type { Client } from 'io/github/sayakie/hakase/Client.mjs'
-import { Events } from 'io/github/sayakie/hakase/Constant.mjs'
 import pico from 'picocolors'
+
+import type { Client } from '../Client.mjs'
+import { Events } from '../Constant.mjs'
 
 export function onReady(client: Client<true>): () => void {
   function onReady(): void {
@@ -8,7 +9,6 @@ export function onReady(client: Client<true>): () => void {
   }
 
   client.subscribe(Events.CLIENT_READY, onReady)
-
   return () => {
     client.unsubscribe(Events.CLIENT_READY, onReady)
   }

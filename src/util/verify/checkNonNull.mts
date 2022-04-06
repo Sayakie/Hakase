@@ -1,4 +1,4 @@
-import { NullPointerException } from 'io/github/sayakie/hakase/util/exception.mjs'
+import { NullPointerException } from '../exception.mjs'
 
 /**
  * Asserts that the given object reference is not null or undefined.

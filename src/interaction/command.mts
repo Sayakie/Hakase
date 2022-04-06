@@ -2,8 +2,9 @@ import type { SlashCommandBuilder } from '@discordjs/builders'
 import { REST } from '@discordjs/rest'
 import type { Snowflake } from 'discord.js'
 import { Routes } from 'discord-api-types/v9'
-import type { Client } from 'io/github/sayakie/hakase/Client.mjs'
-import { checkState } from 'io/github/sayakie/hakase/util/verify.mjs'
+
+import type { Client } from '../Client.mjs'
+import { checkState } from '../util/verify.mjs'
 
 type CommandData =
   | Partial<SlashCommandBuilder> & Pick<SlashCommandBuilder, `toJSON`>

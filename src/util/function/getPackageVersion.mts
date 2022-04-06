@@ -1,5 +1,6 @@
-import { RootDirectory } from 'io/github/sayakie/hakase/Constant.mjs'
 import { readFileSync } from 'node:fs'
+
+import { RootDirectory } from '../../Constant.mjs'
 
 interface PackageStruct {
   version: string

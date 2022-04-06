@@ -1,6 +1,7 @@
 import i18next from 'i18next'
-import { Species } from 'io/github/sayakie/hakase/entity/Species.mjs'
-import { toStringHelper } from 'io/github/sayakie/hakase/util/function.mjs'
+
+import { Species } from '../../entity/Species.mjs'
+import { toStringHelper } from '../../util/function.mjs'
 
 export class SpeciesImpl extends Species {
   public static readonly legendaries: Set<Species> = new Set()

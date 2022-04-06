@@ -1,4 +1,4 @@
-import { Exception } from 'io/github/sayakie/hakase/util/exception/Exception.mjs'
+import { Exception } from './Exception.mjs'
 
 export class IllegalStateException extends Exception {
   public constructor(message: string) {
