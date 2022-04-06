@@ -38,14 +38,11 @@ export enum Version {
   v838 = `8.3.8`
 }
 
-export const VersionChoice: Array<
+export const VersionChoice: [
   {
     [V in keyof typeof Version]: [V, typeof Version[V]]
   }[keyof typeof Version]
-> = Object.keys(Version).map(key => [
-  key,
-  Version[key as keyof typeof Version]
-]) as any
+] = Object.entries(Version) as any
 
 export const enum FormFlag {
   DefaultForm = 0x1,
