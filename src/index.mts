@@ -1,7 +1,7 @@
 import { asserts } from './util/asserts.mjs'
 import * as functions from './util/function.mjs'
 
-export const Util = { ...functions, asserts }
+export const Util = { ...functions, asserts } as const
 
 export { type ClientOptions, Client } from './Client.mjs'
 export * as Constant from './Constant.mjs'

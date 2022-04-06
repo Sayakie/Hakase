@@ -1,9 +1,7 @@
-import type {
-  Awaitable,
-  ClientEvents,
-  ClientOptions as DiscordJSClientOptions
+import {
+  type ClientOptions as DiscordJSClientOptions,
+  Client as DiscordJSClient
 } from 'discord.js'
-import { Client as DiscordJSClient } from 'discord.js'
 
 import { Messages } from './Message.mjs'
 import { ClientImpl } from './private/ClientImpl.mjs'

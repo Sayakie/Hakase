@@ -7,8 +7,7 @@ import { Constants } from 'discord.js'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { toUpperCase } from './util/ArrayUtil.mjs'
-import { createEnum } from './util/function.mjs'
+import { ArrayUtil, Util } from './index.mjs'
 
 /* eslint-disable @typescript-eslint/naming-convention */
 export const Events = {
@@ -30,8 +29,14 @@ export const ConfigDirectory = join(RootDirectory, 'config')
 export const DataDirectory = join(RootDirectory, 'data')
 export const LocaleDirectory = join(RootDirectory, 'locales')
 
-export const ClientStatus = createEnum(
-  toUpperCase(['Initializing', 'Initialized', 'Ready', 'Deferred', 'Destroyed'])
+export const ClientStatus = Util.createEnum(
+  ArrayUtil.toUpperCase([
+    'Initializing',
+    'Initialized',
+    'Ready',
+    'Deferred',
+    'Destroyed'
+  ])
 )
 
 export enum Version {
