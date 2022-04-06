@@ -8,8 +8,8 @@ export function onReady(client: Client<true>): () => void {
     console.log(`Logged in as ${pico.green(client.user.tag)}`)
   }
 
-  client.subscribe(Events.CLIENT_READY, onReady)
+  client.on(Events.CLIENT_READY, onReady)
   return () => {
-    client.unsubscribe(Events.CLIENT_READY, onReady)
+    client.off(Events.CLIENT_READY, onReady)
   }
 }
