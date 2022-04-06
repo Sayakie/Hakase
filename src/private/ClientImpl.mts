@@ -34,32 +34,6 @@ export class ClientImpl<Ready extends boolean = boolean> extends Client<Ready> {
     }
   }
 
-  // Accepts any number of arguments and throws an exception.
-  public on(): never {
-    throw Messages.DEPRECATED_METHOD(`Use 'subscribe' instead.`)
-  }
-
-  // Accepts any number of arguments and throws an exception.
-  public off(): never {
-    throw Messages.DEPRECATED_METHOD(`Use 'unsubscribe' instead.`)
-  }
-
-  public subscribe(
-    event: string,
-    listener: (...args: any[]) => Awaitable<void>
-  ): this {
-    // @ts-expect-error Intended action
-    return super.on(event, listener)
-  }
-
-  public unsubscribe(
-    event: string,
-    listener: (...args: any[]) => Awaitable<void>
-  ): this {
-    // @ts-expect-error Intended action
-    return super.off(event, listener)
-  }
-
   public getUniqueId(): string {
     return `Not implemented`
   }

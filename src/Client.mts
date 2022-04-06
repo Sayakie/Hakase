@@ -118,28 +118,4 @@ export abstract class Client<Ready extends boolean = boolean>
    * @returns {string} The unique id of the {@link Client}.
    */
   public abstract getUniqueId(): string
-
-  /** @deprecated */
-  public abstract on(): never
-
-  /** @deprecated */
-  public abstract off(): never
-
-  public abstract subscribe<K extends keyof ClientEvents>(
-    event: K,
-    listener: (...args: ClientEvents[K]) => Awaitable<void>
-  ): this
-  public abstract subscribe<S extends string | symbol>(
-    event: Exclude<S, keyof ClientEvents>,
-    listener: (...args: any[]) => Awaitable<void>
-  ): this
-
-  public abstract unsubscribe<K extends keyof ClientEvents>(
-    event: K,
-    listener: (...args: ClientEvents[K]) => Awaitable<void>
-  ): this
-  public abstract unsubscribe<S extends string | symbol>(
-    event: Exclude<S, keyof ClientEvents>,
-    listener: (...args: any[]) => Awaitable<void>
-  ): this
 }
