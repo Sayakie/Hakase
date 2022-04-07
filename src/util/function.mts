@@ -1,5 +1,7 @@
 export { createEnum } from './function/createEnum.mjs'
+export * from './function/getImageUri.mjs'
 export { getPackageVersion } from './function/getPackageVersion.mjs'
+export * from './function/getSpriteUri.mjs'
 export { keyMirror } from './function/keyMirror.mjs'
 export { toStringHelper } from './function/toStringHelper.mjs'
 export { walk, walkDefaultOptions } from './function/walk.mjs'
