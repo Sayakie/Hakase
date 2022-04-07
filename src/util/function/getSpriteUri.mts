@@ -5,15 +5,18 @@ import { FormFlag, formLink } from '../Constant.mjs'
 
 const originHostUri = `https://raw.githubusercontent.com/Sayakie/Hakase/resource/sprites`
 const properties: {
+  extension: string
   hostUri: string
   readonly originHostUri: string
 } = {
+  extension: `png`,
   hostUri: originHostUri,
   originHostUri
 }
 
 export const getSpriteUri = Object.assign(
   (species: Species, flag = FormFlag.DefaultForm): string => {
+    const { hostUri, extension } = getSpriteUri
     const pokedex = species.getNationalPokedex().asString()
     let spriteSuffix = ``
 
@@ -33,7 +36,7 @@ export const getSpriteUri = Object.assign(
       spriteSuffix = targetForm.spriteSuffix ?? ``
     }
 
-    return `${getSpriteUri.hostUri}/${pokedex}${spriteSuffix}.png`
+    return `${hostUri}/${pokedex}${spriteSuffix}.${extension}`
   },
   properties
 )
