@@ -6,9 +6,6 @@
     "rootDirs": ["./src"],
     "moduleResolution": "Node",
     "baseUrl": ".",
-    "paths": {
-      "io/github/sayakie/hakase/*": ["./src/*"]
-    },
     "typeRoots": [
       "./typings",
       "./vendor/@types",

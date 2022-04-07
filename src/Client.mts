@@ -1,12 +1,11 @@
-import type {
-  Awaitable,
-  ClientEvents,
-  ClientOptions as DiscordJSClientOptions
+import {
+  type ClientOptions as DiscordJSClientOptions,
+  Client as DiscordJSClient
 } from 'discord.js'
-import { Client as DiscordJSClient } from 'discord.js'
-import { Messages } from 'io/github/sayakie/hakase/Message.mjs'
-import { ClientImpl } from 'io/github/sayakie/hakase/private/ClientImpl.mjs'
-import type { Identifiable } from 'io/github/sayakie/hakase/util/Identifiable.mjs'
+
+import { Messages } from './Message.mjs'
+import { ClientImpl } from './private/ClientImpl.mjs'
+import type { Identifiable } from './util/Identifiable.mjs'
 
 /**
  * An options for a {@link Client}.
@@ -117,28 +116,4 @@ export abstract class Client<Ready extends boolean = boolean>
    * @returns {string} The unique id of the {@link Client}.
    */
   public abstract getUniqueId(): string
-
-  /** @deprecated */
-  public abstract on(): never
-
-  /** @deprecated */
-  public abstract off(): never
-
-  public abstract subscribe<K extends keyof ClientEvents>(
-    event: K,
-    listener: (...args: ClientEvents[K]) => Awaitable<void>
-  ): this
-  public abstract subscribe<S extends string | symbol>(
-    event: Exclude<S, keyof ClientEvents>,
-    listener: (...args: any[]) => Awaitable<void>
-  ): this
-
-  public abstract unsubscribe<K extends keyof ClientEvents>(
-    event: K,
-    listener: (...args: ClientEvents[K]) => Awaitable<void>
-  ): this
-  public abstract unsubscribe<S extends string | symbol>(
-    event: Exclude<S, keyof ClientEvents>,
-    listener: (...args: any[]) => Awaitable<void>
-  ): this
 }

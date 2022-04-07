@@ -1,4 +1,4 @@
-import { IllegalStateException } from 'io/github/sayakie/hakase/util/exception.mjs'
+import { IllegalStateException } from '../exception.mjs'
 
 /**
  * Ensures the truth of an expression involving the state of the calling

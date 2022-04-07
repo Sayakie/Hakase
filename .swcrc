@@ -1,0 +1,12 @@
+{
+  "jsc": {
+    "target": "es2021",
+    "parser": {
+      "syntax": "typescript",
+      "topLevelAwait": true,
+      "importMeta": true
+    },
+    "loose": true
+  },
+  "minify": false
+}

@@ -1,4 +1,4 @@
-import { TypedMap } from 'io/github/sayakie/hakase/util/TypedMap.mjs'
+import { TypedMap } from './TypedMap.mjs'
 
 export class StackableArrayMap<K, V extends any[]> extends TypedMap<K, V> {
   public set(key: K, value: V): this {

@@ -1,12 +1,9 @@
-import { FormFlag } from 'io/github/sayakie/hakase/Constant.mjs'
-import type { FormBelongToSpeciesBuilder } from 'io/github/sayakie/hakase/entity/FormBelongToSpecies.mjs'
-import { FormBelongToSpecies } from 'io/github/sayakie/hakase/entity/FormBelongToSpecies.mjs'
-import { Species } from 'io/github/sayakie/hakase/entity/Species.mjs'
-import { asserts } from 'io/github/sayakie/hakase/util/asserts.mjs'
-import {
-  checkNonNull,
-  checkState
-} from 'io/github/sayakie/hakase/util/verify.mjs'
+import { FormFlag } from '../../Constant.mjs'
+import type { FormBelongToSpeciesBuilder } from '../../entity/FormBelongToSpecies.mjs'
+import { FormBelongToSpecies } from '../../entity/FormBelongToSpecies.mjs'
+import { Species } from '../../entity/Species.mjs'
+import { asserts } from '../../util/asserts.mjs'
+import { checkNonNull, checkState } from '../../util/verify.mjs'
 
 export class FormBelongToSpeciesBuilderImpl
   implements FormBelongToSpeciesBuilder

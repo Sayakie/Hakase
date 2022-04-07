@@ -1,9 +1,9 @@
 import type { Awaitable } from 'discord.js'
-import type { ClientOptions } from 'io/github/sayakie/hakase/Client.mjs'
-import { Client } from 'io/github/sayakie/hakase/Client.mjs'
-import { getPackageVersion } from 'io/github/sayakie/hakase/util/function/getPackageVersion.mjs'
 
+import type { ClientOptions } from '../Client.mjs'
+import { Client } from '../Client.mjs'
 import { Messages } from '../Message.mjs'
+import { getPackageVersion } from '../util/function/getPackageVersion.mjs'
 
 export class ClientImpl<Ready extends boolean = boolean> extends Client<Ready> {
   public commands = new Map()
@@ -32,32 +32,6 @@ export class ClientImpl<Ready extends boolean = boolean> extends Client<Ready> {
     if (maxListeners !== 0) {
       this.setMaxListeners(maxListeners + count)
     }
-  }
-
-  // Accepts any number of arguments and throws an exception.
-  public on(): never {
-    throw Messages.DEPRECATED_METHOD(`Use 'subscribe' instead.`)
-  }
-
-  // Accepts any number of arguments and throws an exception.
-  public off(): never {
-    throw Messages.DEPRECATED_METHOD(`Use 'unsubscribe' instead.`)
-  }
-
-  public subscribe(
-    event: string,
-    listener: (...args: any[]) => Awaitable<void>
-  ): this {
-    // @ts-expect-error Intended action
-    return super.on(event, listener)
-  }
-
-  public unsubscribe(
-    event: string,
-    listener: (...args: any[]) => Awaitable<void>
-  ): this {
-    // @ts-expect-error Intended action
-    return super.off(event, listener)
   }
 
   public getUniqueId(): string {

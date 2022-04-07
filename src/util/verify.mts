@@ -1,2 +1,2 @@
-export { checkNonNull } from 'io/github/sayakie/hakase/util/verify/checkNonNull.mjs'
-export { checkState } from 'io/github/sayakie/hakase/util/verify/checkState.mjs'
+export { checkNonNull } from './verify/checkNonNull.mjs'
+export { checkState } from './verify/checkState.mjs'

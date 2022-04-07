@@ -18,6 +18,7 @@ const [ALWAYS, NEVER] = [`always`, `never`]
 /** @type {ESLintOptions} */
 module.exports = {
   env: {
+    es6: true,
     jest: true,
     node: true
   },
@@ -218,7 +219,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       ERROR,
       {
-        devDependencies: false
+        devDependencies: [`**/*.test.?([mc])ts`]
       }
     ],
     'import/no-mutable-exports': [ERROR],

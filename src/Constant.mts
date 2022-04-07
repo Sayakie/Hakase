@@ -4,10 +4,10 @@
  */
 
 import { Constants } from 'discord.js'
-import { toUpperCase } from 'io/github/sayakie/hakase/util/ArrayUtil.mjs'
-import { createEnum } from 'io/github/sayakie/hakase/util/function.mjs'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
+
+import { ArrayUtil, Util } from './index.mjs'
 
 /* eslint-disable @typescript-eslint/naming-convention */
 export const Events = {
@@ -29,9 +29,26 @@ export const ConfigDirectory = join(RootDirectory, 'config')
 export const DataDirectory = join(RootDirectory, 'data')
 export const LocaleDirectory = join(RootDirectory, 'locales')
 
-export const ClientStatus = createEnum(
-  toUpperCase(['Initializing', 'Initialized', 'Ready', 'Deferred', 'Destroyed'])
+export const ClientStatus = Util.createEnum(
+  ArrayUtil.toUpperCase([
+    'Initializing',
+    'Initialized',
+    'Ready',
+    'Deferred',
+    'Destroyed'
+  ])
 )
+
+export enum Version {
+  latest = `8.3.8`,
+  v838 = `8.3.8`
+}
+
+export const VersionChoice: [
+  {
+    [V in keyof typeof Version]: [V, typeof Version[V]]
+  }[keyof typeof Version]
+] = Object.entries(Version) as any
 
 export const enum FormFlag {
   DefaultForm = 0x1,

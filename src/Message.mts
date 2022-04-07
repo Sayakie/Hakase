@@ -1,7 +1,4 @@
-import {
-  Exception,
-  IllegalStateException
-} from 'io/github/sayakie/hakase/util/exception.mjs'
+import { Exception, IllegalStateException } from './index.mjs'
 
 export const CLIENT_ALREADY_STARTED = `Client has already been started.`
 
