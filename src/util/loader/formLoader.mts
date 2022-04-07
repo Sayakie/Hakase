@@ -1,4 +1,3 @@
-import { FormFlag } from '../../Constant.mjs'
 import { EnumAegislash } from '../../entity/form/EnumAegislash.mjs'
 import { EnumAlcremie } from '../../entity/form/EnumAlcremie.mjs'
 import { EnumArceus } from '../../entity/form/EnumArceus.mjs'
@@ -40,6 +39,7 @@ import { MegaForm } from '../../entity/form/MegaForm.mjs'
 import { RegionalForm } from '../../entity/form/RegionalForm.mjs'
 import { FormBelongToSpecies } from '../../entity/FormBelongToSpecies.mjs'
 import { Species } from '../../entity/Species.mjs'
+import { FormFlag } from '../Constant.mjs'
 import { Exception } from '../exception.mjs'
 
 export type FormLink = ReadonlyMap<Species, ReadonlyArray<FormBelongToSpecies>>
