@@ -1,8 +1,8 @@
-import { FormFlag } from '../../Constant.mjs'
 import type { FormBelongToSpeciesBuilder } from '../../entity/FormBelongToSpecies.mjs'
 import { FormBelongToSpecies } from '../../entity/FormBelongToSpecies.mjs'
 import { Species } from '../../entity/Species.mjs'
 import { asserts } from '../../util/asserts.mjs'
+import { FormFlag } from '../../util/Constant.mjs'
 import { checkNonNull, checkState } from '../../util/verify.mjs'
 
 export class FormBelongToSpeciesBuilderImpl

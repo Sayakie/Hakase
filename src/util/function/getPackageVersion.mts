@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs'
 
-import { RootDirectory } from '../../Constant.mjs'
+import { RootDirectory } from '../Constant.mjs'
 
 interface PackageStruct {
   version: string

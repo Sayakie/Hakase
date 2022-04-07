@@ -1,6 +1,5 @@
 export { type ClientOptions, Client } from './Client.mjs'
-export * as Constant from './Constant.mjs'
-export type {
+export {
   FormBelongToSpecies,
   FormBelongToSpeciesBuilder
 } from './entity/FormBelongToSpecies.mjs'
@@ -9,6 +8,7 @@ export * as ArrayUtil from './util/ArrayUtil.mjs'
 export { asserts } from './util/asserts.mjs'
 export type { Cloneable } from './util/Cloneable.mjs'
 export type { Comparable } from './util/Comparable.mjs'
+export * as Constant from './util/Constant.mjs'
 export {
   Exception,
   IllegalArgumentException,

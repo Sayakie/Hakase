@@ -1,6 +1,6 @@
-import { FormFlag } from '../../Constant.mjs'
 import { FormBelongToSpecies } from '../../entity/FormBelongToSpecies.mjs'
 import { Species } from '../../entity/Species.mjs'
+import { FormFlag } from '../../util/Constant.mjs'
 import { IllegalArgumentException } from '../../util/exception.mjs'
 
 /**
