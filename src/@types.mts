@@ -1,6 +1,11 @@
 type xyz = `x` | `y` | `z` // eslint-disable-line @typescript-eslint/naming-convention
 type XYZ<T = number> = { [P in xyz]: T } // eslint-disable-line @typescript-eslint/naming-convention
 
+export type ReadonlyWeakMap<K extends object, V> = Omit<
+  WeakMap<K, V>,
+  `set` | `delete`
+>
+
 export type Time =
   | `Morning`
   | `Day`

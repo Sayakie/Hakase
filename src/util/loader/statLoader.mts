@@ -2,7 +2,7 @@ import mergeOptions from 'merge-options'
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
-import type { Stat } from '../../@types.mjs'
+import type { ReadonlyWeakMap, Stat } from '../../@types.mjs'
 import { FormBelongToSpecies } from '../../entity/FormBelongToSpecies.mjs'
 import { Species } from '../../entity/Species.mjs'
 import { Messages, STACK_OVERFLOW } from '../../Message.mjs'
@@ -67,7 +67,7 @@ function prepareStat(stat: Stat): Stat {
   return stat
 }
 
-export type StatLink = WeakMap<Species, Stat>
+export type StatLink = ReadonlyWeakMap<Species, Stat>
 export async function loadAllStats(): Promise<StatLink> {
   const statLink = new WeakMap<Species, Stat>()
 
