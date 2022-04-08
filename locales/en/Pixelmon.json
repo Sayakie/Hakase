@@ -1757,6 +1757,10 @@
     "name": "Klang",
     "description": "By changing the direction in which it rotates, it communicates its feelings to others. When angry, it rotates faster."
   },
+  "kleavor": {
+    "name": "Kleavor",
+    "description": "A violent creature that fells towering trees with its crude axes and shields itself with hard stone. If one should chance upon this Pokémon in the wilds, one's only recourse is to flee."
+  }
   "klefki": {
     "name": "Klefki",
     "description": "These key collectors threaten any attackers by fiercely jingling their keys at them."
@@ -3752,6 +3756,11 @@
     "name": "Wurmple",
     "description": "Using the spikes on its rear end, Wurmple peels the bark off trees and feeds on the sap that oozes out. This Pokémon's feet are tipped with suction pads that allow it to cling to glass without slipping."
   },
+  "wyrdeer": {
+    "name": "Wyrdeer",
+    "description":
+      "The black orbs shine with an uncanny light when the Pokémon is erecting invisible barriers. The fur shed from its beard retains heat well and is a highly useful material for winter clothing."
+  }
   "wynaut": {
     "name": "Wynaut",
     "description": "Wynaut can always be seen with a big, happy smile on its face. Look at its tail to determine if it is angry. When angered, this Pokémon will be slapping the ground with its tail."
