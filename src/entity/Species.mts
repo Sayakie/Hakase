@@ -89,7 +89,6 @@ export abstract class Species implements Comparable {
     }
   }
 
-  /* eslint-disable @typescript-eslint/member-ordering */
   public static readonly MissingNo = this.#impl.of(0, `MissingNo`)
   public static readonly Bulbasaur = this.#impl.of(1, `Bulbasaur`)
   public static readonly Ivysaur = this.#impl.of(2, `Ivysaur`)
@@ -990,7 +989,6 @@ export abstract class Species implements Comparable {
   public static readonly Spectrier = this.#impl.of(7, `Spectrier`)
   public static readonly Calyrex = this.#impl.of(8, `Calyrex`)
   public static readonly Wyrdeer = this.#impl.of(9, `Wyrdeer`)
-  /* eslint-enable @typescript-eslint/member-ordering */
 
   /**
    * Gets the immutable set of species that are considered legendary.
