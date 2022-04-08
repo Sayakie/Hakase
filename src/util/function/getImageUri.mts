@@ -1,7 +1,8 @@
 import { Species } from '../../entity/Species.mjs'
 import type { FormBelongToSpecies } from '../../index.mjs'
 import { ArrayUtil } from '../../index.mjs'
-import { FormFlag, formLink } from '../Constant.mjs'
+import { FormFlag } from '../Constant.mjs'
+import { formLink } from '../DataManager.mjs'
 
 const originHostUri = `https://raw.githubusercontent.com/Sayakie/Hakase/resource/images`
 const properties: {
