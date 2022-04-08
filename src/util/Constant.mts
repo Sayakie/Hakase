@@ -7,13 +7,8 @@ import { Constants } from 'discord.js'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import type { SpawnInfo } from '../@types.mjs'
 import { ArrayUtil, Util } from '../index.mjs'
-import {
-  loadAllForms,
-  loadAllSpawnSets,
-  loadAllStats,
-  loadSpawnerConfig
-} from './loader.mjs'
 
 /* eslint-disable @typescript-eslint/naming-convention */
 export const Events = {
@@ -32,10 +27,19 @@ export const SourceDirectory = resolve(
 export const RootDirectory = resolve(SourceDirectory, '../')
 export const DataDirectory = join(RootDirectory, 'data')
 
-export const formLink = await loadAllForms()
-export const spawnerConfig = await loadSpawnerConfig()
-export const spawnSetMap = await loadAllSpawnSets()
-export const statLink = await loadAllStats()
+export const defaultSpawnInfos: [SpawnInfo] = [
+  {
+    condition: {},
+    maxLevel: -1,
+    minLevel: -1,
+    rarity: -1,
+    spec: {
+      name: `MissingNo`
+    },
+    stringLocationTypes: [],
+    typeID: `pokemon`
+  }
+]
 
 export const ClientStatus = Util.createEnum(
   ArrayUtil.toUpperCase([

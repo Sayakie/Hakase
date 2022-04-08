@@ -1,7 +1,7 @@
 export { type ClientOptions, Client } from './Client.mjs'
 export {
-  FormBelongToSpecies,
-  FormBelongToSpeciesBuilder
+  type FormBelongToSpeciesBuilder,
+  FormBelongToSpecies
 } from './entity/FormBelongToSpecies.mjs'
 export { Species } from './entity/Species.mjs'
 export * as ArrayUtil from './util/ArrayUtil.mjs'
