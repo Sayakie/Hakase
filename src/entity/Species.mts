@@ -33,19 +33,19 @@ export abstract class Species implements Comparable {
       return new Species.#impl(dex, name)
     }
 
-    public isLegendary(): boolean {
+    public override isLegendary(): boolean {
       return Species.#impl.legendaries.has(this)
     }
 
-    public isUltraBeast(): boolean {
+    public override isUltraBeast(): boolean {
       return Species.#impl.ultrabeasts.has(this)
     }
 
-    public getName(): string {
+    public override getName(): string {
       return this.name
     }
 
-    public getLocalizedName(): string {
+    public override getLocalizedName(): string {
       const key = this.getLocalizationKey()
       let localized = i18next.t(key)
       localized ??= this.getName()
@@ -53,11 +53,11 @@ export abstract class Species implements Comparable {
       return localized
     }
 
-    public getLocalizationKey(): string {
+    public override getLocalizationKey(): string {
       return `Pixelmon:${this.name.toLowerCase()}.name`
     }
 
-    public getNationalPokedex(): {
+    public override getNationalPokedex(): {
       asNumber(): number
       asString(): string
     } {
@@ -69,7 +69,7 @@ export abstract class Species implements Comparable {
       } as ReturnType<Species[`getNationalPokedex`]>
     }
 
-    public equals(other: Species): boolean {
+    public override equals(other: Species): boolean {
       if (this === other) return true
       return (
         this.name === other.getName() &&
@@ -77,11 +77,11 @@ export abstract class Species implements Comparable {
       )
     }
 
-    public valueOf(): number {
+    public override valueOf(): number {
       return this.dex
     }
 
-    public toString(): string {
+    public override toString(): string {
       return Util.toStringHelper(this)
         .add(`nationalDex`, this.dex)
         .add(`name`, this.name)

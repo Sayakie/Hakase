@@ -166,47 +166,49 @@ export abstract class FormBelongToSpecies
         $species: null
       })
 
-    public species: Species
-    public form: number
-    public flags: number
-    public spriteSuffix: string | null
-    public imageSuffix: string | null
+    public override name: string
+    public override species: Species
+    public override form: number
+    public override flags: number
+    public override spriteSuffix: string | null
+    public override imageSuffix: string | null
 
     public constructor(builder: any) {
       super()
 
-      this.species = builder.$species!
+      this.name = builder.$name
+      this.species = builder.$species
       this.form = builder.$form
       this.flags = builder.$flags
       this.spriteSuffix = builder.$spriteSuffix
       this.imageSuffix = builder.$imageSuffix
     }
 
-    public builder(): FormBelongToSpeciesBuilder {
+    public override builder(): FormBelongToSpeciesBuilder {
       return new FormBelongToSpecies.#builderImpl().from(this)
     }
 
-    public isDefaultForm(): boolean {
+    public override isDefaultForm(): boolean {
       return this.compareForm(FormFlag.DefaultForm)
     }
 
-    public isMegaForm(): boolean {
+    public override isMegaForm(): boolean {
       return this.compareForm(FormFlag.MegaForm)
     }
 
-    public isAlolan(): boolean {
+    public override isAlolan(): boolean {
       return this.compareForm(FormFlag.AlolanForm)
     }
 
-    public isGalarian(): boolean {
+    public override isGalarian(): boolean {
       return this.compareForm(FormFlag.GalarianForm)
     }
 
-    public isHisuian(): boolean {
+    public override isHisuian(): boolean {
       return this.compareForm(FormFlag.HisuianForm)
     }
 
-    public equals(other: any): boolean {
+    public override equals(other: any): boolean {
       if (this === other) {
         return true
       }
@@ -218,7 +220,7 @@ export abstract class FormBelongToSpecies
       return this.species === other.species && this.form === other.form
     }
 
-    public clone(): FormBelongToSpecies {
+    public override clone(): FormBelongToSpecies {
       return this.builder().build()
     }
 

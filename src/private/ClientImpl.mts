@@ -6,9 +6,9 @@ import { Messages } from '../Message.mjs'
 import { getPackageVersion } from '../util/function/getPackageVersion.mjs'
 
 export class ClientImpl<Ready extends boolean = boolean> extends Client<Ready> {
-  public commands = new Map()
-  public interactions = new Map()
-  public handlers = new Set()
+  public override commands = new Map()
+  public override interactions = new Map()
+  public override handlers = new Set()
 
   public constructor(
     options: ClientOptions = Client.defaultOptions as ClientOptions
@@ -16,25 +16,25 @@ export class ClientImpl<Ready extends boolean = boolean> extends Client<Ready> {
     super(options)
   }
 
-  public get version(): string {
+  public override get version(): string {
     return getPackageVersion()
   }
 
-  public incrementMaxListener(count: number = 1): void {
+  public override incrementMaxListener(count: number = 1): void {
     const maxListeners = this.getMaxListeners()
     if (maxListeners !== 0) {
       this.setMaxListeners(maxListeners + count)
     }
   }
 
-  public decrementMaxListener(count: number = 1): void {
+  public override decrementMaxListener(count: number = 1): void {
     const maxListeners = this.getMaxListeners()
     if (maxListeners !== 0) {
       this.setMaxListeners(maxListeners + count)
     }
   }
 
-  public getUniqueId(): string {
+  public override getUniqueId(): string {
     return `Not implemented`
   }
 }
