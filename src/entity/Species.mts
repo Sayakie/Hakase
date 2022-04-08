@@ -988,7 +988,7 @@ export abstract class Species implements Comparable {
   public static readonly Glastrier = this.#impl.of(896, `Glastrier`)
   public static readonly Spectrier = this.#impl.of(897, `Spectrier`)
   public static readonly Calyrex = this.#impl.of(898, `Calyrex`)
-  public static readonly Wyrdeer = this.#impl.of(898, `Wyrdeer`)
+  public static readonly Wyrdeer = this.#impl.of(899, `Wyrdeer`)
 
   /**
    * Gets the immutable set of species that are considered legendary.
