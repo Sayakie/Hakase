@@ -9,6 +9,14 @@ import { checkNonNull, checkState } from '../util/verify.mjs'
 export interface FormBelongToSpeciesBuilder
   extends ResettableBuilder<FormBelongToSpecies, FormBelongToSpeciesBuilder> {
   /**
+   * Sets the name of this form.
+   *
+   * @param {string} name The name of this form
+   * @returns {this} The builder, for chaining
+   */
+  name(name: string): this
+
+  /**
    * Sets the species of this form.
    *
    * @param {Species} species The species of this form
@@ -62,6 +70,7 @@ export abstract class FormBelongToSpecies
   static readonly #builderImpl = class FormBelongToSpeciesBuilderImpl
     implements FormBelongToSpeciesBuilder
   {
+    public $name: string
     public $species: Species | null
     public $form: number
     public $flags: number
@@ -69,11 +78,19 @@ export abstract class FormBelongToSpecies
     public $imageSuffix: string | null
 
     public constructor() {
+      this.$name = ``
       this.$species = null
       this.$form = -1
       this.$flags = 0
       this.$spriteSuffix = null
       this.$imageSuffix = null
+    }
+
+    public name(name: string): this {
+      checkState(name.length > 0, 'name must be non-empty')
+      this.$name = name
+
+      return this
     }
 
     public species(species: Species): this {
@@ -111,6 +128,7 @@ export abstract class FormBelongToSpecies
     }
 
     public from(value: FormBelongToSpecies): this {
+      this.$name = value.name
       this.$species = value.species
       this.$form = value.form
       this.$flags = value.flags
@@ -121,6 +139,7 @@ export abstract class FormBelongToSpecies
     }
 
     public reset(): this {
+      this.$name = ``
       this.$species = null
       this.$form = -1
       this.$flags = 0
@@ -131,6 +150,7 @@ export abstract class FormBelongToSpecies
     }
 
     public build(): FormBelongToSpecies {
+      checkState(this.$name.length > 0, 'name must be non-empty')
       checkNonNull(this.$species, 'species must not be null')
       checkState(this.$form > -1, 'form must be greater than -1')
 
@@ -252,6 +272,7 @@ export abstract class FormBelongToSpecies
   public static readonly EMPTY: FormBelongToSpecies =
     FormBelongToSpecies.#impl.EMPTY
 
+  public abstract readonly name: string
   public abstract readonly species: Species
   public abstract readonly form: number
   public abstract readonly flags: number
