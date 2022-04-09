@@ -27,7 +27,7 @@
     "dev": "NODE_ENV=development node dist/index.js",
     "docs": "typedoc",
     "test": "jest",
-    "build": "rimraf dist && swc src --out-dir dist --extensions .mts,.cts && renamer dist/** --find js --replace mjs",
+    "build": "rimraf dist && swc src --out-dir dist",
     "build:watch": "tsc --watch --skipLibCheck",
     "lint": "eslint --ext .ts,.mts,.cts src/",
     "lint:fix": "pnpm run lint -- --fix",
