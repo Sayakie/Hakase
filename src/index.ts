@@ -1,7 +1,10 @@
 export { type ClientOptions, Client } from './Client.js'
 export {
+  type FormBelongToSpecies,
   type FormBelongToSpeciesBuilder,
-  FormBelongToSpecies
+  Collections,
+  UnsafeFormBelongToSpecies,
+  UnsafeFormBelongToSpeciesBuilder
 } from './entity/FormBelongToSpecies.js'
 export { Species } from './entity/Species.js'
 export * as ArrayUtil from './util/ArrayUtil.js'
