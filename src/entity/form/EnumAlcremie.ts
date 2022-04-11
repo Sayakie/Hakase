@@ -1,10 +1,7 @@
 import { Species } from '../../entity/Species.js'
 import { FormFlag } from '../../util/Constant.js'
 import { IllegalArgumentException } from '../../util/exception.js'
-import {
-  type FormBelongToSpecies,
-  Collections
-} from '../FormBelongToSpecies.js'
+import { FormBelongToSpecies } from '../FormBelongToSpecies.js'
 
 /**
  * Represents available forms of Alcremie.
