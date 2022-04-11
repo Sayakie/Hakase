@@ -3,7 +3,7 @@
     "target": "ES2022",
     "lib": ["ES2021"],
     "module": "esnext",
-    "rootDirs": ["./src"],
+    // "rootDirs": ["./src"],
     "moduleResolution": "Node",
     "baseUrl": ".",
     "typeRoots": [
@@ -12,7 +12,7 @@
       "./node_modules/@types"
     ],
     "plugins": [
-      { "transform": "typescript-transform-paths" }
+      // { "transform": "typescript-transform-paths" }
     ],
     "outDir": "./dist",
     "pretty": true,
@@ -40,7 +40,7 @@
   },
   "include": [
     "src/"
-, "search.ts"  ],
+  ],
   "exclude": [
     "node_modules/"
   ]
