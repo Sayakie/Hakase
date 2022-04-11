@@ -97,7 +97,7 @@ export function generateBaseEmbed({
   )
   if (spawnInfoSpecs.length > 1) {
     spawnInfo = spawnInfoSpecs.reduce(
-      (acc, curr) => mergeOptions.call({ concatArray: true }, acc, curr),
+      (acc, curr) => mergeOptions({ concatArray: true }, acc, curr),
       {} as SpawnInfo
     )
   } else {

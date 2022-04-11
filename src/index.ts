@@ -5,8 +5,8 @@ export {
   Collections,
   UnsafeFormBelongToSpecies,
   UnsafeFormBelongToSpeciesBuilder
-} from './entity/FormBelongToSpecies.js'
-export { Species } from './entity/Species.js'
+} from './enum/FormBelongToSpecies.js'
+export { Species } from './enum/Species.js'
 export * as ArrayUtil from './util/ArrayUtil.js'
 export { asserts } from './util/asserts.js'
 export type { Cloneable } from './util/Cloneable.js'

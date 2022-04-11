@@ -1,6 +1,6 @@
 import type { Interaction } from 'discord.js'
 
-import { Species } from '../entity/Species.js'
+import { Species } from '../enum/Species.js'
 import { defaultSpawnInfos, Events } from '../util/Constant.js'
 import { spawnerConfig, spawnSetMap, statLink } from '../util/DataManager.js'
 import { generateBaseEmbed } from '../util/function.js'
