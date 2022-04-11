@@ -37,7 +37,10 @@ import { EnumXerneas } from '../../entity/form/EnumXerneas.js'
 import { EnumZygarde } from '../../entity/form/EnumZygarde.js'
 import { MegaForm } from '../../entity/form/MegaForm.js'
 import { RegionalForm } from '../../entity/form/RegionalForm.js'
-import { FormBelongToSpecies } from '../../entity/FormBelongToSpecies.js'
+import {
+  type FormBelongToSpecies,
+  Collections
+} from '../../entity/FormBelongToSpecies.js'
 import { Species } from '../../entity/Species.js'
 import { FormFlag } from '../Constant.js'
 import { Exception } from '../exception.js'
@@ -119,7 +122,7 @@ export async function loadAllForms(): Promise<FormLink> {
       formLink.set(Species.Zacian, EnumHeroDuo.values())
       formLink.set(Species.Zamazenta, EnumHeroDuo.values())
 
-      FormBelongToSpecies.customNormalForms.forEach(species => {
+      Collections.customNormalForms.forEach(species => {
         formLink.set(species, [
           RegionalForm.Normal.builder()
             .species(species)
@@ -128,7 +131,7 @@ export async function loadAllForms(): Promise<FormLink> {
         ])
       })
 
-      FormBelongToSpecies.megaForms.forEach(species => {
+      Collections.megaForms.forEach(species => {
         formLink.set(
           species,
           [MegaForm.Normal, MegaForm.Mega].map(form =>
@@ -137,7 +140,7 @@ export async function loadAllForms(): Promise<FormLink> {
         )
       })
 
-      FormBelongToSpecies.megaXYForms.forEach(species => {
+      Collections.megaXYForms.forEach(species => {
         formLink.set(
           species,
           [MegaForm.Normal, MegaForm.MegaX, MegaForm.MegaY].map(form =>
@@ -146,7 +149,7 @@ export async function loadAllForms(): Promise<FormLink> {
         )
       })
 
-      FormBelongToSpecies.alolanForms.forEach(species => {
+      Collections.alolanForms.forEach(species => {
         formLink.set(
           species,
           [RegionalForm.Normal, RegionalForm.Alolan].map(form =>
@@ -155,7 +158,7 @@ export async function loadAllForms(): Promise<FormLink> {
         )
       })
 
-      FormBelongToSpecies.galarianForms.forEach(species => {
+      Collections.galarianForms.forEach(species => {
         formLink.set(
           species,
           [RegionalForm.Normal, RegionalForm.Galarian].map(form =>
@@ -164,7 +167,7 @@ export async function loadAllForms(): Promise<FormLink> {
         )
       })
 
-      FormBelongToSpecies.hisuianForms.forEach(species => {
+      Collections.hisuianForms.forEach(species => {
         formLink.set(
           species,
           [RegionalForm.Normal, RegionalForm.Hisuian].map(form =>

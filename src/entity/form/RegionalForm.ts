@@ -1,7 +1,7 @@
-import { FormBelongToSpecies } from '../../entity/FormBelongToSpecies.js'
 import { Species } from '../../entity/Species.js'
 import { FormFlag } from '../../util/Constant.js'
 import { IllegalArgumentException } from '../../util/exception.js'
+import { FormBelongToSpecies } from '../FormBelongToSpecies.js'
 
 /**
  * A variant of regional forms.

@@ -3,9 +3,9 @@ import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
 import type { ReadonlyWeakMap, Stat } from '../../@types.js'
-import { FormBelongToSpecies } from '../../entity/FormBelongToSpecies.js'
+import { Collections } from '../../entity/FormBelongToSpecies.js'
 import { Species } from '../../entity/Species.js'
-import { Messages, STACK_OVERFLOW } from '../../Message.js'
+import { Messages } from '../../Message.js'
 import { DataDirectory } from '../Constant.js'
 import { checkNonNull } from '../verify.js'
 
@@ -37,9 +37,9 @@ function prepareStat(stat: Stat): Stat {
     let statDefault = statExcludeForms
 
     if (
-      FormBelongToSpecies.alolanForms.has(species) ||
-      FormBelongToSpecies.galarianForms.has(species) ||
-      FormBelongToSpecies.hisuianForms.has(species)
+      Collections.alolanForms.has(species) ||
+      Collections.galarianForms.has(species) ||
+      Collections.hisuianForms.has(species)
     ) {
       const {
         trMoves,
