@@ -184,9 +184,6 @@ export interface FormBelongToSpecies
 }
 
 export class UnsafeFormBelongToSpecies implements FormBelongToSpecies {
-  public static readonly EMPTY: FormBelongToSpecies =
-    new UnsafeFormBelongToSpeciesBuilder().unsafeBuild()
-
   public name: string
   public species: Species
   public form: number
@@ -248,15 +245,17 @@ export class UnsafeFormBelongToSpecies implements FormBelongToSpecies {
   }
 }
 
+const empty = new UnsafeFormBelongToSpeciesBuilder().unsafeBuild()
+
 export const FormBelongToSpecies = {
   builder(): FormBelongToSpeciesBuilder {
     return new UnsafeFormBelongToSpeciesBuilder()
   },
 
   empty(): FormBelongToSpecies {
-    return UnsafeFormBelongToSpecies.EMPTY
+    return empty
   }
-} as const
+}
 
 export type Collections = Readonly<{
   /**
