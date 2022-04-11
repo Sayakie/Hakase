@@ -51,9 +51,9 @@ export const MegaForm = {
    * @throws {IllegalArgumentException} If the given name is not a member of this enum
    */
   valueOf(
-    value: Capitalize<`normal` | `mega` | `mega-x` | `mega-y`>
+    value: `Normal` | `Mega` | `Mega-X` | `Mega-Y` | null
   ): FormBelongToSpecies {
-    switch (value.toLowerCase()) {
+    switch (value?.toLowerCase()) {
       case `normal`:
         return MegaForm.Normal
       case `mega`:
