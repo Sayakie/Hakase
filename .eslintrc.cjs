@@ -200,7 +200,6 @@ module.exports = {
       }
     ],
     'eslint-comments/disable-enable-pair': [OFF],
-    'import/exports-last': [ERROR],
     'import/first': [ERROR],
     'import/newline-after-import': [ERROR],
     'import/no-absolute-path': [ERROR],
