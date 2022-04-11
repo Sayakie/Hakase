@@ -8,6 +8,7 @@ specifiers:
   '@johanblumenberg/ts-mockito': ^1.0.32
   '@swc/cli': ^0.1.57
   '@swc/core': ^1.2.165
+  '@swc/helpers': ^0.3.8
   '@types/i18next-fs-backend': ^1.1.2
   '@types/jest': ^27.4.1
   '@types/node': ^17.0.23
@@ -75,6 +76,7 @@ devDependencies:
   '@johanblumenberg/ts-mockito': 1.0.32
   '@swc/cli': 0.1.57_@swc+core@1.2.165
   '@swc/core': 1.2.165
+  '@swc/helpers': 0.3.8
   '@types/i18next-fs-backend': 1.1.2
   '@types/jest': 27.4.1
   '@types/node': 17.0.23
@@ -1111,6 +1113,10 @@ packages:
       '@swc/core-win32-arm64-msvc': 1.2.165
       '@swc/core-win32-ia32-msvc': 1.2.165
       '@swc/core-win32-x64-msvc': 1.2.165
+    dev: true
+
+  /@swc/helpers/0.3.8:
+    resolution: {integrity: sha512-aWItSZvJj4+GI6FWkjZR13xPNPctq2RRakzo+O6vN7bC2yjwdg5EFpgaSAUn95b7BGSgcflvzVDPoKmJv24IOg==}
     dev: true
 
   /@tootallnate/once/1.1.2:

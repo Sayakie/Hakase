@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug the Hakase",
+      "type": "node",
+      "request": "launch",
+      "env": {
+        // "TS_NODE_DEBUG": "true"
+      },
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "--enable-source-maps",
+        "--nolazy",
+        "--loader", "ts-node/esm"
+      ],
+      "args": ["src/run.ts"],
+      "cwd": "${workspaceRoot}",
+      "internalConsoleOptions": "openOnSessionStart",
+      "skipFiles": ["<node_internals>/**", "node_modules/**"]
+    }
+  ]
+}
