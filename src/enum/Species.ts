@@ -3,7 +3,7 @@ import i18next from 'i18next'
 import { type Comparable, Util } from '../index.js'
 
 export abstract class Species implements Comparable {
-  static readonly #impl = class extends Species {
+  static readonly #impl = class SpeciesImpl extends Species {
     public static readonly legendaries: Set<Species> = new Set()
     public static readonly ultrabeasts: Set<Species> = new Set()
     public static readonly allPokemons: Set<Species> = new Set()
