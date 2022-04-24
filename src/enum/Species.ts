@@ -90,6 +90,10 @@ export abstract class Species implements Comparable {
   }
 
   public static readonly MissingNo = Species.#impl.of(0, `MissingNo`)
+
+  /**
+   * Generation I Pokémon species. (1-151)
+   */
   public static readonly Bulbasaur = Species.#impl.of(1, `Bulbasaur`)
   public static readonly Ivysaur = Species.#impl.of(2, `Ivysaur`)
   public static readonly Venusaur = Species.#impl.of(3, `Venusaur`)
@@ -241,6 +245,10 @@ export abstract class Species implements Comparable {
   public static readonly Dragonite = Species.#impl.of(149, `Dragonite`)
   public static readonly Mewtwo = Species.#impl.of(150, `Mewtwo`)
   public static readonly Mew = Species.#impl.of(151, `Mew`)
+
+  /**
+   * Generation II Pokémon species. (152-251)
+   */
   public static readonly Chikorita = Species.#impl.of(152, `Chikorita`)
   public static readonly Bayleef = Species.#impl.of(153, `Bayleef`)
   public static readonly Meganium = Species.#impl.of(154, `Meganium`)
@@ -341,6 +349,10 @@ export abstract class Species implements Comparable {
   public static readonly Lugia = Species.#impl.of(249, `Lugia`)
   public static readonly Hooh = Species.#impl.of(250, `Ho-Oh`)
   public static readonly Celebi = Species.#impl.of(251, `Celebi`)
+
+  /**
+   * Generation III Pokémon species. (252-386)
+   */
   public static readonly Treecko = Species.#impl.of(252, `Treecko`)
   public static readonly Grovyle = Species.#impl.of(253, `Grovyle`)
   public static readonly Sceptile = Species.#impl.of(254, `Sceptile`)
@@ -476,6 +488,10 @@ export abstract class Species implements Comparable {
   public static readonly Rayquaza = Species.#impl.of(384, `Rayquaza`)
   public static readonly Jirachi = Species.#impl.of(385, `Jirachi`)
   public static readonly Deoxys = Species.#impl.of(386, `Deoxys`)
+
+  /**
+   * Generation IV Pokémon species. (387-493)
+   */
   public static readonly Turtwig = Species.#impl.of(387, `Turtwig`)
   public static readonly Grotle = Species.#impl.of(388, `Grotle`)
   public static readonly Torterra = Species.#impl.of(389, `Torterra`)
@@ -583,6 +599,10 @@ export abstract class Species implements Comparable {
   public static readonly Darkrai = Species.#impl.of(491, `Darkrai`)
   public static readonly Shaymin = Species.#impl.of(492, `Shaymin`)
   public static readonly Arceus = Species.#impl.of(493, `Arceus`)
+
+  /**
+   * Generation V Pokémon species. (494-649)
+   */
   public static readonly Victini = Species.#impl.of(494, `Victini`)
   public static readonly Snivy = Species.#impl.of(495, `Snivy`)
   public static readonly Servine = Species.#impl.of(496, `Servine`)
@@ -739,6 +759,10 @@ export abstract class Species implements Comparable {
   public static readonly Keldeo = Species.#impl.of(647, `Keldeo`)
   public static readonly Meloetta = Species.#impl.of(648, `Meloetta`)
   public static readonly Genesect = Species.#impl.of(649, `Genesect`)
+
+  /**
+   * Generation VI Pokémon species. (650-721)
+   */
   public static readonly Chespin = Species.#impl.of(650, `Chespin`)
   public static readonly Quilladin = Species.#impl.of(651, `Quilladin`)
   public static readonly Chesnaught = Species.#impl.of(652, `Chesnaught`)
@@ -811,6 +835,10 @@ export abstract class Species implements Comparable {
   public static readonly Diancie = Species.#impl.of(719, `Diancie`)
   public static readonly Hoopa = Species.#impl.of(720, `Hoopa`)
   public static readonly Volcanion = Species.#impl.of(721, `Volcanion`)
+
+  /**
+   * Generation VII Pokémon species. (722-907)
+   */
   public static readonly Rowlet = Species.#impl.of(722, `Rowlet`)
   public static readonly Dartrix = Species.#impl.of(723, `Dartrix`)
   public static readonly Decidueye = Species.#impl.of(724, `Decidueye`)
@@ -899,6 +927,10 @@ export abstract class Species implements Comparable {
   public static readonly Zeraora = Species.#impl.of(807, `Zeraora`)
   public static readonly Meltan = Species.#impl.of(808, `Meltan`)
   public static readonly Melmetal = Species.#impl.of(809, `Melmetal`)
+
+  /**
+   * Generation VIII Pokémon species. (810-905)
+   */
   public static readonly Grookey = Species.#impl.of(810, `Grookey`)
   public static readonly Thwackey = Species.#impl.of(811, `Thwackey`)
   public static readonly Rillaboom = Species.#impl.of(812, `Rillaboom`)
@@ -989,7 +1021,19 @@ export abstract class Species implements Comparable {
   public static readonly Spectrier = Species.#impl.of(897, `Spectrier`)
   public static readonly Calyrex = Species.#impl.of(898, `Calyrex`)
   public static readonly Wyrdeer = Species.#impl.of(899, `Wyrdeer`)
-  // public static readonly Kleavor = Species.#impl.of(900, `Kleavor`)
+  public static readonly Kleavor = Species.#impl.of(900, `Kleavor`)
+  public static readonly Ursaluna = Species.#impl.of(901, `Ursaluna`)
+  public static readonly Basculegion = Species.#impl.of(902, `Basculegion`)
+  public static readonly Sneasler = Species.#impl.of(903, `Sneasler`)
+  public static readonly Overqwil = Species.#impl.of(904, `Overqwil`)
+  public static readonly Enamorus = Species.#impl.of(905, `Enamorus`)
+
+  /**
+   * Generation IX Pokémon species. (906-???)
+   */
+  public static readonly Sprigatito = Species.#impl.of(906, `Sprigatito`)
+  public static readonly Fuecoco = Species.#impl.of(907, `Fuecoco`)
+  public static readonly Quaxly = Species.#impl.of(908, `Quaxly`)
 
   /**
    * Gets the immutable set of species that are considered legendary.
