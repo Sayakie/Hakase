@@ -64,7 +64,7 @@ export abstract class Species implements Comparable {
       return {
         asNumber: () => this.dex,
         asString: () => String(this.dex).padStart(3, `0`),
-        toString: () => String(this.dex),
+        toString: () => String(this.dex).padStart(3, `0`),
         valueOf: () => this.dex
       } as ReturnType<Species[`getNationalPokedex`]>
     }
