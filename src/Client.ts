@@ -44,6 +44,12 @@ export class Client<Ready extends boolean = boolean>
    * @type {string}
    */
   public get version(): string {
+    const { NODE_ENV } = process.env
+
+    if (NODE_ENV === `development`) {
+      return `${getPackageVersion()}-dev`
+    }
+
     return getPackageVersion()
   }
 
