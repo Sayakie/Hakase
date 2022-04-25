@@ -1,8 +1,11 @@
-import i18next from 'i18next'
+import {
+  type Comparable,
+  type Translatable,
+  Translation,
+  Util
+} from '../index.js'
 
-import { type Comparable, Util } from '../index.js'
-
-export abstract class Species implements Comparable {
+export abstract class Species implements Comparable, Translatable {
   static readonly #impl = class SpeciesImpl extends Species {
     public static readonly legendaries: Set<Species> = new Set()
     public static readonly ultrabeasts: Set<Species> = new Set()
@@ -45,16 +48,10 @@ export abstract class Species implements Comparable {
       return this.name
     }
 
-    public override getLocalizedName(): string {
-      const key = this.getLocalizationKey()
-      let localized = i18next.t(key)
-      localized ??= this.getName()
+    public override getTranslation(): Translation {
+      const id = `Pixelmon:${this.name.toLowerCase()}.name`
 
-      return localized
-    }
-
-    public override getLocalizationKey(): string {
-      return `Pixelmon:${this.name.toLowerCase()}.name`
+      return Translation.of(id)
     }
 
     public override getNationalPokedex(): {
@@ -1087,7 +1084,7 @@ export abstract class Species implements Comparable {
     for (const pokemon of Species.#impl.allPokemons) {
       if (
         pokemon.getName().toLowerCase() === name.toLowerCase() ||
-        pokemon.getLocalizedName().toLowerCase() === name.toLowerCase()
+        pokemon.getTranslation().get().toLowerCase() === name.toLowerCase()
       )
         return pokemon
     }
@@ -1138,18 +1135,11 @@ export abstract class Species implements Comparable {
   public abstract getName(): string
 
   /**
-   * Gets the localized name of the species.
+   * Gets the translatable name of the species.
    *
-   * @returns {string} The localized name of the species
+   * @returns {Translation} The translatable name of the species
    */
-  public abstract getLocalizedName(): string
-
-  /**
-   * Gets the localization key of the species.
-   *
-   * @returns {string} The localization key of the species
-   */
-  public abstract getLocalizationKey(): string
+  public abstract getTranslation(): Translation
 
   /**
    * Gets the Pokedex wrapper of the species.
