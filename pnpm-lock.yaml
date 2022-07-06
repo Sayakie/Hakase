@@ -16,7 +16,7 @@ importers:
       eslint-plugin-eslint-comments: ^3.2.0
       eslint-plugin-import: ^2.26.0
       eslint-plugin-node: ^11.1.0
-      eslint-plugin-prefer-early-return: ^41.2.0
+      eslint-plugin-prefer-early-return: workspace:^41.2.0
       eslint-plugin-prettier: ^4.2.1
       eslint-plugin-simple-import-sort: ^7.0.0
       eslint-plugin-sort-keys-fix: ^1.1.2
@@ -43,6 +43,7 @@ importers:
       eslint-plugin-eslint-comments: 3.2.0_eslint@8.19.0
       eslint-plugin-import: 2.26.0_iom7pm3yknyiblqpw2vvqvxs5i
       eslint-plugin-node: 11.1.0_eslint@8.19.0
+      eslint-plugin-prefer-early-return: link:vendor/eslint-plugin-prefer-early-return
       eslint-plugin-prettier: 4.2.1_7uxdfn2xinezdgvmbammh6ev5i
       eslint-plugin-simple-import-sort: 7.0.0_eslint@8.19.0
       eslint-plugin-sort-keys-fix: 1.1.2
@@ -67,6 +68,15 @@ importers:
     devDependencies:
       '@sapphire/pieces': 3.3.4
       discord.js: 13.8.1
+
+  packages/utilities:
+    specifiers:
+      '@sapphire/utilities': ^3.7.0
+    dependencies:
+      '@sapphire/utilities': 3.7.0
+
+  vendor/eslint-plugin-prefer-early-return:
+    specifiers: {}
 
 packages:
 

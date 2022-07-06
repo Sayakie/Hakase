@@ -1,8 +1,8 @@
 {
   "extends": "@sapphire/ts-config/extra-strict",
   "compilerOptions": {
-    "lib": ["ESNext"],
     "target": "ES2021",
-    "module": "Node16"
+    "module": "Node16",
+		"tsBuildInfoFile": ".tsbuildinfo",
   }
 }
