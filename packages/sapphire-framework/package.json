@@ -23,7 +23,7 @@
     "directory": "packages/sapphire-framework"
   },
   "bugs": {
-    "url": "https://github.com/Sayakie/Hakase/issues/new?labels=bug,packages:sapphire-framework",
+    "url": "https://github.com/Sayakie/Hakase/issues/new?labels=bug,package:sapphire-framework",
     "email": "sayakie@kakao.com"
   },
   "scripts": {
