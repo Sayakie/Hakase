@@ -26,7 +26,7 @@ export class Client<Ready extends boolean = boolean> extends SapphireClient<Read
    * })
    * ```
    */
-  public readonly prisma: unknown
+  public override readonly prisma: unknown
 
   public constructor(options: ClientOptions) {
     super(options)
