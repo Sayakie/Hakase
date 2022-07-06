@@ -1,5 +1,4 @@
-// Copy-paste from the following file:
-// https://github.com/Shopify/web-configs/blob/41f67f9b14847471d20d5615dee8522b8a87cf23/packages/eslint-plugin/lib/rules/prefer-early-return.js
+// Inline from https://github.com/Shopify/web-configs/blob/41f67f9b14847471d20d5615dee8522b8a87cf23/packages/eslint-plugin/lib/rules/prefer-early-return.js
 
 const uri = `https://github.com/Shopify/eslint-plugin-shopify/blob/master/docs/rules/prefer-early-return.md`
 const defaultMaximumStatements = 1;
