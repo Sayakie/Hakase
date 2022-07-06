@@ -1,0 +1,32 @@
+{
+  "name": "@hakase/utilities",
+  "version": "0.1.0",
+  "author": "Sayakie <sayakie@kakao.com>",
+  "description": "Common JavaScript utilities",
+  "contributors": [],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sayakie/Hakase.git",
+    "directory": "packages/utilities"
+  },
+  "bugs": {
+    "url": "https://github.com/Sayakie/Hakase/issues/new?bug,labels=packages:utilities",
+    "email": "sayakie@kakao.com"
+  },
+  "scripts": {
+    "build": "echo \"Error: no test specified\" && exit 1"
+  }
+}
