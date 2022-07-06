@@ -28,5 +28,8 @@
   },
   "scripts": {
     "build": "tsup"
+  },
+  "dependencies": {
+    "@sapphire/utilities": "^3.7.0"
   }
 }
