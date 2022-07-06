@@ -9,6 +9,6 @@
  * @type {Record<GitHooks, String>}
  */
 module.exports = {
-  "pre-commit": "pnpm lint-staged --quiet",
-  "commit-msg": "pnpm commitlint --edit"
+  "pre-commit": "pnpm exec lint-staged --quiet",
+  "commit-msg": "pnpm exec commitlint --edit"
 }
