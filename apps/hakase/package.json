@@ -34,6 +34,7 @@
     "@hakase/utilities": "workspace:^",
     "@sapphire/decorators": "^4.3.6",
     "@skyra/env-utilities": "^1.0.1",
+    "colorette": "^2.0.19",
     "discord-api-types": "^0.36.1",
     "discord.js": "^13.8.1"
   },
