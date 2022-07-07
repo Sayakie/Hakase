@@ -23,7 +23,7 @@
     "directory": "packages/utilities"
   },
   "bugs": {
-    "url": "https://github.com/Sayakie/Hakase/issues/new?bug,labels=package:utilities",
+    "url": "https://github.com/Sayakie/Hakase/issues/new?labels=bug,package:utilities",
     "email": "sayakie@kakao.com"
   },
   "scripts": {
