@@ -55,26 +55,16 @@ export const DISCORD_TOKEN =
 
 export const CLIENT_OPTIONS: ClientOptions = {
   allowedMentions: { roles: [], users: [] },
-  caseInsensitiveCommands: true,
-  caseInsensitivePrefixes: true,
-  defaultPrefix: envParseString(`COMMAND_PREFIX`),
-  disableMentionPrefix: !envParseBoolean(`ENABLE_MENTION_PREFIX`),
 
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
+  intents: [GatewayIntentBits.Guilds],
 
   loadDefaultErrorListeners: true,
-  loadMessageCommandListeners: true,
-  // logger: {
-  //   instance: new SapphireLoggerBridge(
-  //     process.env.NODE_ENV === `production` ? LogLevel.Info : LogLevel.Debug
-  //   ),
-  //   level: process.env.NODE_ENV === `production` ? LogLevel.Info : LogLevel.Debug
-  // },
+  loadMessageCommandListeners: false,
+
   partials: [
     Constants.PartialTypes.CHANNEL,
     Constants.PartialTypes.GUILD_SCHEDULED_EVENT
   ],
 
   prisma: null
-  // presence: { activities: parsePresenceActivity() }
 }

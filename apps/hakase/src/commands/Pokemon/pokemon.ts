@@ -1,5 +1,5 @@
 import type { ChatInputCommand } from '@hakase/sapphire-framework'
-import { Command } from '@hakase/sapphire-framework'
+import { LocalizableCommand } from '@hakase/sapphire-framework'
 import { ApplyOptions as Mixin } from '@sapphire/decorators'
 
 @Mixin<ChatInputCommand.Options>({
@@ -11,7 +11,7 @@ import { ApplyOptions as Mixin } from '@sapphire/decorators'
     ko: `포켓몬`
   }
 })
-export class SlashCommand extends Command {
+export class SlashCommand extends LocalizableCommand {
   public override registerApplicationCommands(
     registry: ChatInputCommand.Registry
   ): void {
@@ -35,9 +35,8 @@ export class SlashCommand extends Command {
               .setAutocomplete(true)
           ),
       {
-        guildIds: [
-          `933262986720706600`
-        ] /* , idHints: ['970121244789866586', '942137488242262096'] */
+        guildIds: [`933262986720706600`],
+        idHints: [`994423768481017957`]
       }
     )
   }
