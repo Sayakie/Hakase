@@ -1,14 +1,9 @@
-import { keyMirror } from '@hakase/utilities'
-import {
-  type ArrayString,
-  type BooleanString,
-  envParseBoolean,
-  envParseString,
-  setup
-} from '@skyra/env-utilities'
+import { type ArrayString, type BooleanString, envParseString, setup } from '@skyra/env-utilities'
 import { type ClientOptions, Constants } from 'discord.js'
 import { GatewayIntentBits } from 'discord-api-types/v10'
 import { URL } from 'node:url'
+
+import { keyMirror } from './utils/functions.js'
 
 setup(new URL(`.env`, new URL(`../`, import.meta.url)))
 
@@ -61,10 +56,7 @@ export const CLIENT_OPTIONS: ClientOptions = {
   loadDefaultErrorListeners: true,
   loadMessageCommandListeners: false,
 
-  partials: [
-    Constants.PartialTypes.CHANNEL,
-    Constants.PartialTypes.GUILD_SCHEDULED_EVENT
-  ],
+  partials: [Constants.PartialTypes.CHANNEL, Constants.PartialTypes.GUILD_SCHEDULED_EVENT],
 
   prisma: null
 }
