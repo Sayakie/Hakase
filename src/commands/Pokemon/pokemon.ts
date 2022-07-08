@@ -1,6 +1,8 @@
-import type { ChatInputCommand } from '@hakase/sapphire-framework'
-import { LocalizableCommand } from '@hakase/sapphire-framework'
 import { ApplyOptions as Mixin } from '@sapphire/decorators'
+import type { ChatInputCommand } from '@sapphire/framework'
+import { RegisterBehavior } from '@sapphire/framework'
+
+import { LocalizableCommand } from '../../structures/Command.js'
 
 @Mixin<ChatInputCommand.Options>({
   description: `Gets data for the chosen Pokémon.`,
@@ -12,21 +14,18 @@ import { ApplyOptions as Mixin } from '@sapphire/decorators'
   }
 })
 export class SlashCommand extends LocalizableCommand {
-  public override registerApplicationCommands(
-    registry: ChatInputCommand.Registry
-  ): void {
+  public override registerApplicationCommands(registry: ChatInputCommand.Registry): void {
     registry.registerChatInputCommand(
       builder =>
         builder
           .setName(this.name)
+          .setNameLocalizations(this.nameLocalizations)
           .setDescription(this.description)
           .setDescriptionLocalizations(this.descriptionLocalizations)
           .addStringOption(option =>
             option
-              .setName(`name`)
-              .setDescription(
-                `The name of the Pokémon about which you want to get information.`
-              )
+              .setName(`pokemon`)
+              .setDescription(`The name of the Pokémon which you want to get information.`)
               .setNameLocalizations({ ko: `이름` })
               .setDescriptionLocalizations({
                 ko: `정보를 검색할 포켓몬 이름`
@@ -35,18 +34,17 @@ export class SlashCommand extends LocalizableCommand {
               .setAutocomplete(true)
           ),
       {
-        guildIds: [`933262986720706600`],
-        idHints: [`994423768481017957`]
+        behaviorWhenNotIdentical: RegisterBehavior.Overwrite,
+        guildIds: [`933262986720706600`]
+        // idHints: [`994423768481017957`]
       }
     )
   }
 
-  public override async chatInputRun(
-    interaction: ChatInputCommand.Interaction
-  ): Promise<void> {
+  public override async chatInputRun(interaction: ChatInputCommand.Interaction): Promise<void> {
     await interaction.deferReply()
 
-    const it = interaction.options.getString(`name`, true)
+    const it = interaction.options.getString(`pokemon`, true)
     console.log(it)
 
     await interaction.deleteReply()

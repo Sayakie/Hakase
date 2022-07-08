@@ -1,7 +1,7 @@
-import { Client } from '@hakase/sapphire-framework'
 import { envParseString, setup } from '@skyra/env-utilities'
 import { URL } from 'node:url'
 
+import { Client } from './Client.js'
 import { CLIENT_OPTIONS } from './config.js'
 
 setup(new URL(`.env`, new URL(`../`, import.meta.url)))

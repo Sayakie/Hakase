@@ -8,7 +8,8 @@
   "scripts": {
     "preinstall": "npx -y only-allow pnpm",
     "postinstall": "is-ci || simple-git-hooks",
-    "build": "turbo run build"
+    "start": "node --enable-source-maps dist/index.js",
+    "build": "tsup"
   },
   "packageManager": "pnpm@^7.5.0",
   "type": "module",
@@ -35,16 +36,17 @@
   "dependencies": {
     "@sapphire/decorators": "^4.3.6",
     "@sapphire/framework": "3.0.0-next.961e0bf.0",
+    "@sapphire/pieces": "^3.3.4",
     "@sapphire/result": "^2.0.1",
     "@sapphire/utilities": "^3.7.0",
     "@skyra/env-utilities": "^1.0.1",
+    "colorette": "^2.0.19",
     "discord-api-types": "^0.36.1",
     "discord.js": "^13.8.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-angular": "^17.0.3",
-    "@sapphire/pieces": "^3.3.4",
     "@sapphire/ts-config": "^3.3.4",
     "@swc/core": "^1.2.210",
     "@types/node": "^18.0.3",

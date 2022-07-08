@@ -22,8 +22,9 @@ interface LocalizationProperties {
   descriptionLocalizations: LocalizationMap | null
 }
 
+/* eslint-disable @typescript-eslint/no-empty-interface */
 declare module '@sapphire/framework' {
-  type Command = LocalizationProperties
+  interface Command extends LocalizationProperties {}
 
-  type CommandOptions = LocalizationProperties
+  interface CommandOptions extends LocalizationProperties {}
 }

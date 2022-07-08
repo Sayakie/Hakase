@@ -1,5 +1,5 @@
-import { container } from '@sapphire/pieces'
 import { SapphireClient } from '@sapphire/framework'
+import { container } from '@sapphire/pieces'
 import type { ClientOptions } from 'discord.js'
 
 export interface ClientProperties {
@@ -37,15 +37,15 @@ export class Client<Ready extends boolean = boolean> extends SapphireClient<Read
 }
 
 declare module '@sapphire/pieces' {
-  interface Container extends ClientProperties {}
+  type Container = ClientProperties
 }
 
 declare module '@sapphire/framework' {
-  interface SapphireClient extends ClientProperties {}
+  type SapphireClient = ClientProperties
 }
 
 declare module 'discord.js' {
-  interface Client extends ClientProperties {}
+  type Client = ClientProperties
 
-  interface ClientOptions extends ClientProperties {}
+  type ClientOptions = ClientProperties
 }
