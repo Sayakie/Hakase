@@ -164,6 +164,7 @@ module.exports = {
     ],
     '@typescript-eslint/no-invalid-void-type': [ERROR],
     '@typescript-eslint/no-meaningless-void-operator': [ERROR],
+    '@typescript-eslint/no-namespace': [OFF],
     '@typescript-eslint/no-non-null-assertion': [OFF],
     // '@typescript-eslint/no-non-null-asserted-nullish-coalescing': [ERROR],
     '@typescript-eslint/no-require-imports': [ERROR],
