@@ -12,6 +12,7 @@ importers:
       '@sapphire/result': ^2.0.1
       '@sapphire/ts-config': ^3.3.4
       '@sapphire/utilities': ^3.7.0
+      '@skyra/env-utilities': ^1.0.1
       '@swc/core': ^1.2.210
       '@types/node': ^18.0.3
       '@typescript-eslint/eslint-plugin': ^5.30.5
@@ -43,6 +44,7 @@ importers:
       '@sapphire/framework': 3.0.0-next.961e0bf.0
       '@sapphire/result': 2.0.1
       '@sapphire/utilities': 3.7.0
+      '@skyra/env-utilities': 1.0.1
       discord-api-types: 0.36.1
       discord.js: 13.8.1
     devDependencies:
