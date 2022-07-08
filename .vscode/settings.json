@@ -4,8 +4,15 @@
     "source.organizeImports": false
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "docwriter.progress.trackMethods": false,
-  "docwriter.progress.trackFunctions": false,
-  "docwriter.progress.trackClasses": false,
-  "docwriter.progress.trackTypes": false
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true,
+    "**/.turbo": true,
+    "**/dist": true
+  }
 }

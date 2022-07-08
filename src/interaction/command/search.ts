@@ -2,17 +2,11 @@ import { SlashCommandBuilder } from '@discordjs/builders'
 
 export const searchCommand = new SlashCommandBuilder()
   .setName(`search`)
-  .setDescription(`Searches for a Pokémon.`)
+  .setDescription(`Search a Pokémon.`)
   .setDefaultPermission(true)
   .addStringOption(option =>
     option
       .setName(`pokemon`)
       .setDescription(`The name of a Pokémon to search for.`)
       .setRequired(true)
-  )
-  .addStringOption(option =>
-    option
-      .setName(`type`)
-      .setDescription(`The type of a Pokémon to search for. (optional)`)
-      .setRequired(false)
   )

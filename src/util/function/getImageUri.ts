@@ -1,4 +1,4 @@
-import { Species } from '../../entity/Species.js'
+import { Species } from '../../enum/Species.js'
 import type { FormBelongToSpecies } from '../../index.js'
 import { ArrayUtil } from '../../index.js'
 import { FormFlag } from '../Constant.js'

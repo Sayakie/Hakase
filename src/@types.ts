@@ -1,10 +1,6 @@
 type xyz = `x` | `y` | `z` // eslint-disable-line @typescript-eslint/naming-convention
 type XYZ<T = number> = { [P in xyz]: T } // eslint-disable-line @typescript-eslint/naming-convention
 
-export * from './structure/Evolution.js'
-export * from './structure/SpawnLocation.js'
-export * from './structure/Type.js'
-
 export type ReadonlyWeakMap<K extends object, V> = Omit<
   WeakMap<K, V>,
   `set` | `delete`

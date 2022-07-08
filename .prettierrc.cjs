@@ -10,7 +10,7 @@ module.exports = {
   useTabs: false,
   singleQuote: true,
   tabWidth: 2,
-  printWidth: 80,
+  printWidth: 100,
   endOfLine: 'lf',
   quoteProps: 'as-needed',
   arrowParens: 'avoid',

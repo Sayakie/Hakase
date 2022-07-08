@@ -1,3 +1,6 @@
 module.exports = {
-  "src/**/*.?({m,c})ts": "eslint --fix"
+  "{apps,packages}/**/*.ts": [
+    "eslint --fix",
+    "prettier --write"
+  ],
 }

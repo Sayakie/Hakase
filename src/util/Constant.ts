@@ -70,15 +70,15 @@ export const VersionChoice: [
 ] = Object.entries(Version).filter(([, version]) => version !== Version.core)
 
 export const enum FormFlag {
-  DefaultForm = 0x1,
-  AlterForm = 0x2,
-  UnreleasedForm = 0x4,
-  GenderlessForm = 0x8,
-  GenderForm = 0x10,
-  MegaForm = 0x20,
-  AlolanForm = 0x40,
-  GalarianForm = 0x80,
-  HisuianForm = 0x100,
-  UnownForm = 0x200,
-  DisplayFormName = 0x400
+  DefaultForm = 1 << 0,
+  AlterForm = 1 << 1,
+  UnreleasedForm = 1 << 2,
+  GenderlessForm = 1 << 3,
+  GenderForm = 1 << 4,
+  MegaForm = 1 << 5,
+  AlolanForm = 1 << 6,
+  GalarianForm = 1 << 7,
+  HisuianForm = 1 << 8,
+  UnownForm = 1 << 9,
+  DisplayFormName = 1 << 10
 }
