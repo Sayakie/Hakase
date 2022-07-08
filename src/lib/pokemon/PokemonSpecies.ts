@@ -1,8 +1,7 @@
-import { isNullish } from '@hakase/utilities'
 import { Option, Result } from '@sapphire/result'
+import { isNullish } from '@sapphire/utilities'
 
-import type { SpeciesPokedexHolder } from '../structures/BasePokemonSpecies.js'
-import { PokemonSpecies as BasePokemonSpecies } from '../structures/BasePokemonSpecies.js'
+import { BasePokemonSpecies } from './BasePokemonSpecies.js'
 import { Species } from './Species.js'
 
 const REGISTERED_POKEMON = new Set<PokemonSpecies>()
@@ -963,7 +962,7 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
     return generation
   }
 
-  public override get nationalPokedex(): BasePokemonSpecies.PokedexHolder {
+  public override get nationalPokedex(): PokemonSpecies.PokedexHolder {
     const result = Result.from(() => Number(this.#dex))
     const dex = result.unwrapOr(-1)
 
@@ -1088,7 +1087,7 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
     return this.generation
   }
 
-  public override getNationalPokedex(): SpeciesPokedexHolder {
+  public override getNationalPokedex(): PokemonSpecies.PokedexHolder {
     return this.nationalPokedex
   }
 
@@ -1148,4 +1147,8 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
 
     Object.freeze(PokemonSpecies)
   }
+}
+
+export namespace PokemonSpecies {
+  export type PokedexHolder = BasePokemonSpecies.PokedexHolder
 }

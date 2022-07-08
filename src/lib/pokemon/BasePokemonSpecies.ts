@@ -1,6 +1,6 @@
 import type { Option } from '@sapphire/result'
 
-export abstract class PokemonSpecies {
+export abstract class BasePokemonSpecies {
   /** The name of this species. */
   public abstract get name(): string
 
@@ -11,7 +11,7 @@ export abstract class PokemonSpecies {
   public abstract get nationalPokedex(): SpeciesPokedexHolder
 
   /** The holder of this species. */
-  public abstract get holder(): Option<PokemonSpecies>
+  public abstract get holder(): Option<BasePokemonSpecies>
 
   /**
    * Gets the species name.
@@ -72,9 +72,9 @@ export abstract class PokemonSpecies {
   /**
    * Gets the species holder.
    *
-   * @returns {Option<PokemonSpecies>} This species holder
+   * @returns {Option<BasePokemonSpecies>} This species holder
    */
-  public abstract toHolder(): Option<PokemonSpecies>
+  public abstract toHolder(): Option<BasePokemonSpecies>
 
   public abstract [Symbol.toPrimitive](hint: `default`): string
   public abstract [Symbol.toPrimitive](hint: `string`): string
@@ -83,13 +83,13 @@ export abstract class PokemonSpecies {
 }
 
 /**
- * The return type of {@link PokemonSpecies.nationalPokedex} and {@link PokemonSpecies.getNationalPokedex}
+ * The return type of {@link BasePokemonSpecies.nationalPokedex} and {@link BasePokemonSpecies.getNationalPokedex}
  */
 export interface SpeciesPokedexHolder {
   asNumber(): number
   asString(): string
 }
 
-export namespace PokemonSpecies {
+export namespace BasePokemonSpecies {
   export type PokedexHolder = SpeciesPokedexHolder
 }
