@@ -1,15 +1,28 @@
 {
-  "name": "hakase-monorepo",
+  "name": "hakase",
   "private": true,
+  "version": "1.0.0",
+  "author": "Sayakie <sayakie@kakao.com>",
+  "description": "Discord bot to let y'all explore Pixelmon Pokémon information",
+  "contributors": [],
   "scripts": {
     "preinstall": "npx -y only-allow pnpm",
     "postinstall": "is-ci || simple-git-hooks",
     "build": "turbo run build"
   },
   "packageManager": "pnpm@^7.5.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Sayakie/Hakase.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sayakie/Hakase/issues/new?labels=bug",
+    "email": "sayakie@kakao.com"
   },
   "engines": {
     "node": ">=16.9",
@@ -19,9 +32,18 @@
     "node": ">=16.13",
     "pnpm": ">=7.5.0 <8"
   },
+  "dependencies": {
+    "@sapphire/decorators": "^4.3.6",
+    "@sapphire/framework": "3.0.0-next.961e0bf.0",
+    "@sapphire/result": "^2.0.1",
+    "@sapphire/utilities": "^3.7.0",
+    "discord-api-types": "^0.36.1",
+    "discord.js": "^13.8.1"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-angular": "^17.0.3",
+    "@sapphire/pieces": "^3.3.4",
     "@sapphire/ts-config": "^3.3.4",
     "@swc/core": "^1.2.210",
     "@types/node": "^18.0.3",
@@ -32,7 +54,7 @@
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prefer-early-return": "workspace:^41.2.0",
+    "eslint-plugin-prefer-early-return": "link:vendor\\eslint-plugin-prefer-early-return",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
