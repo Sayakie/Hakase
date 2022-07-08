@@ -24,6 +24,7 @@ importers:
       lint-staged: ^13.0.3
       prettier: ^2.7.1
       simple-git-hooks: ^2.8.0
+      tslib: ^2.4.0
       tsup: ^6.1.3
       turbo: ^1.3.1
       typescript: ^4.7.4
@@ -51,6 +52,7 @@ importers:
       lint-staged: 13.0.3
       prettier: 2.7.1
       simple-git-hooks: 2.8.0
+      tslib: 2.4.0
       tsup: 6.1.3_qvxpcmtf4zkhfhsjxo5skuxhde
       turbo: 1.3.1
       typescript: 4.7.4
@@ -67,7 +69,6 @@ importers:
       colorette: ^2.0.19
       discord-api-types: ^0.36.1
       discord.js: ^13.8.1
-      tslib: ^2.4.0
     dependencies:
       '@hakase/sapphire-framework': link:../../packages/sapphire-framework
       '@hakase/utilities': link:../../packages/utilities
@@ -76,8 +77,20 @@ importers:
       colorette: 2.0.19
       discord-api-types: 0.36.1
       discord.js: 13.8.1
-    devDependencies:
-      tslib: 2.4.0
+
+  packages/discord.js-utilities:
+    specifiers:
+      binarytf: ^2.1.1
+    dependencies:
+      binarytf: 2.1.1
+
+  packages/pokemon-datapacks:
+    specifiers:
+      '@hakase/utilities': workspace:^0.1.0
+      '@sapphire/result': ^2.0.1
+    dependencies:
+      '@hakase/utilities': link:../utilities
+      '@sapphire/result': 2.0.1
 
   packages/sapphire-framework:
     specifiers:
@@ -451,6 +464,11 @@ packages:
 
   /@sapphire/result/1.1.1:
     resolution: {integrity: sha512-mKWq+HCu9t+gqVcXMhfH72Trj6cO0LZilpdVYndqRb3+30mrRqs+NtdSf1wAERYEtBmOf3ZWvROe4RPSx7aKvw==}
+    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
+    dev: false
+
+  /@sapphire/result/2.0.1:
+    resolution: {integrity: sha512-2Nrg/e+gsyz7qG8PL4kt/VSQY6GGeZcw0UbFKLlhpg+0hzeN6qGER0NLydKtLfmfYi3uLFMp4x2jLM7OeDkQAw==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dev: false
 
@@ -995,6 +1013,11 @@ packages:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
     dev: true
+
+  /binarytf/2.1.1:
+    resolution: {integrity: sha512-QfwWSeG58ZgC62p9kO04FQ+MP+dPYeg+6vdkttg5SuHR0gaHNzA9zOsM+9mW3k0ZCnVRVmOKlJX8HMu+3ssdgw==}
+    engines: {node: '>=v14.18.0', npm: '>=7.24.2'}
+    dev: false
 
   /brace-expansion/1.1.11:
     resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}

@@ -37,8 +37,5 @@
     "colorette": "^2.0.19",
     "discord-api-types": "^0.36.1",
     "discord.js": "^13.8.1"
-  },
-  "devDependencies": {
-    "tslib": "^2.4.0"
   }
 }
