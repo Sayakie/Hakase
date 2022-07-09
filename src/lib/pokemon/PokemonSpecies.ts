@@ -1029,18 +1029,4 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
 
     return 0
   }
-
-  static {
-    for (const species of Object.getOwnPropertyNames(PokemonSpecies)) {
-      console.log(species)
-      Object.defineProperty(PokemonSpecies, species, {
-        configurable: false,
-        enumerable: true,
-        value: species,
-        writable: false
-      })
-    }
-
-    Object.freeze(PokemonSpecies)
-  }
 }
