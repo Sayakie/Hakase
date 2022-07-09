@@ -1,7 +1,7 @@
 export const enum Identifiers {
   ReadyListener = `onReady`,
 
-  PokemonSpeciesConstructParseFailure = `pokemonSpeciesConstructParseFailure`,
+  PokemonSpeciesConstructJsonParseFailure = `pokemonSpeciesConstructJsonParseFailure`,
   PokemonSpeciesConstructInvalidPokeDexType = `pokemonSpeciesConstructInvalidPokeDexType`,
   PokemonSpeciesConstructInvalidGenerationType = `pokemonSpeciesConstructInvalidGenerationType`
 }

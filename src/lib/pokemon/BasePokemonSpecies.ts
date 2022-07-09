@@ -21,7 +21,7 @@ export abstract class BasePokemonSpecies {
     if (result.isErr()) {
       throw new UserError({
         context: { raw },
-        identifier: Identifiers.PokemonSpeciesConstructParseFailure,
+        identifier: Identifiers.PokemonSpeciesConstructJsonParseFailure,
         message: `Failed to parse a raw data to proper JSON object.`
       })
     }
