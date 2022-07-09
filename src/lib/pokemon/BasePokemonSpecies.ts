@@ -97,7 +97,7 @@ export abstract class BasePokemonSpecies {
   }
 
   public get [Symbol.toStringTag](): string {
-    return `${this.constructor.name}#${this.#name}`
+    return this.#name
   }
 
   /**
