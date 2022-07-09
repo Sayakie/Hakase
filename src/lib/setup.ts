@@ -1,6 +1,6 @@
 //
 // Apply some patches
-import './lib/patches/Math.js'
+import './patches/Math.js'
 //
 // Setting up environments
 import './config.js'
