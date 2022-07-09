@@ -937,6 +937,12 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
   public static readonly [Species.Fuecoco]: PokemonSpecies
   public static readonly [Species.Quaxly]: PokemonSpecies
 
+  public constructor(raw: any) {
+    super(raw)
+
+    REGISTERED_POKEMON.add(this)
+  }
+
   /**
    * Gets the PokemonSpecies instance holder by associated their name.
    *
