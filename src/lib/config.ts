@@ -1,3 +1,4 @@
+import { LogLevel } from '@sapphire/framework'
 import { type ArrayString, type BooleanString, envParseString, setup } from '@skyra/env-utilities'
 import { type ClientOptions, Constants } from 'discord.js'
 import { GatewayIntentBits } from 'discord-api-types/v10'
@@ -55,6 +56,10 @@ export const CLIENT_OPTIONS: ClientOptions = {
 
   loadDefaultErrorListeners: true,
   loadMessageCommandListeners: false,
+
+  logger: {
+    level: envParseString(`NODE_ENV`) === `production` ? LogLevel.Info : LogLevel.Debug
+  },
 
   partials: [Constants.PartialTypes.CHANNEL, Constants.PartialTypes.GUILD_SCHEDULED_EVENT]
 }
