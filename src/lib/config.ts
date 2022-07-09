@@ -4,9 +4,10 @@ import { type ClientOptions, Constants } from 'discord.js'
 import { GatewayIntentBits } from 'discord-api-types/v10'
 import { URL } from 'node:url'
 
+import { Directories } from './utils/constants.js'
 import { keyMirror } from './utils/functions.js'
 
-setup(new URL(`.env`, new URL(`../`, import.meta.url)))
+setup(new URL(`.env`, Directories.Root))
 
 const EnvKeys = keyMirror([
   `OWNERS`,
