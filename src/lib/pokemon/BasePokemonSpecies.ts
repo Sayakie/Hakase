@@ -1,30 +1,50 @@
 import { UserError } from '@sapphire/framework'
 import { Option, Result } from '@sapphire/result'
+<<<<<<< HEAD
 import { isNullish, isNullishOrEmpty, isNumber } from '@sapphire/utilities'
 import type { Locale, LocaleString, LocalizationMap } from 'discord-api-types/v10.js'
+=======
+import { isNumber } from '@sapphire/utilities'
+>>>>>>> 07c44eb (refactor(lib): separate species concerns)
 
 import { Identifiers } from '../utils/Identifiers.js'
 import type { PokemonSpecies } from './PokemonSpecies.js'
 
 export abstract class BasePokemonSpecies {
   readonly #name: string
+<<<<<<< HEAD
   #localizedNames: LocalizationMap
   #localizedNamesBelongToForm: Record<string, LocalizationMap>
   readonly #dex: number
   readonly #generation: number
   readonly #defaultForms: string[]
   readonly #forms: Stat[]
+=======
+  readonly #dex: number
+  readonly #generation: number
+
+  // @ts-expect-error This property would be used in extended class
+  readonly #defaultForms: string[]
+
+  // @ts-expect-error This property would be used in extended class
+  readonly #forms: any[]
+>>>>>>> 07c44eb (refactor(lib): separate species concerns)
 
   public constructor(raw: any) {
     const result = Result.from(() => JSON.parse(raw))
     if (result.isErr()) {
       throw new UserError({
         context: { raw },
+<<<<<<< HEAD
         identifier: Identifiers.PokemonSpeciesConstructJsonParseFailure,
+=======
+        identifier: Identifiers.PokemonSpeciesConstructParseFailure,
+>>>>>>> 07c44eb (refactor(lib): separate species concerns)
         message: `Failed to parse a raw data to proper JSON object.`
       })
     }
 
+<<<<<<< HEAD
     const { name, dex, generation, defaultForms, forms } = result.unwrap()
 
     this.#name = name
@@ -57,12 +77,45 @@ export abstract class BasePokemonSpecies {
 
     this.#defaultForms = defaultForms ?? []
     this.#forms = forms ?? []
+=======
+    const data = result.unwrap()
+
+    this.#name = data.name
+
+    if (isNumber(data.dex)) {
+      this.#dex = Math.max(0, data.dex)
+    } else {
+      throw new UserError({
+        context: {
+          value: data.dex
+        },
+        identifier: Identifiers.PokemonSpeciesConstructInvalidPokeDexType,
+        message: `Failed to fetch national dex. Expected "Number" type but actual is ${typeof data.dex}`
+      })
+    }
+
+    if (isNumber(data.generation)) {
+      this.#generation = Math.clamp(data.generation, 0, 9)
+    } else {
+      throw new UserError({
+        context: {
+          value: data.generation
+        },
+        identifier: Identifiers.PokemonSpeciesConstructInvalidGenerationType,
+        message: `Failed to fetch generation. Expected "Number" type but actual is ${typeof data.dex}`
+      })
+    }
+
+    this.#defaultForms = data.defaultForms ?? []
+    this.#forms = data.forms ?? []
+>>>>>>> 07c44eb (refactor(lib): separate species concerns)
   }
 
   /** The name of this species. */
   public get name(): string {
     return this.#name
   }
+<<<<<<< HEAD
 
   /**
    * The localized names of this species.
@@ -79,6 +132,8 @@ export abstract class BasePokemonSpecies {
   public get localizedNamesBelongToForm(): Record<string, LocalizationMap> {
     return this.#localizedNamesBelongToForm
   }
+=======
+>>>>>>> 07c44eb (refactor(lib): separate species concerns)
 
   /** The generation of this species. */
   public get generation(): number {
@@ -101,6 +156,7 @@ export abstract class BasePokemonSpecies {
 
     return pokedexHolder
   }
+<<<<<<< HEAD
 
   /** The default forms of this species. */
   public get defaultForms(): string[] {
@@ -111,6 +167,8 @@ export abstract class BasePokemonSpecies {
   public get forms(): Stat[] {
     return this.#forms
   }
+=======
+>>>>>>> 07c44eb (refactor(lib): separate species concerns)
 
   /** The holder of this species. */
   public get holder(): Option.Some<BasePokemonSpecies> {
@@ -118,7 +176,11 @@ export abstract class BasePokemonSpecies {
   }
 
   public get [Symbol.toStringTag](): string {
+<<<<<<< HEAD
     return this.#name
+=======
+    return `${this.constructor.name}#${this.#name}`
+>>>>>>> 07c44eb (refactor(lib): separate species concerns)
   }
 
   /**
@@ -129,6 +191,7 @@ export abstract class BasePokemonSpecies {
   public getName(): string {
     return this.name
   }
+<<<<<<< HEAD
 
   /**
    * Gets the localized name belong to the species.
@@ -152,6 +215,8 @@ export abstract class BasePokemonSpecies {
   public getLocalizedNamesBelongToForm(): Record<string, LocalizationMap> {
     return this.localizedNamesBelongToForm
   }
+=======
+>>>>>>> 07c44eb (refactor(lib): separate species concerns)
 
   /**
    * Gets the species generation.
@@ -182,6 +247,7 @@ export abstract class BasePokemonSpecies {
   public getNationalPokedex(): SpeciesPokedexHolder {
     return this.nationalPokedex
   }
+<<<<<<< HEAD
 
   public getDefaultForms(): string[] {
     return this.defaultForms
@@ -210,6 +276,8 @@ export abstract class BasePokemonSpecies {
 
     this.#localizedNamesBelongToForm[formName][locale] = localizedName
   }
+=======
+>>>>>>> 07c44eb (refactor(lib): separate species concerns)
 
   /**
    * Gets whether the species is a legendary pokemon.
@@ -220,11 +288,16 @@ export abstract class BasePokemonSpecies {
   public isLegendary(): this is PokemonSpecies<`legendary` | `mythical`>
   public isLegendary(includeMythical: true): this is PokemonSpecies<`legendary` | `mythical`>
   public isLegendary(includeMythical: false): this is PokemonSpecies<`legendary`>
+<<<<<<< HEAD
   public isLegendary(includeMythical: boolean = true): boolean {
     return (
       this.forms.find(({ name }) => name === ``)?.tags.includes(`legendary`) ??
       (includeMythical && this.isMythical())
     )
+=======
+  public isLegendary(_includeMythical: boolean = true): boolean {
+    return true
+>>>>>>> 07c44eb (refactor(lib): separate species concerns)
   }
 
   /**
@@ -233,7 +306,11 @@ export abstract class BasePokemonSpecies {
    * @returns {boolean} Whether this species is a mythical or not
    */
   public isMythical(): this is PokemonSpecies<`mythical`> {
+<<<<<<< HEAD
     return this.forms.find(({ name }) => name === ``)?.tags.includes(`mythical`) ?? false
+=======
+    return true
+>>>>>>> 07c44eb (refactor(lib): separate species concerns)
   }
 
   /**
@@ -242,7 +319,11 @@ export abstract class BasePokemonSpecies {
    * @returns {boolean} Whether this species is a ultrabeast or not
    */
   public isUltraBeast(): this is PokemonSpecies<`ultrabeast`> {
+<<<<<<< HEAD
     return this.forms.find(({ name }) => name === ``)?.tags.includes(`ultrabeast`) ?? false
+=======
+    return true
+>>>>>>> 07c44eb (refactor(lib): separate species concerns)
   }
 
   /**
