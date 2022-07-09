@@ -9,12 +9,8 @@ export abstract class BasePokemonSpecies {
   readonly #name: string
   readonly #dex: number
   readonly #generation: number
-
-  // @ts-expect-error This property would be used in extended class
   readonly #defaultForms: string[]
-
-  // @ts-expect-error This property would be used in extended class
-  readonly #forms: any[]
+  readonly #forms: Stat[]
 
   public constructor(raw: any) {
     const result = Result.from(() => JSON.parse(raw))
@@ -26,36 +22,36 @@ export abstract class BasePokemonSpecies {
       })
     }
 
-    const data = result.unwrap()
+    const { name, dex, generation, defaultForms, forms } = result.unwrap()
 
-    this.#name = data.name
+    this.#name = name
 
-    if (isNumber(data.dex)) {
-      this.#dex = Math.max(0, data.dex)
+    if (isNumber(dex)) {
+      this.#dex = Math.max(0, dex)
     } else {
       throw new UserError({
         context: {
-          value: data.dex
+          value: dex
         },
         identifier: Identifiers.PokemonSpeciesConstructInvalidPokeDexType,
-        message: `Failed to fetch national dex. Expected "Number" type but actual is ${typeof data.dex}`
+        message: `Failed to fetch national dex. Expected "Number" type but actual is ${typeof dex}`
       })
     }
 
-    if (isNumber(data.generation)) {
-      this.#generation = Math.clamp(data.generation, 0, 9)
+    if (isNumber(generation)) {
+      this.#generation = Math.clamp(generation, 0, 9)
     } else {
       throw new UserError({
         context: {
-          value: data.generation
+          value: generation
         },
         identifier: Identifiers.PokemonSpeciesConstructInvalidGenerationType,
-        message: `Failed to fetch generation. Expected "Number" type but actual is ${typeof data.dex}`
+        message: `Failed to fetch generation. Expected "Number" type but actual is ${typeof generation}`
       })
     }
 
-    this.#defaultForms = data.defaultForms ?? []
-    this.#forms = data.forms ?? []
+    this.#defaultForms = defaultForms ?? []
+    this.#forms = forms ?? []
   }
 
   /** The name of this species. */
@@ -83,6 +79,16 @@ export abstract class BasePokemonSpecies {
     Object.freeze(pokedexHolder)
 
     return pokedexHolder
+  }
+
+  /** The default forms of this species. */
+  public get defaultForms(): string[] {
+    return this.#defaultForms.filter(Boolean)
+  }
+
+  /** The available all forms of thie species. */
+  public get forms(): Stat[] {
+    return this.#forms
   }
 
   /** The holder of this species. */
@@ -131,6 +137,14 @@ export abstract class BasePokemonSpecies {
    */
   public getNationalPokedex(): SpeciesPokedexHolder {
     return this.nationalPokedex
+  }
+
+  public getDefaultForms(): string[] {
+    return this.defaultForms
+  }
+
+  public getForms(): Stat[] {
+    return this.forms
   }
 
   /**
