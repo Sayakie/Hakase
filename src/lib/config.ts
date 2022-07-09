@@ -5,8 +5,12 @@ import { type ClientOptions, Constants } from 'discord.js'
 import { GatewayIntentBits } from 'discord-api-types/v10'
 import { URL } from 'node:url'
 
+<<<<<<< HEAD:src/lib/config.ts
 import { Directories } from './utils/constants.js'
 import { keyMirror } from './utils/functions.js'
+=======
+import { keyMirror } from './lib/utils/functions.js'
+>>>>>>> 017f803 (refactor: reposition project working dir):src/config.ts
 
 setup(new URL(`.env`, Directories.Root))
 
@@ -59,6 +63,7 @@ export const CLIENT_OPTIONS: ClientOptions = {
   loadDefaultErrorListeners: true,
   loadMessageCommandListeners: false,
 
+<<<<<<< HEAD:src/lib/config.ts
   logger: {
     level: envParseString(`NODE_ENV`) === `production` ? LogLevel.Info : LogLevel.Debug
   },
@@ -66,4 +71,7 @@ export const CLIENT_OPTIONS: ClientOptions = {
   partials: [Constants.PartialTypes.CHANNEL, Constants.PartialTypes.GUILD_SCHEDULED_EVENT],
 
   prisma: null
+=======
+  partials: [Constants.PartialTypes.CHANNEL, Constants.PartialTypes.GUILD_SCHEDULED_EVENT]
+>>>>>>> 017f803 (refactor: reposition project working dir):src/config.ts
 }
