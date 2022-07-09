@@ -3,7 +3,7 @@ import { type ClientOptions, Constants } from 'discord.js'
 import { GatewayIntentBits } from 'discord-api-types/v10'
 import { URL } from 'node:url'
 
-import { keyMirror } from './utils/functions.js'
+import { keyMirror } from './lib/utils/functions.js'
 
 setup(new URL(`.env`, new URL(`../`, import.meta.url)))
 
@@ -56,7 +56,5 @@ export const CLIENT_OPTIONS: ClientOptions = {
   loadDefaultErrorListeners: true,
   loadMessageCommandListeners: false,
 
-  partials: [Constants.PartialTypes.CHANNEL, Constants.PartialTypes.GUILD_SCHEDULED_EVENT],
-
-  prisma: null
+  partials: [Constants.PartialTypes.CHANNEL, Constants.PartialTypes.GUILD_SCHEDULED_EVENT]
 }
