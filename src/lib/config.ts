@@ -3,7 +3,7 @@ import { type ClientOptions, Constants } from 'discord.js'
 import { GatewayIntentBits } from 'discord-api-types/v10'
 import { URL } from 'node:url'
 
-import { keyMirror } from './lib/utils/functions.js'
+import { keyMirror } from './utils/functions.js'
 
 setup(new URL(`.env`, new URL(`../`, import.meta.url)))
 
