@@ -45,9 +45,9 @@ declare module '@skyra/env-utilities' {
 export const OWNERS = envParseString(`OWNERS`)
 
 export const DISCORD_TOKEN =
-  envParseString(`DISCORD_TOKEN_DEV`) ||
-  envParseString(`DISCORD_TOKEN_PROD`) ||
-  envParseString(`DISCORD_TOKEN`)
+  envParseString(`NODE_ENV`) === `production`
+    ? envParseString(`DISCORD_TOKEN_PROD`) || envParseString(`DISCORD_TOKEN`)
+    : envParseString(`DISCORD_TOKEN_DEV`) || envParseString(`DISCORD_TOKEN`)
 
 export const CLIENT_OPTIONS: ClientOptions = {
   allowedMentions: { roles: [], users: [] },
