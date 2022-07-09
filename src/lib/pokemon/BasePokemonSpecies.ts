@@ -156,8 +156,11 @@ export abstract class BasePokemonSpecies {
   public isLegendary(): this is PokemonSpecies<`legendary` | `mythical`>
   public isLegendary(includeMythical: true): this is PokemonSpecies<`legendary` | `mythical`>
   public isLegendary(includeMythical: false): this is PokemonSpecies<`legendary`>
-  public isLegendary(_includeMythical: boolean = true): boolean {
-    return true
+  public isLegendary(includeMythical: boolean = true): boolean {
+    return (
+      this.forms.find(({ name }) => name === ``)?.tags.includes(`legendary`) ??
+      (includeMythical && this.isMythical())
+    )
   }
 
   /**
@@ -166,7 +169,7 @@ export abstract class BasePokemonSpecies {
    * @returns {boolean} Whether this species is a mythical or not
    */
   public isMythical(): this is PokemonSpecies<`mythical`> {
-    return true
+    return this.forms.find(({ name }) => name === ``)?.tags.includes(`mythical`) ?? false
   }
 
   /**
@@ -175,7 +178,7 @@ export abstract class BasePokemonSpecies {
    * @returns {boolean} Whether this species is a ultrabeast or not
    */
   public isUltraBeast(): this is PokemonSpecies<`ultrabeast`> {
-    return true
+    return this.forms.find(({ name }) => name === ``)?.tags.includes(`ultrabeast`) ?? false
   }
 
   /**
