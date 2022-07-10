@@ -14,3 +14,11 @@ export const enum ResourceIdentifiers {
   PIXELMON = `pixelmon`,
   FORGE = `forge`
 }
+
+export const enum BrandingColors {
+  Primary = 0x06d6a0
+}
+
+export const enum MemoryUnits {
+  MiB = 1048576
+}
