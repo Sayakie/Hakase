@@ -40,6 +40,7 @@
     "@sapphire/pieces": "^3.3.4",
     "@sapphire/result": "^2.0.1",
     "@sapphire/stopwatch": "^1.4.1",
+    "@sapphire/time-utilities": "^1.7.4",
     "@sapphire/utilities": "^3.7.0",
     "@skyra/env-utilities": "^1.0.1",
     "@skyra/jaro-winkler": "^1.1.0",
