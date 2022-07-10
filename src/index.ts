@@ -1,2 +1,2 @@
-import './config.js'
+import './lib/setup.js'
 import './launch.js'

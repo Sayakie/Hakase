@@ -937,53 +937,10 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
   public static readonly [Species.Fuecoco]: PokemonSpecies
   public static readonly [Species.Quaxly]: PokemonSpecies
 
-  readonly #name: string
-  readonly #dex: number
-  readonly #generation: number | null
-  // readonly #defaultForms: string[]
-  // readonly #stats: Set<Stat>
+  public constructor(raw: any) {
+    super(raw)
 
-  private constructor(name: string, dex: number) {
-    super()
-
-    this.#name = name
-    this.#dex = dex
-    this.#generation = null
-  }
-
-  public override get name(): string {
-    return this.#name
-  }
-
-  public override get generation(): number {
-    const result = Result.from(() => Number(this.#generation))
-    const generation = result.unwrapOrElse(() => PokemonSpecies.getGenerationFromDex(this.#dex))
-
-    return generation
-  }
-
-  public override get nationalPokedex(): PokemonSpecies.PokedexHolder {
-    const result = Result.from(() => Number(this.#dex))
-    const dex = result.unwrapOr(-1)
-
-    const pokedexHolder = {
-      asNumber: () => dex,
-      asString: () => String(dex).padStart(3, `0`)
-    }
-
-    Reflect.set(pokedexHolder, `toString`, pokedexHolder.asString)
-    Reflect.set(pokedexHolder, `valueOf`, pokedexHolder.asNumber)
-    Object.freeze(pokedexHolder)
-
-    return pokedexHolder
-  }
-
-  public override get holder(): Option<PokemonSpecies> {
-    return Option.some(this)
-  }
-
-  public override get [Symbol.toStringTag](): string {
-    return `${this.constructor.name}#${this.#name}`
+    REGISTERED_POKEMON.add(this)
   }
 
   /**
@@ -1057,7 +1014,7 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
     }
   }
 
-  private static getGenerationFromDex(dex: number): number {
+  public static getGenerationFromDex(dex: number): number {
     if (dex <= 151) {
       return 1
     } else if (dex <= 251) {
@@ -1078,77 +1035,4 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
 
     return 0
   }
-
-  public override getName(): string {
-    return this.name
-  }
-
-  public override getGeneration(): number {
-    return this.generation
-  }
-
-  public override getNationalPokedex(): PokemonSpecies.PokedexHolder {
-    return this.nationalPokedex
-  }
-
-  public override isLegendary(): this is PokemonSpecies<`legendary` | `mythical`>
-  public override isLegendary(
-    includeMythical: true
-  ): this is PokemonSpecies<`legendary` | `mythical`>
-  public override isLegendary(includeMythical: false): this is PokemonSpecies<`legendary`>
-  public override isLegendary(_includeMythical: boolean = true): boolean {
-    return true
-  }
-
-  public override isMythical(): this is PokemonSpecies<`mythical`> {
-    return true
-  }
-
-  public override isUltraBeast(): this is PokemonSpecies<`ultrabeast`> {
-    return true
-  }
-
-  public override toHolder(): Option<PokemonSpecies> {
-    return this.holder
-  }
-
-  public override toString(): string {
-    return this.#name
-  }
-
-  public override valueOf(): number {
-    return this.#dex
-  }
-
-  public override [Symbol.toPrimitive](hint: `default`): string
-  public override [Symbol.toPrimitive](hint: `string`): string
-  public override [Symbol.toPrimitive](hint: `number`): number
-  public override [Symbol.toPrimitive](hint: string): string | number {
-    switch (hint) {
-      case `default`:
-      case `string`:
-      default:
-        return this.#name
-      case `number`:
-        return this.#dex
-    }
-  }
-
-  static {
-    for (const species of Object.getOwnPropertyNames(PokemonSpecies)) {
-      console.log(species)
-      Object.defineProperty(PokemonSpecies, species, {
-        configurable: false,
-        enumerable: true,
-        value: species,
-        writable: false
-      })
-    }
-
-    Object.freeze(PokemonSpecies)
-  }
-}
-
-export namespace PokemonSpecies {
-  export type PokedexHolder = BasePokemonSpecies.PokedexHolder
 }

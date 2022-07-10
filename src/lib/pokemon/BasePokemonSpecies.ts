@@ -1,31 +1,166 @@
-import type { Option } from '@sapphire/result'
+import { UserError } from '@sapphire/framework'
+import { Option, Result } from '@sapphire/result'
+import { isNullish, isNullishOrEmpty, isNumber } from '@sapphire/utilities'
+import type { Locale, LocaleString, LocalizationMap } from 'discord-api-types/v10.js'
+
+import { Identifiers } from '../utils/Identifiers.js'
+import type { PokemonSpecies } from './PokemonSpecies.js'
 
 export abstract class BasePokemonSpecies {
+  readonly #name: string
+  #localizedNames: LocalizationMap
+  #localizedNamesBelongToForm: Record<string, LocalizationMap>
+  readonly #dex: number
+  readonly #generation: number
+  readonly #defaultForms: string[]
+  readonly #forms: Stat[]
+
+  public constructor(raw: any) {
+    const result = Result.from(() => JSON.parse(raw))
+    if (result.isErr()) {
+      throw new UserError({
+        context: { raw },
+        identifier: Identifiers.PokemonSpeciesConstructJsonParseFailure,
+        message: `Failed to parse a raw data to proper JSON object.`
+      })
+    }
+
+    const { name, dex, generation, defaultForms, forms } = result.unwrap()
+
+    this.#name = name
+    this.#localizedNames = {}
+    this.#localizedNamesBelongToForm = {}
+
+    if (isNumber(dex)) {
+      this.#dex = Math.max(0, dex)
+    } else {
+      throw new UserError({
+        context: {
+          value: dex
+        },
+        identifier: Identifiers.PokemonSpeciesConstructInvalidPokeDexType,
+        message: `Failed to fetch national dex. Expected "Number" type but actual is ${typeof dex}`
+      })
+    }
+
+    if (isNumber(generation)) {
+      this.#generation = Math.clamp(generation, 0, 9)
+    } else {
+      throw new UserError({
+        context: {
+          value: generation
+        },
+        identifier: Identifiers.PokemonSpeciesConstructInvalidGenerationType,
+        message: `Failed to fetch generation. Expected "Number" type but actual is ${typeof generation}`
+      })
+    }
+
+    this.#defaultForms = defaultForms ?? []
+    this.#forms = forms ?? []
+  }
+
   /** The name of this species. */
-  public abstract get name(): string
+  public get name(): string {
+    return this.#name
+  }
+
+  /**
+   * The localized names of this species.
+   *
+   * Note that the {@link #localizedNames} variable should be filled when language-loader is started.
+   */
+  public get localizedNames(): LocalizationMap {
+    return this.#localizedNames
+  }
+
+  /**
+   * The localized names of this species that belong to form name.
+   */
+  public get localizedNamesBelongToForm(): Record<string, LocalizationMap> {
+    return this.#localizedNamesBelongToForm
+  }
 
   /** The generation of this species. */
-  public abstract get generation(): number
+  public get generation(): number {
+    return this.#generation
+  }
 
   /** The pokedex holder of this species. */
-  public abstract get nationalPokedex(): SpeciesPokedexHolder
+  public get nationalPokedex(): SpeciesPokedexHolder {
+    const result = Result.from(() => Number(this.#dex))
+    const dex = result.unwrapOr(-1)
+
+    const pokedexHolder = {
+      asNumber: () => dex,
+      asString: () => String(dex).padStart(3, `0`)
+    }
+
+    Reflect.set(pokedexHolder, `toString`, pokedexHolder.asString)
+    Reflect.set(pokedexHolder, `valueOf`, pokedexHolder.asNumber)
+    Object.freeze(pokedexHolder)
+
+    return pokedexHolder
+  }
+
+  /** The default forms of this species. */
+  public get defaultForms(): string[] {
+    return this.#defaultForms.filter(Boolean)
+  }
+
+  /** The available all forms of thie species. */
+  public get forms(): Stat[] {
+    return this.#forms
+  }
 
   /** The holder of this species. */
-  public abstract get holder(): Option<BasePokemonSpecies>
+  public get holder(): Option.Some<BasePokemonSpecies> {
+    return Option.some(this)
+  }
+
+  public get [Symbol.toStringTag](): string {
+    return this.#name
+  }
 
   /**
    * Gets the species name.
    *
    * @returns {string} This species name
    */
-  public abstract getName(): string
+  public getName(): string {
+    return this.name
+  }
+
+  /**
+   * Gets the localized name belong to the species.
+   *
+   * @param {LocaleString} locale The locale to obtain
+   * @returns {LocalizationMap} The localized name belong to this species
+   */
+  public getLocalizedName(locale: LocaleString): string | null {
+    return Reflect.get(this.localizedNames, locale) ?? null
+  }
+
+  /**
+   * Gets the localized names belong to the species.
+   *
+   * @returns {LocalizationMap} The localized names belong to this species
+   */
+  public getLocalizedNames(): LocalizationMap {
+    return this.localizedNames
+  }
+
+  public getLocalizedNamesBelongToForm(): Record<string, LocalizationMap> {
+    return this.localizedNamesBelongToForm
+  }
 
   /**
    * Gets the species generation.
    *
    * @returns {number} This species generation
    */
-  public abstract getGeneration(): number
+  public getGeneration(): number {
+    return this.generation
+  }
 
   /**
    * Gets the species national Pokédex that is wrapped.
@@ -44,7 +179,37 @@ export abstract class BasePokemonSpecies {
    * `6` === charizardPokedex.asString() // false
    * ```
    */
-  public abstract getNationalPokedex(): SpeciesPokedexHolder
+  public getNationalPokedex(): SpeciesPokedexHolder {
+    return this.nationalPokedex
+  }
+
+  public getDefaultForms(): string[] {
+    return this.defaultForms
+  }
+
+  public getForms(): Stat[] {
+    return this.forms
+  }
+
+  public setLocalizedName(locale: `${Locale}`, localizedName: string): void {
+    this.#localizedNames[locale] = localizedName
+  }
+
+  public setLocalizedNames(localizedNames: LocalizationMap): void {
+    this.#localizedNames = localizedNames
+  }
+
+  public setLocalizedNameBelongToForm(
+    formName: string,
+    locale: `${Locale}`,
+    localizedName: string
+  ): void {
+    if (isNullish(this.localizedNamesBelongToForm[formName])) {
+      this.#localizedNamesBelongToForm[formName] = {}
+    }
+
+    this.#localizedNamesBelongToForm[formName][locale] = localizedName
+  }
 
   /**
    * Gets whether the species is a legendary pokemon.
@@ -52,34 +217,64 @@ export abstract class BasePokemonSpecies {
    * @param {boolean} includeMythical Mythical including flag
    * @returns {boolean} Whether this species is a legendary or not
    */
-  public abstract isLegendary(): boolean
-  public abstract isLegendary(includeMythical: boolean): boolean
+  public isLegendary(): this is PokemonSpecies<`legendary` | `mythical`>
+  public isLegendary(includeMythical: true): this is PokemonSpecies<`legendary` | `mythical`>
+  public isLegendary(includeMythical: false): this is PokemonSpecies<`legendary`>
+  public isLegendary(includeMythical: boolean = true): boolean {
+    return (
+      this.forms.find(({ name }) => name === ``)?.tags.includes(`legendary`) ??
+      (includeMythical && this.isMythical())
+    )
+  }
 
   /**
    * Gets whether the species is a mythical pokemon.
    *
    * @returns {boolean} Whether this species is a mythical or not
    */
-  public abstract isMythical(): boolean
+  public isMythical(): this is PokemonSpecies<`mythical`> {
+    return this.forms.find(({ name }) => name === ``)?.tags.includes(`mythical`) ?? false
+  }
 
   /**
    * Gets whether the species is a ultrabeast pokemon.
    *
    * @returns {boolean} Whether this species is a ultrabeast or not
    */
-  public abstract isUltraBeast(): boolean
+  public isUltraBeast(): this is PokemonSpecies<`ultrabeast`> {
+    return this.forms.find(({ name }) => name === ``)?.tags.includes(`ultrabeast`) ?? false
+  }
 
   /**
    * Gets the species holder.
    *
    * @returns {Option<BasePokemonSpecies>} This species holder
    */
-  public abstract toHolder(): Option<BasePokemonSpecies>
+  public toHolder(): Option<BasePokemonSpecies> {
+    return this.holder
+  }
 
-  public abstract [Symbol.toPrimitive](hint: `default`): string
-  public abstract [Symbol.toPrimitive](hint: `string`): string
-  public abstract [Symbol.toPrimitive](hint: `number`): number
-  public abstract [Symbol.toPrimitive](hint: string): string | number
+  public toString(): string {
+    return this.#name
+  }
+
+  public valueOf(): number {
+    return this.#dex
+  }
+
+  public [Symbol.toPrimitive](hint: `default`): string
+  public [Symbol.toPrimitive](hint: `string`): string
+  public [Symbol.toPrimitive](hint: `number`): number
+  public [Symbol.toPrimitive](hint: string): string | number {
+    switch (hint) {
+      case `default`:
+      case `string`:
+      default:
+        return this.#name
+      case `number`:
+        return this.#dex
+    }
+  }
 }
 
 /**

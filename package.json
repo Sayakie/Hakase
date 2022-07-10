@@ -42,7 +42,8 @@
     "@skyra/env-utilities": "^1.0.1",
     "colorette": "^2.0.19",
     "discord-api-types": "^0.36.1",
-    "discord.js": "^13.8.1"
+    "discord.js": "^13.8.1",
+    "parse-json": "^6.0.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
@@ -50,6 +51,7 @@
     "@sapphire/ts-config": "^3.3.4",
     "@swc/core": "^1.2.210",
     "@types/node": "^18.0.3",
+    "@types/parse-json": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
     "eslint": "^8.19.0",

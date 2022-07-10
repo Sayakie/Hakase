@@ -2,6 +2,8 @@ import { SapphireClient } from '@sapphire/framework'
 import { container } from '@sapphire/pieces'
 import type { ClientOptions } from 'discord.js'
 
+import { FuzzyPokemonStrategyStore } from '../structures/FuzzyPokemonStrategyStore.js'
+
 export interface ClientProperties {
   prisma: unknown
 }
@@ -33,19 +35,23 @@ export class Client<Ready extends boolean = boolean> extends SapphireClient<Read
 
     this.prisma = options.prisma
     container.prisma = this.prisma
+
+    this.stores.register(new FuzzyPokemonStrategyStore())
   }
 }
 
+/* eslint-disable @typescript-eslint/no-empty-interface */
 declare module '@sapphire/pieces' {
-  type Container = ClientProperties
+  interface Container extends ClientProperties {}
 }
 
 declare module '@sapphire/framework' {
-  type SapphireClient = ClientProperties
+  interface SapphireClient extends ClientProperties {}
 }
 
 declare module 'discord.js' {
-  type Client = ClientProperties
+  interface Client extends ClientProperties {}
 
-  type ClientOptions = ClientProperties
+  interface ClientOptions extends ClientProperties {}
 }
+/* eslint-enable */

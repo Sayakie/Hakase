@@ -3,9 +3,11 @@ import { type Store, Events, Listener } from '@sapphire/framework'
 import { blue, blueBright, gray } from 'colorette'
 import type { Client } from 'discord.js'
 
+import { ListenerIdentifiers } from '../lib/utils/Identifiers.js'
+
 @Mixin<Listener.Options>({
   event: Events.ClientReady,
-  name: `onReady`,
+  name: ListenerIdentifiers.Ready,
   once: true
 })
 export class HakaseListener extends Listener<typeof Events.ClientReady> {

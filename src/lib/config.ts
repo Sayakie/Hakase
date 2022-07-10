@@ -1,11 +1,14 @@
+import { LogLevel } from '@sapphire/framework'
+import type { NumberString } from '@skyra/env-utilities'
 import { type ArrayString, type BooleanString, envParseString, setup } from '@skyra/env-utilities'
 import { type ClientOptions, Constants } from 'discord.js'
 import { GatewayIntentBits } from 'discord-api-types/v10'
 import { URL } from 'node:url'
 
+import { Directories } from './utils/constants.js'
 import { keyMirror } from './utils/functions.js'
 
-setup(new URL(`.env`, new URL(`../`, import.meta.url)))
+setup(new URL(`.env`, Directories.Root))
 
 const EnvKeys = keyMirror([
   `OWNERS`,
@@ -13,8 +16,8 @@ const EnvKeys = keyMirror([
   `CLIENT_PRESENCE_NAME`,
   `CLIENT_PRESENCE_TYPE`,
 
-  `COMMAND_PREFIX`,
-  `ENABLE_MENTION_PREFIX`,
+  `FUZZY_SEARCH_POKEMON_THRESHOLD`,
+  `FUZZY_SEARCH_POKEMON_RELATED_MATCH_THRESHOLD`,
 
   `DISCORD_TOKEN`,
   // [for Codespace only]
@@ -31,8 +34,8 @@ declare module '@skyra/env-utilities' {
     [EnvKeys.CLIENT_PRESENCE_NAME]: string
     [EnvKeys.CLIENT_PRESENCE_TYPE]: string
 
-    [EnvKeys.COMMAND_PREFIX]: string
-    [EnvKeys.ENABLE_MENTION_PREFIX]: BooleanString
+    [EnvKeys.FUZZY_SEARCH_POKEMON_THRESHOLD]: NumberString
+    [EnvKeys.FUZZY_SEARCH_POKEMON_RELATED_MATCH_THRESHOLD]: NumberString
 
     [EnvKeys.DISCORD_TOKEN]: string
     [EnvKeys.DISCORD_TOKEN_DEV]: string
@@ -44,9 +47,9 @@ declare module '@skyra/env-utilities' {
 export const OWNERS = envParseString(`OWNERS`)
 
 export const DISCORD_TOKEN =
-  envParseString(`DISCORD_TOKEN_DEV`) ||
-  envParseString(`DISCORD_TOKEN_PROD`) ||
-  envParseString(`DISCORD_TOKEN`)
+  envParseString(`NODE_ENV`) === `production`
+    ? envParseString(`DISCORD_TOKEN_PROD`) || envParseString(`DISCORD_TOKEN`)
+    : envParseString(`DISCORD_TOKEN_DEV`) || envParseString(`DISCORD_TOKEN`)
 
 export const CLIENT_OPTIONS: ClientOptions = {
   allowedMentions: { roles: [], users: [] },
@@ -55,6 +58,10 @@ export const CLIENT_OPTIONS: ClientOptions = {
 
   loadDefaultErrorListeners: true,
   loadMessageCommandListeners: false,
+
+  logger: {
+    level: envParseString(`NODE_ENV`) === `production` ? LogLevel.Info : LogLevel.Debug
+  },
 
   partials: [Constants.PartialTypes.CHANNEL, Constants.PartialTypes.GUILD_SCHEDULED_EVENT],
 

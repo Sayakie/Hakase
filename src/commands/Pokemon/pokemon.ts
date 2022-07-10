@@ -2,7 +2,7 @@ import { ApplyOptions as Mixin } from '@sapphire/decorators'
 import type { ChatInputCommand } from '@sapphire/framework'
 import { RegisterBehavior } from '@sapphire/framework'
 
-import { LocalizableCommand } from '../../structures/Command.js'
+import { LocalizableCommand } from '../../lib/structures/LocalizableCommand.js'
 
 @Mixin<ChatInputCommand.Options>({
   description: `Gets data for the chosen Pokémon.`,
@@ -35,8 +35,8 @@ export class SlashCommand extends LocalizableCommand {
           ),
       {
         behaviorWhenNotIdentical: RegisterBehavior.Overwrite,
-        guildIds: [`933262986720706600`]
-        // idHints: [`994423768481017957`]
+        guildIds: [`933262986720706600`, `740965554713657414`],
+        idHints: [`994423768481017957`]
       }
     )
   }

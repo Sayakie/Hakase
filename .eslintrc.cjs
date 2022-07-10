@@ -134,6 +134,10 @@ module.exports = {
         selector: `classProperty`
       },
       {
+        format: [`camelCase`, `PascalCase`, `UPPER_CASE`],
+        selector: `objectLiteralProperty`
+      },
+      {
         format: [`StrictPascalCase`],
         selector: `typeLike`
       }
