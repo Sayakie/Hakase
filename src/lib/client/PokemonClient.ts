@@ -25,7 +25,10 @@ export class PokemonClient {
   public readonly relatedMatchThreshold: number
 
   public constructor() {
-    this.relatedMatchThreshold = envParseNumber(`FUZZY_SEARCH_POKEMON_RELATED_MATCH_THRESHOLD`)
+    this.relatedMatchThreshold = envParseNumber(
+      `FUZZY_SEARCH_POKEMON_RELATED_MATCH_THRESHOLD`,
+      0.125
+    )
   }
 
   // public async getPokemon(pokemonLike: string) {}
