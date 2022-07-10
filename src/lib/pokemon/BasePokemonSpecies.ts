@@ -1,12 +1,15 @@
 import { UserError } from '@sapphire/framework'
 import { Option, Result } from '@sapphire/result'
-import { isNumber } from '@sapphire/utilities'
+import { isNullish, isNullishOrEmpty, isNumber } from '@sapphire/utilities'
+import type { Locale, LocaleString, LocalizationMap } from 'discord-api-types/v10.js'
 
 import { Identifiers } from '../utils/Identifiers.js'
 import type { PokemonSpecies } from './PokemonSpecies.js'
 
 export abstract class BasePokemonSpecies {
   readonly #name: string
+  #localizedNames: LocalizationMap
+  #localizedNamesBelongToForm: Record<string, LocalizationMap>
   readonly #dex: number
   readonly #generation: number
   readonly #defaultForms: string[]
@@ -25,6 +28,8 @@ export abstract class BasePokemonSpecies {
     const { name, dex, generation, defaultForms, forms } = result.unwrap()
 
     this.#name = name
+    this.#localizedNames = {}
+    this.#localizedNamesBelongToForm = {}
 
     if (isNumber(dex)) {
       this.#dex = Math.max(0, dex)
@@ -57,6 +62,22 @@ export abstract class BasePokemonSpecies {
   /** The name of this species. */
   public get name(): string {
     return this.#name
+  }
+
+  /**
+   * The localized names of this species.
+   *
+   * Note that the {@link #localizedNames} variable should be filled when language-loader is started.
+   */
+  public get localizedNames(): LocalizationMap {
+    return this.#localizedNames
+  }
+
+  /**
+   * The localized names of this species that belong to form name.
+   */
+  public get localizedNamesBelongToForm(): Record<string, LocalizationMap> {
+    return this.#localizedNamesBelongToForm
   }
 
   /** The generation of this species. */
@@ -110,6 +131,29 @@ export abstract class BasePokemonSpecies {
   }
 
   /**
+   * Gets the localized name belong to the species.
+   *
+   * @param {LocaleString} locale The locale to obtain
+   * @returns {LocalizationMap} The localized name belong to this species
+   */
+  public getLocalizedName(locale: LocaleString): string | null {
+    return Reflect.get(this.localizedNames, locale) ?? null
+  }
+
+  /**
+   * Gets the localized names belong to the species.
+   *
+   * @returns {LocalizationMap} The localized names belong to this species
+   */
+  public getLocalizedNames(): LocalizationMap {
+    return this.localizedNames
+  }
+
+  public getLocalizedNamesBelongToForm(): Record<string, LocalizationMap> {
+    return this.localizedNamesBelongToForm
+  }
+
+  /**
    * Gets the species generation.
    *
    * @returns {number} This species generation
@@ -145,6 +189,26 @@ export abstract class BasePokemonSpecies {
 
   public getForms(): Stat[] {
     return this.forms
+  }
+
+  public setLocalizedName(locale: `${Locale}`, localizedName: string): void {
+    this.#localizedNames[locale] = localizedName
+  }
+
+  public setLocalizedNames(localizedNames: LocalizationMap): void {
+    this.#localizedNames = localizedNames
+  }
+
+  public setLocalizedNameBelongToForm(
+    formName: string,
+    locale: `${Locale}`,
+    localizedName: string
+  ): void {
+    if (isNullish(this.localizedNamesBelongToForm[formName])) {
+      this.#localizedNamesBelongToForm[formName] = {}
+    }
+
+    this.#localizedNamesBelongToForm[formName][locale] = localizedName
   }
 
   /**

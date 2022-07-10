@@ -1,6 +1,7 @@
 import { container } from '@sapphire/pieces'
 import { Result } from '@sapphire/result'
 import { isNullish } from '@sapphire/utilities'
+import { green } from 'colorette'
 import type { LocaleString } from 'discord-api-types/v10'
 import { Locale } from 'discord-api-types/v10'
 import { readdir, readFile } from 'node:fs/promises'
@@ -44,8 +45,8 @@ export async function loadAllLanguages(
     const languageFilePath = join(targetDir, languageFileName)
     const ext = extname(languageFileName)
     if (ext !== `.json`) {
-      container.logger.debug(
-        `[LanguageLoader] Skipping ${languageFileName} due to is not JSON type.`
+      container.logger.warn(
+        `[LanguageLoader] Skipping ${green(languageFileName)} due to is not JSON type.`
       )
       continue
     }
@@ -54,7 +55,9 @@ export async function loadAllLanguages(
       pixelmonToDiscordMappings[languageFileName.replace(ext, ``) as `en_us`]
     if (isNullish(locale)) {
       container.logger.warn(
-        `[LanguageLoader] Skipping ${languageFileName} due to is not compatible language with Discord.`
+        `[LanguageLoader] Skipping ${green(
+          languageFileName
+        )} due to is not compatible language with Discord.`
       )
       continue
     }
