@@ -104,7 +104,7 @@ interface Stat {
   catchRate: number
   malePercentage: number
   evolutions: string[]
-  evYields: { readonly [T in Stats]+?: number }
+  evYields: { readonly [T in BattleStat]+?: number }
 }
 
 interface Dimension {
