@@ -19,7 +19,7 @@ export class AutocompleteHandler extends InteractionHandler<{
   }
 
   public override async parse(
-    interaction: AutocompleteInteraction
+    interaction: AutocompleteInteraction & { locale: LocaleString }
   ): Promise<Maybe<ApplicationCommandOptionChoiceData[]>> {
     if (interaction.commandName !== `pokemon`) {
       return this.none()
@@ -31,11 +31,11 @@ export class AutocompleteHandler extends InteractionHandler<{
       case `pokemon`: {
         const fuzzyPokemon = await this.container.pokemonClient.fuzzilySearchPokemon(
           focusedOption.value,
-          { locale: interaction.locale as LocaleString }
+          { locale: interaction.locale }
         )
 
         return this.some(
-          fuzzyPokemon.map(fuzzyEntry => fuzzyPokemonToSelectOption(fuzzyEntry, locale))
+          fuzzyPokemon.map(fuzzyEntry => fuzzyPokemonToSelectOption(fuzzyEntry, interaction.locale))
         )
       }
       default:
