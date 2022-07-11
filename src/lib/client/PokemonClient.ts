@@ -1,11 +1,12 @@
 import { container } from '@sapphire/pieces'
 import { Result } from '@sapphire/result'
-import { isNullish, isNullishOrEmpty } from '@sapphire/utilities'
+import { isNullish } from '@sapphire/utilities'
 import { envParseNumber } from '@skyra/env-utilities'
-import type { LocaleString, LocalizationMap } from 'discord-api-types/v10'
+import type { LocaleString } from 'discord-api-types/v10'
 import { Locale } from 'discord-api-types/v10'
 
 import { PokemonSpecies } from '../pokemon/PokemonSpecies.js'
+import type { FuzzyPokemonStrategy } from '../structures/FuzzyPokemonStrategy.js'
 import { StoreRegistryEntries } from '../utils/Identifiers.js'
 
 export interface FuzzilySearchPokemonOptions {
@@ -31,6 +32,19 @@ export class PokemonClient {
     )
   }
 
+  private static getSuitableFuzzyPokemonStrategy<T extends `${Locale}` = Locale.EnglishUS>(
+    locale: T
+  ): FuzzyPokemonStrategy<T> {
+    const strategyStore = container.client.stores.get(StoreRegistryEntries.Strategies)
+
+    let fuzzyPokemonStrategy = strategyStore.find(
+      ({ locale: strategyLocale, locales }) => strategyLocale === locale || locales.includes(locale)
+    )
+    fuzzyPokemonStrategy ??= strategyStore.get(Locale.EnglishUS)!
+
+    return fuzzyPokemonStrategy as FuzzyPokemonStrategy<T>
+  }
+
   // public async getPokemon(pokemonLike: string) {}
   public async fuzzilySearchPokemon(
     pokemonLike: string,
@@ -41,13 +55,6 @@ export class PokemonClient {
       includeSpecialPokemon = true
     }: FuzzilySearchPokemonOptions
   ): Promise<FuzzilySearchPokemonResult[]> {
-    const strategyStore = container.client.stores.get(StoreRegistryEntries.Strategies)
-
-    let fuzzyPokemonStrategy = strategyStore.find(
-      ({ locale: strategyLocale, locales }) => strategyLocale === locale || locales.includes(locale)
-    )
-    fuzzyPokemonStrategy ??= strategyStore.get(Locale.EnglishUS)!
-
     interface SimilairtyResult {
       species: PokemonSpecies
       localizedName: string
@@ -57,19 +64,21 @@ export class PokemonClient {
     const results: FuzzilySearchPokemonResult[] = []
     const similarityResults: SimilairtyResult[] = []
 
+    const fuzzyPokemonStrategy = PokemonClient.getSuitableFuzzyPokemonStrategy(locale)
+
     for (const species of PokemonSpecies) {
       let isMatch = false
       let matchSimilarityOrigin = 0
       for (const form of species.forms) {
-        const value = Result.from(
+        const localizedName = Result.from(
           () => species.localizedNamesBelongToForm[form.name.toLowerCase()][locale]
         ).unwrapOr(null)
 
-        if (isNullish(value) || !fuzzyPokemonStrategy.fits(value, pokemonLike)) {
+        if (isNullish(localizedName) || !fuzzyPokemonStrategy.fits(localizedName, pokemonLike)) {
           continue
         }
 
-        const baseSimilarity = fuzzyPokemonStrategy.similarity(value, pokemonLike)
+        const baseSimilarity = fuzzyPokemonStrategy.similarity(localizedName, pokemonLike)
         const similarity = isMatch
           ? Math.max(
               Math.cbrt(Math.sqrt(baseSimilarity) - this.relatedMatchThreshold),
@@ -79,7 +88,7 @@ export class PokemonClient {
 
         similarityResults.push({
           formName: form.name.toLowerCase(),
-          localizedName: value,
+          localizedName,
           similarity,
           species
         })
