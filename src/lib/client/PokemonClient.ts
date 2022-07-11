@@ -48,14 +48,12 @@ export class PokemonClient {
     )
     fuzzyPokemonStrategy ??= strategyStore.get(Locale.EnglishUS)!
 
-    type SimilairtyResult = [
-      PokemonSpecies,
-      {
-        localizedName: string
-        formName: string
-      },
-      number
-    ]
+    interface SimilairtyResult {
+      species: PokemonSpecies
+      localizedName: string
+      formName: string
+      similarity: number
+    }
     const results: FuzzilySearchPokemonResult[] = []
     const similarityResults: SimilairtyResult[] = []
 
@@ -79,11 +77,12 @@ export class PokemonClient {
             )
           : baseSimilarity
 
-        similarityResults.push([
-          species,
-          { formName: form.name.toLowerCase(), localizedName: value },
-          similarity
-        ])
+        similarityResults.push({
+          formName: form.name.toLowerCase(),
+          localizedName: value,
+          similarity,
+          species
+        })
 
         if (!isMatch) {
           isMatch = true
@@ -94,9 +93,12 @@ export class PokemonClient {
 
     if (similarityResults.length) {
       similarityResults
-        .sort(([, , similarityOfA], [, , similarityOfB]) => similarityOfB - similarityOfA)
+        .sort(
+          ({ similarity: similarityOfA }, { similarity: similarityOfB }) =>
+            similarityOfB - similarityOfA
+        )
         .slice(offset, offset + take)
-        .forEach(([species, { formName, localizedName }]) => {
+        .forEach(({ species, formName, localizedName }) => {
           results.push({
             formName,
             localizedName,
