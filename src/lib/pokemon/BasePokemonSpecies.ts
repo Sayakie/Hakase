@@ -251,7 +251,7 @@ export abstract class BasePokemonSpecies {
    *
    * @returns {Option<BasePokemonSpecies>} This species holder
    */
-  public toHolder(): Option<BasePokemonSpecies> {
+  public toHolder(): Option.Some<BasePokemonSpecies> {
     return this.holder
   }
 
