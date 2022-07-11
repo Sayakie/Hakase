@@ -1,10 +1,6 @@
-import { container } from '@sapphire/pieces'
 import { Option, Result } from '@sapphire/result'
-import { Stopwatch } from '@sapphire/stopwatch'
-import { isNullish, toTitleCase } from '@sapphire/utilities'
-import { blueBright, cyanBright, red } from 'colorette'
+import { isNullish } from '@sapphire/utilities'
 
-import { loadAllStats } from '../utils/loaders.js'
 import { BasePokemonSpecies } from './BasePokemonSpecies.js'
 import { Species } from './Species.js'
 
@@ -1090,32 +1086,5 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
     }
 
     return 0
-  }
-
-  static {
-    const logPrefix = `[initializer -> PokemonSpecies]`
-    const timing = new Stopwatch()
-
-    loadAllStats()
-      .then(stats => {
-        for (const [speciesName, rawStatData] of stats) {
-          const speciesInstance = Reflect.construct(PokemonSpecies, [rawStatData])
-          Reflect.set(PokemonSpecies, toTitleCase(speciesName), speciesInstance)
-
-          container.logger.debug(
-            `${logPrefix} Applied ${blueBright(toTitleCase(speciesName))} into PokemonSpecies.`
-          )
-        }
-      })
-      .then(() => {
-        const period = timing.stop().toString()
-        container.logger.info(`${logPrefix} Took ${cyanBright(period)} to initialize.`)
-      })
-      .catch(reason => {
-        const period = timing.stop().toString()
-        container.logger.error(`${logPrefix} Failed to initialize.`)
-        container.logger.error(`${logPrefix} Reason: ${reason}`)
-        container.logger.error(`${logPrefix} Took ${red(period)}`)
-      })
   }
 }

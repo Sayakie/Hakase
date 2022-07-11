@@ -12,12 +12,27 @@ import { blueBright, cyanBright } from 'colorette'
 
 import { PokemonClient } from './client/PokemonClient.js'
 import { PokemonSpecies } from './pokemon/PokemonSpecies.js'
-import { PokemonResolver } from './resolvers/pokemon.js'
 import { loadAllLanguages, loadAllStats } from './utils/loaders.js'
 import { getProperPokemonName } from './utils/pokemon/getProperPokemonName.js'
 
 container.pokemonClient = new PokemonClient()
 container.logger.info(`[bootstrap/] Attached PokemonClient to container.`)
+
+const statsTimewatch = new Stopwatch()
+const stats = await loadAllStats()
+for (const [species, rawStatData] of stats) {
+  const speciesInstance = Reflect.construct(PokemonSpecies, [rawStatData])
+  Reflect.set(PokemonSpecies, toTitleCase(species), speciesInstance)
+
+  container.logger.debug(
+    `[bootstrap/StatLoader] Applied ${blueBright(toTitleCase(species))} into PokemonSpecies.`
+  )
+}
+
+container.logger.info(`[bootstrap/StatLoader] Applied ${blueBright(stats.size)} species.`)
+container.logger.info(
+  `[bootstrap/StatLoader] Took ${cyanBright(statsTimewatch.stop().toString())} to initialize.`
+)
 
 const langaugeTimewatch = new Stopwatch()
 const commonForms = [
@@ -79,10 +94,9 @@ container.languageMappings.forEach((values, locale) => {
     species.setLocalizedName(locale, speciesName)
 
     for (const form of species.forms) {
-      // if (/* isNullishOrEmpty(form.name) ||  */ ignoreForms.includes(form.name.toLowerCase())) {
-      //   continue
-      // } else
-      if (commonForms.includes(form.name.toLowerCase())) {
+      if (/* isNullishOrEmpty(form.name) ||  */ ignoreForms.includes(form.name.toLowerCase())) {
+        continue
+      } else if (commonForms.includes(form.name.toLowerCase())) {
         const formName = Reflect.get(values, `pixelmon.generic.form.${form.name.toLowerCase()}`)
 
         species.setLocalizedNameBelongToForm(
@@ -116,7 +130,3 @@ container.logger.info(
   `[bootstrap/LanguageLoader] Took ` +
     `${cyanBright(langaugeTimewatch.stop().toString())} to initialize.`
 )
-
-// const pokemonResolver = new PokemonResolver()
-// container.pokemonResolver = pokemonResolver
-// container.logger.info(`[bootstrap/PokemonResolver] Initialized.`)
