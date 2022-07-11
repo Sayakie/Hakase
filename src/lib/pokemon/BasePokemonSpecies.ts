@@ -88,12 +88,9 @@ export abstract class BasePokemonSpecies {
 
   /** The pokedex holder of this species. */
   public get nationalPokedex(): SpeciesPokedexHolder {
-    const result = Result.from(() => Number(this.#dex))
-    const dex = result.unwrapOr(-1)
-
     const pokedexHolder = {
-      asNumber: () => dex,
-      asString: () => String(dex).padStart(3, `0`)
+      asNumber: () => this.#dex,
+      asString: () => String(this.#dex).padStart(3, `0`)
     }
 
     Reflect.set(pokedexHolder, `toString`, pokedexHolder.asString)
