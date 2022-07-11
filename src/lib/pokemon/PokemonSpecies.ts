@@ -964,6 +964,38 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
   }
 
   /**
+   * Gets the PokemonSpecies instance holder by associated their origin name or localized names.
+   *
+   * @param {string} name The name to get
+   * @returns {Option<PokemonSpecies>} The instance holder
+   * @example
+   * ```typescript
+   * const JirachiHolder = PokemonSpecies.fromName(`Jirachi`)
+   * assert.equal(JirachiHolder.unwrap(), PokemonSpecies.Jirachi)
+   * ```
+   * @example
+   * ```typescript
+   * const JirachiHolder = PokemonSpecies.fromName(`지라치`)
+   * assert.equal(JirachiHolder.unwrap(), PokemonSpecies.Jirachi)
+   * ```
+   * @example
+   * ```typescript
+   * const UnknownHolder = PokemonSpecies.fromName(`unknown`)
+   * assert.equal(UnknownHolder.isNone(), true)
+   * ```
+   * @example
+   * ```typescript
+   * const UnknownHolder = PokemonSpecies.fromName(`몰?루`)
+   * assert.equal(UnknownHolder.isNone(), true)
+   * ```
+   */
+  public static fromLocalizedName(name: string): Option<PokemonSpecies> {
+    const unsafe = PokemonSpecies.fromLocalizedNameUnsafe(name)
+
+    return isNullish(unsafe) ? Option.none : Option.some(unsafe)
+  }
+
+  /**
    * Gets the PokemonSpecies instance by associated their name.
    *
    * @param {string} name The name to get
@@ -972,6 +1004,22 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
   public static fromNameUnsafe(name: string): PokemonSpecies | null {
     for (const species of REGISTERED_POKEMON) {
       if (species.name === name) {
+        return species
+      }
+    }
+
+    return null
+  }
+
+  /**
+   * Gets the PokemonSpecies instance by associated their origin name or localized names.
+   *
+   * @param {string} name The name to get
+   * @returns {PokemonSpecies} The instance
+   */
+  public static fromLocalizedNameUnsafe(name: string): PokemonSpecies | null {
+    for (const species of REGISTERED_POKEMON) {
+      if (species.name === name || Object.values(species.localizedNames).includes(name)) {
         return species
       }
     }
@@ -1000,6 +1048,10 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
     }
 
     return null
+  }
+
+  public static values(): Set<PokemonSpecies> {
+    return new Set(REGISTERED_POKEMON)
   }
 
   public static *iter(): Generator<PokemonSpecies> {
