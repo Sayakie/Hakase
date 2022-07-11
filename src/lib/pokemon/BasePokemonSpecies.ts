@@ -2,6 +2,7 @@ import { UserError } from '@sapphire/framework'
 import { Option, Result } from '@sapphire/result'
 import { isNullish, isNullishOrEmpty, isNumber } from '@sapphire/utilities'
 import type { Locale, LocaleString, LocalizationMap } from 'discord-api-types/v10.js'
+import parseJson from 'parse-json'
 
 import { Identifiers } from '../utils/Identifiers.js'
 import type { PokemonSpecies } from './PokemonSpecies.js'
@@ -16,7 +17,7 @@ export abstract class BasePokemonSpecies {
   readonly #forms: Stat[]
 
   public constructor(raw: any) {
-    const result = Result.from(() => JSON.parse(raw))
+    const result = Result.from(() => parseJson(raw))
     if (result.isErr()) {
       throw new UserError({
         context: { raw },
