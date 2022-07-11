@@ -1,7 +1,9 @@
 import { Option, Result } from '@sapphire/result'
+import type { Nullish } from '@sapphire/utilities'
 import { isNullish } from '@sapphire/utilities'
 
 import { BasePokemonSpecies } from './BasePokemonSpecies.js'
+import { PokemonEnum } from './PokemonEnum.js'
 import { Species } from './Species.js'
 
 const REGISTERED_POKEMON = new Set<PokemonSpecies>()
@@ -14,6 +16,9 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
   // Generation I Pokémon species. (1-151)
   public static readonly [Species.Bulbasaur]: PokemonSpecies
   public static readonly [Species.Ivysaur]: PokemonSpecies
+  public static readonly [Species.Venusaur]: PokemonSpecies
+  // public static readonly [PokemonEnum.Venusaurmega]: PokemonSpecies
+  // public static readonly [PokemonEnum.Venusaurgmax]: PokemonSpecies
   public static readonly [Species.Venusaur]: PokemonSpecies
   public static readonly [Species.Charmander]: PokemonSpecies
   public static readonly [Species.Charmeleon]: PokemonSpecies
@@ -957,7 +962,10 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
    * assert.equal(UnknownHolder.unwrap(), PokemonSpecies.MissingNo)
    * ```
    */
-  public static fromName(name: string): Option<PokemonSpecies> {
+  public static fromName(name: string | Nullish): Option<PokemonSpecies>
+  public static fromName(name: string): Option<PokemonSpecies>
+  public static fromName(name: Nullish): Option.None
+  public static fromName(name: string | Nullish): Option<PokemonSpecies> {
     const unsafe = PokemonSpecies.fromNameUnsafe(name)
 
     return isNullish(unsafe) ? Option.none : Option.some(unsafe)
@@ -989,7 +997,10 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
    * assert.equal(UnknownHolder.isNone(), true)
    * ```
    */
-  public static fromLocalizedName(name: string): Option<PokemonSpecies> {
+  public static fromLocalizedName(name: string | Nullish): Option<PokemonSpecies>
+  public static fromLocalizedName(name: string): Option<PokemonSpecies>
+  public static fromLocalizedName(name: Nullish): Option.None
+  public static fromLocalizedName(name: string | Nullish): Option<PokemonSpecies> {
     const unsafe = PokemonSpecies.fromLocalizedNameUnsafe(name)
 
     return isNullish(unsafe) ? Option.none : Option.some(unsafe)
@@ -1001,7 +1012,14 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
    * @param {string} name The name to get
    * @returns {PokemonSpecies} The instance
    */
-  public static fromNameUnsafe(name: string): PokemonSpecies | null {
+  public static fromNameUnsafe(name: string | Nullish): PokemonSpecies | null
+  public static fromNameUnsafe(name: string): PokemonSpecies | null
+  public static fromNameUnsafe(name: Nullish): null
+  public static fromNameUnsafe(name: string | Nullish): PokemonSpecies | null {
+    if (isNullish(name)) {
+      return null
+    }
+
     for (const species of REGISTERED_POKEMON) {
       if (species.name === name) {
         return species
@@ -1017,7 +1035,14 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
    * @param {string} name The name to get
    * @returns {PokemonSpecies} The instance
    */
-  public static fromLocalizedNameUnsafe(name: string): PokemonSpecies | null {
+  public static fromLocalizedNameUnsafe(name: string | Nullish): PokemonSpecies | null
+  public static fromLocalizedNameUnsafe(name: string): PokemonSpecies | null
+  public static fromLocalizedNameUnsafe(name: Nullish): null
+  public static fromLocalizedNameUnsafe(name: string | Nullish): PokemonSpecies | null {
+    if (isNullish(name)) {
+      return null
+    }
+
     for (const species of REGISTERED_POKEMON) {
       if (species.name === name || Object.values(species.localizedNames).includes(name)) {
         return species
@@ -1027,6 +1052,7 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
     return null
   }
 
+  public static fromDex(dex: string | number): Option<PokemonSpecies>
   public static fromDex(dex: number): Option<PokemonSpecies>
   public static fromDex(dex: string): Option<PokemonSpecies>
   public static fromDex(dex: string | number): Option<PokemonSpecies> {
@@ -1035,6 +1061,7 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
     return isNullish(unsafe) ? Option.none : Option.some(unsafe)
   }
 
+  public static fromDexUnsafe(dex: string | number): PokemonSpecies | null
   public static fromDexUnsafe(dex: number): PokemonSpecies | null
   public static fromDexUnsafe(dex: string): PokemonSpecies | null
   public static fromDexUnsafe(dex: string | number): PokemonSpecies | null {
