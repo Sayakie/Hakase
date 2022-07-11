@@ -6,7 +6,7 @@ const root = new URL(`../`, import.meta.url)
 export const Directories = {
   Data: new URL(join(`data`), root),
   Root: root
-}
+} as const
 
 export const enum ResourceIdentifiers {
   // Main resource head
