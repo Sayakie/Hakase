@@ -16,7 +16,11 @@ export const enum ResourceIdentifiers {
 }
 
 export const enum BrandingColors {
-  Primary = 0x06d6a0
+  Primary = 0x06d6a0,
+  Secondary = 0xa08de9,
+  Info = 0x608bda,
+  Warn = 0xf1c40f,
+  Danger = 0xe22b46
 }
 
 export const enum MemoryUnits {
