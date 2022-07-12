@@ -1,6 +1,6 @@
 import { Option, Result } from '@sapphire/result'
 import type { Nullish } from '@sapphire/utilities'
-import { isNullish } from '@sapphire/utilities'
+import { isNullish, isNullishOrEmpty } from '@sapphire/utilities'
 
 import { BasePokemonSpecies } from './BasePokemonSpecies.js'
 import { PokemonEnum } from './PokemonEnum.js'
@@ -1016,7 +1016,7 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
   public static fromNameUnsafe(name: string): PokemonSpecies | null
   public static fromNameUnsafe(name: Nullish): null
   public static fromNameUnsafe(name: string | Nullish): PokemonSpecies | null {
-    if (isNullish(name)) {
+    if (isNullishOrEmpty(name)) {
       return null
     }
 
@@ -1039,7 +1039,7 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
   public static fromLocalizedNameUnsafe(name: string): PokemonSpecies | null
   public static fromLocalizedNameUnsafe(name: Nullish): null
   public static fromLocalizedNameUnsafe(name: string | Nullish): PokemonSpecies | null {
-    if (isNullish(name)) {
+    if (isNullishOrEmpty(name)) {
       return null
     }
 
