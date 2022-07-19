@@ -7,12 +7,13 @@ importers:
       '@commitlint/cli': ^17.0.3
       '@commitlint/config-angular': ^17.0.3
       '@discordjs/builders': ^0.15.0
-      '@sapphire/decorators': ^4.3.6
+      '@sapphire/decorators': ^4.3.8
+      '@sapphire/discord.js-utilities': ^4.11.3
       '@sapphire/framework': 3.0.0-next.961e0bf.0
       '@sapphire/pieces': ^3.3.4
       '@sapphire/result': ^2.0.1
       '@sapphire/stopwatch': ^1.4.1
-      '@sapphire/time-utilities': ^1.7.4
+      '@sapphire/time-utilities': ^1.7.5
       '@sapphire/ts-config': ^3.3.4
       '@sapphire/utilities': ^3.7.0
       '@skyra/env-utilities': ^1.0.1
@@ -38,6 +39,7 @@ importers:
       is-ci: ^3.0.1
       korean-regexp: ^1.0.9
       lint-staged: ^13.0.3
+      merge-options: ^3.0.4
       parse-json: ^6.0.2
       prettier: ^2.7.1
       simple-git-hooks: ^2.8.0
@@ -50,12 +52,13 @@ importers:
       vitest: ^0.17.0
     dependencies:
       '@discordjs/builders': 0.15.0
-      '@sapphire/decorators': 4.3.6
+      '@sapphire/decorators': 4.3.8
+      '@sapphire/discord.js-utilities': 4.11.3
       '@sapphire/framework': 3.0.0-next.961e0bf.0
       '@sapphire/pieces': 3.3.4
       '@sapphire/result': 2.0.1
       '@sapphire/stopwatch': 1.4.1
-      '@sapphire/time-utilities': 1.7.4
+      '@sapphire/time-utilities': 1.7.5
       '@sapphire/utilities': 3.7.0
       '@skyra/env-utilities': 1.0.1
       '@skyra/jaro-winkler': 1.1.0
@@ -64,6 +67,7 @@ importers:
       discord-api-types: 0.36.1
       discord.js: 13.8.1
       korean-regexp: 1.0.9
+      merge-options: 3.0.4
       parse-json: 6.0.2
     devDependencies:
       '@commitlint/cli': 17.0.3_@swc+core@1.2.210
@@ -448,6 +452,13 @@ packages:
       tslib: 2.4.0
     dev: false
 
+  /@sapphire/decorators/4.3.8:
+    resolution: {integrity: sha512-W8vU0AHuyx5mRAEG/YvxPs6Th99zNyIlsmw+JjUtk8S+fUd2TZor2JfFPMdNvQhUPDzAzdCagCM7cNNOOtLfXQ==}
+    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
+    dependencies:
+      tslib: 2.4.0
+    dev: false
+
   /@sapphire/discord-utilities/2.11.4:
     resolution: {integrity: sha512-tybHvY+UUAtDHD1tfAESVfINzhtw5cNKAnpS33enF9gzT2qtGxzvjwPy0AopbuHTS+GLnId0EoG1ko8UAGqyCQ==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
@@ -458,7 +469,7 @@ packages:
     engines: {node: '>=16.6.0', npm: '>=7.0.0'}
     dependencies:
       '@sapphire/discord-utilities': 2.11.4
-      '@sapphire/time-utilities': 1.7.4
+      '@sapphire/time-utilities': 1.7.5
       '@sapphire/utilities': 3.7.0
       tslib: 2.4.0
     dev: false
@@ -491,7 +502,7 @@ packages:
     resolution: {integrity: sha512-9gZ1BaY99HLWOcfuhlu0WklirHhVc6QD1pm5/v2W0O9pBpMHrd1GImVMXjYZRoy1qpmE2ZggSmN1665lktTCMw==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dependencies:
-      '@sapphire/time-utilities': 1.7.4
+      '@sapphire/time-utilities': 1.7.5
     dev: false
 
   /@sapphire/result/1.1.1:
@@ -515,8 +526,8 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@sapphire/time-utilities/1.7.4:
-    resolution: {integrity: sha512-/MKy56iGYuOfZfXGxZ2RG0otk9j3P0VRC6ACSnizalEXbe0YFXX7JcxPPBF1yp2j1p5Y7eUW+FTExfvEgnWnzg==}
+  /@sapphire/time-utilities/1.7.5:
+    resolution: {integrity: sha512-QLYUCIhnntEWZugY+E0/2fmFPn/ARV1ZP0LLUcowBpC7+U4NmDi12iQ9dJmM+14PmI45J2nUWFJ7ocKCMfCr5g==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dependencies:
       '@sapphire/utilities': 3.7.0
@@ -2483,6 +2494,11 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
+  /is-plain-obj/2.1.0:
+    resolution: {integrity: sha512-YWnfyRwxL/+SsrWYfOpUtz5b3YD+nyfkHvjbcanzk8zgyO4ASD67uVMRt8k5bM4lLMDnXfriRhOpemw+NfT1eA==}
+    engines: {node: '>=8'}
+    dev: false
+
   /is-regex/1.1.4:
     resolution: {integrity: sha512-kvRdxDsxZjhzUX07ZnLydzS1TU/TJlTUHHY4YLL87e37oUA49DfkLqgy+VjFocowy29cKvcSiu+kIv728jTTVg==}
     engines: {node: '>= 0.4'}
@@ -2763,6 +2779,13 @@ packages:
       type-fest: 0.18.1
       yargs-parser: 20.2.9
     dev: true
+
+  /merge-options/3.0.4:
+    resolution: {integrity: sha512-2Sug1+knBjkaMsMgf1ctR1Ujx+Ayku4EdJN4Z+C2+JzoeF7A3OZ9KM2GY0CpQS51NR61LTurMJrRKPhSs3ZRTQ==}
+    engines: {node: '>=10'}
+    dependencies:
+      is-plain-obj: 2.1.0
+    dev: false
 
   /merge-stream/2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
