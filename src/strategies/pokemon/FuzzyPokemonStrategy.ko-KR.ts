@@ -9,6 +9,10 @@ import { FuzzyPokemonStrategy } from '../../lib/structures/FuzzyPokemonStrategy.
   locale: Locale.Korean
 })
 export class FuzzyPokemonStrategy$Korean extends FuzzyPokemonStrategy<`ko`> {
+  // Due to `#flat` don't consume Infinity constant, we define as `1` to shade
+  // TypeScript acquire this value as numeric.
+  readonly #infinityLike: 1 = Number.POSITIVE_INFINITY as 1
+
   public override fits(compareTo: string, compareWith: string): boolean {
     return this.similarity(compareTo, compareWith) > this.threshold
   }
@@ -18,6 +22,13 @@ export class FuzzyPokemonStrategy$Korean extends FuzzyPokemonStrategy<`ko`> {
       return 1
     }
 
-    return jaroWinkler(explode(compareTo).join(``), explode(compareWith).join(``))
+    return jaroWinkler(this.explodeWordToFlatten(compareTo), this.explodeWordToFlatten(compareWith))
+  }
+
+  private explodeWordToFlatten(str: string): string {
+    return explode(str)
+      .flat(this.#infinityLike)
+      .map(it => it.toLowerCase())
+      .join(``)
   }
 }
