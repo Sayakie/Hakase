@@ -8,14 +8,14 @@ export const Directories = {
   Root: root
 } as const
 
-export const enum ResourceIdentifiers {
+export enum ResourceIdentifiers {
   // Main resource head
   MINECRAFT = `minecraft`,
   PIXELMON = `pixelmon`,
   FORGE = `forge`
 }
 
-export const enum BrandingColors {
+export enum BrandingColors {
   Primary = 0x06d6a0,
   Secondary = 0xa08de9,
   Info = 0x608bda,
@@ -23,6 +23,6 @@ export const enum BrandingColors {
   Danger = 0xe22b46
 }
 
-export const enum MemoryUnits {
+export enum MemoryUnits {
   MiB = 1048576
 }

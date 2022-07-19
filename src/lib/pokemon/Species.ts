@@ -1,4 +1,4 @@
-export const enum Species {
+export enum Species {
   MissingNo = `MissingNo`,
 
   // Generation I Pokémon species. (1-151)
