@@ -52,10 +52,6 @@
         "major": {
           "automerge": false
         }
-      },
-      {
-        "matchedDepTypes": ["engines"],
-        "enabled": false
       }
     ]
   }
