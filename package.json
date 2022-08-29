@@ -9,7 +9,9 @@
     "preinstall": "npx -y only-allow pnpm",
     "postinstall": "is-ci || simple-git-hooks",
     "start": "node --enable-source-maps dist/index.js",
-    "build": "tsup"
+    "build": "tsup",
+    "lint": "eslint --fix src/**/*.ts",
+    "lint:dry-run": "eslint --fix-dry-run src/**/*.ts"
   },
   "packageManager": "pnpm@^7.9.5",
   "type": "module",
