@@ -48,7 +48,7 @@
     "binarytf": "^2.1.1",
     "colorette": "^2.0.19",
     "discord-api-types": "^0.37.5",
-    "discord.js": "^13.10.3",
+    "discord.js": "^14.3.0",
     "korean-regexp": "^1.0.9",
     "merge-options": "^3.0.4",
     "parse-json": "^6.0.2"
