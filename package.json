@@ -34,7 +34,7 @@
     "pnpm": ">=7.5.0 <8"
   },
   "dependencies": {
-    "@discordjs/builders": "^0.16.0",
+    "@discordjs/builders": "^1.2.0",
     "@sapphire/decorators": "^4.3.8",
     "@sapphire/discord.js-utilities": "^4.12.0",
     "@sapphire/framework": "3.0.0",
