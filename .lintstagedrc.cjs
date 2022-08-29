@@ -1,5 +1,5 @@
 module.exports = {
-  "{apps,packages}/**/*.ts": [
+  "src/**/*.ts": [
     "eslint --fix",
     "prettier --write"
   ],
