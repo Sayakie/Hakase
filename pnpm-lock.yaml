@@ -5,7 +5,7 @@ specifiers:
   '@commitlint/config-angular': ^17.1.0
   '@discordjs/builders': ^0.16.0
   '@sapphire/decorators': ^4.3.8
-  '@sapphire/discord.js-utilities': ^4.12.0
+  '@sapphire/discord.js-utilities': ^5.0.0
   '@sapphire/framework': 3.0.0
   '@sapphire/pieces': ^3.5.1
   '@sapphire/result': ^2.4.0
@@ -51,7 +51,7 @@ specifiers:
 dependencies:
   '@discordjs/builders': 0.16.0
   '@sapphire/decorators': 4.3.8
-  '@sapphire/discord.js-utilities': 4.12.0
+  '@sapphire/discord.js-utilities': 5.0.0
   '@sapphire/framework': 3.0.0
   '@sapphire/pieces': 3.5.1
   '@sapphire/result': 2.4.0
@@ -417,16 +417,6 @@ packages:
   /@sapphire/discord-utilities/2.11.6:
     resolution: {integrity: sha512-oFZYl7Prtqy8nD3ymmMpSMRy9Sdhp8E5PSI8n3OoBkHr4eSBvoOcBTxKapvRkHWes+amWeH/uB4UH31x7mG0KQ==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
-    dev: false
-
-  /@sapphire/discord.js-utilities/4.12.0:
-    resolution: {integrity: sha512-pBNYyBJNRRMgQ2xD+uljrVZaYJ6TywGUirwBecms8sdbRszm6kDczI3fuEl5tWwgU8vLweAViNZbbYBnts7y2A==}
-    engines: {node: '>=16.6.0', npm: '>=7.0.0'}
-    dependencies:
-      '@sapphire/discord-utilities': 2.11.6
-      '@sapphire/time-utilities': 1.7.6
-      '@sapphire/utilities': 3.9.2
-      tslib: 2.4.0
     dev: false
 
   /@sapphire/discord.js-utilities/5.0.0:
