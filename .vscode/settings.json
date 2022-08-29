@@ -5,7 +5,6 @@
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.preferences.importModuleSpecifierEnding": "js",
-  "typescript.preferences.importModuleSpecifier": "non-relative",
   "files.exclude": {
     "**/.git": true,
     "**/.svn": true,
