@@ -1,5 +1,6 @@
 import { ApplyOptions as Mixin } from '@sapphire/decorators'
-import { type Store, Events, Listener } from '@sapphire/framework'
+import type { Events } from '@sapphire/framework'
+import { type Store, Listener } from '@sapphire/framework'
 import { blue, blueBright, gray } from 'colorette'
 import type { Client } from 'discord.js'
 

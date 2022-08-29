@@ -40,6 +40,7 @@ export class PokemonClient {
     let fuzzyPokemonStrategy = strategyStore.find(
       ({ locale: strategyLocale, locales }) => strategyLocale === locale || locales.includes(locale)
     )
+
     fuzzyPokemonStrategy ??= strategyStore.get(Locale.EnglishUS)!
 
     return fuzzyPokemonStrategy as FuzzyPokemonStrategy<T>
@@ -62,13 +63,16 @@ export class PokemonClient {
       similarity: number
     }
     const results: FuzzilySearchPokemonResult[] = []
+
     const similarityResults: SimilairtyResult[] = []
 
     const fuzzyPokemonStrategy = PokemonClient.getSuitableFuzzyPokemonStrategy(locale)
 
     for (const species of PokemonSpecies) {
       let isMatch = false
+
       let matchSimilarityOrigin = 0
+
       for (const form of species.forms) {
         const localizedName = Result.from(
           () => species.localizedNamesBelongToForm[form.name.toLowerCase()][locale]
@@ -79,6 +83,7 @@ export class PokemonClient {
         }
 
         const baseSimilarity = fuzzyPokemonStrategy.similarity(localizedName, pokemonLike)
+
         const similarity = isMatch
           ? Math.max(
               Math.cbrt(Math.sqrt(baseSimilarity) - this.relatedMatchThreshold),

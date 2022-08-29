@@ -14,6 +14,7 @@ export function getImageUrl(
   }: GetImageUrlOptions = {}
 ): string {
   const pokedex = species.getNationalPokedex().asString()
+
   const suffix = form ? `-${form}` : ``
 
   return `${hostUri}/${pokedex}${suffix}.${extension}`

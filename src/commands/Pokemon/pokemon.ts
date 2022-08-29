@@ -45,6 +45,7 @@ export class SlashCommand extends LocalizableCommand {
     await interaction.deferReply()
 
     const it = interaction.options.getString(`pokemon`, true)
+
     console.log(it)
 
     await interaction.deleteReply()

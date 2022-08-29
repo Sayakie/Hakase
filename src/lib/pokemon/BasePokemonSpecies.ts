@@ -9,15 +9,22 @@ import type { PokemonSpecies } from './PokemonSpecies.js'
 
 export abstract class BasePokemonSpecies {
   readonly #name: string
+
   #localizedNames: LocalizationMap
+
   #localizedNamesBelongToForm: Record<string, LocalizationMap>
+
   readonly #dex: number
+
   readonly #generation: number
+
   readonly #defaultForms: string[]
+
   readonly #forms: Stat[]
 
   public constructor(raw: any) {
     const result = Result.from(() => parseJson(raw))
+
     if (result.isErr()) {
       throw new UserError({
         context: { raw },
@@ -216,8 +223,11 @@ export abstract class BasePokemonSpecies {
    * @returns {boolean} Whether this species is a legendary or not
    */
   public isLegendary(): this is PokemonSpecies<`legendary` | `mythical`>
+
   public isLegendary(includeMythical: true): this is PokemonSpecies<`legendary` | `mythical`>
+
   public isLegendary(includeMythical: false): this is PokemonSpecies<`legendary`>
+
   public isLegendary(includeMythical: boolean = true): boolean {
     return (
       this.forms.find(({ name }) => name === ``)?.tags.includes(`legendary`) ??
@@ -261,17 +271,25 @@ export abstract class BasePokemonSpecies {
   }
 
   public [Symbol.toPrimitive](hint: `default`): string
+
   public [Symbol.toPrimitive](hint: `string`): string
+
   public [Symbol.toPrimitive](hint: `number`): number
+
   public [Symbol.toPrimitive](hint: string): string | number {
+    /* eslint-disable no-fallthrough */
     switch (hint) {
       case `default`:
+
       case `string`:
+
       default:
         return this.#name
+
       case `number`:
         return this.#dex
     }
+    /* eslint-enable */
   }
 }
 

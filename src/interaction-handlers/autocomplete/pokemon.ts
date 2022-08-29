@@ -1,5 +1,6 @@
 import { ApplyOptions as Mixin } from '@sapphire/decorators'
-import { type Maybe, InteractionHandler, InteractionHandlerTypes } from '@sapphire/framework'
+import type { InteractionHandlerTypes } from '@sapphire/framework'
+import { type Maybe, InteractionHandler } from '@sapphire/framework'
 import type { ApplicationCommandOptionChoiceData, AutocompleteInteraction } from 'discord.js'
 import type { LocaleString } from 'discord-api-types/v10'
 
@@ -38,6 +39,7 @@ export class AutocompleteHandler extends InteractionHandler<{
           fuzzyPokemon.map(fuzzyEntry => fuzzyPokemonToSelectOption(fuzzyEntry, interaction.locale))
         )
       }
+
       default:
         return this.none()
     }

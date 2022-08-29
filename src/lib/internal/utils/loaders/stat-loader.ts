@@ -12,9 +12,12 @@ export async function loadAllStats(
   const stats = new Map<string, string>()
 
   const statsFileNames = await readdir(targetDir)
+
   for await (const statFileName of statsFileNames) {
     const statFilePath = join(targetDir, statFileName)
+
     const ext = extname(statFileName)
+
     if (ext !== `.json`) {
       container.logger.debug(`[StatLoader] Skipping ${statFileName} due to is not JSON type.`)
       continue
@@ -23,6 +26,7 @@ export async function loadAllStats(
     const [dex, name] = statFileName.replace(ext, ``).split(`_`)
 
     const result = await Result.fromAsync(async () => await readFile(statFilePath))
+
     if (result.isErr()) {
       container.logger.error(
         `[StatLoader] Failed to fetch data corresponding with ${name} (#${dex})`

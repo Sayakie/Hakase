@@ -19,9 +19,12 @@ container.pokemonClient = new PokemonClient()
 container.logger.info(`[bootstrap/] Attached PokemonClient to container.`)
 
 const statsTimewatch = new Stopwatch()
+
 const stats = await loadAllStats()
+
 for (const [species, rawStatData] of stats) {
   const speciesInstance = Reflect.construct(PokemonSpecies, [rawStatData])
+
   Reflect.set(PokemonSpecies, toTitleCase(species), speciesInstance)
 
   container.logger.debug(
@@ -35,6 +38,7 @@ container.logger.info(
 )
 
 const langaugeTimewatch = new Stopwatch()
+
 const commonForms = [
   `noform`,
   `mega`,
@@ -49,6 +53,7 @@ const commonForms = [
   `galarian`,
   `hisuian`
 ]
+
 const ignoreForms = [
   `base`,
   `zombie`,
@@ -83,10 +88,12 @@ const ignoreForms = [
   `zombiex`,
   `zombiey`
 ]
+
 container.languageMappings = await loadAllLanguages()
 container.languageMappings.forEach((values, locale) => {
   for (const species of PokemonSpecies) {
     const speciesName = Reflect.get(values, `pixelmon.${species.name.toLowerCase()}`)
+
     if (isNullishOrEmpty(speciesName)) {
       continue
     }
@@ -109,8 +116,10 @@ container.languageMappings.forEach((values, locale) => {
           values,
           `pixelmon.${species.name.toLowerCase()}.form.${form.name.toLowerCase()}`
         )
+
         // const properValue = getProperPokemonName(locale, species, formName)
         let properValue = speciesName
+
         properValue += formName ? ` (${formName})` : ``
 
         species.setLocalizedNameBelongToForm(form.name.toLowerCase(), locale, properValue)

@@ -41,9 +41,12 @@ export async function loadAllLanguages(
   const languageMappings = new Map<LocaleString, Record<string, string>>()
 
   const languageFileNames = await readdir(targetDir)
+
   for await (const languageFileName of languageFileNames) {
     const languageFilePath = join(targetDir, languageFileName)
+
     const ext = extname(languageFileName)
+
     if (ext !== `.json`) {
       container.logger.warn(
         `[LanguageLoader] Skipping ${green(languageFileName)} due to is not JSON type.`
@@ -53,6 +56,7 @@ export async function loadAllLanguages(
 
     const locale: LocaleString | null =
       pixelmonToDiscordMappings[languageFileName.replace(ext, ``) as `en_us`]
+
     if (isNullish(locale)) {
       container.logger.warn(
         `[LanguageLoader] Skipping ${green(
@@ -63,6 +67,7 @@ export async function loadAllLanguages(
     }
 
     const result = await Result.fromAsync(async () => await readFile(languageFilePath))
+
     if (result.isErr()) {
       container.logger.error(
         `[StatLoader] Failed to fetch data corresponding with ${languageFileName}`

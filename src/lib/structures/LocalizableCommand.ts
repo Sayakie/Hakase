@@ -7,6 +7,7 @@ export class LocalizableCommand<
   O extends SapphireCommand.Options = SapphireCommand.Options
 > extends SapphireCommand<PreParseReturn, O> {
   public override nameLocalizations: LocalizationMap | null = null
+
   public override descriptionLocalizations: LocalizationMap | null = null
 
   public constructor(context: PieceContext, options: O = {} as O) {

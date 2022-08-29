@@ -104,7 +104,9 @@ export class SlashCommand extends LocalizableCommand {
 
   private get uptimeStatistics(): UptimeStatistics {
     const now = Date.now()
+
     const { offset: hostOffset } = new Duration(`${osUptime()} seconds`)
+
     const { offset: processOffset } = new Duration(`${processUptime()} seconds`)
 
     return {
@@ -157,10 +159,13 @@ export class SlashCommand extends LocalizableCommand {
 
   private generateEmbed(locale: `${Locale}`): MessageEmbed {
     const stats = this.generalStatistics
+
     const uptime = this.uptimeStatistics
+
     const usage = this.usageStatistics
 
     const titles = this.titles[locale] ?? this.titles[Locale.EnglishUS]!
+
     const fields = this.fields[locale] ?? this.fields[Locale.EnglishUS]!
 
     return new MessageEmbed() //

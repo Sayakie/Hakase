@@ -23,6 +23,7 @@ function getProperPokemonName$Korean(
     case PokemonSpecies.Hoopa: {
       return `${formName} ${pokemon.getLocalizedName(locale)}`
     }
+
     default: {
       return `${pokemon.getLocalizedName(locale)} ${formName}`
     }
@@ -36,6 +37,7 @@ export function getProperPokemonName(
 ): string {
   switch (locale) {
     case Locale.EnglishUS:
+
     default: {
       return getProperPokemonName$EnglishUS(locale, pokemon, formName)
     }
