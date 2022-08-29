@@ -24,7 +24,7 @@
     "url": "git+https://github.com/Sayakie/Hakase.git"
   },
   "bugs": {
-    "url": "https://github.com/Sayakie/Hakase/issues/new?labels=bug",
+    "url": "https://github.com/Sayakie/Hakase/issues/new?labels=bug:unverified",
     "email": "sayakie@kakao.com"
   },
   "engines": {
