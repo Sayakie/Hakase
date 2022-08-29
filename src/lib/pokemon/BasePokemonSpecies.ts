@@ -179,9 +179,8 @@ export abstract class BasePokemonSpecies {
    * ```typescript
    * const charizardPokedex = PokemonSpecies.Charizard.getNationalPokedex()
    *
-   * 6 === charizardPokedex.asNumber() // true
-   * `006` === charizardPokedex.asString() // true
-   * `6` === charizardPokedex.asString() // false
+   * assert.equal(charizardPokedex.asNumber(), 6)
+   * assert.equal(charizardPokedex.asString(), '006')
    * ```
    */
   public getNationalPokedex(): SpeciesPokedexHolder {

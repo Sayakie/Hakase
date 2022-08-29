@@ -1856,10 +1856,17 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
    * @example
    * ```typescript
    * const JirachiHolder = PokemonSpecies.fromName(`Jirachi`)
+   * assert.equal(JirachiHolder.isSome(), true)
    * assert.equal(JirachiHolder.unwrap(), PokemonSpecies.Jirachi)
-   *
+   * ```
+   * @example
+   * ```typescript
    * const UnknownHolder = PokemonSpecies.fromName(`unknown`)
-   * assert.equal(UnknownHolder.unwrap(), PokemonSpecies.MissingNo)
+   * assert.equal(UnknownHolder.isSome(), false)
+   * assert.throws(() => UnknownHolder.unwrap(), {
+   *   name: 'OptionError',
+   *   message: 'Unwrap failed'
+   * })
    * ```
    */
   public static fromName(name: string | Nullish): Option<PokemonSpecies>
@@ -1881,23 +1888,33 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
    * @returns {Option<PokemonSpecies>} The instance holder
    * @example
    * ```typescript
-   * const JirachiHolder = PokemonSpecies.fromName(`Jirachi`)
+   * const JirachiHolder = PokemonSpecies.fromLocalizedName(`Jirachi`)
+   * assert.equal(JirachiHolder.isSome(), true)
    * assert.equal(JirachiHolder.unwrap(), PokemonSpecies.Jirachi)
    * ```
    * @example
    * ```typescript
-   * const JirachiHolder = PokemonSpecies.fromName(`지라치`)
+   * const JirachiHolder = PokemonSpecies.fromLocalizedName(`지라치`)
+   * assert.equal(JirachiHolder.isSome(), true)
    * assert.equal(JirachiHolder.unwrap(), PokemonSpecies.Jirachi)
    * ```
    * @example
    * ```typescript
-   * const UnknownHolder = PokemonSpecies.fromName(`unknown`)
-   * assert.equal(UnknownHolder.isNone(), true)
+   * const UnknownHolder = PokemonSpecies.fromLocalizedName(`unknown`)
+   * assert.equal(UnknownHolder.isSome(), false)
+   * assert.throws(() => UnknownHolder.unwrap(), {
+   *   name: 'OptionError',
+   *   message: 'Unwrap failed'
+   * })
    * ```
    * @example
    * ```typescript
-   * const UnknownHolder = PokemonSpecies.fromName(`몰?루`)
-   * assert.equal(UnknownHolder.isNone(), true)
+   * const UnknownHolder = PokemonSpecies.fromLocalizedName(`몰?루`)
+   * assert.equal(UnknownHolder.isSome(), false)
+   * assert.throws(() => UnknownHolder.unwrap(), {
+   *   name: 'OptionError',
+   *   message: 'Unwrap failed'
+   * })
    * ```
    */
   public static fromLocalizedName(name: string | Nullish): Option<PokemonSpecies>
