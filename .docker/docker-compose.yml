@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  redis:
+    image: redis:alpine
+    command: 'redis-server --requirepass redis'
+    container_name: redis
+    ports:
+      - '1677:6379'
+    restart: always
+    logging:
+      options:
+        max-size: '20m'
+        max-file: '3'
