@@ -50,6 +50,7 @@
     "colorette": "^2.0.19",
     "discord-api-types": "^0.37.5",
     "discord.js": "^14.3.0",
+    "ioredis": "^5.2.3",
     "korean-regexp": "^1.0.9",
     "merge-options": "^3.0.4",
     "parse-json": "^6.0.2"
@@ -59,6 +60,7 @@
     "@commitlint/config-angular": "^17.1.0",
     "@sapphire/ts-config": "^3.3.4",
     "@swc/core": "^1.2.244",
+    "@types/ioredis": "^4.28.10",
     "@types/node": "^18.7.13",
     "@types/parse-json": "^4.0.0",
     "@typescript-eslint/eslint-plugin": "^5.35.1",
