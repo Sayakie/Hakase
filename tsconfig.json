@@ -1,8 +1,11 @@
 {
   "extends": "@sapphire/ts-config/extra-strict",
   "compilerOptions": {
-    "target": "ES2021",
+    "lib": ["ESNext"],
+    "target": "ESNext",
     "module": "ESNext",
-		"tsBuildInfoFile": ".tsbuildinfo",
+    "moduleResolution": "Node16",
+    "emitDecoratorMetadata": false,
+    "tsBuildInfoFile": ".tsbuildinfo",
   }
 }
