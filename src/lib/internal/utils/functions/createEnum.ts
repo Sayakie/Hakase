@@ -17,8 +17,8 @@
  *   `Disconnected`
  * ])
  *
- * ClientStatus[0] === `Ready` // true
- * ClientStatus.Disconnected === 1 // true
+ * assert.equal(ClientStatus[0], `Ready`)
+ * assert.equal(ClientStatut.Disconnected, 1)
  * ```
  */
 export function createEnum<T extends ReadonlyArray<string>>(

@@ -1,10 +1,8 @@
-import { Option, Result } from '@sapphire/result'
-import type { Nullish } from '@sapphire/utilities'
-import { isNullish, isNullishOrEmpty } from '@sapphire/utilities'
+import { Option } from '@sapphire/result'
+import { type Nullish, isNullish, isNullishOrEmpty } from '@sapphire/utilities'
 
-import { BasePokemonSpecies } from './BasePokemonSpecies.js'
-import { PokemonEnum } from './PokemonEnum.js'
-import { Species } from './Species.js'
+import { BasePokemonSpecies } from '#lib/pokemon/BasePokemonSpecies.js'
+import { Species } from '#lib/pokemon/Species.js'
 
 const REGISTERED_POKEMON = new Set<PokemonSpecies>()
 

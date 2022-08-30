@@ -2,15 +2,14 @@ import { container } from '@sapphire/pieces'
 import { Result } from '@sapphire/result'
 import { isNullish } from '@sapphire/utilities'
 import { envParseNumber } from '@skyra/env-utilities'
-import type { LocaleString } from 'discord-api-types/v10'
 import { Locale } from 'discord-api-types/v10'
 
-import { PokemonSpecies } from '../pokemon/PokemonSpecies.js'
-import type { FuzzyPokemonStrategy } from '../structures/FuzzyPokemonStrategy.js'
-import { StoreRegistryEntries } from '../utils/Identifiers.js'
+import { PokemonSpecies } from '#lib/pokemon/PokemonSpecies.js'
+import type { FuzzyPokemonStrategy } from '#lib/structures/FuzzyPokemonStrategy.js'
+import { StoreRegistryEntries } from '#lib/utils/Identifiers.js'
 
 export interface FuzzilySearchPokemonOptions {
-  locale: LocaleString
+  locale: `${Locale}`
   offset?: number
   take?: number
   includeSpecialPokemon?: boolean
@@ -37,16 +36,16 @@ export class PokemonClient {
   ): FuzzyPokemonStrategy<T> {
     const strategyStore = container.client.stores.get(StoreRegistryEntries.Strategies)
 
-    let fuzzyPokemonStrategy = strategyStore.find(
-      ({ locale: strategyLocale, locales }) => strategyLocale === locale || locales.includes(locale)
-    )
-
-    fuzzyPokemonStrategy ??= strategyStore.get(Locale.EnglishUS)!
+    const fuzzyPokemonStrategy =
+      strategyStore.find(
+        ({ locale: strategyLocale, locales }) =>
+          strategyLocale === locale || locales.includes(locale)
+      ) ?? //
+      strategyStore.get(Locale.EnglishUS)!
 
     return fuzzyPokemonStrategy as FuzzyPokemonStrategy<T>
   }
 
-  // public async getPokemon(pokemonLike: string) {}
   public async fuzzilySearchPokemon(
     pokemonLike: string,
     {
@@ -74,9 +73,14 @@ export class PokemonClient {
       let matchSimilarityOrigin = 0
 
       for (const form of species.forms) {
-        const localizedName = Result.from(
+        const result = Result.from(
           () => species.localizedNamesBelongToForm[form.name.toLowerCase()][locale]
-        ).unwrapOr(null)
+        )
+
+        const localizedName = result.match({
+          err: () => null,
+          ok: data => data
+        })
 
         if (isNullish(localizedName) || !fuzzyPokemonStrategy.fits(localizedName, pokemonLike)) {
           continue

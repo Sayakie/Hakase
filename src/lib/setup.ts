@@ -1,43 +1,40 @@
 //
 // Apply some patches
-import './patches/Math.js'
+import '#lib/inject/patches/Math.js'
 //
 // Setting up environments
-import './config.js'
+import '#lib/config.js'
 
 import { container } from '@sapphire/pieces'
 import { Stopwatch } from '@sapphire/stopwatch'
 import { isNullishOrEmpty, toTitleCase } from '@sapphire/utilities'
 import { blueBright, cyanBright } from 'colorette'
 
-import { PokemonClient } from './client/PokemonClient.js'
-import { PokemonSpecies } from './pokemon/PokemonSpecies.js'
-import { loadAllLanguages, loadAllStats } from './utils/loaders.js'
-import { getProperPokemonName } from './utils/pokemon/getProperPokemonName.js'
+import { PokemonSpecies } from '#lib/pokemon/PokemonSpecies.js'
+import { loadAllLanguages, loadAllStats } from '#lib/utils/loaders.js'
 
-container.pokemonClient = new PokemonClient()
-container.logger.info(`[bootstrap/] Attached PokemonClient to container.`)
+process.env.NODE_ENV ??= `development`
 
-const statsTimewatch = new Stopwatch()
+const statsMeasure = new Stopwatch()
 
 const stats = await loadAllStats()
 
-for (const [species, rawStatData] of stats) {
-  const speciesInstance = Reflect.construct(PokemonSpecies, [rawStatData])
+for (const [species, data] of stats) {
+  const speciesInstance = Reflect.construct(PokemonSpecies, [data])
 
   Reflect.set(PokemonSpecies, toTitleCase(species), speciesInstance)
 
-  container.logger.debug(
+  console.debug(
     `[bootstrap/StatLoader] Applied ${blueBright(toTitleCase(species))} into PokemonSpecies.`
   )
 }
 
-container.logger.info(`[bootstrap/StatLoader] Applied ${blueBright(stats.size)} species.`)
-container.logger.info(
-  `[bootstrap/StatLoader] Took ${cyanBright(statsTimewatch.stop().toString())} to initialize.`
+console.info(`[bootstrap/StatLoader] Applied ${blueBright(stats.size)} species.`)
+console.info(
+  `[bootstrap/StatLoader] Took ${cyanBright(statsMeasure.stop().toString())} to initialize.`
 )
 
-const langaugeTimewatch = new Stopwatch()
+const langaugeMeasure = new Stopwatch()
 
 const commonForms = [
   `noform`,
@@ -118,24 +115,26 @@ container.languageMappings.forEach((values, locale) => {
         )
 
         // const properValue = getProperPokemonName(locale, species, formName)
-        let properValue = speciesName
-
-        properValue += formName ? ` (${formName})` : ``
+        const properValue =
+          speciesName + //
+          formName
+            ? ` (${formName})`
+            : ``
 
         species.setLocalizedNameBelongToForm(form.name.toLowerCase(), locale, properValue)
       }
     }
   }
 })
-container.logger.info(
+console.info(
   `[bootstrap/LanguageLoader] Applied ` +
     `${blueBright(container.languageMappings.size)} language mappings.`
 )
-container.logger.info(
+console.info(
   `[bootstrap/LanguageLoader] Mapping languages: ` +
     `${blueBright([...container.languageMappings.keys()].join(`, `))}`
 )
-container.logger.info(
+console.info(
   `[bootstrap/LanguageLoader] Took ` +
-    `${cyanBright(langaugeTimewatch.stop().toString())} to initialize.`
+    `${cyanBright(langaugeMeasure.stop().toString())} to initialize.`
 )

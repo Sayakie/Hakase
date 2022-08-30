@@ -1,5 +1,4 @@
-import type { PieceContext } from '@sapphire/framework'
-import { type Args, Command as SapphireCommand } from '@sapphire/framework'
+import { type Args, type PieceContext, Command as SapphireCommand } from '@sapphire/framework'
 import type { LocalizationMap } from 'discord-api-types/v10'
 
 export class LocalizableCommand<

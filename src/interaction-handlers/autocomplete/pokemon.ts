@@ -1,10 +1,10 @@
 import { ApplyOptions as Mixin } from '@sapphire/decorators'
-import type { InteractionHandlerTypes } from '@sapphire/framework'
-import { type Maybe, InteractionHandler } from '@sapphire/framework'
+import { InteractionHandler, InteractionHandlerTypes } from '@sapphire/framework'
+import type { Option } from '@sapphire/result'
 import type { ApplicationCommandOptionChoiceData, AutocompleteInteraction } from 'discord.js'
-import type { LocaleString } from 'discord-api-types/v10'
+import type { Locale } from 'discord-api-types/v10'
 
-import { fuzzyPokemonToSelectOption } from '../../lib/utils/responseBuilders/pokemonResponseBuilder'
+import { fuzzyPokemonToSelectOption } from '#lib/utils/responseBuilders/pokemonResponseBuilder.js'
 
 @Mixin<InteractionHandler.Options>({
   interactionHandlerType: InteractionHandlerTypes.Autocomplete
@@ -20,28 +20,28 @@ export class AutocompleteHandler extends InteractionHandler<{
   }
 
   public override async parse(
-    interaction: AutocompleteInteraction & { locale: LocaleString }
-  ): Promise<Maybe<ApplicationCommandOptionChoiceData[]>> {
+    interaction: AutocompleteInteraction & { locale: `${Locale}` }
+  ): Promise<Option<ApplicationCommandOptionChoiceData[]>> {
     if (interaction.commandName !== `pokemon`) {
       return this.none()
     }
 
     const focusedOption = interaction.options.getFocused(true)
 
-    switch (focusedOption.name) {
-      case `pokemon`: {
-        const fuzzyPokemon = await this.container.pokemonClient.fuzzilySearchPokemon(
-          focusedOption.value,
-          { locale: interaction.locale }
-        )
+    if (focusedOption.name === `pokemon`) {
+      const fuzzyPokemon = await this.container.pokemon.fuzzilySearchPokemon(
+        //
+        focusedOption.value,
+        {
+          locale: interaction.locale
+        }
+      )
 
-        return this.some(
-          fuzzyPokemon.map(fuzzyEntry => fuzzyPokemonToSelectOption(fuzzyEntry, interaction.locale))
-        )
-      }
-
-      default:
-        return this.none()
+      return this.some(
+        fuzzyPokemon.map(fuzzyEntry => fuzzyPokemonToSelectOption(fuzzyEntry, interaction.locale))
+      )
     }
+
+    return this.none()
   }
 }

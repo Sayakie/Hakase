@@ -1,7 +1,7 @@
 import { Store } from '@sapphire/pieces'
 
-import { StoreRegistryEntries } from '../utils/Identifiers.js'
-import { FuzzyPokemonStrategy } from './FuzzyPokemonStrategy.js'
+import { FuzzyPokemonStrategy } from '#lib/structures/FuzzyPokemonStrategy.js'
+import { StoreRegistryEntries } from '#lib/utils/Identifiers.js'
 
 export class FuzzyPokemonStrategyStore extends Store<FuzzyPokemonStrategy> {
   private readonly globalStrategies: FuzzyPokemonStrategy[] = []

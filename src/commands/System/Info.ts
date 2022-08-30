@@ -8,12 +8,11 @@ import {
 import { Duration } from '@sapphire/time-utilities'
 import { MessageEmbed, version } from 'discord.js'
 import { Locale } from 'discord-api-types/v10'
-import type { CpuInfo } from 'node:os'
-import { cpus, uptime as osUptime } from 'node:os'
+import { type CpuInfo, cpus, uptime as osUptime } from 'node:os'
 import { memoryUsage, uptime as processUptime } from 'node:process'
 
-import { LocalizableCommand } from '../../lib/structures/LocalizableCommand.js'
-import { BrandingColors, MemoryUnits } from '../../lib/utils/constants.js'
+import { LocalizableCommand } from '#lib/structures/LocalizableCommand.js'
+import { BrandingColors, MemoryUnits } from '#lib/utils/constants.js'
 
 @Mixin<ChatInputCommand.Options>({
   description: `Provides information about Hakase, and links for adding the bot and joining the support server.`,
@@ -164,9 +163,13 @@ export class SlashCommand extends LocalizableCommand {
 
     const usage = this.usageStatistics
 
-    const titles = this.titles[locale] ?? this.titles[Locale.EnglishUS]!
+    const titles =
+      this.titles[locale] ?? //
+      this.titles[Locale.EnglishUS]!
 
-    const fields = this.fields[locale] ?? this.fields[Locale.EnglishUS]!
+    const fields =
+      this.fields[locale] ?? //
+      this.fields[Locale.EnglishUS]!
 
     return new MessageEmbed() //
       .setColor(BrandingColors.Primary)

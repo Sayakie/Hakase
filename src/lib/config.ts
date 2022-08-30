@@ -1,12 +1,19 @@
 import { LogLevel } from '@sapphire/framework'
-import type { NumberString } from '@skyra/env-utilities'
-import { type ArrayString, type BooleanString, envParseString, setup } from '@skyra/env-utilities'
+import {
+  type ArrayString,
+  type NumberString,
+  envParseArray,
+  envParseNumber,
+  envParseString,
+  setup
+} from '@skyra/env-utilities'
 import { type ClientOptions, Constants } from 'discord.js'
 import { GatewayIntentBits } from 'discord-api-types/v10'
+import type { RedisOptions } from 'ioredis'
 import { URL } from 'node:url'
 
-import { Directories } from './utils/constants.js'
-import { keyMirror } from './utils/functions.js'
+import { Directories } from '#lib/utils/constants.js'
+import { keyMirror } from '#lib/utils/functions.js'
 
 setup(new URL(`.env`, Directories.Root))
 
@@ -20,9 +27,15 @@ const EnvKeys = keyMirror([
   `FUZZY_SEARCH_POKEMON_RELATED_MATCH_THRESHOLD`,
 
   `DISCORD_TOKEN`,
-  // [for Codespace only]
+  // WORKAROUND for GitHub Codespace
   `DISCORD_TOKEN_DEV`,
-  `DISCORD_TOKEN_PROD`
+  `DISCORD_TOKEN_PROD`,
+
+  // Redis
+  `REDIS_USERNAME`,
+  `REDIS_PASSWORD`,
+  `REDIS_HOST`,
+  `REDIS_PORT`
 ])
 
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -40,16 +53,20 @@ declare module '@skyra/env-utilities' {
     [EnvKeys.DISCORD_TOKEN]: string
     [EnvKeys.DISCORD_TOKEN_DEV]: string
     [EnvKeys.DISCORD_TOKEN_PROD]: string
+
+    [EnvKeys.REDIS_HOST]: string
+    [EnvKeys.REDIS_PORT]: NumberString
+    [EnvKeys.REDIS_USERNAME]: string
+    [EnvKeys.REDIS_PASSWORD]: string
   }
 }
 /* eslint-enable */
 
-export const OWNERS = envParseString(`OWNERS`)
+export const OWNERS = envParseArray(`OWNERS`, [])
 
-export const DISCORD_TOKEN =
-  envParseString(`NODE_ENV`) === `production`
-    ? envParseString(`DISCORD_TOKEN_PROD`) || envParseString(`DISCORD_TOKEN`)
-    : envParseString(`DISCORD_TOKEN_DEV`) || envParseString(`DISCORD_TOKEN`)
+export const DISCORD_TOKEN = isProduction()
+  ? envParseString(`DISCORD_TOKEN_PROD`, ``) || envParseString(`DISCORD_TOKEN`)
+  : envParseString(`DISCORD_TOKEN_DEV`, ``) || envParseString(`DISCORD_TOKEN`)
 
 export const CLIENT_OPTIONS: ClientOptions = {
   allowedMentions: { roles: [], users: [] },
@@ -60,10 +77,23 @@ export const CLIENT_OPTIONS: ClientOptions = {
   loadMessageCommandListeners: false,
 
   logger: {
-    level: envParseString(`NODE_ENV`) === `production` ? LogLevel.Info : LogLevel.Debug
+    level: isProduction() ? LogLevel.Info : LogLevel.Debug
   },
 
   partials: [Constants.PartialTypes.CHANNEL, Constants.PartialTypes.GUILD_SCHEDULED_EVENT],
 
   prisma: null
+}
+
+export function isProduction(): boolean {
+  return envParseString(`NODE_ENV`) === `production`
+}
+
+export function parseRedisOption(): RedisOptions {
+  return {
+    host: envParseString(`REDIS_HOST`, `127.0.0.1`),
+    password: envParseString(`REDIS_PASSWORD`, ``),
+    port: envParseNumber(`REDIS_PORT`, 6379),
+    username: envParseString(`REDIS_USERNAME`, ``)
+  }
 }

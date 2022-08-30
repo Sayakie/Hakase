@@ -1,4 +1,4 @@
-import type { PokemonSpecies } from '../../../pokemon/PokemonSpecies.js'
+import type { PokemonSpecies } from '#lib/pokemon/PokemonSpecies.js'
 
 export interface GetImageUrlOptions {
   hostUri?: string

@@ -1,6 +1,6 @@
-import Redis from 'ioredis'
+import { default as Redis } from 'ioredis'
 
-import type { Species } from '../pokemon/Species.js'
+import type { Species } from '#lib/pokemon/Species.js'
 
 export enum RedisKey {
   GetPokemon = `getPokemon`
@@ -8,7 +8,7 @@ export enum RedisKey {
 
 export type RedisQuery<K extends RedisKey> = K extends `getPokemon` ? Species : null
 
-export class RedisClient extends Redis {
+export class RedisClient extends Redis.default {
   public async insert<K extends RedisKey>(
     key: K,
     query: RedisQuery<K>,
