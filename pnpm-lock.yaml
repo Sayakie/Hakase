@@ -477,7 +477,7 @@ packages:
       '@discordjs/builders': 1.2.0
       '@sapphire/discord-utilities': 2.11.6
       '@sapphire/discord.js-utilities': 5.1.0-pr-434.549335e.0
-      '@sapphire/lexure': 1.0.1
+      '@sapphire/lexure': 1.0.2
       '@sapphire/pieces': 3.5.1
       '@sapphire/ratelimits': 2.4.4
       '@sapphire/result': 2.4.1
@@ -488,8 +488,8 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@sapphire/lexure/1.0.1:
-    resolution: {integrity: sha512-bxI85SqPERicAC8fyZNRjrK2SroXFtpa/vgUNExH8VSM1LIysZE6zDRGCvllAfOdEVGSGBKjNRLfT9kYwNDhXg==}
+  /@sapphire/lexure/1.0.2:
+    resolution: {integrity: sha512-KKKcCvjkB6AImGzpWdrbLVI++VnRinpus+a4yu+PUT7zUlzUZdma1P/P8XlRDFEx6U+d5jk8ygKyTPzQKvkqRA==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dependencies:
       '@sapphire/result': 2.4.1
@@ -720,13 +720,11 @@ packages:
 
   /@swc/wasm/1.2.122:
     resolution: {integrity: sha512-sM1VCWQxmNhFtdxME+8UXNyPNhxNu7zdb6ikWpz0YKAQQFRGT5ThZgJrubEpah335SUToNg8pkdDF7ibVCjxbQ==}
-    requiresBuild: true
     dev: true
     optional: true
 
   /@swc/wasm/1.2.130:
     resolution: {integrity: sha512-rNcJsBxS70+pv8YUWwf5fRlWX6JoY/HJc25HD/F8m6Kv7XhJdqPPMhyX6TKkUBPAG7TWlZYoxa+rHAjPy4Cj3Q==}
-    requiresBuild: true
     dev: true
     optional: true
 
