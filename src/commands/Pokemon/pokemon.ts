@@ -1,16 +1,17 @@
 import { ApplyOptions as Mixin } from '@sapphire/decorators'
-import type { ChatInputCommand } from '@sapphire/framework'
-import { RegisterBehavior } from '@sapphire/framework'
+import { type ChatInputCommand, RegisterBehavior } from '@sapphire/framework'
 
-import { LocalizableCommand } from '../../lib/structures/LocalizableCommand.js'
+import { LocalizableCommand } from '#lib/structures/LocalizableCommand.js'
 
 @Mixin<ChatInputCommand.Options>({
   description: `Gets data for the chosen Pokémon.`,
   descriptionLocalizations: {
-    ko: `포켓몬 정보를 검색합니다.`
+    ko: `포켓몬 정보를 검색합니다.`,
+    th: `ได้รับข้อมูลสำหรับโปเกม่อนที่เลือกไว้`
   },
   nameLocalizations: {
-    ko: `포켓몬`
+    ko: `포켓몬`,
+    th: `โปเกมอน`
   }
 })
 export class SlashCommand extends LocalizableCommand {
@@ -26,9 +27,14 @@ export class SlashCommand extends LocalizableCommand {
             option
               .setName(`pokemon`)
               .setDescription(`The name of the Pokémon which you want to get information.`)
-              .setNameLocalizations({ ko: `이름` })
+              .setNameLocalizations({
+                //
+                ko: `이름`,
+                th: `โปเกมอน`
+              })
               .setDescriptionLocalizations({
-                ko: `정보를 검색할 포켓몬 이름`
+                ko: `정보를 검색할 포켓몬 이름`,
+                th: `ชื่อของโปเกม่อนที่คุณต้องการรับข้อมูล`
               })
               .setRequired(true)
               .setAutocomplete(true)
@@ -43,9 +49,6 @@ export class SlashCommand extends LocalizableCommand {
 
   public override async chatInputRun(interaction: ChatInputCommand.Interaction): Promise<void> {
     await interaction.deferReply()
-
-    const it = interaction.options.getString(`pokemon`, true)
-    console.log(it)
 
     await interaction.deleteReply()
     await interaction.followUp(`unknown`)

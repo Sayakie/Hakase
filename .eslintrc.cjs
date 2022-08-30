@@ -239,6 +239,13 @@ module.exports = {
     'simple-import-sort/exports': [ERROR],
     'simple-import-sort/imports': [ERROR],
     'sort-keys-fix/sort-keys-fix': [ERROR, `asc`, { natural: true }],
-    'prefer-early-return/prefer-early-return': [ERROR]
+    'prefer-early-return/prefer-early-return': [ERROR],
+    'lines-between-class-members': [ERROR, ALWAYS],
+    'padding-line-between-statements': [
+      ERROR,
+      { blankLine: ALWAYS, prev: `*`, next: `return` },
+      { blankLine: ALWAYS, prev: [`const`, `let`, `var`], next: `*` },
+      { blankLine: ALWAYS, prev: [`case`, `default`], next: `*` }
+    ]
   }
 }

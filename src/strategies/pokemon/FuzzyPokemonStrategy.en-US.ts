@@ -2,7 +2,7 @@ import { ApplyOptions as Mixin } from '@sapphire/decorators'
 import { jaroWinkler } from '@skyra/jaro-winkler'
 import { Locale } from 'discord-api-types/v10'
 
-import { FuzzyPokemonStrategy } from '../../lib/structures/FuzzyPokemonStrategy.js'
+import { FuzzyPokemonStrategy } from '#lib/structures/FuzzyPokemonStrategy.js'
 
 @Mixin<FuzzyPokemonStrategy.Options>({
   locale: Locale.EnglishUS

@@ -3,7 +3,7 @@ import { type Store, Events, Listener } from '@sapphire/framework'
 import { blue, blueBright, gray } from 'colorette'
 import type { Client } from 'discord.js'
 
-import { ListenerIdentifiers } from '../lib/utils/Identifiers.js'
+import { ListenerIdentifiers } from '#lib/utils/Identifiers.js'
 
 @Mixin<Listener.Options>({
   event: Events.ClientReady,

@@ -1,5 +1,4 @@
-import type { PieceContext } from '@sapphire/pieces'
-import { Piece } from '@sapphire/pieces'
+import { type PieceContext, Piece } from '@sapphire/pieces'
 import { envParseNumber } from '@skyra/env-utilities'
 import type { LocaleString } from 'discord-api-types/v10'
 

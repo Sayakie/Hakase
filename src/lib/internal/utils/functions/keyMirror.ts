@@ -13,7 +13,7 @@
  *   `Pokemon`
  * ])
  *
- * ChatInputIds.Pokemon === `Pokemon` // true
+ * assert.equal(ChatInputIds.Pokemon, `Pokemon`)
  * ```
  */
 export function keyMirror<T extends string>(keys: T[]): { [P in T]: P } {

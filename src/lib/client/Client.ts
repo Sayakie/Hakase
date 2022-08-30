@@ -2,10 +2,15 @@ import { SapphireClient } from '@sapphire/framework'
 import { container } from '@sapphire/pieces'
 import type { ClientOptions } from 'discord.js'
 
-import { FuzzyPokemonStrategyStore } from '../structures/FuzzyPokemonStrategyStore.js'
+import { PokemonClient } from '#lib/client/PokemonClient.js'
+import { RedisClient } from '#lib/client/RedisClient.js'
+import { parseRedisOption } from '#lib/config.js'
+import { FuzzyPokemonStrategyStore } from '#lib/structures/FuzzyPokemonStrategyStore.js'
 
 export interface ClientProperties {
   prisma: unknown
+  pokemon: PokemonClient
+  redis: RedisClient
 }
 
 export class Client<Ready extends boolean = boolean> extends SapphireClient<Ready> {
@@ -30,11 +35,21 @@ export class Client<Ready extends boolean = boolean> extends SapphireClient<Read
    */
   public override readonly prisma: unknown
 
+  public override readonly pokemon: PokemonClient
+
+  public override readonly redis: RedisClient
+
   public constructor(options: ClientOptions) {
     super(options)
 
     this.prisma = options.prisma
     container.prisma = this.prisma
+
+    this.pokemon = new PokemonClient()
+    container.pokemon = this.pokemon
+
+    this.redis = new RedisClient(parseRedisOption())
+    container.redis = this.redis
 
     this.stores.register(new FuzzyPokemonStrategyStore())
   }
@@ -52,6 +67,6 @@ declare module '@sapphire/framework' {
 declare module 'discord.js' {
   interface Client extends ClientProperties {}
 
-  interface ClientOptions extends ClientProperties {}
+  interface ClientOptions extends Partial<ClientProperties> {}
 }
 /* eslint-enable */

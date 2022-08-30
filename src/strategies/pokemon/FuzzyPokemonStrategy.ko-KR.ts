@@ -3,7 +3,7 @@ import { jaroWinkler } from '@skyra/jaro-winkler'
 import { Locale } from 'discord-api-types/v10'
 import { explode } from 'korean-regexp'
 
-import { FuzzyPokemonStrategy } from '../../lib/structures/FuzzyPokemonStrategy.js'
+import { FuzzyPokemonStrategy } from '#lib/structures/FuzzyPokemonStrategy.js'
 
 @Mixin<FuzzyPokemonStrategy.Options>({
   locale: Locale.Korean

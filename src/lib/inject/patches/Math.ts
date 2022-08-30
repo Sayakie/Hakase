@@ -4,7 +4,6 @@ Math.clamp = function clamp(value: number, min: number, max: number): number {
   return Math.max(min, Math.min(value, max))
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface Math {
   /**
    * Clamps the given value between the given minimum and maximum values.

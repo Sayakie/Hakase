@@ -1,32 +1,28 @@
 import { UserError } from '@sapphire/framework'
-import { Option, Result } from '@sapphire/result'
-import { isNullish, isNullishOrEmpty, isNumber } from '@sapphire/utilities'
-import type { Locale, LocaleString, LocalizationMap } from 'discord-api-types/v10.js'
-import parseJson from 'parse-json'
+import { Option } from '@sapphire/result'
+import { isNullish, isNumber } from '@sapphire/utilities'
+import type { Locale, LocaleString, LocalizationMap } from 'discord-api-types/v10'
 
-import { Identifiers } from '../utils/Identifiers.js'
-import type { PokemonSpecies } from './PokemonSpecies.js'
+import type { PokemonSpecies } from '#lib/pokemon/PokemonSpecies.js'
+import { Identifiers } from '#lib/utils/Identifiers.js'
 
 export abstract class BasePokemonSpecies {
   readonly #name: string
+
   #localizedNames: LocalizationMap
+
   #localizedNamesBelongToForm: Record<string, LocalizationMap>
+
   readonly #dex: number
+
   readonly #generation: number
+
   readonly #defaultForms: string[]
+
   readonly #forms: Stat[]
 
-  public constructor(raw: any) {
-    const result = Result.from(() => parseJson(raw))
-    if (result.isErr()) {
-      throw new UserError({
-        context: { raw },
-        identifier: Identifiers.PokemonSpeciesConstructJsonParseFailure,
-        message: `Failed to parse a raw data to proper JSON object.`
-      })
-    }
-
-    const { name, dex, generation, defaultForms, forms } = result.unwrap()
+  public constructor(data: any) {
+    const { name, dex, generation, defaultForms, forms } = data
 
     this.#name = name
     this.#localizedNames = {}
@@ -172,9 +168,8 @@ export abstract class BasePokemonSpecies {
    * ```typescript
    * const charizardPokedex = PokemonSpecies.Charizard.getNationalPokedex()
    *
-   * 6 === charizardPokedex.asNumber() // true
-   * `006` === charizardPokedex.asString() // true
-   * `6` === charizardPokedex.asString() // false
+   * assert.equal(charizardPokedex.asNumber(), 6)
+   * assert.equal(charizardPokedex.asString(), '006')
    * ```
    */
   public getNationalPokedex(): SpeciesPokedexHolder {
@@ -216,8 +211,11 @@ export abstract class BasePokemonSpecies {
    * @returns {boolean} Whether this species is a legendary or not
    */
   public isLegendary(): this is PokemonSpecies<`legendary` | `mythical`>
+
   public isLegendary(includeMythical: true): this is PokemonSpecies<`legendary` | `mythical`>
+
   public isLegendary(includeMythical: false): this is PokemonSpecies<`legendary`>
+
   public isLegendary(includeMythical: boolean = true): boolean {
     return (
       this.forms.find(({ name }) => name === ``)?.tags.includes(`legendary`) ??
@@ -261,17 +259,25 @@ export abstract class BasePokemonSpecies {
   }
 
   public [Symbol.toPrimitive](hint: `default`): string
+
   public [Symbol.toPrimitive](hint: `string`): string
+
   public [Symbol.toPrimitive](hint: `number`): number
+
   public [Symbol.toPrimitive](hint: string): string | number {
+    /* eslint-disable no-fallthrough */
     switch (hint) {
       case `default`:
+
       case `string`:
+
       default:
         return this.#name
+
       case `number`:
         return this.#dex
     }
+    /* eslint-enable */
   }
 }
 

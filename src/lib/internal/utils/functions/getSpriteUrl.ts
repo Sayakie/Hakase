@@ -1,4 +1,4 @@
-import type { PokemonSpecies } from '../../../pokemon/PokemonSpecies.js'
+import type { PokemonSpecies } from '#lib/pokemon/PokemonSpecies.js'
 
 export interface GetSpriteUrlOptions {
   hostUri?: string
@@ -14,6 +14,7 @@ export function getSpriteUrl(
   }: GetSpriteUrlOptions = {}
 ): string {
   const pokedex = species.getNationalPokedex().asString()
+
   const suffix = form ? `-${form}` : ``
 
   return `${hostUri}/${pokedex}${suffix}.${extension}`
