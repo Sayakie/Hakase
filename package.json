@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/package.json",
   "name": "hakase",
   "private": true,
-  "version": "2.0.0-beta",
+  "version": "2.0.0",
   "author": "Sayakie <sayakie@kakao.com>",
   "description": "Discord bot to let y'all explore Pixelmon Pokémon information",
   "contributors": [],
@@ -14,6 +14,7 @@
     "postinstall": "is-ci || simple-git-hooks",
     "start": "node --enable-source-maps dist/index.js",
     "build": "tsup",
+    "bump": "cliff-jumper",
     "lint": "eslint --fix src/**/*.ts",
     "lint:dry-run": "eslint --fix-dry-run src/**/*.ts"
   },
@@ -63,6 +64,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-angular": "^17.1.0",
+    "@favware/cliff-jumper": "^1.8.7",
     "@sapphire/ts-config": "^3.3.4",
     "@swc/core": "^1.2.244",
     "@types/node": "^18.7.14",
