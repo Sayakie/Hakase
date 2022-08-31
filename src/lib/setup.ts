@@ -1,3 +1,4 @@
+import '@sapphire/plugin-logger/register'
 //
 // Apply some patches
 import '#lib/inject/patches/Math.js'
