@@ -117,9 +117,7 @@ container.languageMappings.forEach((values, locale) => {
         // const properValue = getProperPokemonName(locale, species, formName)
         const properValue =
           speciesName + //
-          formName
-            ? ` (${formName})`
-            : ``
+          (formName ? ` (${formName})` : ``)
 
         species.setLocalizedNameBelongToForm(form.name.toLowerCase(), locale, properValue)
       }
