@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [@Sayakie/Hakase@2.1.0](https://github.com/favware/cliff-jumper/compare/@Sayakie/Hakase@2.0.0...@Sayakie/Hakase@2.1.0) - (2022-08-31)
+
+## 🐛 Bug Fixes
+
+- Cliff refer invalid commit url ([5ec9250](https://github.com/Sayakie/Hakase/commit/5ec925093ea74ff2e22d681094a9bc4738a14662))
+- `REDIS_TASK_DB` throwing that is missing even though its optional ([cee84f4](https://github.com/Sayakie/Hakase/commit/cee84f4f7ef6fe30e889490271d482376b736b2d))
+- Always return empty string since pokemon has form ([f53f016](https://github.com/Sayakie/Hakase/commit/f53f0164f17b263727804e8a24b9cacaede04987))
+
+## 🚀 Features
+
+- **config:** Add Redis scheduler to schedule corresponding tasks ([3d67dae](https://github.com/Sayakie/Hakase/commit/3d67daed252b0fc6266d68ab421c3dcd94a9e78f))
+- Add `cliff-jumper` ([c1e48c1](https://github.com/Sayakie/Hakase/commit/c1e48c17d9557a2d6884cd21c24964c21e8a954f))
+
 # [@Sayakie/Hakase@2.0.0](https://github.com/favware/cliff-jumper/tree/@Sayakie/Hakase@2.0.0) - (2022-08-30)
 
 ## ⌨️ Typings
