@@ -8,9 +8,9 @@ body = """
     # [{{ version | trim_start_matches(pat="v") }}]\
     {% if previous %}\
         {% if previous.version %}\
-            (https://github.com/favware/cliff-jumper/compare/{{ previous.version }}...{{ version }})\
+            (https://github.com/Sayakie/Hakase/compare/{{ previous.version }}...{{ version }})\
         {% else %}\
-            (https://github.com/favware/cliff-jumper/tree/{{ version }})\
+            (https://github.com/Sayakie/Hakase/tree/{{ version }})\
         {% endif %}\
     {% endif %} \
     - ({{ timestamp | date(format="%Y-%m-%d") }})
