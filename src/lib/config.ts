@@ -93,7 +93,7 @@ export const CLIENT_OPTIONS: ClientOptions = {
       bull: {
         connection: {
           ...parseRedisOption(),
-          db: envParseInteger(`REDIS_TASK_DB`)
+          db: envParseInteger(`REDIS_TASK_DB`, 0)
         }
       }
     })
