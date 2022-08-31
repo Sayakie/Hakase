@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/package.json",
   "name": "hakase",
   "private": true,
-  "version": "2.1.0",
+  "version": "2.1.1",
   "author": "Sayakie <sayakie@kakao.com>",
   "description": "Discord bot to let y'all explore Pixelmon Pokémon information",
   "contributors": [],

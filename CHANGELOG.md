@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [@Sayakie/Hakase@2.1.1](https://github.com/Sayakie/Hakase/compare/@Sayakie/Hakase@2.1.0...@Sayakie/Hakase@2.1.1) - (2022-08-31)
+
+## 🐛 Bug Fixes
+
+- Cliff refer invalid version link ([e9f975b](https://github.com/Sayakie/Hakase/commit/e9f975b49d11bb72e49146174753d32ceb1f3fb5))
+
 # [@Sayakie/Hakase@2.1.0](https://github.com/favware/cliff-jumper/compare/@Sayakie/Hakase@2.0.0...@Sayakie/Hakase@2.1.0) - (2022-08-31)
 
 ## 🐛 Bug Fixes
