@@ -1,8 +1,11 @@
 import { LogLevel } from '@sapphire/framework'
+import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis'
 import {
   type ArrayString,
+  type IntegerString,
   type NumberString,
   envParseArray,
+  envParseInteger,
   envParseNumber,
   envParseString,
   setup
@@ -35,7 +38,8 @@ const EnvKeys = keyMirror([
   `REDIS_USERNAME`,
   `REDIS_PASSWORD`,
   `REDIS_HOST`,
-  `REDIS_PORT`
+  `REDIS_PORT`,
+  `REDIS_TASK_DB`
 ])
 
 /* eslint-disable @typescript-eslint/naming-convention */
@@ -58,6 +62,7 @@ declare module '@skyra/env-utilities' {
     [EnvKeys.REDIS_PORT]: NumberString
     [EnvKeys.REDIS_USERNAME]: string
     [EnvKeys.REDIS_PASSWORD]: string
+    [EnvKeys.REDIS_TASK_DB]: IntegerString
   }
 }
 /* eslint-enable */
@@ -82,7 +87,17 @@ export const CLIENT_OPTIONS: ClientOptions = {
 
   partials: [Constants.PartialTypes.CHANNEL, Constants.PartialTypes.GUILD_SCHEDULED_EVENT],
 
-  prisma: null
+  prisma: null,
+  tasks: {
+    strategy: new ScheduledTaskRedisStrategy({
+      bull: {
+        connection: {
+          ...parseRedisOption(),
+          db: envParseInteger(`REDIS_TASK_DB`)
+        }
+      }
+    })
+  }
 }
 
 export function isProduction(): boolean {
