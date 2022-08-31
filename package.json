@@ -15,6 +15,7 @@
     "start": "node --enable-source-maps dist/index.js",
     "build": "tsup",
     "bump": "cliff-jumper",
+    "check-update": "cliff-jumper --dry-run",
     "lint": "eslint --fix src/**/*.ts",
     "lint:dry-run": "eslint --fix-dry-run src/**/*.ts"
   },
