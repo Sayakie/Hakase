@@ -12,7 +12,7 @@
   "scripts": {
     "preinstall": "npx -y only-allow pnpm",
     "postinstall": "is-ci || simple-git-hooks",
-    "start": "node --preserve-symlinks --enable-source-maps dist/index.js",
+    "start": "node --enable-source-maps dist/index.js",
     "build": "tsup",
     "bump": "cliff-jumper",
     "check-update": "cliff-jumper --dry-run",
