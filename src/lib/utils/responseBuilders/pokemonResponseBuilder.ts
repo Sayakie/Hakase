@@ -3,7 +3,7 @@ import { Locale } from 'discord-api-types/v10'
 
 import type { PokemonClient } from '#lib/client/PokemonClient.js'
 
-interface FuzzyPokemonToCommandChoiceDataOptions {
+export interface FuzzyPokemonToCommandChoiceDataOptions {
   locale: `${Locale}`
 }
 
