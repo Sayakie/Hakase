@@ -4,7 +4,7 @@ import type { Option } from '@sapphire/result'
 import type { ApplicationCommandOptionChoiceData, AutocompleteInteraction } from 'discord.js'
 import type { Locale } from 'discord-api-types/v10'
 
-import { fuzzyPokemonToSelectOption } from '#lib/utils/responseBuilders/pokemonResponseBuilder.js'
+import { fuzzyPokemonToCommandChoiceData } from '#lib/utils/responseBuilders/pokemonResponseBuilder.js'
 
 @Mixin<InteractionHandler.Options>({
   interactionHandlerType: InteractionHandlerTypes.Autocomplete
@@ -28,17 +28,19 @@ export class AutocompleteHandler extends InteractionHandler<{
 
     const focusedOption = interaction.options.getFocused(true)
 
+    const locale = interaction.locale
+
     if (focusedOption.name === `pokemon`) {
       const fuzzyPokemon = await this.container.pokemon.fuzzilySearchPokemon(
         //
         focusedOption.value,
         {
-          locale: interaction.locale
+          locale
         }
       )
 
       return this.some(
-        fuzzyPokemon.map(fuzzyEntry => fuzzyPokemonToSelectOption(fuzzyEntry, interaction.locale))
+        fuzzyPokemon.map(fuzzyEntry => fuzzyPokemonToCommandChoiceData(fuzzyEntry, { locale }))
       )
     }
 

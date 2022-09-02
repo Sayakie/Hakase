@@ -3,9 +3,13 @@ import { Locale } from 'discord-api-types/v10'
 
 import type { PokemonClient } from '#lib/client/PokemonClient.js'
 
-export function fuzzyPokemonToSelectOption(
+interface FuzzyPokemonToCommandChoiceDataOptions {
+  locale: `${Locale}`
+}
+
+export function fuzzyPokemonToCommandChoiceData(
   fuzzyMatchResult: PokemonClient.FuzzilySearchPokemon.Result,
-  locale: `${Locale}` = Locale.EnglishUS
+  { locale = Locale.EnglishUS }: FuzzyPokemonToCommandChoiceDataOptions
 ): ApplicationCommandOptionChoiceData {
   return {
     // TODO: Should change to `fuzzyMatchResult.name` when Discord slate-2 is landing.
