@@ -211,6 +211,18 @@ export class Form implements Translatable {
     return Object.freeze(evYields)
   }
 
+  public isLegendary(): boolean {
+    return this.tags.includes(`legendary`)
+  }
+
+  public isMythical(): boolean {
+    return this.tags.includes(`mythical`)
+  }
+
+  public isUltraBeast(): boolean {
+    return this.tags.includes(`ultrabeast`)
+  }
+
   public isTemporary(): boolean {
     return this.tags.includes(`temp`)
   }
