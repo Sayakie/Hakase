@@ -13,7 +13,8 @@ import {
 import { type ClientOptions, Constants } from 'discord.js'
 import { GatewayIntentBits } from 'discord-api-types/v10'
 import type { RedisOptions } from 'ioredis'
-import { URL } from 'node:url'
+import { join } from 'node:path'
+import { fileURLToPath, URL } from 'node:url'
 
 import { Directories } from '#lib/utils/constants.js'
 import { keyMirror } from '#lib/utils/functions.js'
@@ -76,9 +77,13 @@ export const DISCORD_TOKEN = isProduction()
 export const CLIENT_OPTIONS: ClientOptions = {
   allowedMentions: { roles: [], users: [] },
 
-  intents: [GatewayIntentBits.Guilds],
+  i18n: {
+    defaultLanguageDirectory: join(fileURLToPath(Directories.Root), `locales`)
+  },
 
+  intents: [GatewayIntentBits.Guilds],
   loadDefaultErrorListeners: true,
+
   loadMessageCommandListeners: false,
 
   logger: {
