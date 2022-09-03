@@ -1,4 +1,5 @@
 import type { Stat as JsonStat } from '@internal/pixelmon'
+import { container } from '@sapphire/pieces'
 import { Option } from '@sapphire/result'
 import { s } from '@sapphire/shapeshift'
 import { isNullish } from '@sapphire/utilities'
@@ -6,8 +7,9 @@ import type { Locale, LocaleString, LocalizationMap } from 'discord-api-types/v1
 
 import { Form } from '#lib/pokemon/Form.js'
 import type { PokemonSpecies } from '#lib/pokemon/PokemonSpecies.js'
+import type { Translatable, Translation } from '#lib/utils/Translatable.js'
 
-export abstract class BasePokemonSpecies {
+export abstract class BasePokemonSpecies implements Translatable {
   readonly #name: string
 
   #localizedNames: LocalizationMap
@@ -180,6 +182,20 @@ export abstract class BasePokemonSpecies {
     }
 
     this.#localizedNamesBelongToForm[formName][locale] = localizedName
+  }
+
+  public translation(): Translation {
+    const key = `Pixelmon:${this.name.toLowerCase()}.name`
+
+    const translation: Translation = {
+      key: () => key,
+      with: locale => container.i18n.format(locale, key)
+    }
+
+    Reflect.set(translation, `toString`, key)
+    Object.freeze(translation)
+
+    return translation
   }
 
   /**

@@ -1,4 +1,5 @@
 import type { Stat } from '@internal/pixelmon'
+import { container } from '@sapphire/pieces'
 import { Option } from '@sapphire/result'
 import { type Nullish, isNullish, isNullishOrEmpty } from '@sapphire/utilities'
 
@@ -1971,8 +1972,13 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
       return null
     }
 
+    const languages = [...container.i18n.languages.values()]
+
     for (const species of REGISTERED_POKEMON) {
-      if (species.name === name || Object.values(species.localizedNames).includes(name)) {
+      if (
+        species.name === name ||
+        languages.find(t => t(species.translation().key()).toLowerCase() === name)
+      ) {
         return species
       }
     }
