@@ -1,9 +1,4 @@
 import '@sapphire/plugin-logger/register'
-//
-// Apply some patches
-import '#lib/inject/patches/Math.js'
-//
-// Setting up environments
 import '#lib/config.js'
 
 import { container } from '@sapphire/pieces'
