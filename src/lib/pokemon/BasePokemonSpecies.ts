@@ -1,10 +1,11 @@
-import { UserError } from '@sapphire/framework'
+import type { Stat as JsonStat } from '@internal/pixelmon'
 import { Option } from '@sapphire/result'
-import { isNullish, isNumber } from '@sapphire/utilities'
+import { s } from '@sapphire/shapeshift'
+import { isNullish } from '@sapphire/utilities'
 import type { Locale, LocaleString, LocalizationMap } from 'discord-api-types/v10'
 
+import { Form } from '#lib/pokemon/Form.js'
 import type { PokemonSpecies } from '#lib/pokemon/PokemonSpecies.js'
-import { Identifiers } from '#lib/utils/Identifiers.js'
 
 export abstract class BasePokemonSpecies {
   readonly #name: string
@@ -19,41 +20,18 @@ export abstract class BasePokemonSpecies {
 
   readonly #defaultForms: string[]
 
-  readonly #forms: Stat[]
+  readonly #forms: Form[]
 
-  public constructor(data: any) {
-    const { name, dex, generation, defaultForms, forms } = data
+  public constructor(jsonData: JsonStat) {
+    const { name, dex, generation, defaultForms, forms } = jsonData
 
-    this.#name = name
+    this.#name = s.string.parse(name)
     this.#localizedNames = {}
     this.#localizedNamesBelongToForm = {}
-
-    if (isNumber(dex)) {
-      this.#dex = Math.max(0, dex)
-    } else {
-      throw new UserError({
-        context: {
-          value: dex
-        },
-        identifier: Identifiers.PokemonSpeciesConstructInvalidPokeDexType,
-        message: `Failed to fetch national dex. Expected "Number" type but actual is ${typeof dex}`
-      })
-    }
-
-    if (isNumber(generation)) {
-      this.#generation = Math.clamp(generation, 0, 9)
-    } else {
-      throw new UserError({
-        context: {
-          value: generation
-        },
-        identifier: Identifiers.PokemonSpeciesConstructInvalidGenerationType,
-        message: `Failed to fetch generation. Expected "Number" type but actual is ${typeof generation}`
-      })
-    }
-
-    this.#defaultForms = defaultForms ?? []
-    this.#forms = forms ?? []
+    this.#dex = s.number.positive.safeInt.parse(dex)
+    this.#generation = s.number.positive.lessThanOrEqual(9).parse(generation)
+    this.#defaultForms = s.array(s.string).unique.parse(defaultForms)
+    this.#forms = forms.map(formData => new Form(this, formData))
   }
 
   /** The name of this species. */
@@ -102,7 +80,7 @@ export abstract class BasePokemonSpecies {
   }
 
   /** The available all forms of thie species. */
-  public get forms(): Stat[] {
+  public get forms(): Form[] {
     return this.#forms
   }
 
@@ -180,7 +158,7 @@ export abstract class BasePokemonSpecies {
     return this.defaultForms
   }
 
-  public getForms(): Stat[] {
+  public getForms(): Form[] {
     return this.forms
   }
 

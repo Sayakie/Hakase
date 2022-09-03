@@ -1,3 +1,4 @@
+import type { Stat } from '@internal/pixelmon'
 import { Option } from '@sapphire/result'
 import { type Nullish, isNullish, isNullishOrEmpty } from '@sapphire/utilities'
 
@@ -1840,8 +1841,8 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
 
   public static readonly [Species.Quaxly]: PokemonSpecies
 
-  public constructor(raw: any) {
-    super(raw)
+  public constructor(jsonData: Stat) {
+    super(jsonData)
 
     REGISTERED_POKEMON.add(this)
   }
