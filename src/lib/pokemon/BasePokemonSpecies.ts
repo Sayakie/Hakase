@@ -164,6 +164,10 @@ export abstract class BasePokemonSpecies implements Translatable {
     return this.forms
   }
 
+  public getDefaultForm(): Form {
+    return this.forms.find(form => this.defaultForms.includes(form.name))!
+  }
+
   public setLocalizedName(locale: `${Locale}`, localizedName: string): void {
     this.#localizedNames[locale] = localizedName
   }
@@ -211,10 +215,7 @@ export abstract class BasePokemonSpecies implements Translatable {
   public isLegendary(includeMythical: false): this is PokemonSpecies<`legendary`>
 
   public isLegendary(includeMythical: boolean = true): boolean {
-    return (
-      this.forms.find(({ name }) => name === ``)?.tags.includes(`legendary`) ??
-      (includeMythical && this.isMythical())
-    )
+    return this.getDefaultForm().isLegendary() ?? (includeMythical && this.isMythical())
   }
 
   /**
@@ -223,7 +224,7 @@ export abstract class BasePokemonSpecies implements Translatable {
    * @returns {boolean} Whether this species is a mythical or not
    */
   public isMythical(): this is PokemonSpecies<`mythical`> {
-    return this.forms.find(({ name }) => name === ``)?.tags.includes(`mythical`) ?? false
+    return this.getDefaultForm().isMythical() ?? false
   }
 
   /**
@@ -232,7 +233,7 @@ export abstract class BasePokemonSpecies implements Translatable {
    * @returns {boolean} Whether this species is a ultrabeast or not
    */
   public isUltraBeast(): this is PokemonSpecies<`ultrabeast`> {
-    return this.forms.find(({ name }) => name === ``)?.tags.includes(`ultrabeast`) ?? false
+    return this.getDefaultForm().isUltraBeast() ?? false
   }
 
   /**
