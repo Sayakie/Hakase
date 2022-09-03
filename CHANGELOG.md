@@ -1,6 +1,29 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [@Sayakie/Hakase@2.2.0](https://github.com/Sayakie/Hakase/compare/@Sayakie/Hakase@2.1.1...@Sayakie/Hakase@2.2.0) - (2022-09-03)
+
+## 🏠 Refactor
+
+- Expose from module declartion, no globally use ([1f75597](https://github.com/Sayakie/Hakase/commit/1f75597aecf3695c805922b5d1dcf35a41c6420f))
+- Export `FuzzyPokemonToCommandChoiceDataOptions` ([7677a46](https://github.com/Sayakie/Hakase/commit/7677a46c2eba8dab2aaea9d756e3f828e4ef18ab))
+
+## 🐛 Bug Fixes
+
+- `ERR_MODULE_NOT_FOUND` caused by `preserve-symlinks` flag ([4a379e6](https://github.com/Sayakie/Hakase/commit/4a379e62013edfdc84a0e44b666e157e647f298b))
+
+## 📝 Documentation
+
+- Add deepscan grade ([2e7a92b](https://github.com/Sayakie/Hakase/commit/2e7a92b566278fca00970492edbb5b6e49b53140))
+
+## 🚀 Features
+
+- Add `Translatable` ([4be4d56](https://github.com/Sayakie/Hakase/commit/4be4d5644cb262225d3c6197889f029d5dbc44d7))
+
+## 🪞 Styling
+
+- Rename to correct function name ([a573039](https://github.com/Sayakie/Hakase/commit/a5730395aa06b10061cc1b043d7c338bb1ccad8f))
+
 # [@Sayakie/Hakase@2.1.1](https://github.com/Sayakie/Hakase/compare/@Sayakie/Hakase@2.1.0...@Sayakie/Hakase@2.1.1) - (2022-08-31)
 
 ## 🐛 Bug Fixes
