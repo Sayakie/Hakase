@@ -1,5 +1,4 @@
 import { container } from '@sapphire/pieces'
-import { Result } from '@sapphire/result'
 import { isNullish } from '@sapphire/utilities'
 import { envParseNumber } from '@skyra/env-utilities'
 import { Locale } from 'discord-api-types/v10'
@@ -73,14 +72,7 @@ export class PokemonClient {
       let matchSimilarityOrigin = 0
 
       for (const form of species.forms) {
-        const result = Result.from(
-          () => species.localizedNamesBelongToForm[form.name.toLowerCase()][locale]
-        )
-
-        const localizedName = result.match({
-          err: () => null,
-          ok: data => data
-        })
+        const localizedName = form.translation().with(locale)
 
         if (isNullish(localizedName) || !fuzzyPokemonStrategy.fits(localizedName, pokemonLike)) {
           continue
