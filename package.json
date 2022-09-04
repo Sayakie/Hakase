@@ -61,7 +61,7 @@
     "bullmq": "^1.90.1",
     "colorette": "^2.0.19",
     "discord-api-types": "^0.37.5",
-    "discord.js": "^13",
+    "discord.js": "^14",
     "ioredis": "^5.2.3",
     "korean-regexp": "^1.0.9",
     "merge-options": "^3.0.4",
