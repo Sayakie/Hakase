@@ -6,6 +6,8 @@
 
 # Hakase
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/c7f0c95b26ff4c3391e7d8c79f731bc0)](https://app.codacy.com/gh/Sayakie/Hakase?utm_source=github.com&utm_medium=referral&utm_content=Sayakie/Hakase&utm_campaign=Badge_Grade_Settings)
+
 <a href="https://discord.com/oauth2/authorize?client_id=847264173079134248&permissions=537151488&scope=bot%20applications.commands"><img src="https://img.shields.io/static/v1?label=Invite%20Me&message=Hakase%231112&plastic&color=5865F2&logo=discord" alt="Invite the bot" /></a>
 <a href="https://img.shields.io/discord/933262986720706600.svg?logo=discord&colorB=7289DA&label=Hakase%20Support"><img src="https://discord.gg/PZFErxEhKp" alt="Hakase support Discord server" /></a>
 <a href="https://deepscan.io/dashboard#view=project&tid=18860&pid=22150&bid=651663"><img src="https://deepscan.io/api/teams/18860/projects/22150/branches/651663/badge/grade.svg" alt="DeepScan grade"></a>
