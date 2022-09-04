@@ -2,7 +2,7 @@
 process.env.NODE_ENV ??= `development`
 
 import '@sapphire/plugin-i18next/register'
-import '@sapphire/plugin-logger/register'
+import '@frutbits/pino-logger/register'
 import '#lib/config.js'
 
 import { createColors } from 'colorette'

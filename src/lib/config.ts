@@ -13,7 +13,7 @@ import {
 import { type ClientOptions, Constants } from 'discord.js'
 import { GatewayIntentBits } from 'discord-api-types/v10'
 import type { RedisOptions } from 'ioredis'
-import { join } from 'node:path'
+import { join, resolve } from 'node:path'
 import { fileURLToPath, URL } from 'node:url'
 
 import { Directories } from '#lib/utils/constants.js'
@@ -68,6 +68,12 @@ declare module '@skyra/env-utilities' {
 }
 /* eslint-enable */
 
+const dateFormatter = Intl.DateTimeFormat(`fr-CA`, {
+  day: `2-digit`,
+  month: `2-digit`,
+  year: `numeric`
+})
+
 export const OWNERS = envParseArray(`OWNERS`, [])
 
 export const DISCORD_TOKEN = isProduction()
@@ -87,7 +93,30 @@ export const CLIENT_OPTIONS: ClientOptions = {
   loadMessageCommandListeners: false,
 
   logger: {
-    level: isProduction() ? LogLevel.Info : LogLevel.Debug
+    pino: {
+      level: isProduction() ? `info` : `debug`,
+      timestamp: true,
+      transport: {
+        targets: [
+          {
+            level: `info`,
+            options: {
+              destination: resolve(
+                fileURLToPath(Directories.Root),
+                `logs`,
+                `${dateFormatter.format(new Date())}.log`
+              )
+            },
+            target: `pino/file`
+          },
+          {
+            level: isProduction() ? `info` : `debug`,
+            options: { translateTime: `SYS:yyyy-mm-dd HH:MM:ss` },
+            target: `pino-pretty`
+          }
+        ]
+      }
+    }
   },
 
   partials: [Constants.PartialTypes.CHANNEL, Constants.PartialTypes.GUILD_SCHEDULED_EVENT],
