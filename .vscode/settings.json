@@ -29,5 +29,5 @@
   "i18n-ally.preferredDelimiter": ":",
   "i18n-ally.enabledFrameworks": ["sapphire-i18next"],
   "i18n-ally.theme.annotationMissingBorder": "#d37070",
-  "i18n-ally.theme.annotationMissing": "#d37070",
+  "i18n-ally.theme.annotationMissing": "#d37070"
 }
