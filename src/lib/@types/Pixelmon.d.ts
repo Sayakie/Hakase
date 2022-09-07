@@ -112,7 +112,7 @@ declare module '@internal/pixelmon' {
     weight: number
     catchRate: number
     malePercentage: number
-    evolutions: string[]
+    evolutions: Evolution[]
     evYields: { [T in BattleStat]+?: number }
   }
 
@@ -165,4 +165,105 @@ declare module '@internal/pixelmon' {
     // modelLocator
     // sounds
   }
+
+  interface Evolution {
+    level: number
+    to: string
+    conditions: EvolutionCondition[]
+    evoType: `leveling` | `interact` | `trade` | `ticking`
+    moves: string[]
+  }
+
+  type EvolutionCondition =
+    | {
+        evoConditionType: `evolutionScroll`
+        evolutionScoll: 'Darkness' | 'Waters'
+        maxRangeSquared: 64
+      }
+    | {
+        evoConditionType: `time`
+        time: Uppercase<Time>
+      }
+    | {
+        evoConditionType: `friendship`
+        friendship: number
+      }
+    | {
+        evoConditionType: `biome`
+        biomes: string[]
+      }
+    | {
+        evoConditionType: `move`
+        attackIndex: number
+      }
+    | {
+        evoConditionType: `nature`
+        natures: string[]
+      }
+    | {
+        evoConditionType: `ores`
+        ores: number
+      }
+    | {
+        evoConditionType: `gender`
+        genders: ['Male' | 'Female']
+      }
+    | {
+        evoConditionType: `evolutionRock`
+        evolutionRock: 'IcyRock' | 'MossyRock'
+        maxRangeSquared: 100
+      }
+    | {
+        evoConditionType: `weather`
+        weather: Uppercase<'Rain'>
+      }
+    | {
+        evoConditionType: `highAltitude`
+        minAltitude: 127
+      }
+    | {
+        evoConditionType: `heldItem`
+        item: {
+          itemID: string
+        }
+      }
+    | {
+        evoConditionType: `party`
+        withPokemon: string[]
+        withTypes: Type[]
+        withForms: ['ALOLAN' | 'GALAR']
+      }
+    | {
+        evoConditionType: `chance`
+        chance: number
+      }
+    | {
+        evoConditionType: `statRatio`
+        stat1: Stat
+        stat2: Stat
+        ratio: number
+      }
+    | {
+        evoConditionType: `moveType`
+        type: Type
+      }
+    | {
+        evoConditionType: `healthAbsence`
+        health: number
+      }
+    | {
+        evoConditionType: `withinStructure`
+        structure: string | 'Temple'
+      }
+    | {
+        evoConditionType: `invert`
+        condition: EvolutionCondition
+      }
+    | {
+        evoConditionType: `status`
+        type: 'Burn'
+      }
+    | {
+        evoConditionType: `Unknown`
+      }
 }

@@ -2,6 +2,7 @@ import type {
   AbilityZip,
   BattleStat,
   EggGroup,
+  Evolution,
   ExperienceGroup,
   Form as JsonForm,
   Gender,
@@ -13,6 +14,11 @@ import { container } from '@sapphire/pieces'
 import { s } from '@sapphire/shapeshift'
 
 import type { PokemonSpecies } from '#lib/pokemon/PokemonSpecies.js'
+import { abilityZipValidator } from '#lib/utils/shapeshiftValidators/abilityzipValidator.js'
+import { battleStatsValidator } from '#lib/utils/shapeshiftValidators/battleStatsValidator.js'
+import { evolutionValidator } from '#lib/utils/shapeshiftValidators/evolutionValidator.js'
+import { genderPropertiesValidator } from '#lib/utils/shapeshiftValidators/genderPropertiesValidator.js'
+import { moveCollectionValidator } from '#lib/utils/shapeshiftValidators/moveCollectionValidator.js'
 import type { Translatable, Translation } from '#lib/utils/Translatable.js'
 
 const GenericForms: string[] = [
@@ -63,76 +69,33 @@ export class Form implements Translatable {
 
   #malePercentage: number
 
-  #evolutions: string[]
+  #evolutions: Evolution[]
 
   #evYields: { [T in BattleStat]+?: number }
 
   public constructor(species: PokemonSpecies, jsonData: JsonForm) {
-    const movelCollectionValidator = s.object({
-      eggMoves: s.array(s.string).unique,
-      hmMoves: s.array(s.string).unique,
-      levelUpMoves: s.array(
-        s.object({
-          attacks: s.array(s.string).unique,
-          level: s.number.positive.safeInt
-        })
-      ),
-      tmMoves: s.array(s.string).unique,
-      tmMoves1: s.array(s.string).unique,
-      tmMoves2: s.array(s.string).unique,
-      tmMoves3: s.array(s.string).unique,
-      tmMoves4: s.array(s.string).unique,
-      tmMoves5: s.array(s.string).unique,
-      tmMoves6: s.array(s.string).unique,
-      tmMoves7: s.array(s.string).unique,
-      tmMoves8: s.array(s.string).unique,
-      trMoves: s.array(s.string).unique,
-      transferMoves: s.array(s.string).unique,
-      tutorMoves: s.array(s.string).unique
-    })
-
-    const abilityZipValidator = s.object({
-      abilities: s.array(s.string),
-      hiddenAbilities: s.array(s.string)
-    })
-
-    const battleStatsValidator = s.object({
-      attack: s.number,
-      defense: s.number,
-      hp: s.number,
-      specialAttack: s.number,
-      specialDefense: s.number,
-      speed: s.number
-    })
-
-    const genderPropertiesValidator = s.array(
-      s.object({
-        gender: s.string,
-        palettes: s.array(
-          s.object({ name: s.string, particle: s.string, sprite: s.string, texture: s.string })
-        )
-      })
-    )
-
     this.#species = species
 
     this.#name = s.string.parse(jsonData.name)
-    this.#experienceGroup = s.string.parse(jsonData.experienceGroup)
-    this.#moves = movelCollectionValidator.parse(jsonData.moves)
-    this.#abilities = abilityZipValidator.parse(jsonData.abilities)
-    this.#battleStats = battleStatsValidator.parse(jsonData.battleStats)
-    this.#tags = s.array(s.string).unique.parse(jsonData.tags)
-    this.#possibleGenders = s.array(s.string).unique.parse(jsonData.possibleGenders)
+    this.#experienceGroup = s.string.nullish.parse(jsonData.experienceGroup)
+    this.#moves = moveCollectionValidator.nullish.parse(jsonData.moves)
+    this.#abilities = abilityZipValidator.nullish.parse(jsonData.abilities)
+    this.#battleStats = battleStatsValidator.nullish.parse(jsonData.battleStats)
+    this.#tags = s.array(s.string).unique.nullish.parse(jsonData.tags)
+    this.#possibleGenders = s.array(s.string).unique.nullish.parse(jsonData.possibleGenders)
     this.#genderProperties = genderPropertiesValidator.parse(jsonData.genderProperties)
-    this.#eggGroups = s.array(s.string).unique.parse(jsonData.eggGroups)
-    this.#types = s.array(s.string).unique.parse(jsonData.types)
-    this.#preEvolutions = s.array(s.string).unique.parse(jsonData.preEvolutions)
-    this.#defaultBaseForm = s.string.parse(jsonData.defaultBaseForm)
-    this.#eggCycles = s.number.positive.safeInt.parse(jsonData.eggCycles)
-    this.#catchRate = s.number.positive.safeInt.parse(jsonData.catchRate)
-    this.#malePercentage = s.number.positive.safeInt.parse(jsonData.malePercentage)
-    this.#evolutions = s.array(s.string).unique.parse(jsonData.evolutions)
-    this.#evYields = battleStatsValidator.partial.parse(jsonData.evYields)
+    this.#eggGroups = s.array(s.string).unique.nullish.parse(jsonData.eggGroups)
+    this.#types = s.array(s.string).unique.nullish.parse(jsonData.types)
+    this.#preEvolutions = s.array(s.string).unique.nullish.parse(jsonData.preEvolutions)
+    this.#defaultBaseForm = s.string.nullish.parse(jsonData.defaultBaseForm)
+    this.#eggCycles = s.number.positive.safeInt.nullish.parse(jsonData.eggCycles)
+    this.#catchRate = s.number.positive.safeInt.nullish.parse(jsonData.catchRate)
+    this.#malePercentage = s.number
+      .greaterThanOrEqual(-1)
+      .lessThanOrEqual(100)
+      .nullish.parse(jsonData.malePercentage)
+    this.#evolutions = evolutionValidator.nullish.parse(jsonData.evolutions)
+    this.#evYields = battleStatsValidator.partial.nullish.parse(jsonData.evYields)
   }
 
   public get species(): PokemonSpecies {
@@ -201,7 +164,7 @@ export class Form implements Translatable {
     return this.#malePercentage
   }
 
-  public get evolutions(): ReadonlyArray<string> {
+  public get evolutions(): ReadonlyArray<Evolution> {
     return [...this.#evolutions]
   }
 
