@@ -153,7 +153,7 @@ declare module '@internal/pixelmon' {
   }
 
   interface GenderProperties {
-    gender: Array<Uppercase<`all` | Gender>>
+    gender: Uppercase<`all` | Gender>
     palettes: Palette[]
   }
 

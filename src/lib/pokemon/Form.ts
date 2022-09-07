@@ -107,7 +107,7 @@ export class Form implements Translatable {
 
     const genderPropertiesValidator = s.array(
       s.object({
-        gender: s.array(s.string).unique,
+        gender: s.string,
         palettes: s.array(
           s.object({ name: s.string, particle: s.string, sprite: s.string, texture: s.string })
         )
