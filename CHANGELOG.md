@@ -1,6 +1,41 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [@Sayakie/Hakase@2.3.0](https://github.com/Sayakie/Hakase/compare/@Sayakie/Hakase@2.2.0...@Sayakie/Hakase@2.3.0) - (2022-09-08)
+
+## ⌨️ Typings
+
+- Add `merge-options` typings ([862f91e](https://github.com/Sayakie/Hakase/commit/862f91e8fee76587260d14f28688e79801ba90f1))
+
+## 🏠 Refactor
+
+- Change FuzzilySeacrhPokmeonResult ([a41e0d6](https://github.com/Sayakie/Hakase/commit/a41e0d61b82200879430d5ec8d8bfcd22eadc3e4))
+- **translation:** Separate namespace from key ([65e42f4](https://github.com/Sayakie/Hakase/commit/65e42f41769b9fd2360c8959e9ccfc7e20bbb2df))
+- Use translation ([9971b62](https://github.com/Sayakie/Hakase/commit/9971b62645e10d27d42fc8188a39e5a62d449f9d))
+- Get localized name from scanned languages ([117f9a8](https://github.com/Sayakie/Hakase/commit/117f9a89991b0820d8f4e30c1c33250c5f60c14e))
+- **patch:** Purge unused patches ([90419e4](https://github.com/Sayakie/Hakase/commit/90419e40c37cc1d3508402db2b4768022f52127b))
+
+## 🐛 Bug Fixes
+
+- Alter forms leak some their form infos ([300ef1b](https://github.com/Sayakie/Hakase/commit/300ef1b10851bc6d0df41c77a505023b5cb947d8))
+- Invalid json-mapping corresponding with gender ([c8fc4b2](https://github.com/Sayakie/Hakase/commit/c8fc4b220cf62864cc90adae4b74283268038e6e))
+- Try json parse twice ([c9882cf](https://github.com/Sayakie/Hakase/commit/c9882cfa25bfeb6c0d8220438daf8a3c4bd98236))
+- Critical error-prone by trailing comma ([d3dd63b](https://github.com/Sayakie/Hakase/commit/d3dd63b140a3091b2254051ea3fdc127eaf08f2b))
+
+## 📝 Documentation
+
+- Add codacy badge to README.md ([c77828f](https://github.com/Sayakie/Hakase/commit/c77828f6e310e6091a5ab792ff56784f1b94b493))
+
+## 🚀 Features
+
+- Add stat validator ([2a06a72](https://github.com/Sayakie/Hakase/commit/2a06a7221d20fb3b3b5202536c7bc5eec59bb0de))
+- Apply pino logger ([f42073c](https://github.com/Sayakie/Hakase/commit/f42073c026ef63c08b1503c3485151010777b388))
+- Add methods that identify form by tag ([94be664](https://github.com/Sayakie/Hakase/commit/94be664572319d88aa1e330dfb79f3f79c6f3f8f))
+
+## 🪞 Styling
+
+- Use provided method to identify form by tag ([a8e9601](https://github.com/Sayakie/Hakase/commit/a8e96018e8ba94b43eea0c4bbd86ee7c825bab14))
+
 # [@Sayakie/Hakase@2.2.0](https://github.com/Sayakie/Hakase/compare/@Sayakie/Hakase@2.1.1...@Sayakie/Hakase@2.2.0) - (2022-09-03)
 
 ## 🏠 Refactor
