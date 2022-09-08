@@ -1,4 +1,3 @@
-import { LogLevel } from '@sapphire/framework'
 import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis'
 import {
   type ArrayString,

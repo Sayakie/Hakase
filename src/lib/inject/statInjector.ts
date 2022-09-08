@@ -1,6 +1,4 @@
-import type { Stat } from '@internal/pixelmon'
-import { Result } from '@sapphire/result'
-import { isNullish, toTitleCase } from '@sapphire/utilities'
+import { toTitleCase } from '@sapphire/utilities'
 
 import { PokemonSpecies } from '#lib/pokemon/PokemonSpecies.js'
 import { loadAllStats } from '#lib/utils/loaders.js'

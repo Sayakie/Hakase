@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { relative, resolve } from 'node:path'
-import { type Options, defineConfig } from 'tsup'
+import { defineConfig } from 'tsup'
 
 export default defineConfig({
     clean: true,

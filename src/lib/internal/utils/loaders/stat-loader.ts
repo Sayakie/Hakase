@@ -1,5 +1,4 @@
 import type { Form, Stat } from '@internal/pixelmon'
-import { container } from '@sapphire/pieces'
 import { Result } from '@sapphire/result'
 import { green } from 'colorette'
 import mergeOptions from 'merge-options'
