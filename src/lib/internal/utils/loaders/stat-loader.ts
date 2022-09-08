@@ -1,17 +1,36 @@
+import type { Form, Stat } from '@internal/pixelmon'
 import { container } from '@sapphire/pieces'
 import { Result } from '@sapphire/result'
 import { green } from 'colorette'
+import mergeOptions from 'merge-options'
 import { readdir, readFile } from 'node:fs/promises'
 import { extname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { Directories, ResourceIdentifiers } from '#lib/utils/constants.js'
 
-export async function loadAllStats(): Promise<ReadonlyMap<string, string>>
+function prepareStat(stat: Stat): Stat {
+  if (Object.keys(stat.forms).length <= 0) {
+    return stat
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { moves: unused, ...baseForm } = mergeOptions<Form>({}, stat.forms.at(0)!)
+
+  stat.forms.forEach((form, i) => {
+    const preparedForm = mergeOptions<Form>(baseForm, form)
+
+    Reflect.set(stat.forms, i, preparedForm)
+  })
+
+  return stat
+}
+
+export async function loadAllStats(): Promise<ReadonlyMap<string, Stat>>
 export async function loadAllStats(
   targetDir: string = join(fileURLToPath(Directories.Data), ResourceIdentifiers.PIXELMON, `stats`)
-): Promise<ReadonlyMap<string, string>> {
-  const stats = new Map<string, string>()
+): Promise<ReadonlyMap<string, Stat>> {
+  const stats = new Map<string, Stat>()
 
   const statsFileNames = await readdir(targetDir)
 
@@ -30,12 +49,14 @@ export async function loadAllStats(
     const result = await Result.fromAsync(async () => await readFile(statFilePath))
 
     if (result.isErr()) {
-      container.logger.error(`[StatLoader] Failed to fetch data: ${name} (#${dex})`)
-      container.logger.error(`  Caused:` + result.unwrapErr())
+      console.error(`[StatLoader] Failed to fetch data: ${name} (#${dex})`)
+      console.error(`  Caused:` + result.unwrapErr())
       continue
     }
 
-    const stat = JSON.parse(result.unwrap().toString())
+    const bakedStat = JSON.parse(result.unwrap().toString())
+
+    const stat = prepareStat(bakedStat)
 
     stats.set(name, stat)
   }
