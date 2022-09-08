@@ -3,6 +3,7 @@ import { isNullish } from '@sapphire/utilities'
 import { envParseNumber } from '@skyra/env-utilities'
 import { Locale } from 'discord-api-types/v10'
 
+import type { Form } from '#lib/pokemon/Form.js'
 import { PokemonSpecies } from '#lib/pokemon/PokemonSpecies.js'
 import type { FuzzyPokemonStrategy } from '#lib/structures/FuzzyPokemonStrategy.js'
 import { StoreRegistryEntries } from '#lib/utils/Identifiers.js'
@@ -15,9 +16,8 @@ export interface FuzzilySearchPokemonOptions {
 }
 
 export interface FuzzilySearchPokemonResult {
-  name: string
-  localizedName: string
-  formName: string
+  species: PokemonSpecies
+  form: Form
 }
 
 export class PokemonClient {
@@ -47,17 +47,9 @@ export class PokemonClient {
 
   public async fuzzilySearchPokemon(
     pokemonLike: string,
-    {
-      locale = Locale.EnglishUS,
-      offset = 0,
-      take = 20,
-      includeSpecialPokemon = true
-    }: FuzzilySearchPokemonOptions
+    { locale = Locale.EnglishUS, offset = 0, take = 20 }: FuzzilySearchPokemonOptions
   ): Promise<FuzzilySearchPokemonResult[]> {
-    interface SimilairtyResult {
-      species: PokemonSpecies
-      localizedName: string
-      formName: string
+    type SimilairtyResult = FuzzilySearchPokemonResult & {
       similarity: number
     }
     const results: FuzzilySearchPokemonResult[] = []
@@ -72,13 +64,26 @@ export class PokemonClient {
       let matchSimilarityOrigin = 0
 
       for (const form of species.forms) {
-        const localizedName = form.translation().with(locale)
+        const translated = {
+          formName: form.translation().with(locale),
+          speciesName: species.translation().with(locale)
+        }
 
-        if (isNullish(localizedName) || !fuzzyPokemonStrategy.fits(localizedName, pokemonLike)) {
+        if (form.name !== `` && translated.formName === form.translation().key()) {
           continue
         }
 
-        const baseSimilarity = fuzzyPokemonStrategy.similarity(localizedName, pokemonLike)
+        let name = translated.speciesName as string
+
+        if (form.name !== `` && translated.formName !== ``) {
+          name += translated.formName
+        }
+
+        if (isNullish(name) || !fuzzyPokemonStrategy.fits(name, pokemonLike)) {
+          continue
+        }
+
+        const baseSimilarity = fuzzyPokemonStrategy.similarity(name, pokemonLike)
 
         const similarity = isMatch
           ? Math.max(
@@ -88,8 +93,7 @@ export class PokemonClient {
           : baseSimilarity
 
         similarityResults.push({
-          formName: form.name.toLowerCase(),
-          localizedName,
+          form,
           similarity,
           species
         })
@@ -108,11 +112,10 @@ export class PokemonClient {
             similarityOfB - similarityOfA
         )
         .slice(offset, offset + take)
-        .forEach(({ species, formName, localizedName }) => {
+        .forEach(({ species, form }) => {
           results.push({
-            formName,
-            localizedName,
-            name: species.name
+            form,
+            species
           })
         })
     }

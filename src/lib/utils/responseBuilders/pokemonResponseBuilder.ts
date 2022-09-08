@@ -11,12 +11,24 @@ export function fuzzyPokemonToCommandChoiceData(
   fuzzyMatchResult: PokemonClient.FuzzilySearchPokemon.Result,
   { locale = Locale.EnglishUS }: FuzzyPokemonToCommandChoiceDataOptions
 ): ApplicationCommandOptionChoiceData {
+  const translated = {
+    formName: fuzzyMatchResult.form.translation().with(locale),
+    speciesName: fuzzyMatchResult.species.translation().with(locale)
+  }
+
+  let name = translated.speciesName as string
+
+  if (fuzzyMatchResult.form.name !== `` && translated.formName !== ``) {
+    name += ` (${translated.formName})`
+  }
+
+  const value = `${fuzzyMatchResult.species.name} (${fuzzyMatchResult.form.name})`
+
   return {
-    // TODO: Should change to `fuzzyMatchResult.name` when Discord slate-2 is landing.
-    name: fuzzyMatchResult.localizedName,
+    name,
     nameLocalizations: {
-      [locale]: fuzzyMatchResult.localizedName
+      [locale]: name
     },
-    value: `${fuzzyMatchResult.name} (${fuzzyMatchResult.formName})`
+    value
   }
 }
