@@ -8,5 +8,6 @@ export interface Translatable {
 export interface Translation {
   key(): string
 
-  with(locale: `${Locale}`): string | Nullish
+  // with(locale: `${Locale}`): string | Nullish
+  with(locale: `${Locale}`, namespace?: `${string}:`): string | Nullish
 }

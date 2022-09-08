@@ -196,11 +196,11 @@ export class Form implements Translatable {
         ? `generic`
         : this.species.name.toLowerCase()
 
-    const key = `Pixelmon:${type}.form.${this.name.toLowerCase()}`
+    const key = `${type}.form.${this.name.toLowerCase()}`
 
     const translation: Translation = {
       key: () => key,
-      with: locale => container.i18n.format(locale, key)
+      with: (locale, namespace = `Pixelmon:`) => container.i18n.format(locale, namespace + key)
     }
 
     Reflect.set(translation, `toString`, key)

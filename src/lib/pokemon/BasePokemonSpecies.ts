@@ -189,11 +189,11 @@ export abstract class BasePokemonSpecies implements Translatable {
   }
 
   public translation(): Translation {
-    const key = `Pixelmon:${this.name.toLowerCase()}.name`
+    const key = `${this.name.toLowerCase()}.name`
 
     const translation: Translation = {
       key: () => key,
-      with: locale => container.i18n.format(locale, key)
+      with: (locale, namespace = `Pixelmon:`) => container.i18n.format(locale, namespace + key)
     }
 
     Reflect.set(translation, `toString`, key)
