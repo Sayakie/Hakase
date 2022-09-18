@@ -27,7 +27,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.37.0
   '@typescript-eslint/parser': ^5.37.0
   binarytf: ^2.1.2
-  bullmq: ^1.91.0
+  bullmq: ^1.91.1
   colorette: ^2.0.19
   discord-api-types: ^0.37.10
   discord.js: ^13
@@ -55,7 +55,7 @@ specifiers:
   typescript: ^4.8.3
   typescript-eslint-language-service: ^5.0.0
   typescript-jsdoctag-completions-plugin: 1.5.1-beta
-  vitest: ^0.23.2
+  vitest: ^0.23.4
 
 dependencies:
   '@discordjs/builders': 1.2.0
@@ -75,7 +75,7 @@ dependencies:
   '@skyra/env-utilities': 1.0.2
   '@skyra/jaro-winkler': 1.1.0
   binarytf: 2.1.2
-  bullmq: 1.91.0
+  bullmq: 1.91.1
   colorette: 2.0.19
   discord-api-types: 0.37.10
   discord.js: 13.10.3
@@ -114,7 +114,7 @@ devDependencies:
   typescript: 4.8.3
   typescript-eslint-language-service: 5.0.0_22c5fnooleyfkzrkkgdmel5kmi
   typescript-jsdoctag-completions-plugin: 1.5.1-beta_typescript@4.8.3
-  vitest: 0.23.2
+  vitest: 0.23.4
 
 packages:
 
@@ -1246,8 +1246,8 @@ packages:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
     dev: true
 
-  /bullmq/1.91.0:
-    resolution: {integrity: sha512-RwWv57pLgfxZk8eYexs20kudwK8Kh5zdMn66pLTm9PQYdaNOjX17kWk3bw1EWExWzPw/md0FxUWsb07qn699kQ==}
+  /bullmq/1.91.1:
+    resolution: {integrity: sha512-u7dat9I8ZwouZ651AMZkBSvB6NVUPpnAjd4iokd9DM41whqIBnDjuL11h7+kEjcpiDKj6E+wxZiER00FqirZQg==}
     dependencies:
       cron-parser: 4.6.0
       get-port: 6.1.2
@@ -4056,8 +4056,8 @@ packages:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
 
-  /strip-literal/0.4.0:
-    resolution: {integrity: sha512-ql/sBDoJOybTKSIOWrrh8kgUEMjXMwRAkZTD0EwiwxQH/6tTPkZvMIEjp0CRlpi6V5FMiJyvxeRkEi1KrGISoA==}
+  /strip-literal/0.4.2:
+    resolution: {integrity: sha512-pv48ybn4iE1O9RLgCAN0iU4Xv7RlBTiit6DKmMiErbs9x1wH6vXBs45tWc0H5wUIF6TLTrKweqkmYF/iraQKNw==}
     dependencies:
       acorn: 8.8.0
     dev: true
@@ -4540,8 +4540,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest/0.23.2:
-    resolution: {integrity: sha512-kTBKp3ROPDkYC+x2zWt4znkDtnT08W1FQ6ngRFuqxpBGNuNVS+eWZKfffr8y2JGvEzZ9EzMAOcNaiqMj/FZqMw==}
+  /vitest/0.23.4:
+    resolution: {integrity: sha512-iukBNWqQAv8EKDBUNntspLp9SfpaVFbmzmM0sNcnTxASQZMzRw3PsM6DMlsHiI+I6GeO5/sYDg3ecpC+SNFLrQ==}
     engines: {node: '>=v14.16.0'}
     hasBin: true
     peerDependencies:
@@ -4568,7 +4568,7 @@ packages:
       chai: 4.3.6
       debug: 4.3.4
       local-pkg: 0.4.2
-      strip-literal: 0.4.0
+      strip-literal: 0.4.2
       tinybench: 2.1.5
       tinypool: 0.3.0
       tinyspy: 1.0.2
