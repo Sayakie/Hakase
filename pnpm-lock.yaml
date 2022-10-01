@@ -13,7 +13,7 @@ specifiers:
   '@sapphire/plugin-i18next': ^3.0.0
   '@sapphire/plugin-logger': ^3.0.1
   '@sapphire/plugin-scheduled-tasks': ^4.0.1
-  '@sapphire/result': ^2.4.1
+  '@sapphire/result': ^2.5.0
   '@sapphire/shapeshift': ^3.6.0
   '@sapphire/stopwatch': ^1.4.1
   '@sapphire/time-utilities': ^1.7.8
@@ -67,7 +67,7 @@ dependencies:
   '@sapphire/plugin-i18next': 3.0.0
   '@sapphire/plugin-logger': 3.0.1
   '@sapphire/plugin-scheduled-tasks': 4.0.1
-  '@sapphire/result': 2.4.1
+  '@sapphire/result': 2.5.0
   '@sapphire/shapeshift': 3.6.0
   '@sapphire/stopwatch': 1.4.1
   '@sapphire/time-utilities': 1.7.8
@@ -393,7 +393,7 @@ packages:
     engines: {node: '>=v16'}
     hasBin: true
     dependencies:
-      '@sapphire/result': 2.4.1
+      '@sapphire/result': 2.5.0
       '@sapphire/utilities': 3.9.3
       colorette: 2.0.19
       commander: 9.4.0
@@ -578,7 +578,7 @@ packages:
       '@sapphire/lexure': 1.1.0
       '@sapphire/pieces': 3.5.1
       '@sapphire/ratelimits': 2.4.5
-      '@sapphire/result': 2.4.1
+      '@sapphire/result': 2.5.0
       '@sapphire/stopwatch': 1.4.1
       '@sapphire/utilities': 3.9.3
       '@types/object-hash': 2.2.1
@@ -590,7 +590,7 @@ packages:
     resolution: {integrity: sha512-n7cdsrUwF7evuJO0RDlxogYs/5Jn6+Qc1vGd2ucfaz3ucqgBxw9dGRQFo3/x2gtxRb/3igRY0eqo7dAntbSgrw==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dependencies:
-      '@sapphire/result': 2.4.1
+      '@sapphire/result': 2.5.0
     dev: false
 
   /@sapphire/pieces/3.5.1:
@@ -638,8 +638,8 @@ packages:
       '@sapphire/timer-manager': 1.0.0
     dev: false
 
-  /@sapphire/result/2.4.1:
-    resolution: {integrity: sha512-RWgp+cCm1dhE/voMGwp3z5xGmsOluXW9EPIXyO+khMXxZDL3iAgp4/ZCSFEw3nI98njwGmgWYIzdQfCu3WA4OA==}
+  /@sapphire/result/2.5.0:
+    resolution: {integrity: sha512-MpEUUax8jOGjnB6pwIxCTrVmFRPrJG31ODPoqqjmvzWf9aMUsUuUCI5uB6FmqfKn8p8vpaCJ55K+5bWwwQ2MGg==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
 
   /@sapphire/shapeshift/3.6.0:
