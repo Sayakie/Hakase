@@ -12,7 +12,7 @@ specifiers:
   '@sapphire/pieces': ^3.5.1
   '@sapphire/plugin-i18next': ^3.0.0
   '@sapphire/plugin-logger': ^3.0.1
-  '@sapphire/plugin-scheduled-tasks': ^4.0.1
+  '@sapphire/plugin-scheduled-tasks': ^5.0.0
   '@sapphire/result': ^2.5.0
   '@sapphire/shapeshift': ^3.6.0
   '@sapphire/stopwatch': ^1.4.1
@@ -66,7 +66,7 @@ dependencies:
   '@sapphire/pieces': 3.5.1
   '@sapphire/plugin-i18next': 3.0.0
   '@sapphire/plugin-logger': 3.0.1
-  '@sapphire/plugin-scheduled-tasks': 4.0.1
+  '@sapphire/plugin-scheduled-tasks': 5.0.0
   '@sapphire/result': 2.5.0
   '@sapphire/shapeshift': 3.6.0
   '@sapphire/stopwatch': 1.4.1
@@ -622,8 +622,8 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@sapphire/plugin-scheduled-tasks/4.0.1:
-    resolution: {integrity: sha512-vLxfHBu2vKaJZ9v2f4z+VDZaPeDqS8bm+Sc2minRwJPw1hWAHiPqmxCBPIONY7eOQ9qKayvhKYTIwwruxgO/Mg==}
+  /@sapphire/plugin-scheduled-tasks/5.0.0:
+    resolution: {integrity: sha512-eatwiNY0NeWXg7jGOhe0U5Vhq506rbdkcaMMwzqAyEoTq4s0u/QJMS0+xpfHUShVbUkUwnD6iC8VIAAdAAyHwA==}
     engines: {node: '>=v14.18.0', npm: '>=7.24.1'}
     dependencies:
       '@sapphire/stopwatch': 1.4.1
