@@ -2,7 +2,7 @@ import type { Stat as JsonStat } from '@internal/pixelmon'
 import { container } from '@sapphire/pieces'
 import { Option } from '@sapphire/result'
 import { s } from '@sapphire/shapeshift'
-import { isNullish } from '@sapphire/utilities'
+import { type Nullish, isNullish } from '@sapphire/utilities'
 import type { Locale, LocaleString, LocalizationMap } from 'discord-api-types/v10'
 
 import { Form } from '#lib/pokemon/Form.js'
@@ -66,11 +66,11 @@ export abstract class BasePokemonSpecies implements Translatable {
   public get nationalPokedex(): SpeciesPokedexHolder {
     const pokedexHolder = {
       asNumber: () => this.#dex,
-      asString: () => String(this.#dex).padStart(3, `0`)
+      asString: () => String(this.#dex).padStart(3, '0')
     }
 
-    Reflect.set(pokedexHolder, `toString`, pokedexHolder.asString)
-    Reflect.set(pokedexHolder, `valueOf`, pokedexHolder.asNumber)
+    Reflect.set(pokedexHolder, 'toString', pokedexHolder.asString)
+    Reflect.set(pokedexHolder, 'valueOf', pokedexHolder.asNumber)
     Object.freeze(pokedexHolder)
 
     return pokedexHolder
@@ -168,6 +168,16 @@ export abstract class BasePokemonSpecies implements Translatable {
     return this.forms.find(form => this.defaultForms.includes(form.name))!
   }
 
+  public getForm(name: string | Nullish): Option<Form> {
+    if (isNullish(name)) return Option.none
+
+    const form = this.forms.find(form => form.name === name)
+
+    if (isNullish(form)) return Option.none
+
+    return Option.some(form)
+  }
+
   public setLocalizedName(locale: `${Locale}`, localizedName: string): void {
     this.#localizedNames[locale] = localizedName
   }
@@ -193,10 +203,10 @@ export abstract class BasePokemonSpecies implements Translatable {
 
     const translation: Translation = {
       key: () => key,
-      with: (locale, namespace = `Pixelmon:`) => container.i18n.format(locale, namespace + key)
+      with: (locale, namespace = 'Pixelmon:') => container.i18n.format(locale, namespace + key)
     }
 
-    Reflect.set(translation, `toString`, key)
+    Reflect.set(translation, 'toString', key)
     Object.freeze(translation)
 
     return translation
@@ -208,11 +218,11 @@ export abstract class BasePokemonSpecies implements Translatable {
    * @param {boolean} includeMythical Mythical including flag
    * @returns {boolean} Whether this species is a legendary or not
    */
-  public isLegendary(): this is PokemonSpecies<`legendary` | `mythical`>
+  public isLegendary(): this is PokemonSpecies<'legendary' | 'mythical'>
 
-  public isLegendary(includeMythical: true): this is PokemonSpecies<`legendary` | `mythical`>
+  public isLegendary(includeMythical: true): this is PokemonSpecies<'legendary' | 'mythical'>
 
-  public isLegendary(includeMythical: false): this is PokemonSpecies<`legendary`>
+  public isLegendary(includeMythical: false): this is PokemonSpecies<'legendary'>
 
   public isLegendary(includeMythical: boolean = true): boolean {
     return this.getDefaultForm().isLegendary() ?? (includeMythical && this.isMythical())
@@ -223,7 +233,7 @@ export abstract class BasePokemonSpecies implements Translatable {
    *
    * @returns {boolean} Whether this species is a mythical or not
    */
-  public isMythical(): this is PokemonSpecies<`mythical`> {
+  public isMythical(): this is PokemonSpecies<'mythical'> {
     return this.getDefaultForm().isMythical() ?? false
   }
 
@@ -232,7 +242,7 @@ export abstract class BasePokemonSpecies implements Translatable {
    *
    * @returns {boolean} Whether this species is a ultrabeast or not
    */
-  public isUltraBeast(): this is PokemonSpecies<`ultrabeast`> {
+  public isUltraBeast(): this is PokemonSpecies<'ultrabeast'> {
     return this.getDefaultForm().isUltraBeast() ?? false
   }
 
@@ -253,26 +263,26 @@ export abstract class BasePokemonSpecies implements Translatable {
     return this.#dex
   }
 
-  public [Symbol.toPrimitive](hint: `default`): string
+  public [Symbol.toPrimitive](hint: 'default'): string
 
-  public [Symbol.toPrimitive](hint: `string`): string
+  public [Symbol.toPrimitive](hint: 'string'): string
 
-  public [Symbol.toPrimitive](hint: `number`): number
+  public [Symbol.toPrimitive](hint: 'number'): number
 
   public [Symbol.toPrimitive](hint: string): string | number {
     /* eslint-disable no-fallthrough */
     switch (hint) {
-      case `default`:
+      case 'default':
 
-      case `string`:
+      case 'string':
 
       default:
         return this.#name
 
-      case `number`:
+      case 'number':
         return this.#dex
     }
-    /* eslint-enable */
+    /* eslint-enable no-fallthrough */
   }
 }
 

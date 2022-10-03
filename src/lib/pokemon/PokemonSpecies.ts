@@ -8,7 +8,7 @@ import { Species } from '#lib/pokemon/Species.js'
 
 const REGISTERED_POKEMON = new Set<PokemonSpecies>()
 
-type WellKnownTag = `legendary` | `mythical` | `ultrabeast`
+type WellKnownTag = 'legendary' | 'mythical' | 'ultrabeast'
 
 export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends BasePokemonSpecies {
   public static readonly [Species.MissingNo]: PokemonSpecies
@@ -1855,13 +1855,13 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
    * @returns {Option<PokemonSpecies>} The instance holder
    * @example
    * ```typescript
-   * const JirachiHolder = PokemonSpecies.fromName(`Jirachi`)
+   * const JirachiHolder = PokemonSpecies.fromName('Jirachi')
    * assert.equal(JirachiHolder.isSome(), true)
    * assert.equal(JirachiHolder.unwrap(), PokemonSpecies.Jirachi)
    * ```
    * @example
    * ```typescript
-   * const UnknownHolder = PokemonSpecies.fromName(`unknown`)
+   * const UnknownHolder = PokemonSpecies.fromName('unknown')
    * assert.equal(UnknownHolder.isSome(), false)
    * assert.throws(() => UnknownHolder.unwrap(), {
    *   name: 'OptionError',
@@ -1888,19 +1888,19 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
    * @returns {Option<PokemonSpecies>} The instance holder
    * @example
    * ```typescript
-   * const JirachiHolder = PokemonSpecies.fromLocalizedName(`Jirachi`)
+   * const JirachiHolder = PokemonSpecies.fromLocalizedName('Jirachi')
    * assert.equal(JirachiHolder.isSome(), true)
    * assert.equal(JirachiHolder.unwrap(), PokemonSpecies.Jirachi)
    * ```
    * @example
    * ```typescript
-   * const JirachiHolder = PokemonSpecies.fromLocalizedName(`지라치`)
+   * const JirachiHolder = PokemonSpecies.fromLocalizedName('지라치')
    * assert.equal(JirachiHolder.isSome(), true)
    * assert.equal(JirachiHolder.unwrap(), PokemonSpecies.Jirachi)
    * ```
    * @example
    * ```typescript
-   * const UnknownHolder = PokemonSpecies.fromLocalizedName(`unknown`)
+   * const UnknownHolder = PokemonSpecies.fromLocalizedName('unknown')
    * assert.equal(UnknownHolder.isSome(), false)
    * assert.throws(() => UnknownHolder.unwrap(), {
    *   name: 'OptionError',
@@ -1909,7 +1909,7 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
    * ```
    * @example
    * ```typescript
-   * const UnknownHolder = PokemonSpecies.fromLocalizedName(`몰?루`)
+   * const UnknownHolder = PokemonSpecies.fromLocalizedName('몰?루')
    * assert.equal(UnknownHolder.isSome(), false)
    * assert.throws(() => UnknownHolder.unwrap(), {
    *   name: 'OptionError',
@@ -2007,8 +2007,8 @@ export class PokemonSpecies<Tag extends WellKnownTag = WellKnownTag> extends Bas
   public static fromDexUnsafe(dex: string | number): PokemonSpecies | null {
     for (const species of REGISTERED_POKEMON) {
       if (
-        (typeof dex === `number` && species.nationalPokedex.asNumber() === dex) ||
-        (typeof dex === `string` && species.nationalPokedex.asString() === dex)
+        (typeof dex === 'number' && species.nationalPokedex.asNumber() === dex) ||
+        (typeof dex === 'string' && species.nationalPokedex.asString() === dex)
       ) {
         return species
       }

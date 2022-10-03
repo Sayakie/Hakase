@@ -175,35 +175,35 @@ export class Form implements Translatable {
   }
 
   public isLegendary(): boolean {
-    return this.tags.includes(`legendary`)
+    return this.tags.includes('legendary')
   }
 
   public isMythical(): boolean {
-    return this.tags.includes(`mythical`)
+    return this.tags.includes('mythical')
   }
 
   public isUltraBeast(): boolean {
-    return this.tags.includes(`ultrabeast`)
+    return this.tags.includes('ultrabeast')
   }
 
   public isTemporary(): boolean {
-    return this.tags.includes(`temp`)
+    return this.tags.includes('temp')
   }
 
   public translation(): Translation {
     const type =
       this.isTemporary() || GenericForms.includes(this.name.toLowerCase())
-        ? `generic`
+        ? 'generic'
         : this.species.name.toLowerCase()
 
     const key = `${type}.form.${this.name.toLowerCase()}`
 
     const translation: Translation = {
       key: () => key,
-      with: (locale, namespace = `Pixelmon:`) => container.i18n.format(locale, namespace + key)
+      with: (locale, namespace = 'Pixelmon:') => container.i18n.format(locale, namespace + key)
     }
 
-    Reflect.set(translation, `toString`, key)
+    Reflect.set(translation, 'toString', key)
     Object.freeze(translation)
 
     return translation

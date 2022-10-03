@@ -10,14 +10,14 @@
  * @since 0.1.0
  * @example
  * ```typescript
- * import { createEnum } from '@hakase/utilities'
- *
  * const ClientStatus = createEnum([
- *   `Ready`,
- *   `Disconnected`
+ *   'Ready',
+ *   'Disconnected'
  * ])
  *
- * assert.equal(ClientStatus[0], `Ready`)
+ * assert.equal(ClientStatus[0], 'Ready')
+ * assert.equal(ClientStatus[1], 'Disconnected')
+ * assert.equal(ClientStatut.Ready, 0)
  * assert.equal(ClientStatut.Disconnected, 1)
  * ```
  */

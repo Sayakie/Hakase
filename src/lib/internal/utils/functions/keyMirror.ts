@@ -7,13 +7,11 @@
  * @since 0.1.0
  * @example
  * ```typescript
- * import { keyMirror } from '@hakase/utilities'
- *
  * const ChatInputIds = keyMirror([
- *   `Pokemon`
+ *   'Pokemon'
  * ])
  *
- * assert.equal(ChatInputIds.Pokemon, `Pokemon`)
+ * assert.equal(ChatInputIds.Pokemon, 'Pokemon')
  * ```
  */
 export function keyMirror<T extends string>(keys: T[]): { [P in T]: P } {
