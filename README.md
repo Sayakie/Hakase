@@ -4,13 +4,12 @@
   </a>
 </p>
 
-# Hakase
+# Hakase <a href="https://www.codefactor.io/repository/github/sayakie/hakase"><img src="https://www.codefactor.io/repository/github/sayakie/hakase/badge" alt="CodeFactor" /></a> <a href="https://www.codacy.com/gh/Sayakie/Hakase/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Sayakie/Hakase&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/d5af1d5be6db4fd1b047d117f7328a6c" /></a> <a href="https://deepscan.io/dashboard#view=project&tid=18860&pid=22150&bid=651663"><img src="https://deepscan.io/api/teams/18860/projects/22150/branches/651663/badge/grade.svg" alt="DeepScan grade"></a>
 
 <a href="https://discord.com/oauth2/authorize?client_id=847264173079134248&permissions=537151488&scope=bot%20applications.commands"><img src="https://img.shields.io/static/v1?label=Invite%20Me&message=Hakase%231112&plastic&color=5865F2&logo=discord" alt="Invite the bot" /></a>
 <a href="https://discord.gg/PZFErxEhKp"><img src="https://img.shields.io/discord/933262986720706600.svg?logo=discord&colorB=7289DA&label=Hakase%20Support" alt="Hakase support Discord server" /></a>
+
 <a href="https://github.com/Sayakie/Hakase/actions/workflows/codeql-analysis.yml"><img src="https://github.com/Sayakie/Hakase/actions/workflows/codeql-analysis.yml/badge.svg" alt="Code Scanning"></a>
-<a href="https://www.codacy.com/gh/Sayakie/Hakase/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Sayakie/Hakase&amp;utm_campaign=Badge_Grade"><img src="https://app.codacy.com/project/badge/Grade/d5af1d5be6db4fd1b047d117f7328a6c" /></a>
-<a href="https://deepscan.io/dashboard#view=project&tid=18860&pid=22150&bid=651663"><img src="https://deepscan.io/api/teams/18860/projects/22150/branches/651663/badge/grade.svg" alt="DeepScan grade"></a>
 <a href="https://github.com/Sayakie/Hakase/blob/main/LICENSE" alt="License"><img src="https://img.shields.io/github/license/Sayakie/Hakase"/></a>
 
 Discord bot to let y'all <b>explore Pixelmon Pokémon information</b> built around Discord Interactions.
