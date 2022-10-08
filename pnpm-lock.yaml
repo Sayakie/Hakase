@@ -7,7 +7,7 @@ specifiers:
   '@favware/cliff-jumper': ^1.8.8
   '@frutbits/pino-logger': ^3.2.0
   '@sapphire/decorators': ^5.0.0
-  '@sapphire/discord.js-utilities': ^5.0.1
+  '@sapphire/discord.js-utilities': ^5.1.0
   '@sapphire/framework': ^3.1.3
   '@sapphire/pieces': ^3.5.2
   '@sapphire/plugin-i18next': ^3.0.1
@@ -61,7 +61,7 @@ dependencies:
   '@discordjs/builders': 1.3.0
   '@frutbits/pino-logger': 3.2.0
   '@sapphire/decorators': 5.0.0
-  '@sapphire/discord.js-utilities': 5.0.1
+  '@sapphire/discord.js-utilities': 5.1.0
   '@sapphire/framework': 3.1.3
   '@sapphire/pieces': 3.5.2
   '@sapphire/plugin-i18next': 3.0.1
@@ -553,8 +553,8 @@ packages:
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dev: false
 
-  /@sapphire/discord.js-utilities/5.0.1:
-    resolution: {integrity: sha512-J3PmnHW0c3Z8VylopSmQzQBunAiBmlMaPYxbeIRZB47xYiMTz/7bcVT9/8z6efprLyM2MdOdJrapoeArodU9CQ==}
+  /@sapphire/discord.js-utilities/5.1.0:
+    resolution: {integrity: sha512-sG1eSjsrfNSlFMxQVjy5kNS1BWD3P9Dlc3FuYDZdmPsZ+BZQjspfxW8qgtuTTNtcDLuBr/n38p8IRUPgTbK7CA==}
     engines: {node: '>=16.6.0', npm: '>=7.0.0'}
     dependencies:
       '@sapphire/discord-utilities': 2.11.6
@@ -574,7 +574,7 @@ packages:
     dependencies:
       '@discordjs/builders': 0.16.0
       '@sapphire/discord-utilities': 2.11.6
-      '@sapphire/discord.js-utilities': 5.0.1
+      '@sapphire/discord.js-utilities': 5.1.0
       '@sapphire/lexure': 1.1.1
       '@sapphire/pieces': 3.5.2
       '@sapphire/ratelimits': 2.4.5
