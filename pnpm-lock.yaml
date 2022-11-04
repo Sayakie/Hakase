@@ -27,7 +27,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.41.0
   '@typescript-eslint/parser': ^5.41.0
   binarytf: ^2.1.2
-  bullmq: ^2.4.0
+  bullmq: ^3.1.2
   colorette: ^2.0.19
   discord-api-types: ^0.37.15
   discord.js: ^13
@@ -75,7 +75,7 @@ dependencies:
   '@skyra/env-utilities': 1.1.0
   '@skyra/jaro-winkler': 1.1.0
   binarytf: 2.1.2
-  bullmq: 2.4.0
+  bullmq: 3.1.2
   colorette: 2.0.19
   discord-api-types: 0.37.15
   discord.js: 13.12.0
@@ -1293,8 +1293,8 @@ packages:
       ieee754: 1.2.1
     dev: false
 
-  /bullmq/2.4.0:
-    resolution: {integrity: sha512-wchNwRagCfRjEqxpALD2P8Pjz110/lFnXjs/vBLWsHP5aYqyicl3EKDkrzEythZC+IEdyeaZ5wtmcSHWOAr7Sg==}
+  /bullmq/3.1.2:
+    resolution: {integrity: sha512-EbzQKXeaxcDu20/KZ59pptYtBLGstJa5YTRgX6Xv7b1xyEIxWgmhLSkHV90pZowXUvsK24YIHDXMB0usgUmeWw==}
     dependencies:
       cron-parser: 4.6.0
       glob: 8.0.3

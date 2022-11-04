@@ -59,7 +59,7 @@
     "@skyra/env-utilities": "^1.1.0",
     "@skyra/jaro-winkler": "^1.1.0",
     "binarytf": "^2.1.2",
-    "bullmq": "^2.4.0",
+    "bullmq": "^3.1.2",
     "colorette": "^2.0.19",
     "discord-api-types": "^0.37.15",
     "discord.js": "^13",
