@@ -10,9 +10,9 @@ specifiers:
   '@sapphire/discord.js-utilities': ^5.1.1
   '@sapphire/framework': ^3.1.3
   '@sapphire/pieces': ^3.5.2
-  '@sapphire/plugin-i18next': ^3.1.0
+  '@sapphire/plugin-i18next': ^4.0.1
   '@sapphire/plugin-logger': ^3.0.1
-  '@sapphire/plugin-scheduled-tasks': ^5.0.1
+  '@sapphire/plugin-scheduled-tasks': ^6.0.0
   '@sapphire/result': ^2.6.0
   '@sapphire/shapeshift': ^3.7.0
   '@sapphire/stopwatch': ^1.5.0
@@ -64,9 +64,9 @@ dependencies:
   '@sapphire/discord.js-utilities': 5.1.1
   '@sapphire/framework': 3.1.3
   '@sapphire/pieces': 3.5.2
-  '@sapphire/plugin-i18next': 3.1.0
+  '@sapphire/plugin-i18next': 4.0.1
   '@sapphire/plugin-logger': 3.0.1
-  '@sapphire/plugin-scheduled-tasks': 5.0.1
+  '@sapphire/plugin-scheduled-tasks': 6.0.0
   '@sapphire/result': 2.6.0
   '@sapphire/shapeshift': 3.7.0
   '@sapphire/stopwatch': 1.5.0
@@ -600,14 +600,14 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@sapphire/plugin-i18next/3.1.0:
-    resolution: {integrity: sha512-uWk5dEkNi7xa4T3VmR5K0+GJaNFuzBqJFLOyJ8u1iMehe56nR0hw+QBdy+wmdC0FrlVLwpaK8tSVkpEucSmyfg==}
+  /@sapphire/plugin-i18next/4.0.1:
+    resolution: {integrity: sha512-FttaFYR9izgG4IEFllFeAkSus/HWNoxGJJFq48OrqY3mmot4f9AAWjYtsCOnFQQhBQDXdcmFFPJ6l8OeX6hlzg==}
     engines: {node: '>=v14', npm: '>=7'}
     dependencies:
       '@sapphire/utilities': 3.11.0
-      '@skyra/i18next-backend': 1.1.0
+      '@skyra/i18next-backend': 2.0.0
       chokidar: 3.5.3
-      i18next: 21.10.0
+      i18next: 22.0.4
       tslib: 2.4.0
     dev: false
 
@@ -620,8 +620,8 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@sapphire/plugin-scheduled-tasks/5.0.1:
-    resolution: {integrity: sha512-+rZbV98dSI5xZcGaK5B7a+IxOTBE6yZK7EUUPxVYA0GR2VQnZNtCOzciH4r4HUPiBvlbHAJ2uFD4t/wtWHzm+Q==}
+  /@sapphire/plugin-scheduled-tasks/6.0.0:
+    resolution: {integrity: sha512-R9rga1aZk3GSXkmGfBMQR8Ng4ou36l5WGWoDvPaq1xNb56wZJ2zPZPsQHV6lxNoyOT++M8GFhVhh9OUB+xwEXg==}
     engines: {node: '>=v14.18.0', npm: '>=7.24.1'}
     dependencies:
       '@sapphire/stopwatch': 1.5.0
@@ -694,8 +694,8 @@ packages:
       dotenv-cra: 3.0.2
     dev: false
 
-  /@skyra/i18next-backend/1.1.0:
-    resolution: {integrity: sha512-cLV6vZjNZhVNOinQxawcYZO55FP9EO8BwjVdChig3j8322cus3j28QigpRl/OOyLR9DnS5cncXkUn4rcEGj0Hw==}
+  /@skyra/i18next-backend/2.0.0:
+    resolution: {integrity: sha512-QHn/dUfB5EGPfi7Z+S83Zrg+PdNgIqnwb0cD1Wv+3WFyjtkoto0X9fzZkpgHV6ah+WyC33yJ4LMwMOZkiOUTvg==}
     engines: {node: '>=16.9.0', npm: '>=8.0.0'}
     dependencies:
       tslib: 2.4.0
@@ -2730,8 +2730,8 @@ packages:
     engines: {node: '>=12.20.0'}
     dev: true
 
-  /i18next/21.10.0:
-    resolution: {integrity: sha512-YeuIBmFsGjUfO3qBmMOc0rQaun4mIpGKET5WDwvu8lU7gvwpcariZLNtL0Fzj+zazcHUrlXHiptcFhBMFaxzfg==}
+  /i18next/22.0.4:
+    resolution: {integrity: sha512-TOp7BTMKDbUkOHMzDlVsCYWpyaFkKakrrO3HNXfSz4EeJaWwnBScRmgQSTaWHScXVHBUFXTvShrCW8uryBYFcg==}
     dependencies:
       '@babel/runtime': 7.20.0
     dev: false
