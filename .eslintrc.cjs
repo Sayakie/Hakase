@@ -8,7 +8,7 @@ const [ALWAYS, NEVER] = [`always`, `never`]
 
 /**
  * @typedef ESLintAdvancedLinterOptions
- * @property {'@typescript-eslint-parser'} parser
+ * @property {'@typescript-eslint/parser'} parser
  * @property {import('@typescript-eslint/parser').ParserOptions} parserOptions
  *
  * @typedef {import('eslint/lib/shared/types').ConfigData} ESLintBaseLinterOptions
