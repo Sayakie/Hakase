@@ -14,7 +14,7 @@ specifiers:
   '@sapphire/plugin-logger': ^3.0.1
   '@sapphire/plugin-scheduled-tasks': ^6.0.0
   '@sapphire/result': ^2.6.0
-  '@sapphire/shapeshift': ^3.7.0
+  '@sapphire/shapeshift': ^3.7.1
   '@sapphire/stopwatch': ^1.5.0
   '@sapphire/time-utilities': ^1.7.8
   '@sapphire/ts-config': ^3.3.4
@@ -68,7 +68,7 @@ dependencies:
   '@sapphire/plugin-logger': 3.0.1
   '@sapphire/plugin-scheduled-tasks': 6.0.0
   '@sapphire/result': 2.6.0
-  '@sapphire/shapeshift': 3.7.0
+  '@sapphire/shapeshift': 3.7.1
   '@sapphire/stopwatch': 1.5.0
   '@sapphire/time-utilities': 1.7.8
   '@sapphire/utilities': 3.11.0
@@ -328,7 +328,7 @@ packages:
     engines: {node: '>=16.9.0'}
     deprecated: no longer supported
     dependencies:
-      '@sapphire/shapeshift': 3.7.0
+      '@sapphire/shapeshift': 3.7.1
       discord-api-types: 0.36.3
       fast-deep-equal: 3.1.3
       ts-mixer: 6.0.2
@@ -340,7 +340,7 @@ packages:
     engines: {node: '>=16.9.0'}
     dependencies:
       '@discordjs/util': 0.1.0
-      '@sapphire/shapeshift': 3.7.0
+      '@sapphire/shapeshift': 3.7.1
       discord-api-types: 0.37.20
       fast-deep-equal: 3.1.3
       ts-mixer: 6.0.2
@@ -647,8 +647,8 @@ packages:
     resolution: {integrity: sha512-gdW6n/oDZ8aC1439Ub3RiLQ6L4VHAxbN0AhGJWNkEZ6Z6Ww2V62fwRiA/73OPfgYQKXk9ljhAFiqNO91KAonHQ==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
 
-  /@sapphire/shapeshift/3.7.0:
-    resolution: {integrity: sha512-A6vI1zJoxhjWo4grsxpBRBgk96SqSdjLX5WlzKp9H+bJbkM07mvwcbtbVAmUZHbi/OG3HLfiZ1rlw4BhH6tsBQ==}
+  /@sapphire/shapeshift/3.7.1:
+    resolution: {integrity: sha512-JmYN/0GW49Vl8Hi4PwrsDBNjcuCylH78vWYolVys74LRIzilAAMINxx4RHQOdvYoz+ceJKVp4+zBbQ5kuIFOLw==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dependencies:
       fast-deep-equal: 3.1.3
