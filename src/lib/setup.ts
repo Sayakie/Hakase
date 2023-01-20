@@ -5,8 +5,9 @@ import '@sapphire/plugin-i18next/register'
 import '@frutbits/pino-logger/register'
 import '#lib/config.js'
 
-import { createColors } from 'colorette'
 import { inspect } from 'node:util'
+
+import { createColors } from 'colorette'
 
 import { injectStats } from '#lib/inject/statInjector.js'
 
