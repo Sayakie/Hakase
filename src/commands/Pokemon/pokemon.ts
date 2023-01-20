@@ -1,5 +1,7 @@
 import { ApplyOptions as Mixin } from '@sapphire/decorators'
 import { type ChatInputCommand, RegisterBehavior } from '@sapphire/framework'
+import { isNullish } from '@sapphire/utilities'
+import type { Locale } from 'discord-api-types/v10'
 
 import { LocalizableCommand } from '#lib/structures/LocalizableCommand.js'
 
@@ -50,7 +52,23 @@ export class SlashCommand extends LocalizableCommand {
   public override async chatInputRun(interaction: ChatInputCommand.Interaction): Promise<void> {
     await interaction.deferReply()
 
-    await interaction.deleteReply()
-    await interaction.followUp(`unknown`)
+    const spec = interaction.options.getString(`pokemon`, true)
+
+    const pokemon = await this.container.pokemon.getPokemon(spec, {
+      locale: interaction.locale as `${Locale}`
+    })
+
+    if (isNullish(pokemon)) {
+      // TODO: Suggest pokemon from entries
+      await interaction.editReply({
+        content: 'Could not find any pokemons like thest name: ' + spec
+      })
+
+      return
+    }
+
+    await interaction.editReply({
+      content: `You just typed: ${pokemon.species.translation().with('ko')}`
+    })
   }
 }

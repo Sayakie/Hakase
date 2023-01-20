@@ -1,3 +1,6 @@
+import { type CpuInfo, cpus, uptime as osUptime } from 'node:os'
+import { memoryUsage, uptime as processUptime } from 'node:process'
+
 import { time, TimestampStyles } from '@discordjs/builders'
 import { ApplyOptions as Mixin } from '@sapphire/decorators'
 import {
@@ -6,10 +9,8 @@ import {
   version as sapphireVersion
 } from '@sapphire/framework'
 import { Duration } from '@sapphire/time-utilities'
-import { MessageEmbed, version } from 'discord.js'
+import { EmbedBuilder, version } from 'discord.js'
 import { Locale } from 'discord-api-types/v10'
-import { type CpuInfo, cpus, uptime as osUptime } from 'node:os'
-import { memoryUsage, uptime as processUptime } from 'node:process'
 
 import { LocalizableCommand } from '#lib/structures/LocalizableCommand.js'
 import { BrandingColors, MemoryUnits } from '#lib/utils/constants.js'
@@ -145,9 +146,7 @@ export class SlashCommand extends LocalizableCommand {
     )
   }
 
-  public override async chatInputRun(
-    interaction: ChatInputCommand.Interaction & { locale: `${Locale}` }
-  ): Promise<void> {
+  public override async chatInputRun(interaction: ChatInputCommand.Interaction): Promise<void> {
     const embed = this.generateEmbed(interaction.locale)
 
     await interaction.reply({
@@ -156,7 +155,7 @@ export class SlashCommand extends LocalizableCommand {
     })
   }
 
-  private generateEmbed(locale: `${Locale}`): MessageEmbed {
+  private generateEmbed(locale: `${Locale}`): EmbedBuilder {
     const stats = this.generalStatistics
 
     const uptime = this.uptimeStatistics
@@ -171,7 +170,7 @@ export class SlashCommand extends LocalizableCommand {
       this.fields[locale] ?? //
       this.fields[Locale.EnglishUS]!
 
-    return new MessageEmbed() //
+    return new EmbedBuilder() //
       .setColor(BrandingColors.Primary)
       .setFields(
         {

@@ -1,3 +1,6 @@
+import { join, resolve } from 'node:path'
+import { fileURLToPath, URL } from 'node:url'
+
 import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis'
 import {
   type ArrayString,
@@ -9,11 +12,9 @@ import {
   envParseString,
   setup
 } from '@skyra/env-utilities'
-import { type ClientOptions, Constants } from 'discord.js'
+import { type ClientOptions, Partials } from 'discord.js'
 import { GatewayIntentBits } from 'discord-api-types/v10'
 import type { RedisOptions } from 'ioredis'
-import { join, resolve } from 'node:path'
-import { fileURLToPath, URL } from 'node:url'
 
 import { Directories } from '#lib/utils/constants.js'
 import { keyMirror } from '#lib/utils/functions.js'
@@ -118,7 +119,7 @@ export const CLIENT_OPTIONS: ClientOptions = {
     }
   },
 
-  partials: [Constants.PartialTypes.CHANNEL, Constants.PartialTypes.GUILD_SCHEDULED_EVENT],
+  partials: [Partials.Channel, Partials.GuildScheduledEvent],
 
   prisma: null,
   tasks: {
