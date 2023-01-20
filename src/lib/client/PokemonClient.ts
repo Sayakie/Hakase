@@ -1,15 +1,25 @@
 import { container } from '@sapphire/pieces'
-import { isNullish } from '@sapphire/utilities'
+import { type Nullish, isNullish } from '@sapphire/utilities'
 import { envParseNumber } from '@skyra/env-utilities'
-import { Locale } from 'discord-api-types/v10'
+import { type LocaleString, Locale } from 'discord-api-types/v10'
 
 import type { Form } from '#lib/pokemon/Form.js'
 import { PokemonSpecies } from '#lib/pokemon/PokemonSpecies.js'
 import type { FuzzyPokemonStrategy } from '#lib/structures/FuzzyPokemonStrategy.js'
 import { StoreRegistryEntries } from '#lib/utils/Identifiers.js'
+import { PokemonChatInputQuery } from '#lib/utils/regexes.js'
+
+export interface GetPokemonOptions {
+  locale: LocaleString
+}
+
+export interface GetPokemonResult {
+  species: PokemonSpecies
+  form: Form
+}
 
 export interface FuzzilySearchPokemonOptions {
-  locale: `${Locale}`
+  locale: LocaleString
   offset?: number
   take?: number
   includeSpecialPokemon?: boolean
@@ -30,7 +40,7 @@ export class PokemonClient {
     )
   }
 
-  private static getSuitableFuzzyPokemonStrategy<T extends `${Locale}` = Locale.EnglishUS>(
+  private static getSuitableFuzzyPokemonStrategy<T extends LocaleString = Locale.EnglishUS>(
     locale: T
   ): FuzzyPokemonStrategy<T> {
     const strategyStore = container.client.stores.get(StoreRegistryEntries.Strategies)
@@ -43,6 +53,28 @@ export class PokemonClient {
       strategyStore.get(Locale.EnglishUS)!
 
     return fuzzyPokemonStrategy as FuzzyPokemonStrategy<T>
+  }
+
+  public async getPokemon(
+    spec: string,
+    options: GetPokemonOptions
+  ): Promise<GetPokemonResult | Nullish> {
+    const queryResult = PokemonChatInputQuery.exec(spec)
+
+    if (isNullish(queryResult)) return
+
+    const species = PokemonSpecies.fromName(queryResult.groups?.pokemon)
+
+    if (species.isNone()) return
+
+    const form = species.unwrap().getForm(queryResult.groups?.form)
+
+    if (form.isNone()) return
+
+    return {
+      form: form.unwrap(),
+      species: species.unwrap()
+    }
   }
 
   public async fuzzilySearchPokemon(
@@ -69,13 +101,13 @@ export class PokemonClient {
           speciesName: species.translation().with(locale)
         }
 
-        if (form.name !== `` && translated.formName === form.translation().key()) {
+        if (form.name !== '' && translated.formName === form.translation().key()) {
           continue
         }
 
         let name = translated.speciesName as string
 
-        if (form.name !== `` && translated.formName !== ``) {
+        if (form.name !== '' && translated.formName !== '') {
           name += translated.formName
         }
 
@@ -126,6 +158,11 @@ export class PokemonClient {
 }
 
 export namespace PokemonClient {
+  export namespace GetPokemon {
+    export type Options = GetPokemonOptions
+    export type Result = GetPokemonResult
+  }
+
   export namespace FuzzilySearchPokemon {
     export type Options = FuzzilySearchPokemonOptions
     export type Result = FuzzilySearchPokemonResult
