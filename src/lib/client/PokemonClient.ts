@@ -57,7 +57,7 @@ export class PokemonClient {
 
   public async getPokemon(
     spec: string,
-    options: GetPokemonOptions
+    _options: GetPokemonOptions
   ): Promise<GetPokemonResult | Nullish> {
     const queryResult = PokemonChatInputQuery.exec(spec)
 
