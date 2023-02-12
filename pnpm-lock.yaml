@@ -29,7 +29,7 @@ specifiers:
   binarytf: ^2.1.2
   bullmq: ^3.6.5
   colorette: ^2.0.19
-  discord-api-types: ^0.37.32
+  discord-api-types: ^0.37.33
   discord.js: ^14.7.1
   eslint: ^8.34.0
   eslint-config-prettier: ^8.6.0
@@ -40,7 +40,7 @@ specifiers:
   eslint-plugin-prettier: ^4.2.1
   eslint-plugin-simple-import-sort: ^8.0.0
   eslint-plugin-sort-keys-fix: ^1.1.2
-  ioredis: ^5.3.0
+  ioredis: ^5.3.1
   is-ci: ^3.0.1
   korean-regexp: ^1.0.9
   lint-staged: ^13.1.1
@@ -77,9 +77,9 @@ dependencies:
   binarytf: 2.1.2
   bullmq: 3.6.5
   colorette: 2.0.19
-  discord-api-types: 0.37.32
+  discord-api-types: 0.37.33
   discord.js: 14.7.1
-  ioredis: 5.3.0
+  ioredis: 5.3.1
   korean-regexp: 1.0.9
   merge-options: 3.0.4
   parse-json: 6.0.2
@@ -329,7 +329,7 @@ packages:
     dependencies:
       '@discordjs/util': 0.1.0
       '@sapphire/shapeshift': 3.8.1
-      discord-api-types: 0.37.32
+      discord-api-types: 0.37.33
       fast-deep-equal: 3.1.3
       ts-mixer: 6.0.2
       tslib: 2.5.0
@@ -348,7 +348,7 @@ packages:
       '@discordjs/util': 0.1.0
       '@sapphire/async-queue': 1.5.0
       '@sapphire/snowflake': 3.4.0
-      discord-api-types: 0.37.32
+      discord-api-types: 0.37.33
       file-type: 18.2.0
       tslib: 2.5.0
       undici: 5.17.1
@@ -940,7 +940,7 @@ packages:
     resolution: {integrity: sha512-3zhfppJD69VwtYGzXkf/VJ852hmYb3Bd5KIk0r3C8WqKKJin5qWpzRwmcxuRveFKz9ZJpMeZkHYKkL1e0zDVbg==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dependencies:
-      discord-api-types: 0.37.32
+      discord-api-types: 0.37.33
     dev: false
 
   /@sapphire/discord.js-utilities/6.0.1:
@@ -1680,7 +1680,7 @@ packages:
     dependencies:
       cron-parser: 4.7.1
       glob: 8.1.0
-      ioredis: 5.3.0
+      ioredis: 5.3.1
       lodash: 4.17.21
       msgpackr: 1.8.3
       semver: 7.3.8
@@ -2064,8 +2064,8 @@ packages:
       path-type: 4.0.0
     dev: true
 
-  /discord-api-types/0.37.32:
-    resolution: {integrity: sha512-oUA4dhrzFOkvIWOc9WvKhPwsezUUVd5v5M7am1uupnRZjOmpE9RJMS0fTCUqNiMRlNAaZwPEy09UZOdIR9CyGQ==}
+  /discord-api-types/0.37.33:
+    resolution: {integrity: sha512-ZMH5RU3q1pvYS+2wGUJ5Zvy8jMGTQ4wCpbDlIQDkbIL/k6kJwBPsXnCg81g2GywlOuf0f8ezakxVSe+sZuY6ig==}
     dev: false
 
   /discord.js/14.7.1:
@@ -2078,7 +2078,7 @@ packages:
       '@discordjs/util': 0.1.0
       '@sapphire/snowflake': 3.4.0
       '@types/ws': 8.5.4
-      discord-api-types: 0.37.32
+      discord-api-types: 0.37.33
       fast-deep-equal: 3.1.3
       lodash.snakecase: 4.1.1
       tslib: 2.5.0
@@ -3036,8 +3036,8 @@ packages:
       side-channel: 1.0.4
     dev: true
 
-  /ioredis/5.3.0:
-    resolution: {integrity: sha512-Id9jKHhsILuIZpHc61QkagfVdUj2Rag5GzG1TGEvRNeM7dtTOjICgjC+tvqYxi//PuX2wjQ+Xjva2ONBuf92Pw==}
+  /ioredis/5.3.1:
+    resolution: {integrity: sha512-C+IBcMysM6v52pTLItYMeV4Hz7uriGtoJdz7SSBDX6u+zwSYGirLdQh3L7t/OItWITcw3gTFMjJReYUwS4zihg==}
     engines: {node: '>=12.22.0'}
     dependencies:
       '@ioredis/commands': 1.2.0
