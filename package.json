@@ -46,7 +46,7 @@
     "@frutbits/pino-logger": "^3.3.0",
     "@sapphire/decorators": "^6.0.1",
     "@sapphire/discord.js-utilities": "^6.0.6",
-    "@sapphire/framework": "^4.4.1",
+    "@sapphire/framework": "^4.4.2",
     "@sapphire/pieces": "^3.6.2",
     "@sapphire/plugin-i18next": "^5.0.3",
     "@sapphire/plugin-logger": "^3.0.3",
