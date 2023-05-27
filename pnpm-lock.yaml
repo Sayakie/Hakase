@@ -8,7 +8,7 @@ specifiers:
   '@frutbits/pino-logger': ^3.3.0
   '@sapphire/decorators': ^6.0.1
   '@sapphire/discord.js-utilities': ^6.1.0
-  '@sapphire/framework': ^4.4.3
+  '@sapphire/framework': ^4.4.4
   '@sapphire/pieces': ^3.6.3
   '@sapphire/plugin-i18next': ^5.0.3
   '@sapphire/plugin-logger': ^3.0.4
@@ -62,7 +62,7 @@ dependencies:
   '@frutbits/pino-logger': 3.3.0
   '@sapphire/decorators': 6.0.1
   '@sapphire/discord.js-utilities': 6.1.0
-  '@sapphire/framework': 4.4.3
+  '@sapphire/framework': 4.4.4
   '@sapphire/pieces': 3.6.3
   '@sapphire/plugin-i18next': 5.0.3
   '@sapphire/plugin-logger': 3.0.4
@@ -647,7 +647,7 @@ packages:
     resolution: {integrity: sha512-2SAyhzvqL6MELMRcwXvsrFDNJwyhQ6/RVJ1t3USCDj8YvCO/dhXXPNp27+88/fKynVRRw8E7dJMRNC8NXVHbJw==}
     engines: {node: '>=16.6.0', npm: '>=7.0.0'}
     dependencies:
-      '@sapphire/framework': 4.4.3
+      '@sapphire/framework': 4.4.4
       discord.js: 14.11.0
       pino: 8.14.1
     transitivePeerDependencies:
@@ -820,16 +820,6 @@ packages:
       discord-api-types: 0.37.42
     dev: false
 
-  /@sapphire/discord.js-utilities/6.0.7:
-    resolution: {integrity: sha512-R0T9wHpgDwbAoN+EJA647UWL3ZEbzg3Hi4klDUfUGfPR24i1aZ1W/d3gZHENe6TANsErJ2egoVoiXiBbEpMlcg==}
-    engines: {node: '>=16.6.0', npm: '>=7.0.0'}
-    dependencies:
-      '@sapphire/discord-utilities': 3.0.3
-      '@sapphire/duration': 1.1.0
-      '@sapphire/utilities': 3.11.2
-      tslib: 2.5.2
-    dev: false
-
   /@sapphire/discord.js-utilities/6.1.0:
     resolution: {integrity: sha512-Kn405Wg4+PgIAMUckiKHT/meRyba+vPJl+rTQ4YCeIEBzG+TOYU7O4UNWKJbDM6ApjUyyze0IOx6EXFUFexsMw==}
     engines: {node: '>=16.6.0', npm: '>=7.0.0'}
@@ -845,13 +835,13 @@ packages:
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dev: false
 
-  /@sapphire/framework/4.4.3:
-    resolution: {integrity: sha512-Bm3tXi9+NGZA/IiPWz4ROozmNH/zzRJ5NfYOCbc3nFuImTc2MwjDot1W43pHczW51Hmra0V5gfBqA5jMse1Wog==}
+  /@sapphire/framework/4.4.4:
+    resolution: {integrity: sha512-GHR8wCPtrH9V2+Vysf914USgsCmhpYH6wwVk56XTWkZlaS3POl7LJ/W6P+dTogZGGbI3Q5m7RGi9AdAV35/oBQ==}
     engines: {node: '>=16.6.0', npm: '>=7.0.0'}
     dependencies:
       '@discordjs/builders': 1.6.3
       '@sapphire/discord-utilities': 3.0.3
-      '@sapphire/discord.js-utilities': 6.0.7
+      '@sapphire/discord.js-utilities': 6.1.0
       '@sapphire/lexure': 1.1.5
       '@sapphire/pieces': 3.6.3
       '@sapphire/ratelimits': 2.4.6
