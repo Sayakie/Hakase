@@ -52,7 +52,7 @@
     "@sapphire/plugin-logger": "^3.0.4",
     "@sapphire/plugin-scheduled-tasks": "^6.0.1",
     "@sapphire/result": "^2.6.4",
-    "@sapphire/shapeshift": "^3.9.0",
+    "@sapphire/shapeshift": "^3.9.1",
     "@sapphire/stopwatch": "^1.5.0",
     "@sapphire/time-utilities": "^1.7.9",
     "@sapphire/utilities": "^3.11.2",
