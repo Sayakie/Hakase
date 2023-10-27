@@ -66,7 +66,7 @@
     "ioredis": "^5.3.2",
     "korean-regexp": "^1.0.11",
     "merge-options": "^3.0.4",
-    "parse-json": "^6.0.2",
+    "parse-json": "^7.1.1",
     "pino-pretty": "^9.4.1"
   },
   "devDependencies": {
