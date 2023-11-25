@@ -18,16 +18,16 @@ dependencies:
     specifier: ^6.1.0
     version: 6.1.0
   '@sapphire/framework':
-    specifier: ^4.7.2
+    specifier: ^4.8.2
     version: 4.8.2
   '@sapphire/pieces':
-    specifier: ^3.7.0
+    specifier: ^3.10.0
     version: 3.10.0
   '@sapphire/plugin-i18next':
     specifier: ^5.1.1
     version: 5.1.1
   '@sapphire/plugin-logger':
-    specifier: ^3.0.6
+    specifier: ^3.0.7
     version: 3.0.7
   '@sapphire/plugin-scheduled-tasks':
     specifier: ^6.0.1
