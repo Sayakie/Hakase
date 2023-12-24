@@ -86,7 +86,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-early-return": "link:vendor\\eslint-plugin-prefer-early-return",
     "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "is-ci": "^3.0.1",
     "lint-staged": "^13.3.0",
