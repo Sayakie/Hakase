@@ -4,7 +4,7 @@
 #    Base Stage    #
 # ================ #
 
-FROM node:18-bullseye-slim as base
+FROM node:20-bullseye-slim as base
 
 WORKDIR /usr/src/app
 
