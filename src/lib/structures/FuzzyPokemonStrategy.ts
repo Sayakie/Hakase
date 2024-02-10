@@ -1,6 +1,6 @@
 import { Piece, type PieceContext } from "@sapphire/pieces";
-import { envParseNumber } from "@skyra/env-utilities";
 import type { LocaleString } from "discord-api-types/v10";
+import { env } from "#lib/env.js";
 
 export abstract class FuzzyPokemonStrategy<
   Locale extends LocaleString = LocaleString,
@@ -20,7 +20,7 @@ export abstract class FuzzyPokemonStrategy<
 
     this.locale = options.locale as Locale;
     this.locales = options.locales ?? [options.locale];
-    this.threshold = envParseNumber("FUZZY_SEARCH_POKEMON_THRESHOLD", 0.3);
+    this.threshold = env.FUZZY_SEARCH_POKEMON_THRESHOLD;
   }
 
   /**

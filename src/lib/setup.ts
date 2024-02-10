@@ -1,5 +1,5 @@
 import "@frutbits/pino-logger/register";
-import { loadEnvConfig } from "@next/env";
+import env from "@next/env";
 import "@sapphire/plugin-i18next/register";
 import { noop } from "@sapphire/utilities";
 import { createColors } from "colorette";
@@ -19,9 +19,14 @@ export async function setup({ slient = false }: SetupOptions): Promise<void> {
   const projectDir = getProjectDir();
 
   //! `env` from ["./env.ts"] cannot be used here because it is havn't been loaded yet.
-  loadEnvConfig(projectDir, process.env.NODE_ENV === "development", logger);
+  //! `@next/env` is written targeting CommonJS, so it cannot be imported as ESM.
+  env.loadEnvConfig(projectDir, process.env.NODE_ENV === "development", logger);
 
-  await injectStats();
+  const isFalsy = false;
+
+  if (isFalsy) {
+    await injectStats();
+  }
 }
 
 declare global {

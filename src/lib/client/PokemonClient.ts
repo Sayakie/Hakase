@@ -1,8 +1,8 @@
 import { container } from "@sapphire/pieces";
 import { type Nullish, isNullish } from "@sapphire/utilities";
-import { envParseNumber } from "@skyra/env-utilities";
 import { Locale, type LocaleString } from "discord-api-types/v10";
 
+import { env } from "#lib/env.js";
 import type { Form } from "#lib/pokemon/Form.js";
 import { PokemonSpecies } from "#lib/pokemon/PokemonSpecies.js";
 import type { FuzzyPokemonStrategy } from "#lib/structures/FuzzyPokemonStrategy.js";
@@ -34,10 +34,8 @@ export class PokemonClient {
   public readonly relatedMatchThreshold: number;
 
   public constructor() {
-    this.relatedMatchThreshold = envParseNumber(
-      "FUZZY_SEARCH_POKEMON_RELATED_MATCH_THRESHOLD",
-      0.125,
-    );
+    this.relatedMatchThreshold =
+      env.FUZZY_SEARCH_POKEMON_RELATED_MATCH_THRESHOLD;
   }
 
   private static getSuitableFuzzyPokemonStrategy<
