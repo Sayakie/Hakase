@@ -35,11 +35,11 @@
     "email": "sayakie@kakao.com"
   },
   "engines": {
-    "node": "^20.6.0",
+    "node": "^20.6.0 || >=21",
     "pnpm": ">=8"
   },
   "devEngines": {
-    "node": "^20.6.0",
+    "node": "^20.6.0 || >=21",
     "pnpm": ">=8"
   },
   "dependencies": {
