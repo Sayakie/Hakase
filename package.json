@@ -85,7 +85,6 @@
     "@typescript-eslint/parser": "^5.62.0",
     "eslint": "^8.56.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
-    "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prefer-early-return": "link:vendor\\eslint-plugin-prefer-early-return",
     "eslint-plugin-sort-keys-fix": "^1.1.2",

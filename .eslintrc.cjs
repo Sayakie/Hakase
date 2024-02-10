@@ -65,7 +65,6 @@ module.exports = {
     "@typescript-eslint",
     "node",
     "sort-keys-fix",
-    "import",
     "prefer-early-return",
   ],
   root: true,
@@ -192,31 +191,6 @@ module.exports = {
       },
     ],
     "eslint-comments/disable-enable-pair": [OFF],
-    "import/first": [ERROR],
-    "import/newline-after-import": [ERROR],
-    "import/no-absolute-path": [ERROR],
-    "import/no-amd": [ERROR],
-    "import/no-commonjs": [ERROR],
-    // 'import/no-default-export': [ERROR],
-    "import/no-deprecated": [ERROR],
-    "import/no-duplicates": [ERROR],
-    // 'import/no-anonymous-default-export': [
-    //   ERROR,
-    //   {
-    //     allowArray: true,
-    //     allowArrayFunction: true,
-    //     allowAnonymousFunction: true
-    //   }
-    // ],
-    "import/no-extraneous-dependencies": [
-      ERROR,
-      {
-        devDependencies: ["**/*.test.?([mc])ts"],
-      },
-    ],
-    "import/no-mutable-exports": [ERROR],
-    // 'import/no-namespace': [WARN],
-    // 'import/order': [ERROR, { 'newlines-between': 'always' }],
     "no-tabs": [ERROR, { allowIndentationTabs: false }],
     "no-process-exit": [OFF],
     "node/no-missing-import": [OFF],
