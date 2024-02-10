@@ -3,14 +3,11 @@ import { container } from "@sapphire/pieces";
 import type { ClientOptions } from "discord.js";
 
 import { PokemonClient } from "#lib/client/PokemonClient.js";
-import { RedisClient } from "#lib/client/RedisClient.js";
-import { parseRedisOption } from "#lib/config.js";
 import { FuzzyPokemonStrategyStore } from "#lib/structures/FuzzyPokemonStrategyStore.js";
 
 export interface ClientProperties {
   prisma: unknown;
   pokemon: PokemonClient;
-  redis: RedisClient;
 }
 
 export class Client<
@@ -39,8 +36,6 @@ export class Client<
 
   public override readonly pokemon: PokemonClient;
 
-  public override readonly redis: RedisClient;
-
   public constructor(options: ClientOptions) {
     super(options);
 
@@ -49,9 +44,6 @@ export class Client<
 
     this.pokemon = new PokemonClient();
     container.pokemon = this.pokemon;
-
-    this.redis = new RedisClient(parseRedisOption());
-    container.redis = this.redis;
 
     this.stores.register(new FuzzyPokemonStrategyStore());
   }
