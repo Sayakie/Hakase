@@ -239,6 +239,11 @@ module.exports = {
       ERROR,
       { blankLine: ALWAYS, prev: "*", next: "return" },
       { blankLine: ALWAYS, prev: ["const", "let", "var"], next: "*" },
+      {
+        blankLine: ANY,
+        prev: ["const", "let", "var"],
+        next: ["const", "let", "var"],
+      },
       { blankLine: ALWAYS, prev: ["case", "default"], next: "*" },
     ],
   },
