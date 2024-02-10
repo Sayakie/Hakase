@@ -1,3 +1,3 @@
 module.exports = {
-  "src/**/*.ts": ["eslint --fix", "prettier --write"],
+  "*": ["biome check --no-errors-on-unmatched --files-ignore-unknown=true"],
 };
