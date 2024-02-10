@@ -1,21 +1,21 @@
-import type { PokemonSpecies } from '#lib/pokemon/PokemonSpecies.js'
+import type { PokemonSpecies } from "#lib/pokemon/PokemonSpecies.js";
 
 export interface GetSpriteUrlOptions {
-  hostUri?: string
-  extension?: 'png' | 'jpg' | 'gif' | 'webp'
+  hostUri?: string;
+  extension?: "png" | "jpg" | "gif" | "webp";
 }
-export function getSpriteUrl(species: PokemonSpecies, form: string): string
+export function getSpriteUrl(species: PokemonSpecies, form: string): string;
 export function getSpriteUrl(
   species: PokemonSpecies,
   form: string,
   {
-    hostUri = 'https://raw.githubusercontent.com/Sayakie/Hakase/resource/sprites',
-    extension = 'png'
-  }: GetSpriteUrlOptions = {}
+    hostUri = "https://raw.githubusercontent.com/Sayakie/Hakase/resource/sprites",
+    extension = "png",
+  }: GetSpriteUrlOptions = {},
 ): string {
-  const pokedex = species.getNationalPokedex().asString()
+  const pokedex = species.getNationalPokedex().asString();
 
-  const suffix = form ? `-${form}` : ''
+  const suffix = form ? `-${form}` : "";
 
-  return `${hostUri}/${pokedex}${suffix}.${extension}`
+  return `${hostUri}/${pokedex}${suffix}.${extension}`;
 }

@@ -1,17 +1,17 @@
-import { ApplyOptions as Mixin } from '@sapphire/decorators'
-import { Listener } from '@sapphire/framework'
+import { ApplyOptions as Mixin } from "@sapphire/decorators";
+import { Listener } from "@sapphire/framework";
 
-import { ListenerIdentifiers } from '#lib/utils/Identifiers.js'
+import { ListenerIdentifiers } from "#lib/utils/Identifiers.js";
 
 @Mixin<Listener.Options>({
   emitter: process,
-  event: `SIGINT`,
+  event: "SIGINT",
   name: ListenerIdentifiers.Process$SIGINT,
-  once: true
+  once: true,
 })
 export class HakaseListener extends Listener<`SIGINT`> {
   public override async run(_signal: NodeJS.Signals): Promise<void> {
-    this.container.redis.disconnect()
-    this.container.client.destroy()
+    this.container.redis.disconnect();
+    this.container.client.destroy();
   }
 }

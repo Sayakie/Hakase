@@ -1,15 +1,28 @@
-const [OFF, WARN, ERROR] = [0, 1, 2]
+const [OFF, WARN, ERROR] = [0, 1, 2];
 
 module.exports = {
-  extends: [
-    `@commitlint/config-angular`
-  ],
+  extends: ["@commitlint/config-angular"],
   rules: {
-    'type-enum': [
+    "type-enum": [
       ERROR,
-      `always`,
-      [`chore`, `build`, `ci`, `docs`, `feat`, `fix`, `perf`, `refactor`, `revert`, `style`, `test`, `types`, `typings`, `wip`]
+      "always",
+      [
+        "chore",
+        "build",
+        "ci",
+        "docs",
+        "feat",
+        "fix",
+        "perf",
+        "refactor",
+        "revert",
+        "style",
+        "test",
+        "types",
+        "typings",
+        "wip",
+      ],
     ],
-    'scope-case': [OFF]
-  }
-}
+    "scope-case": [OFF],
+  },
+};

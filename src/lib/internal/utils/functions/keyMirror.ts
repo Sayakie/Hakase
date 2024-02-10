@@ -16,11 +16,11 @@
  */
 export function keyMirror<T extends string>(keys: T[]): { [P in T]: P } {
   // @ts-expect-error - Should be a valid type
-  const mirroredKeys: { [P in T]: P } = {}
+  const mirroredKeys: { [P in T]: P } = {};
 
-  keys.forEach(key => {
-    mirroredKeys[key] = key
-  })
+  for (const key of keys) {
+    mirroredKeys[key] = key;
+  }
 
-  return mirroredKeys
+  return mirroredKeys;
 }

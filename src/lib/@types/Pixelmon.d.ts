@@ -1,11 +1,30 @@
-declare module '@internal/pixelmon' {
-  type Time = `Morning` | `Day` | `Afternoon` | `Midnight` | `Night` | `Dusk` | `Dawn`
+declare module "@internal/pixelmon" {
+  type Time =
+    | `Morning`
+    | `Day`
+    | `Afternoon`
+    | `Midnight`
+    | `Night`
+    | `Dusk`
+    | `Dawn`;
 
-  type Weather = `Clear` | `Rain` | `Snow` | `Storm`
+  type Weather = `Clear` | `Rain` | `Snow` | `Storm`;
 
-  type Status = `Burn` | `Freeze` | `Paralysis` | `Poison` | `Sleep` | `Confusion`
+  type Status =
+    | `Burn`
+    | `Freeze`
+    | `Paralysis`
+    | `Poison`
+    | `Sleep`
+    | `Confusion`;
 
-  type BattleStat = `hp` | `attack` | `defense` | `specialAttack` | `specialDefense` | `speed`
+  type BattleStat =
+    | `hp`
+    | `attack`
+    | `defense`
+    | `specialAttack`
+    | `specialDefense`
+    | `speed`;
 
   type Type =
     | `Normal`
@@ -27,7 +46,7 @@ declare module '@internal/pixelmon' {
     | `Steel`
     | `Fairy`
     | `Shiny`
-    | `ha` // Hidden Ability
+    | `ha`; // Hidden Ability
 
   type Nature =
     | `Hardy`
@@ -54,7 +73,7 @@ declare module '@internal/pixelmon' {
     | `Calm`
     | `Gentle`
     | `Sassy`
-    | `Careful`
+    | `Careful`;
 
   type EggGroup =
     | `Mineral`
@@ -69,201 +88,212 @@ declare module '@internal/pixelmon' {
     | `Grass`
     | `Fairy`
     | `Humanlike`
-    | `Undiscovered`
+    | `Undiscovered`;
 
-  type ExperienceGroup = `Slow` | `MediumSlow` | `MediumFast` | `Fast` | `Fluctuating` | `Erratic`
+  type ExperienceGroup =
+    | `Slow`
+    | `MediumSlow`
+    | `MediumFast`
+    | `Fast`
+    | `Fluctuating`
+    | `Erratic`;
 
-  type SpawnLocation = `UnderGround` | `Land` | `Water` | `Air` | `AirPersistent`
+  type SpawnLocation =
+    | `UnderGround`
+    | `Land`
+    | `Water`
+    | `Air`
+    | `AirPersistent`;
 
-  type Gender = `Male` | `Female`
+  type Gender = `Male` | `Female`;
 
   interface Stat {
-    name: string
-    dex: number
-    defaultForms: string[]
-    forms: Form[]
-    generation: number
+    name: string;
+    dex: number;
+    defaultForms: string[];
+    forms: Form[];
+    generation: number;
   }
 
   interface Form {
-    name: string
-    experienceGroup: ExperienceGroup
-    dimensions: Dimension
-    moves: MoveCollection
-    abilities: AbilityZip
+    name: string;
+    experienceGroup: ExperienceGroup;
+    dimensions: Dimension;
+    moves: MoveCollection;
+    abilities: AbilityZip;
     // movement
     // aggression
-    battleStats: { [T in BattleStat]: number }
-    tags: string[]
+    battleStats: { [T in BattleStat]: number };
+    tags: string[];
     // spawn: SpawnSet
-    possibleGenders: Array<Uppercase<Gender>>
-    genderProperties: GenderProperties[]
-    eggGroups: EggGroup[]
-    types: Type[]
-    preEvolutions: string[]
-    defaultBaseForm: string
+    possibleGenders: Array<Uppercase<Gender>>;
+    genderProperties: GenderProperties[];
+    eggGroups: EggGroup[];
+    types: Type[];
+    preEvolutions: string[];
+    defaultBaseForm: string;
     // megaItems: string[]
     // megas: string[]
     gigantamax: {
-      canHaveFactor: boolean
-      canGigantamax: boolean
-    }
-    eggCycles: number
-    weight: number
-    catchRate: number
-    malePercentage: number
-    evolutions: Evolution[]
-    evYields: { [T in BattleStat]+?: number }
+      canHaveFactor: boolean;
+      canGigantamax: boolean;
+    };
+    eggCycles: number;
+    weight: number;
+    catchRate: number;
+    malePercentage: number;
+    evolutions: Evolution[];
+    evYields: { [T in BattleStat]+?: number };
   }
 
   interface Dimension {
-    height: number
-    width: number
-    length: number
-    eyeHeight: number
-    hoverHeight: number
+    height: number;
+    width: number;
+    length: number;
+    eyeHeight: number;
+    hoverHeight: number;
   }
 
   interface MoveCollection {
-    levelUpMoves: LevelUpMove[]
-    tutorMoves: string[]
-    eggMoves: string[]
-    tmMoves8: string[]
-    tmMoves7: string[]
-    tmMoves6: string[]
-    tmMoves5: string[]
-    tmMoves4: string[]
-    tmMoves3: string[]
-    tmMoves2: string[]
-    tmMoves1: string[]
-    tmMoves: string[]
-    trMoves: string[]
-    hmMoves: string[]
-    transferMoves: string[]
+    levelUpMoves: LevelUpMove[];
+    tutorMoves: string[];
+    eggMoves: string[];
+    tmMoves8: string[];
+    tmMoves7: string[];
+    tmMoves6: string[];
+    tmMoves5: string[];
+    tmMoves4: string[];
+    tmMoves3: string[];
+    tmMoves2: string[];
+    tmMoves1: string[];
+    tmMoves: string[];
+    trMoves: string[];
+    hmMoves: string[];
+    transferMoves: string[];
   }
 
   interface LevelUpMove {
-    level: number
-    attacks: string[]
+    level: number;
+    attacks: string[];
   }
 
   interface AbilityZip {
-    abilities: string[]
-    hiddenAbilities: string[]
+    abilities: string[];
+    hiddenAbilities: string[];
   }
 
   interface GenderProperties {
-    gender: Uppercase<`all` | Gender>
-    palettes: Palette[]
+    gender: Uppercase<`all` | Gender>;
+    palettes: Palette[];
   }
 
   interface Palette {
-    name: string
-    texture: string
-    sprite: string
-    particle: string
+    name: string;
+    texture: string;
+    sprite: string;
+    particle: string;
     // modelLocator
     // sounds
   }
 
   interface Evolution {
-    level: number
-    to: string
-    conditions: EvolutionCondition[]
-    evoType: `leveling` | `interact` | `trade` | `ticking`
-    moves: string[]
+    level: number;
+    to: string;
+    conditions: EvolutionCondition[];
+    evoType: `leveling` | `interact` | `trade` | `ticking`;
+    moves: string[];
   }
 
   type EvolutionCondition =
     | {
-        evoConditionType: `evolutionScroll`
-        evolutionScoll: 'Darkness' | 'Waters'
-        maxRangeSquared: 64
+        evoConditionType: `evolutionScroll`;
+        evolutionScoll: "Darkness" | "Waters";
+        maxRangeSquared: 64;
       }
     | {
-        evoConditionType: `time`
-        time: Uppercase<Time>
+        evoConditionType: `time`;
+        time: Uppercase<Time>;
       }
     | {
-        evoConditionType: `friendship`
-        friendship: number
+        evoConditionType: `friendship`;
+        friendship: number;
       }
     | {
-        evoConditionType: `biome`
-        biomes: string[]
+        evoConditionType: `biome`;
+        biomes: string[];
       }
     | {
-        evoConditionType: `move`
-        attackIndex: number
+        evoConditionType: `move`;
+        attackIndex: number;
       }
     | {
-        evoConditionType: `nature`
-        natures: string[]
+        evoConditionType: `nature`;
+        natures: string[];
       }
     | {
-        evoConditionType: `ores`
-        ores: number
+        evoConditionType: `ores`;
+        ores: number;
       }
     | {
-        evoConditionType: `gender`
-        genders: ['Male' | 'Female']
+        evoConditionType: `gender`;
+        genders: ["Male" | "Female"];
       }
     | {
-        evoConditionType: `evolutionRock`
-        evolutionRock: 'IcyRock' | 'MossyRock'
-        maxRangeSquared: 100
+        evoConditionType: `evolutionRock`;
+        evolutionRock: "IcyRock" | "MossyRock";
+        maxRangeSquared: 100;
       }
     | {
-        evoConditionType: `weather`
-        weather: Uppercase<'Rain'>
+        evoConditionType: `weather`;
+        weather: Uppercase<"Rain">;
       }
     | {
-        evoConditionType: `highAltitude`
-        minAltitude: 127
+        evoConditionType: `highAltitude`;
+        minAltitude: 127;
       }
     | {
-        evoConditionType: `heldItem`
+        evoConditionType: `heldItem`;
         item: {
-          itemID: string
-        }
+          itemID: string;
+        };
       }
     | {
-        evoConditionType: `party`
-        withPokemon: string[]
-        withTypes: Type[]
-        withForms: ['ALOLAN' | 'GALAR']
+        evoConditionType: `party`;
+        withPokemon: string[];
+        withTypes: Type[];
+        withForms: ["ALOLAN" | "GALAR"];
       }
     | {
-        evoConditionType: `chance`
-        chance: number
+        evoConditionType: `chance`;
+        chance: number;
       }
     | {
-        evoConditionType: `statRatio`
-        stat1: Stat
-        stat2: Stat
-        ratio: number
+        evoConditionType: `statRatio`;
+        stat1: Stat;
+        stat2: Stat;
+        ratio: number;
       }
     | {
-        evoConditionType: `moveType`
-        type: Type
+        evoConditionType: `moveType`;
+        type: Type;
       }
     | {
-        evoConditionType: `healthAbsence`
-        health: number
+        evoConditionType: `healthAbsence`;
+        health: number;
       }
     | {
-        evoConditionType: `withinStructure`
-        structure: string | 'Temple'
+        evoConditionType: `withinStructure`;
+        structure: string | "Temple";
       }
     | {
-        evoConditionType: `invert`
-        condition: EvolutionCondition
+        evoConditionType: `invert`;
+        condition: EvolutionCondition;
       }
     | {
-        evoConditionType: `status`
-        type: 'Burn'
+        evoConditionType: `status`;
+        type: "Burn";
       }
     | {
-        evoConditionType: `Unknown`
-      }
+        evoConditionType: `Unknown`;
+      };
 }

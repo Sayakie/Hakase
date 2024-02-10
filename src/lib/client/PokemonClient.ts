@@ -1,170 +1,184 @@
-import { container } from '@sapphire/pieces'
-import { type Nullish, isNullish } from '@sapphire/utilities'
-import { envParseNumber } from '@skyra/env-utilities'
-import { type LocaleString, Locale } from 'discord-api-types/v10'
+import { container } from "@sapphire/pieces";
+import { type Nullish, isNullish } from "@sapphire/utilities";
+import { envParseNumber } from "@skyra/env-utilities";
+import { Locale, type LocaleString } from "discord-api-types/v10";
 
-import type { Form } from '#lib/pokemon/Form.js'
-import { PokemonSpecies } from '#lib/pokemon/PokemonSpecies.js'
-import type { FuzzyPokemonStrategy } from '#lib/structures/FuzzyPokemonStrategy.js'
-import { StoreRegistryEntries } from '#lib/utils/Identifiers.js'
-import { PokemonChatInputQuery } from '#lib/utils/regexes.js'
+import type { Form } from "#lib/pokemon/Form.js";
+import { PokemonSpecies } from "#lib/pokemon/PokemonSpecies.js";
+import type { FuzzyPokemonStrategy } from "#lib/structures/FuzzyPokemonStrategy.js";
+import { StoreRegistryEntries } from "#lib/utils/Identifiers.js";
+import { PokemonChatInputQuery } from "#lib/utils/regexes.js";
 
 export interface GetPokemonOptions {
-  locale: LocaleString
+  locale: LocaleString;
 }
 
 export interface GetPokemonResult {
-  species: PokemonSpecies
-  form: Form
+  species: PokemonSpecies;
+  form: Form;
 }
 
 export interface FuzzilySearchPokemonOptions {
-  locale: LocaleString
-  offset?: number
-  take?: number
-  includeSpecialPokemon?: boolean
+  locale: LocaleString;
+  offset?: number;
+  take?: number;
+  includeSpecialPokemon?: boolean;
 }
 
 export interface FuzzilySearchPokemonResult {
-  species: PokemonSpecies
-  form: Form
+  species: PokemonSpecies;
+  form: Form;
 }
 
 export class PokemonClient {
-  public readonly relatedMatchThreshold: number
+  public readonly relatedMatchThreshold: number;
 
   public constructor() {
     this.relatedMatchThreshold = envParseNumber(
-      `FUZZY_SEARCH_POKEMON_RELATED_MATCH_THRESHOLD`,
-      0.125
-    )
+      "FUZZY_SEARCH_POKEMON_RELATED_MATCH_THRESHOLD",
+      0.125,
+    );
   }
 
-  private static getSuitableFuzzyPokemonStrategy<T extends LocaleString = Locale.EnglishUS>(
-    locale: T
-  ): FuzzyPokemonStrategy<T> {
-    const strategyStore = container.client.stores.get(StoreRegistryEntries.Strategies)
+  private static getSuitableFuzzyPokemonStrategy<
+    T extends LocaleString = Locale.EnglishUS,
+  >(locale: T): FuzzyPokemonStrategy<T> {
+    const strategyStore = container.client.stores.get(
+      StoreRegistryEntries.Strategies,
+    );
 
     const fuzzyPokemonStrategy =
       strategyStore.find(
         ({ locale: strategyLocale, locales }) =>
-          strategyLocale === locale || locales.includes(locale)
+          strategyLocale === locale || locales.includes(locale),
       ) ?? //
-      strategyStore.get(Locale.EnglishUS)!
+      strategyStore.get(Locale.EnglishUS);
 
-    return fuzzyPokemonStrategy as FuzzyPokemonStrategy<T>
+    return fuzzyPokemonStrategy as FuzzyPokemonStrategy<T>;
   }
 
   public async getPokemon(
     spec: string,
-    _options: GetPokemonOptions
+    _options: GetPokemonOptions,
   ): Promise<GetPokemonResult | Nullish> {
-    const queryResult = PokemonChatInputQuery.exec(spec)
+    const queryResult = PokemonChatInputQuery.exec(spec);
 
-    if (isNullish(queryResult)) return
+    if (isNullish(queryResult)) return;
 
-    const species = PokemonSpecies.fromName(queryResult.groups?.pokemon)
+    const species = PokemonSpecies.fromName(queryResult.groups?.pokemon);
 
-    if (species.isNone()) return
+    if (species.isNone()) return;
 
-    const form = species.unwrap().getForm(queryResult.groups?.form)
+    const form = species.unwrap().getForm(queryResult.groups?.form);
 
-    if (form.isNone()) return
+    if (form.isNone()) return;
 
     return {
       form: form.unwrap(),
-      species: species.unwrap()
-    }
+      species: species.unwrap(),
+    };
   }
 
   public async fuzzilySearchPokemon(
     pokemonLike: string,
-    { locale = Locale.EnglishUS, offset = 0, take = 20 }: FuzzilySearchPokemonOptions
+    {
+      locale = Locale.EnglishUS,
+      offset = 0,
+      take = 20,
+    }: FuzzilySearchPokemonOptions,
   ): Promise<FuzzilySearchPokemonResult[]> {
     type SimilairtyResult = FuzzilySearchPokemonResult & {
-      similarity: number
-    }
-    const results: FuzzilySearchPokemonResult[] = []
+      similarity: number;
+    };
+    const results: FuzzilySearchPokemonResult[] = [];
 
-    const similarityResults: SimilairtyResult[] = []
+    const similarityResults: SimilairtyResult[] = [];
 
-    const fuzzyPokemonStrategy = PokemonClient.getSuitableFuzzyPokemonStrategy(locale)
+    const fuzzyPokemonStrategy =
+      PokemonClient.getSuitableFuzzyPokemonStrategy(locale);
 
     for (const species of PokemonSpecies) {
-      let isMatch = false
+      let isMatch = false;
 
-      let matchSimilarityOrigin = 0
+      let matchSimilarityOrigin = 0;
 
       for (const form of species.forms) {
         const translated = {
           formName: form.translation().with(locale),
-          speciesName: species.translation().with(locale)
+          speciesName: species.translation().with(locale),
+        };
+
+        if (
+          form.name !== "" &&
+          translated.formName === form.translation().key()
+        ) {
+          continue;
         }
 
-        if (form.name !== '' && translated.formName === form.translation().key()) {
-          continue
-        }
+        let name = translated.speciesName as string;
 
-        let name = translated.speciesName as string
-
-        if (form.name !== '' && translated.formName !== '') {
-          name += translated.formName
+        if (form.name !== "" && translated.formName !== "") {
+          name += translated.formName;
         }
 
         if (isNullish(name) || !fuzzyPokemonStrategy.fits(name, pokemonLike)) {
-          continue
+          continue;
         }
 
-        const baseSimilarity = fuzzyPokemonStrategy.similarity(name, pokemonLike)
+        const baseSimilarity = fuzzyPokemonStrategy.similarity(
+          name,
+          pokemonLike,
+        );
 
         const similarity = isMatch
           ? Math.max(
               Math.cbrt(Math.sqrt(baseSimilarity) - this.relatedMatchThreshold),
-              matchSimilarityOrigin
+              matchSimilarityOrigin,
             )
-          : baseSimilarity
+          : baseSimilarity;
 
         similarityResults.push({
           form,
           similarity,
-          species
-        })
+          species,
+        });
 
         if (!isMatch) {
-          isMatch = true
-          matchSimilarityOrigin = baseSimilarity
+          isMatch = true;
+          matchSimilarityOrigin = baseSimilarity;
         }
       }
     }
 
     if (similarityResults.length) {
+      // biome-ignore lint/complexity/noForEach: <explanation>
       similarityResults
         .sort(
           ({ similarity: similarityOfA }, { similarity: similarityOfB }) =>
-            similarityOfB - similarityOfA
+            similarityOfB - similarityOfA,
         )
         .slice(offset, offset + take)
         .forEach(({ species, form }) => {
           results.push({
             form,
-            species
-          })
-        })
+            species,
+          });
+        });
     }
     // todo: else, appends the popular pokemon lists
 
-    return results
+    return results;
   }
 }
 
 export namespace PokemonClient {
   export namespace GetPokemon {
-    export type Options = GetPokemonOptions
-    export type Result = GetPokemonResult
+    export type Options = GetPokemonOptions;
+    export type Result = GetPokemonResult;
   }
 
   export namespace FuzzilySearchPokemon {
-    export type Options = FuzzilySearchPokemonOptions
-    export type Result = FuzzilySearchPokemonResult
+    export type Options = FuzzilySearchPokemonOptions;
+    export type Result = FuzzilySearchPokemonResult;
   }
 }

@@ -1014,8 +1014,7 @@
   },
   "eiscue": {
     "name": "Eiscue",
-    "description":
-      "It drifted in on the flow of ocean waters from a frigid place. It keeps its head iced constantly to make sure it stays nice and cold.",
+    "description": "It drifted in on the flow of ocean waters from a frigid place. It keeps its head iced constantly to make sure it stays nice and cold.",
     "form": {
       "ice_face": "Ice Face",
       "noice_face": "Noice Face"
@@ -1761,7 +1760,7 @@
   "kleavor": {
     "name": "Kleavor",
     "description": "A violent creature that fells towering trees with its crude axes and shields itself with hard stone. If one should chance upon this Pokémon in the wilds, one's only recourse is to flee."
-  }
+  },
   "klefki": {
     "name": "Klefki",
     "description": "These key collectors threaten any attackers by fiercely jingling their keys at them."
@@ -3759,8 +3758,7 @@
   },
   "wyrdeer": {
     "name": "Wyrdeer",
-    "description":
-      "The black orbs shine with an uncanny light when the Pokémon is erecting invisible barriers. The fur shed from its beard retains heat well and is a highly useful material for winter clothing."
+    "description": "The black orbs shine with an uncanny light when the Pokémon is erecting invisible barriers. The fur shed from its beard retains heat well and is a highly useful material for winter clothing."
   },
   "wynaut": {
     "name": "Wynaut",

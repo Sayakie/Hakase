@@ -1,7 +1,7 @@
-import { join, resolve } from 'node:path'
-import { fileURLToPath, URL } from 'node:url'
+import { join, resolve } from "node:path";
+import { URL, fileURLToPath } from "node:url";
 
-import { ScheduledTaskRedisStrategy } from '@sapphire/plugin-scheduled-tasks/register-redis'
+import { ScheduledTaskRedisStrategy } from "@sapphire/plugin-scheduled-tasks/register-redis";
 import {
   type ArrayString,
   type IntegerString,
@@ -10,81 +10,81 @@ import {
   envParseInteger,
   envParseNumber,
   envParseString,
-  setup
-} from '@skyra/env-utilities'
-import { type ClientOptions, Partials } from 'discord.js'
-import { GatewayIntentBits } from 'discord-api-types/v10'
-import type { RedisOptions } from 'ioredis'
+  setup,
+} from "@skyra/env-utilities";
+import { GatewayIntentBits } from "discord-api-types/v10";
+import { type ClientOptions, Partials } from "discord.js";
+import type { RedisOptions } from "ioredis";
 
-import { Directories } from '#lib/utils/constants.js'
-import { keyMirror } from '#lib/utils/functions.js'
+import { Directories } from "#lib/utils/constants.js";
+import { keyMirror } from "#lib/utils/functions.js";
 
-setup(new URL(`.env`, Directories.Root))
+setup(new URL(".env", Directories.Root));
 
 const EnvKeys = keyMirror([
-  `OWNERS`,
+  "OWNERS",
 
-  `CLIENT_PRESENCE_NAME`,
-  `CLIENT_PRESENCE_TYPE`,
+  "CLIENT_PRESENCE_NAME",
+  "CLIENT_PRESENCE_TYPE",
 
-  `FUZZY_SEARCH_POKEMON_THRESHOLD`,
-  `FUZZY_SEARCH_POKEMON_RELATED_MATCH_THRESHOLD`,
+  "FUZZY_SEARCH_POKEMON_THRESHOLD",
+  "FUZZY_SEARCH_POKEMON_RELATED_MATCH_THRESHOLD",
 
-  `DISCORD_TOKEN`,
+  "DISCORD_TOKEN",
   // WORKAROUND for GitHub Codespace
-  `DISCORD_TOKEN_DEV`,
-  `DISCORD_TOKEN_PROD`,
+  "DISCORD_TOKEN_DEV",
+  "DISCORD_TOKEN_PROD",
 
   // Redis
-  `REDIS_USERNAME`,
-  `REDIS_PASSWORD`,
-  `REDIS_HOST`,
-  `REDIS_PORT`,
-  `REDIS_TASK_DB`
-])
+  "REDIS_USERNAME",
+  "REDIS_PASSWORD",
+  "REDIS_HOST",
+  "REDIS_PORT",
+  "REDIS_TASK_DB",
+]);
 
 /* eslint-disable @typescript-eslint/naming-convention */
-declare module '@skyra/env-utilities' {
+declare module "@skyra/env-utilities" {
   interface Env {
-    NODE_ENV: `development` | `production` | `test`
-    [EnvKeys.OWNERS]: ArrayString
+    NODE_ENV: `development` | `production` | `test`;
+    [EnvKeys.OWNERS]: ArrayString;
 
-    [EnvKeys.CLIENT_PRESENCE_NAME]: string
-    [EnvKeys.CLIENT_PRESENCE_TYPE]: string
+    [EnvKeys.CLIENT_PRESENCE_NAME]: string;
+    [EnvKeys.CLIENT_PRESENCE_TYPE]: string;
 
-    [EnvKeys.FUZZY_SEARCH_POKEMON_THRESHOLD]: NumberString
-    [EnvKeys.FUZZY_SEARCH_POKEMON_RELATED_MATCH_THRESHOLD]: NumberString
+    [EnvKeys.FUZZY_SEARCH_POKEMON_THRESHOLD]: NumberString;
+    [EnvKeys.FUZZY_SEARCH_POKEMON_RELATED_MATCH_THRESHOLD]: NumberString;
 
-    [EnvKeys.DISCORD_TOKEN]: string
-    [EnvKeys.DISCORD_TOKEN_DEV]: string
-    [EnvKeys.DISCORD_TOKEN_PROD]: string
+    [EnvKeys.DISCORD_TOKEN]: string;
+    [EnvKeys.DISCORD_TOKEN_DEV]: string;
+    [EnvKeys.DISCORD_TOKEN_PROD]: string;
 
-    [EnvKeys.REDIS_HOST]: string
-    [EnvKeys.REDIS_PORT]: NumberString
-    [EnvKeys.REDIS_USERNAME]: string
-    [EnvKeys.REDIS_PASSWORD]: string
-    [EnvKeys.REDIS_TASK_DB]: IntegerString
+    [EnvKeys.REDIS_HOST]: string;
+    [EnvKeys.REDIS_PORT]: NumberString;
+    [EnvKeys.REDIS_USERNAME]: string;
+    [EnvKeys.REDIS_PASSWORD]: string;
+    [EnvKeys.REDIS_TASK_DB]: IntegerString;
   }
 }
 /* eslint-enable */
 
-const dateFormatter = Intl.DateTimeFormat(`fr-CA`, {
-  day: `2-digit`,
-  month: `2-digit`,
-  year: `numeric`
-})
+const dateFormatter = Intl.DateTimeFormat("fr-CA", {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+});
 
-export const OWNERS = envParseArray(`OWNERS`, [])
+export const OWNERS = envParseArray("OWNERS", []);
 
 export const DISCORD_TOKEN = isProduction()
-  ? envParseString(`DISCORD_TOKEN_PROD`, ``) || envParseString(`DISCORD_TOKEN`)
-  : envParseString(`DISCORD_TOKEN_DEV`, ``) || envParseString(`DISCORD_TOKEN`)
+  ? envParseString("DISCORD_TOKEN_PROD", "") || envParseString("DISCORD_TOKEN")
+  : envParseString("DISCORD_TOKEN_DEV", "") || envParseString("DISCORD_TOKEN");
 
 export const CLIENT_OPTIONS: ClientOptions = {
   allowedMentions: { roles: [], users: [] },
 
   i18n: {
-    defaultLanguageDirectory: join(fileURLToPath(Directories.Root), `locales`)
+    defaultLanguageDirectory: join(fileURLToPath(Directories.Root), "locales"),
   },
 
   intents: [GatewayIntentBits.Guilds],
@@ -94,29 +94,29 @@ export const CLIENT_OPTIONS: ClientOptions = {
 
   logger: {
     pino: {
-      level: isProduction() ? `info` : `debug`,
+      level: isProduction() ? "info" : "debug",
       timestamp: true,
       transport: {
         targets: [
           {
-            level: `info`,
+            level: "info",
             options: {
               destination: resolve(
                 fileURLToPath(Directories.Root),
-                `logs`,
-                `${dateFormatter.format(new Date())}.log`
-              )
+                "logs",
+                `${dateFormatter.format(new Date())}.log`,
+              ),
             },
-            target: `pino/file`
+            target: "pino/file",
           },
           {
-            level: isProduction() ? `info` : `debug`,
-            options: { translateTime: `SYS:yyyy-mm-dd HH:MM:ss` },
-            target: `pino-pretty`
-          }
-        ]
-      }
-    }
+            level: isProduction() ? "info" : "debug",
+            options: { translateTime: "SYS:yyyy-mm-dd HH:MM:ss" },
+            target: "pino-pretty",
+          },
+        ],
+      },
+    },
   },
 
   partials: [Partials.Channel, Partials.GuildScheduledEvent],
@@ -127,22 +127,22 @@ export const CLIENT_OPTIONS: ClientOptions = {
       bull: {
         connection: {
           ...parseRedisOption(),
-          db: envParseInteger(`REDIS_TASK_DB`, 0)
-        }
-      }
-    })
-  }
-}
+          db: envParseInteger("REDIS_TASK_DB", 0),
+        },
+      },
+    }),
+  },
+};
 
 export function isProduction(): boolean {
-  return envParseString(`NODE_ENV`) === `production`
+  return envParseString("NODE_ENV") === "production";
 }
 
 export function parseRedisOption(): RedisOptions {
   return {
-    host: envParseString(`REDIS_HOST`, `127.0.0.1`),
-    password: envParseString(`REDIS_PASSWORD`, ``),
-    port: envParseNumber(`REDIS_PORT`, 6379),
-    username: envParseString(`REDIS_USERNAME`, ``)
-  }
+    host: envParseString("REDIS_HOST", "127.0.0.1"),
+    password: envParseString("REDIS_PASSWORD", ""),
+    port: envParseNumber("REDIS_PORT", 6379),
+    username: envParseString("REDIS_USERNAME", ""),
+  };
 }

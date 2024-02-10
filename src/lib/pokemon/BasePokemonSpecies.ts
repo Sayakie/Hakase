@@ -1,44 +1,48 @@
-import type { Stat as JsonStat } from '@internal/pixelmon'
-import { container } from '@sapphire/pieces'
-import { Option } from '@sapphire/result'
-import { s } from '@sapphire/shapeshift'
-import { type Nullish, isNullish } from '@sapphire/utilities'
-import type { Locale, LocaleString, LocalizationMap } from 'discord-api-types/v10'
+import type { Stat as JsonStat } from "@internal/pixelmon";
+import { container } from "@sapphire/pieces";
+import { Option } from "@sapphire/result";
+import { s } from "@sapphire/shapeshift";
+import { type Nullish, isNullish } from "@sapphire/utilities";
+import type {
+  Locale,
+  LocaleString,
+  LocalizationMap,
+} from "discord-api-types/v10";
 
-import { Form } from '#lib/pokemon/Form.js'
-import type { PokemonSpecies } from '#lib/pokemon/PokemonSpecies.js'
-import type { Translatable, Translation } from '#lib/utils/Translatable.js'
+import { Form } from "#lib/pokemon/Form.js";
+import type { PokemonSpecies } from "#lib/pokemon/PokemonSpecies.js";
+import type { Translatable, Translation } from "#lib/utils/Translatable.js";
 
 export abstract class BasePokemonSpecies implements Translatable {
-  readonly #name: string
+  readonly #name: string;
 
-  #localizedNames: LocalizationMap
+  #localizedNames: LocalizationMap;
 
-  #localizedNamesBelongToForm: Record<string, LocalizationMap>
+  #localizedNamesBelongToForm: Record<string, LocalizationMap>;
 
-  readonly #dex: number
+  readonly #dex: number;
 
-  readonly #generation: number
+  readonly #generation: number;
 
-  readonly #defaultForms: string[]
+  readonly #defaultForms: string[];
 
-  readonly #forms: Form[]
+  readonly #forms: Form[];
 
   public constructor(jsonData: JsonStat) {
-    const { name, dex, generation, defaultForms, forms } = jsonData
+    const { name, dex, generation, defaultForms, forms } = jsonData;
 
-    this.#name = s.string.parse(name)
-    this.#localizedNames = {}
-    this.#localizedNamesBelongToForm = {}
-    this.#dex = s.number.positive.safeInt.parse(dex)
-    this.#generation = s.number.positive.lessThanOrEqual(9).parse(generation)
-    this.#defaultForms = s.array(s.string).unique.parse(defaultForms)
-    this.#forms = forms.map(formData => new Form(this, formData))
+    this.#name = s.string.parse(name);
+    this.#localizedNames = {};
+    this.#localizedNamesBelongToForm = {};
+    this.#dex = s.number.positive.safeInt.parse(dex);
+    this.#generation = s.number.positive.lessThanOrEqual(9).parse(generation);
+    this.#defaultForms = s.array(s.string).unique.parse(defaultForms);
+    this.#forms = forms.map((formData) => new Form(this, formData));
   }
 
   /** The name of this species. */
   public get name(): string {
-    return this.#name
+    return this.#name;
   }
 
   /**
@@ -47,52 +51,52 @@ export abstract class BasePokemonSpecies implements Translatable {
    * Note that the {@link #localizedNames} variable should be filled when language-loader is started.
    */
   public get localizedNames(): LocalizationMap {
-    return this.#localizedNames
+    return this.#localizedNames;
   }
 
   /**
    * The localized names of this species that belong to form name.
    */
   public get localizedNamesBelongToForm(): Record<string, LocalizationMap> {
-    return this.#localizedNamesBelongToForm
+    return this.#localizedNamesBelongToForm;
   }
 
   /** The generation of this species. */
   public get generation(): number {
-    return this.#generation
+    return this.#generation;
   }
 
   /** The pokedex holder of this species. */
   public get nationalPokedex(): SpeciesPokedexHolder {
     const pokedexHolder = {
       asNumber: () => this.#dex,
-      asString: () => String(this.#dex).padStart(3, '0')
-    }
+      asString: () => String(this.#dex).padStart(3, "0"),
+    };
 
-    Reflect.set(pokedexHolder, 'toString', pokedexHolder.asString)
-    Reflect.set(pokedexHolder, 'valueOf', pokedexHolder.asNumber)
-    Object.freeze(pokedexHolder)
+    Reflect.set(pokedexHolder, "toString", pokedexHolder.asString);
+    Reflect.set(pokedexHolder, "valueOf", pokedexHolder.asNumber);
+    Object.freeze(pokedexHolder);
 
-    return pokedexHolder
+    return pokedexHolder;
   }
 
   /** The default forms of this species. */
   public get defaultForms(): string[] {
-    return this.#defaultForms.filter(Boolean)
+    return this.#defaultForms.filter(Boolean);
   }
 
   /** The available all forms of thie species. */
   public get forms(): Form[] {
-    return this.#forms
+    return this.#forms;
   }
 
   /** The holder of this species. */
   public get holder(): Option.Some<BasePokemonSpecies> {
-    return Option.some(this)
+    return Option.some(this);
   }
 
   public get [Symbol.toStringTag](): string {
-    return this.#name
+    return this.#name;
   }
 
   /**
@@ -101,7 +105,7 @@ export abstract class BasePokemonSpecies implements Translatable {
    * @returns {string} This species name
    */
   public getName(): string {
-    return this.name
+    return this.name;
   }
 
   /**
@@ -111,7 +115,7 @@ export abstract class BasePokemonSpecies implements Translatable {
    * @returns {LocalizationMap} The localized name belong to this species
    */
   public getLocalizedName(locale: LocaleString): string | null {
-    return Reflect.get(this.localizedNames, locale) ?? null
+    return Reflect.get(this.localizedNames, locale) ?? null;
   }
 
   /**
@@ -120,11 +124,11 @@ export abstract class BasePokemonSpecies implements Translatable {
    * @returns {LocalizationMap} The localized names belong to this species
    */
   public getLocalizedNames(): LocalizationMap {
-    return this.localizedNames
+    return this.localizedNames;
   }
 
   public getLocalizedNamesBelongToForm(): Record<string, LocalizationMap> {
-    return this.localizedNamesBelongToForm
+    return this.localizedNamesBelongToForm;
   }
 
   /**
@@ -133,7 +137,7 @@ export abstract class BasePokemonSpecies implements Translatable {
    * @returns {number} This species generation
    */
   public getGeneration(): number {
-    return this.generation
+    return this.generation;
   }
 
   /**
@@ -153,63 +157,64 @@ export abstract class BasePokemonSpecies implements Translatable {
    * ```
    */
   public getNationalPokedex(): SpeciesPokedexHolder {
-    return this.nationalPokedex
+    return this.nationalPokedex;
   }
 
   public getDefaultForms(): string[] {
-    return this.defaultForms
+    return this.defaultForms;
   }
 
   public getForms(): Form[] {
-    return this.forms
+    return this.forms;
   }
 
   public getDefaultForm(): Form {
-    return this.forms.find(form => this.defaultForms.includes(form.name))!
+    return this.forms.find((form) => this.defaultForms.includes(form.name));
   }
 
   public getForm(name: string | Nullish): Option<Form> {
-    if (isNullish(name)) return Option.none
+    if (isNullish(name)) return Option.none;
 
-    const form = this.forms.find(form => form.name === name)
+    const form = this.forms.find((form) => form.name === name);
 
-    if (isNullish(form)) return Option.none
+    if (isNullish(form)) return Option.none;
 
-    return Option.some(form)
+    return Option.some(form);
   }
 
   public setLocalizedName(locale: `${Locale}`, localizedName: string): void {
-    this.#localizedNames[locale] = localizedName
+    this.#localizedNames[locale] = localizedName;
   }
 
   public setLocalizedNames(localizedNames: LocalizationMap): void {
-    this.#localizedNames = localizedNames
+    this.#localizedNames = localizedNames;
   }
 
   public setLocalizedNameBelongToForm(
     formName: string,
     locale: `${Locale}`,
-    localizedName: string
+    localizedName: string,
   ): void {
     if (isNullish(this.localizedNamesBelongToForm[formName])) {
-      this.#localizedNamesBelongToForm[formName] = {}
+      this.#localizedNamesBelongToForm[formName] = {};
     }
 
-    this.#localizedNamesBelongToForm[formName][locale] = localizedName
+    this.#localizedNamesBelongToForm[formName][locale] = localizedName;
   }
 
   public translation(): Translation {
-    const key = `${this.name.toLowerCase()}.name`
+    const key = `${this.name.toLowerCase()}.name`;
 
     const translation: Translation = {
       key: () => key,
-      with: (locale, namespace = 'Pixelmon:') => container.i18n.format(locale, namespace + key)
-    }
+      with: (locale, namespace = "Pixelmon:") =>
+        container.i18n.format(locale, namespace + key),
+    };
 
-    Reflect.set(translation, 'toString', key)
-    Object.freeze(translation)
+    Reflect.set(translation, "toString", key);
+    Object.freeze(translation);
 
-    return translation
+    return translation;
   }
 
   /**
@@ -218,14 +223,21 @@ export abstract class BasePokemonSpecies implements Translatable {
    * @param {boolean} includeMythical Mythical including flag
    * @returns {boolean} Whether this species is a legendary or not
    */
-  public isLegendary(): this is PokemonSpecies<'legendary' | 'mythical'>
+  public isLegendary(): this is PokemonSpecies<"legendary" | "mythical">;
 
-  public isLegendary(includeMythical: true): this is PokemonSpecies<'legendary' | 'mythical'>
+  public isLegendary(
+    includeMythical: true,
+  ): this is PokemonSpecies<"legendary" | "mythical">;
 
-  public isLegendary(includeMythical: false): this is PokemonSpecies<'legendary'>
+  public isLegendary(
+    includeMythical: false,
+  ): this is PokemonSpecies<"legendary">;
 
-  public isLegendary(includeMythical: boolean = true): boolean {
-    return this.getDefaultForm().isLegendary() ?? (includeMythical && this.isMythical())
+  public isLegendary(includeMythical = true): boolean {
+    return (
+      this.getDefaultForm().isLegendary() ??
+      (includeMythical && this.isMythical())
+    );
   }
 
   /**
@@ -233,8 +245,8 @@ export abstract class BasePokemonSpecies implements Translatable {
    *
    * @returns {boolean} Whether this species is a mythical or not
    */
-  public isMythical(): this is PokemonSpecies<'mythical'> {
-    return this.getDefaultForm().isMythical() ?? false
+  public isMythical(): this is PokemonSpecies<"mythical"> {
+    return this.getDefaultForm().isMythical() ?? false;
   }
 
   /**
@@ -242,8 +254,8 @@ export abstract class BasePokemonSpecies implements Translatable {
    *
    * @returns {boolean} Whether this species is a ultrabeast or not
    */
-  public isUltraBeast(): this is PokemonSpecies<'ultrabeast'> {
-    return this.getDefaultForm().isUltraBeast() ?? false
+  public isUltraBeast(): this is PokemonSpecies<"ultrabeast"> {
+    return this.getDefaultForm().isUltraBeast() ?? false;
   }
 
   /**
@@ -252,35 +264,31 @@ export abstract class BasePokemonSpecies implements Translatable {
    * @returns {Option<BasePokemonSpecies>} This species holder
    */
   public toHolder(): Option.Some<BasePokemonSpecies> {
-    return this.holder
+    return this.holder;
   }
 
   public toString(): string {
-    return this.#name
+    return this.#name;
   }
 
   public valueOf(): number {
-    return this.#dex
+    return this.#dex;
   }
 
-  public [Symbol.toPrimitive](hint: 'default'): string
+  public [Symbol.toPrimitive](hint: "default"): string;
 
-  public [Symbol.toPrimitive](hint: 'string'): string
+  public [Symbol.toPrimitive](hint: "string"): string;
 
-  public [Symbol.toPrimitive](hint: 'number'): number
+  public [Symbol.toPrimitive](hint: "number"): number;
 
   public [Symbol.toPrimitive](hint: string): string | number {
     /* eslint-disable no-fallthrough */
     switch (hint) {
-      case 'default':
-
-      case 'string':
+      case "number":
+        return this.#dex;
 
       default:
-        return this.#name
-
-      case 'number':
-        return this.#dex
+        return this.#name;
     }
     /* eslint-enable no-fallthrough */
   }
@@ -290,10 +298,10 @@ export abstract class BasePokemonSpecies implements Translatable {
  * The return type of {@link BasePokemonSpecies.nationalPokedex} and {@link BasePokemonSpecies.getNationalPokedex}
  */
 export interface SpeciesPokedexHolder {
-  asNumber(): number
-  asString(): string
+  asNumber(): number;
+  asString(): string;
 }
 
 export namespace BasePokemonSpecies {
-  export type PokedexHolder = SpeciesPokedexHolder
+  export type PokedexHolder = SpeciesPokedexHolder;
 }

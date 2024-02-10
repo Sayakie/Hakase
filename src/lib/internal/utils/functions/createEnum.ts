@@ -1,5 +1,13 @@
 /* eslint-disable no-param-reassign */
 
+export type MirroredEnum<T extends ReadonlyArray<string>> = {
+  [V in T[number]]: {
+    [K in Exclude<keyof T, keyof unknown[]>]: V extends T[K] ? K : never;
+  }[Exclude<keyof T, keyof unknown[]>];
+} & {
+  [K in Exclude<keyof T, keyof unknown[]>]: T[K];
+};
+
 /**
  * Acquires an array of string and returns an object with the string as keys
  * and the index of the string as values. This is useful for mapping strings
@@ -22,18 +30,15 @@
  * ```
  */
 export function createEnum<T extends ReadonlyArray<string>>(
-  keys: [...T] | Readonly<T>
-): {
-  [V in T[number]]: {
-    [K in Exclude<keyof T, keyof unknown[]>]: V extends T[K] ? K : never
-  }[Exclude<keyof T, keyof unknown[]>]
-} & {
-  [K in Exclude<keyof T, keyof unknown[]>]: T[K]
-} {
-  return (keys as T).reduce((mirror, key, index) => {
-    mirror[key] = index
-    mirror[index] = key
+  keys: [...T] | Readonly<T>,
+): MirroredEnum<T> {
+  return (keys as T).reduce(
+    (mirror, key, index) => {
+      mirror[key] = index;
+      mirror[index] = key;
 
-    return mirror
-  }, {} as any) // eslint-disable-line @typescript-eslint/no-explicit-any
+      return mirror;
+    },
+    {} as MirroredEnum<T>,
+  );
 }

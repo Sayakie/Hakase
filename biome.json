@@ -17,5 +17,13 @@
     "enabled": true,
     "clientKind": "git",
     "useIgnoreFile": true
-  }
+  },
+  "overrides": [
+    {
+      "include": [".devcontainer", ".vscode"],
+      "linter": {
+        "enabled": false
+      }
+    }
+  ]
 }

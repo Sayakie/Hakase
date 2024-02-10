@@ -1,19 +1,21 @@
-import { SapphireClient } from '@sapphire/framework'
-import { container } from '@sapphire/pieces'
-import type { ClientOptions } from 'discord.js'
+import { SapphireClient } from "@sapphire/framework";
+import { container } from "@sapphire/pieces";
+import type { ClientOptions } from "discord.js";
 
-import { PokemonClient } from '#lib/client/PokemonClient.js'
-import { RedisClient } from '#lib/client/RedisClient.js'
-import { parseRedisOption } from '#lib/config.js'
-import { FuzzyPokemonStrategyStore } from '#lib/structures/FuzzyPokemonStrategyStore.js'
+import { PokemonClient } from "#lib/client/PokemonClient.js";
+import { RedisClient } from "#lib/client/RedisClient.js";
+import { parseRedisOption } from "#lib/config.js";
+import { FuzzyPokemonStrategyStore } from "#lib/structures/FuzzyPokemonStrategyStore.js";
 
 export interface ClientProperties {
-  prisma: unknown
-  pokemon: PokemonClient
-  redis: RedisClient
+  prisma: unknown;
+  pokemon: PokemonClient;
+  redis: RedisClient;
 }
 
-export class Client<Ready extends boolean = boolean> extends SapphireClient<Ready> {
+export class Client<
+  Ready extends boolean = boolean,
+> extends SapphireClient<Ready> {
   /**
    * A prisma client, used for interacting with DB.
    *
@@ -33,38 +35,38 @@ export class Client<Ready extends boolean = boolean> extends SapphireClient<Read
    * })
    * ```
    */
-  public override readonly prisma: unknown
+  public override readonly prisma: unknown;
 
-  public override readonly pokemon: PokemonClient
+  public override readonly pokemon: PokemonClient;
 
-  public override readonly redis: RedisClient
+  public override readonly redis: RedisClient;
 
   public constructor(options: ClientOptions) {
-    super(options)
+    super(options);
 
-    this.prisma = options.prisma
-    container.prisma = this.prisma
+    this.prisma = options.prisma;
+    container.prisma = this.prisma;
 
-    this.pokemon = new PokemonClient()
-    container.pokemon = this.pokemon
+    this.pokemon = new PokemonClient();
+    container.pokemon = this.pokemon;
 
-    this.redis = new RedisClient(parseRedisOption())
-    container.redis = this.redis
+    this.redis = new RedisClient(parseRedisOption());
+    container.redis = this.redis;
 
-    this.stores.register(new FuzzyPokemonStrategyStore())
+    this.stores.register(new FuzzyPokemonStrategyStore());
   }
 }
 
 /* eslint-disable @typescript-eslint/no-empty-interface */
-declare module '@sapphire/pieces' {
+declare module "@sapphire/pieces" {
   interface Container extends ClientProperties {}
 }
 
-declare module '@sapphire/framework' {
+declare module "@sapphire/framework" {
   interface SapphireClient extends ClientProperties {}
 }
 
-declare module 'discord.js' {
+declare module "discord.js" {
   interface Client extends ClientProperties {}
 
   interface ClientOptions extends Partial<ClientProperties> {}

@@ -1,6 +1,6 @@
-import { s } from '@sapphire/shapeshift'
+import { s } from "@sapphire/shapeshift";
 
 export const abilityZipValidator = s.object({
   abilities: s.array(s.string),
-  hiddenAbilities: s.array(s.string).nullish
-})
+  hiddenAbilities: s.array(s.string).nullish,
+});

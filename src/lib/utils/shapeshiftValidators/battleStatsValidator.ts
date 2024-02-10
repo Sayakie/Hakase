@@ -1,4 +1,4 @@
-import { s } from '@sapphire/shapeshift'
+import { s } from "@sapphire/shapeshift";
 
 export const battleStatsValidator = s.object({
   attack: s.number,
@@ -6,5 +6,5 @@ export const battleStatsValidator = s.object({
   hp: s.number,
   specialAttack: s.number,
   specialDefense: s.number,
-  speed: s.number
-})
+  speed: s.number,
+});

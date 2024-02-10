@@ -1,4 +1,4 @@
-import { s } from '@sapphire/shapeshift'
+import { s } from "@sapphire/shapeshift";
 
 export const moveCollectionValidator = s.object({
   eggMoves: s.array(s.string),
@@ -6,8 +6,8 @@ export const moveCollectionValidator = s.object({
   levelUpMoves: s.array(
     s.object({
       attacks: s.array(s.string),
-      level: s.number.positive.safeInt
-    })
+      level: s.number.positive.safeInt,
+    }),
   ),
   tmMoves: s.array(s.string),
   tmMoves1: s.array(s.string),
@@ -20,5 +20,5 @@ export const moveCollectionValidator = s.object({
   tmMoves8: s.array(s.string),
   trMoves: s.array(s.string),
   transferMoves: s.array(s.string),
-  tutorMoves: s.array(s.string)
-})
+  tutorMoves: s.array(s.string),
+});

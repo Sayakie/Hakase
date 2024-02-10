@@ -1,15 +1,15 @@
-export const enum Identifiers {
-  PokemonSpeciesConstructJsonParseFailure = `pokemonSpeciesConstructJsonParseFailure`,
-  PokemonSpeciesConstructInvalidPokeDexType = `pokemonSpeciesConstructInvalidPokeDexType`,
-  PokemonSpeciesConstructInvalidGenerationType = `pokemonSpeciesConstructInvalidGenerationType`
+export enum Identifiers {
+  PokemonSpeciesConstructJsonParseFailure = "pokemonSpeciesConstructJsonParseFailure",
+  PokemonSpeciesConstructInvalidPokeDexType = "pokemonSpeciesConstructInvalidPokeDexType",
+  PokemonSpeciesConstructInvalidGenerationType = "pokemonSpeciesConstructInvalidGenerationType",
 }
 
-export const enum ListenerIdentifiers {
-  Ready = `onReady`,
+export enum ListenerIdentifiers {
+  Ready = "onReady",
 
-  Process$SIGINT = `onProcess$SIGINT`
+  Process$SIGINT = "onProcess$SIGINT",
 }
 
-export const enum StoreRegistryEntries {
-  Strategies = `strategies`
+export enum StoreRegistryEntries {
+  Strategies = "strategies",
 }

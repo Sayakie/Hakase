@@ -10,5 +10,5 @@
  */
 module.exports = {
   "pre-commit": "pnpm exec lint-staged --quiet",
-  "commit-msg": "pnpm exec commitlint --edit"
-}
+  "commit-msg": "pnpm exec commitlint --edit",
+};
