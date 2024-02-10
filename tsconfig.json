@@ -1,10 +1,7 @@
 {
-  "extends": "@sapphire/ts-config/extra-strict",
+  "extends": "@dareharu/ts-config",
   "compilerOptions": {
-    "lib": ["ESNext"],
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Node16",
+    "strictNullChecks": true,
     "emitDecoratorMetadata": false
   }
 }

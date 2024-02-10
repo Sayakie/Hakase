@@ -94,12 +94,12 @@ devDependencies:
   '@commitlint/config-angular':
     specifier: ^18.6.0
     version: 18.6.0
+  '@dareharu/ts-config':
+    specifier: ^1.1.0
+    version: 1.1.0
   '@favware/cliff-jumper':
     specifier: ^2.2.3
     version: 2.2.3
-  '@sapphire/ts-config':
-    specifier: ^5.0.0
-    version: 5.0.0
   '@swc/core':
     specifier: ^1.3.101
     version: 1.3.101
@@ -449,6 +449,11 @@ packages:
     engines: {node: '>=v18'}
     dependencies:
       chalk: 4.1.2
+    dev: true
+
+  /@dareharu/ts-config@1.1.0:
+    resolution: {integrity: sha512-bDe9+9UTZo3ycUr1xJcvmaFS1LFm7SDdAtplm0Z/XNwwGrdsioIFCJMV+u8GkPzfe4F4XD9N9N400i9p6pM5nQ==}
+    engines: {node: '>=16', npm: '>=8'}
     dev: true
 
   /@discordjs/builders@1.7.0:
@@ -1427,14 +1432,6 @@ packages:
     resolution: {integrity: sha512-I2TwqlLDA2Uu576VUgyBaT1gP1WSWPxeW3NqFxsSJfwFyvzXkTzyQiYce0eWMpM6BdBCq7Dddg+Yayls/5K1RA==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dev: false
-
-  /@sapphire/ts-config@5.0.0:
-    resolution: {integrity: sha512-E4JfpCK/OxaH8lYEP0+xbRUeIBanEOkA5IUtvj+Uib2TG2p7H0Sb1mF1fpmf0ICyDaOu9/201Il/ymV3cr/isw==}
-    engines: {node: '>=v16.0.0', npm: '>=8.0.0'}
-    dependencies:
-      tslib: 2.6.2
-      typescript: 5.3.3
-    dev: true
 
   /@sapphire/utilities@3.13.0:
     resolution: {integrity: sha512-BD5ycPjZX5dXxrAb90dJTY8ukpPVBXgU17gA5ghK2memS4hwAzFYpvK+R+6zh4d6HYIKVuqrVhGXjvZenAa/Aw==}
