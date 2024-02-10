@@ -15,23 +15,23 @@ dependencies:
     specifier: ^6.0.3
     version: 6.0.3
   '@sapphire/discord.js-utilities':
-    specifier: ^6.1.0
-    version: 6.1.0
+    specifier: ^7.1.6
+    version: 7.1.6
   '@sapphire/framework':
-    specifier: ^4.8.5
-    version: 4.8.5
+    specifier: ^5.0.7
+    version: 5.0.7
   '@sapphire/pieces':
-    specifier: ^3.10.0
-    version: 3.10.0
+    specifier: ^4.2.2
+    version: 4.2.2
   '@sapphire/plugin-i18next':
-    specifier: ^5.1.1
-    version: 5.1.1
+    specifier: ^7.1.2
+    version: 7.1.2
   '@sapphire/plugin-logger':
-    specifier: ^3.0.7
-    version: 3.0.7
+    specifier: ^4.0.2
+    version: 4.0.2
   '@sapphire/plugin-scheduled-tasks':
-    specifier: ^6.0.1
-    version: 6.0.1
+    specifier: ^10.0.1
+    version: 10.0.1
   '@sapphire/result':
     specifier: ^2.6.5
     version: 2.6.5
@@ -95,8 +95,8 @@ devDependencies:
     specifier: ^2.2.3
     version: 2.2.3
   '@sapphire/ts-config':
-    specifier: ^3.3.4
-    version: 3.3.4
+    specifier: ^5.0.0
+    version: 5.0.0
   '@swc/core':
     specifier: ^1.3.101
     version: 1.3.101
@@ -1180,33 +1180,30 @@ packages:
       discord-api-types: 0.37.66
     dev: false
 
-  /@sapphire/discord.js-utilities@6.1.0:
-    resolution: {integrity: sha512-Kn405Wg4+PgIAMUckiKHT/meRyba+vPJl+rTQ4YCeIEBzG+TOYU7O4UNWKJbDM6ApjUyyze0IOx6EXFUFexsMw==}
-    engines: {node: '>=16.6.0', npm: '>=7.0.0'}
-    dependencies:
-      '@sapphire/discord-utilities': 3.2.0
-      '@sapphire/duration': 1.1.0
-      '@sapphire/utilities': 3.14.0
-      tslib: 2.6.2
-    dev: false
-
-  /@sapphire/discord.js-utilities@7.1.2:
-    resolution: {integrity: sha512-Ly/mtykmX7lak4+fzVbDvch0xnlAwDIDGZGg9mGuZVHdA4sINWcVoCNulI+OqoZWdLCfUKph32KvXGESzriD7A==}
-    engines: {node: '>=16.6.0', npm: '>=7.0.0'}
-    dependencies:
-      '@sapphire/discord-utilities': 3.2.0
-      '@sapphire/duration': 1.1.0
-      '@sapphire/utilities': 3.14.0
-      tslib: 2.6.2
-    dev: false
-
-  /@sapphire/duration@1.1.0:
-    resolution: {integrity: sha512-ATb2pWPLcSgG7bzvT6MglUcDexFSufr2FLXUmhipWGFtZbvDhkopGBIuHyzoGy7LZvL8UY5T6pRLNdFv5pl/Lg==}
+  /@sapphire/discord-utilities@3.2.2:
+    resolution: {integrity: sha512-lJZMV89wt2Vuq9Sra44rK9gONrLpL6INd9CEI01r+lGdbix+EWceQR7SLESzw1+oD12v6gfMOUQUjgy0mFUk1g==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
+    dependencies:
+      discord-api-types: 0.37.69
+    dev: false
+
+  /@sapphire/discord.js-utilities@7.1.6:
+    resolution: {integrity: sha512-rOSs1xUOSLkqF6MXGtAOFtxYqzCoIIHImMFXftIxIdn38PNsLJNMWjf18bIVRMDMduVXtfROF7PLXxSp/CpLaw==}
+    engines: {node: '>=16.6.0', npm: '>=7.0.0'}
+    dependencies:
+      '@sapphire/discord-utilities': 3.2.2
+      '@sapphire/duration': 1.1.2
+      '@sapphire/utilities': 3.15.3
+      tslib: 2.6.2
     dev: false
 
   /@sapphire/duration@1.1.1:
     resolution: {integrity: sha512-c6+ZvVEmZ82+G5aZOz8QbTLNY1nN0j/fxykFNULnmoc2WspFO7PbXUDZMeHQoanWbFRC83U2DszhF2Zl5BwjrA==}
+    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
+    dev: false
+
+  /@sapphire/duration@1.1.2:
+    resolution: {integrity: sha512-m+DpXedUHdnH3rM6P9Hiyb9dpdXKb8WeTAVIug0QuN8tarQedbymbOor+UFmBfCbKOkoW9HvGK10xDwDvSfKrw==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dev: false
 
@@ -1216,7 +1213,7 @@ packages:
     dependencies:
       '@discordjs/builders': 1.7.0
       '@sapphire/discord-utilities': 3.2.0
-      '@sapphire/discord.js-utilities': 7.1.2
+      '@sapphire/discord.js-utilities': 7.1.6
       '@sapphire/lexure': 1.1.5
       '@sapphire/pieces': 3.10.0
       '@sapphire/ratelimits': 2.4.7
@@ -1225,11 +1222,33 @@ packages:
       '@sapphire/utilities': 3.14.0
     dev: false
 
+  /@sapphire/framework@5.0.7:
+    resolution: {integrity: sha512-AfCqoW9F5Xu+oAWINfPU25Gm8WVhaz+ETnRXpUCKbfRDSoYT1C8OImbnZeor2HH25DU6KKkKk3A98AfUxzawDA==}
+    engines: {node: '>=v18', npm: '>=7'}
+    dependencies:
+      '@discordjs/builders': 1.7.0
+      '@sapphire/discord-utilities': 3.2.2
+      '@sapphire/discord.js-utilities': 7.1.6
+      '@sapphire/lexure': 1.1.7
+      '@sapphire/pieces': 4.2.2
+      '@sapphire/ratelimits': 2.4.9
+      '@sapphire/result': 2.6.6
+      '@sapphire/stopwatch': 1.5.2
+      '@sapphire/utilities': 3.15.3
+    dev: false
+
   /@sapphire/lexure@1.1.5:
     resolution: {integrity: sha512-afVTCLHezlyvdvvOcEeCzMA05l1yje9axtY7gWQpDcppOazskYPgGMVCdAbfHz5BsyABMZYT2MznY+phEgFc8Q==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dependencies:
       '@sapphire/result': 2.6.5
+    dev: false
+
+  /@sapphire/lexure@1.1.7:
+    resolution: {integrity: sha512-6PqU2/V+w1k4DHbZ8erIH+iaT/kAmLfReiWNUURt1akfrPTWqlVYWfuxkHXF0JMPk53r4NIkZoitiWwGUtPF+Q==}
+    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
+    dependencies:
+      '@sapphire/result': 2.6.6
     dev: false
 
   /@sapphire/pieces@3.10.0:
@@ -1241,31 +1260,43 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@sapphire/plugin-i18next@5.1.1:
-    resolution: {integrity: sha512-Jh1uX3MAL2hsXVuEVz3nXC/vJG1q6G/UhWvs8BANrJFQlIkfkYX2YVCpllo+jjmuki5ijr0rCFSIKRGwArYcTw==}
-    engines: {node: '>=v14', npm: '>=7'}
+  /@sapphire/pieces@4.2.2:
+    resolution: {integrity: sha512-DvAC+zTgm5o41D6iX+jBjMp+rRmoHPKNYnav6v6vQLTxBJb+iFMmup9ZREiuXdrh1ejrmVRZojnnI59xQgezwQ==}
+    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dependencies:
-      '@sapphire/utilities': 3.14.0
-      '@skyra/i18next-backend': 2.0.4
-      chokidar: 3.5.3
-      i18next: 22.5.1
+      '@discordjs/collection': 1.5.3
+      '@sapphire/utilities': 3.15.3
+      tslib: 2.6.2
     dev: false
 
-  /@sapphire/plugin-logger@3.0.7:
-    resolution: {integrity: sha512-QNQRHMgvyxhBNdYBktIfAQvNdsvzYd6vVWCvnggrcN56mvXJyolZaPkDcUNh3PdtjcB7XTChpynbLlTby2vsyQ==}
+  /@sapphire/plugin-i18next@7.1.2:
+    resolution: {integrity: sha512-jy7Q/s1TmZNTs3nYC9KRFkojo04rpFD/5V65z/2VkaWZLdBBTu3sjKIu57YDCpHnY4OxGWHOSXAl9xkVuqKaOw==}
     engines: {node: '>=v18', npm: '>=7'}
     dependencies:
-      '@sapphire/timestamp': 1.0.1
+      '@sapphire/utilities': 3.15.3
+      '@skyra/i18next-backend': 2.0.5
+      chokidar: 3.6.0
+      i18next: 23.8.2
+    dev: false
+
+  /@sapphire/plugin-logger@4.0.2:
+    resolution: {integrity: sha512-5Nr++u+fA3/jZwj1aL9Z16RgyJZRE1gyUftfWjrzdndE5FkcbnLiVCKvnI8WzSupVhdn6kMaCWAteOSgAaq3lQ==}
+    engines: {node: '>=v18', npm: '>=7'}
+    dependencies:
+      '@sapphire/timestamp': 1.0.3
       colorette: 2.0.20
     dev: false
 
-  /@sapphire/plugin-scheduled-tasks@6.0.1:
-    resolution: {integrity: sha512-JOrk+MmdgEMcG4ruC8bEVQTrSjXya/s5mTgd0CGQsIFx30U2uee/lv83sP5Gz7EhZCCixiMbrdPLYlutuLNV+g==}
-    engines: {node: '>=v14.18.0', npm: '>=7.24.1'}
+  /@sapphire/plugin-scheduled-tasks@10.0.1:
+    resolution: {integrity: sha512-/wS4mlyh5oRo3ADmkDEywNyb0hdUUJuudc5Nz9kuYWSpYZMWhecI24N6m8i4ktMdclLriV+ppW3jxZzGyD22LQ==}
+    engines: {node: '>=v18', npm: '>=7'}
     dependencies:
-      '@sapphire/stopwatch': 1.5.1
-      '@sapphire/utilities': 3.14.0
+      '@sapphire/stopwatch': 1.5.2
+      '@sapphire/utilities': 3.15.3
+      bullmq: 5.1.3
       tslib: 2.6.2
+    transitivePeerDependencies:
+      - supports-color
     dev: false
 
   /@sapphire/ratelimits@2.4.7:
@@ -1273,9 +1304,19 @@ packages:
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dev: false
 
+  /@sapphire/ratelimits@2.4.9:
+    resolution: {integrity: sha512-eEE385IrFsD90gg696MWNqbeDjo1ZgtBvL66BezIwJEwDguhLP5AVsBsT4uCacX/92aeHl8i2nVvtusIBXZNSg==}
+    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
+    dev: false
+
   /@sapphire/result@2.6.5:
     resolution: {integrity: sha512-bpvrUEchle+kekLdZsBj2i3zm/KzSjHn+cndDSpGIbq6fbxS5zbMoxfh3c3afOq6mx07fJL0sv7GCfqARoQg1A==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
+
+  /@sapphire/result@2.6.6:
+    resolution: {integrity: sha512-QCjj7X/QlY0QUCeAaZQmnrsMH/b2BMQYee3F1Y5iF17JagUQqO3KZlG7vfXWQU3SRAJX5OgZZynBjixUH+nNGg==}
+    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
+    dev: false
 
   /@sapphire/shapeshift@3.9.5:
     resolution: {integrity: sha512-AGdHe+51gF7D3W8hBfuSFLBocURDCXVQczScTHXDS3RpNjNgrktIx/amlz5y8nHhm8SAdFt/X8EF8ZSfjJ0tnA==}
@@ -1297,6 +1338,13 @@ packages:
       tslib: 2.6.2
     dev: false
 
+  /@sapphire/stopwatch@1.5.2:
+    resolution: {integrity: sha512-FrR1GnaEIuXpEfnaz7DjNgoN/Cp8dJ5XFgb8CxXTCAJi8LYk0YsyGSdmmcs9R3ZNZrA1vOSv0dFVLitgiVA36Q==}
+    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
+    dependencies:
+      tslib: 2.6.2
+    dev: false
+
   /@sapphire/time-utilities@1.7.11:
     resolution: {integrity: sha512-xvEs4wVQeddE5hl4nz4CUXpX8K4fNyYiatSVGTY3KWybqOIWD+JtdFqa/+7ER+fPoDuF6Ro6vDYddVb6dcBapQ==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
@@ -1312,22 +1360,22 @@ packages:
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dev: false
 
-  /@sapphire/timestamp@1.0.1:
-    resolution: {integrity: sha512-uLg+rBFuBiaQY/pFGDDzZSOH2cfv4ONIB7zQGNuRCTpYKBW/iIhRBIZjJZyn8NVkXQhVi+Q94DI4i6gDhYVs7w==}
-    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
-    dev: false
-
   /@sapphire/timestamp@1.0.2:
     resolution: {integrity: sha512-Jn5armLFr3Z9u9CTF9h9qWFy0rFKA4UlalRPSAF9KL0xbXTSTLEJyZrRoTtQwLGcuXdSaaLc/u9Ywy4oW2eTEw==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dev: false
 
-  /@sapphire/ts-config@3.3.4:
-    resolution: {integrity: sha512-mWEUxCXh3cHKI7C8HJ049exVTMNaq+A/lJEDfM5ENSQ/OOZHd5DdmXn2jrYqFWbTRCHa0Vp2FAmACWBwePsBtg==}
+  /@sapphire/timestamp@1.0.3:
+    resolution: {integrity: sha512-I2TwqlLDA2Uu576VUgyBaT1gP1WSWPxeW3NqFxsSJfwFyvzXkTzyQiYce0eWMpM6BdBCq7Dddg+Yayls/5K1RA==}
+    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
+    dev: false
+
+  /@sapphire/ts-config@5.0.0:
+    resolution: {integrity: sha512-E4JfpCK/OxaH8lYEP0+xbRUeIBanEOkA5IUtvj+Uib2TG2p7H0Sb1mF1fpmf0ICyDaOu9/201Il/ymV3cr/isw==}
     engines: {node: '>=v16.0.0', npm: '>=8.0.0'}
     dependencies:
       tslib: 2.6.2
-      typescript: 4.9.5
+      typescript: 5.3.3
     dev: true
 
   /@sapphire/utilities@3.13.0:
@@ -1337,6 +1385,11 @@ packages:
 
   /@sapphire/utilities@3.14.0:
     resolution: {integrity: sha512-eYlpYlaKLvxTNjD3ymxpsf4MaSHW3x6vf+DMsLdMsV235J7i66VboHb8uxNcogR/lJ7khmMhMTCtabqUhNX4bA==}
+    engines: {node: '>=v14.0.0'}
+    dev: false
+
+  /@sapphire/utilities@3.15.3:
+    resolution: {integrity: sha512-K5dFGOB5XvblXFN+Av+Tch/dVBAifmxtZ9/2mFo8VqzbiaFJIRUuoPAoNsp8pWYaU423yV8bfD8WsCSNd9w1YQ==}
     engines: {node: '>=v14.0.0'}
     dev: false
 
@@ -1352,8 +1405,8 @@ packages:
       dotenv-expand: 10.0.0
     dev: false
 
-  /@skyra/i18next-backend@2.0.4:
-    resolution: {integrity: sha512-kgNuel7x8qHdjyTLd31tvRi+Lo+innqBVnTJBT8MRvf43aTsrMv1sNo5byit7HPTgjesaGwJYgvheOTaGEhuGQ==}
+  /@skyra/i18next-backend@2.0.5:
+    resolution: {integrity: sha512-qa8gzWedaMDE4TV8OROvbL1zQ/fK1k5rnuBZ2LR1YIVX9QO/Nwl/W+1vaBWNYR1Kd3c0HP6F+FhwJHqY08WAyQ==}
     engines: {node: '>=16.9.0', npm: '>=8.0.0'}
     dependencies:
       tslib: 2.6.2
@@ -2001,6 +2054,22 @@ packages:
       - supports-color
     dev: false
 
+  /bullmq@5.1.3:
+    resolution: {integrity: sha512-safpGwiwKHsNPW01Wk8FPxdWbPS2mA0HZKqIhdQB10J4wWRSDWPeQE2p+YYnAmqEsk0FwJdZnzVcwCfn7w5cVA==}
+    dependencies:
+      cron-parser: 4.9.0
+      glob: 8.1.0
+      ioredis: 5.3.2
+      lodash: 4.17.21
+      msgpackr: 1.10.1
+      node-abort-controller: 3.1.1
+      semver: 7.5.4
+      tslib: 2.6.2
+      uuid: 9.0.1
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
   /bundle-require@4.0.2(esbuild@0.17.19):
     resolution: {integrity: sha512-jwzPOChofl67PSTW2SGubV9HBQAhhR2i6nskiOThauo9dzwDUgOWQScFVaJkjEfYX+UXiD+LEx8EblQMc2wIag==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
@@ -2096,6 +2165,22 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.3
+    dev: true
+
+  /chokidar@3.6.0:
+    resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
+    engines: {node: '>= 8.10.0'}
+    dependencies:
+      anymatch: 3.1.3
+      braces: 3.0.2
+      glob-parent: 5.1.2
+      is-binary-path: 2.1.0
+      is-glob: 4.0.3
+      normalize-path: 3.0.0
+      readdirp: 3.6.0
+    optionalDependencies:
+      fsevents: 2.3.3
+    dev: false
 
   /ci-info@3.9.0:
     resolution: {integrity: sha512-NIxF55hv4nSqQswkAeiOi1r83xy8JldOFDTWiug55KBu9Jnblncd2U6ViHmYgHf01TPZS77NJBhBMKdWj9HQMQ==}
@@ -2388,6 +2473,10 @@ packages:
 
   /discord-api-types@0.37.66:
     resolution: {integrity: sha512-3Q+6uBODmVaPAmZZ1jYQiQBbp0hqArgSU9Y6DuYY6KW5Sdij91bwbmFnnVI5XvATRkY+Wk9KMBWFzAEwSDs+1w==}
+    dev: false
+
+  /discord-api-types@0.37.69:
+    resolution: {integrity: sha512-c0rHc5YGNIXQkI+V7QwP8y77wxo74ITNeZmMwxtKC/l01aIF/gKBG/U2MKhUt2iaeRH9XwAt9PT3AI9JQVvKVA==}
     dev: false
 
   /discord.js@14.14.1:
@@ -3357,8 +3446,8 @@ packages:
     engines: {node: '>=14.18.0'}
     dev: true
 
-  /i18next@22.5.1:
-    resolution: {integrity: sha512-8TGPgM3pAD+VRsMtUMNknRz3kzqwp/gPALrWMsDnmC1mKqJwpWyooQRLMcbTwq8z8YwSmuj+ZYvc+xCuEpkssA==}
+  /i18next@23.8.2:
+    resolution: {integrity: sha512-Z84zyEangrlERm0ZugVy4bIt485e/H8VecGUZkZWrH7BDePG6jT73QdL9EA1tRTTVVMpry/MgWIP1FjEn0DRXA==}
     dependencies:
       '@babel/runtime': 7.23.2
     dev: false
@@ -3994,6 +4083,12 @@ packages:
     dev: false
     optional: true
 
+  /msgpackr@1.10.1:
+    resolution: {integrity: sha512-r5VRLv9qouXuLiIBrLpl2d5ZvPt8svdQTl5/vMvE4nzDMyEX4sgW5yWhuBBj5UmgwOTWj8CIdSXn5sAfsHAWIQ==}
+    optionalDependencies:
+      msgpackr-extract: 3.0.2
+    dev: false
+
   /msgpackr@1.9.9:
     resolution: {integrity: sha512-sbn6mioS2w0lq1O6PpGtsv6Gy8roWM+o3o4Sqjd6DudrL/nOugY+KyJUimoWzHnf9OkO0T6broHFnYE/R05t9A==}
     optionalDependencies:
@@ -4021,6 +4116,10 @@ packages:
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /node-abort-controller@3.1.1:
+    resolution: {integrity: sha512-AGK2yQKIjRuqnc6VkX2Xj5d+QW8xZ87pa1UK6yA6ouUyuxfHuMP6umE5QK7UmTeOAymo+Zx1Fxiuw9rVx8taHQ==}
+    dev: false
 
   /node-gyp-build-optional-packages@5.0.7:
     resolution: {integrity: sha512-YlCCc6Wffkx0kHkmam79GKvDQ6x+QZkMjFGrIMxgFNILFvGSbCp2fCBC55pGTT9gVaz8Na5CLmxt/urtzRv36w==}
@@ -5255,6 +5354,12 @@ packages:
   /typescript@4.9.5:
     resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
     engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: true
+
+  /typescript@5.3.3:
+    resolution: {integrity: sha512-pXWcraxM0uxAS+tN0AG/BF2TyqmHO014Z070UsJ+pFvYuRSq8KH8DmWpnbXe0pEPDHXZV3FcAbJkijJ5oNEnWw==}
+    engines: {node: '>=14.17'}
     hasBin: true
     dev: true
 
