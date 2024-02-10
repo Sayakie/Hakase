@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@discordjs/builders": "^1.7.0",
-    "@frutbits/pino-logger": "^3.3.0",
+    "@frutbits/pino-logger": "^4.0.0",
     "@sapphire/decorators": "^6.0.3",
     "@sapphire/discord.js-utilities": "^6.1.0",
     "@sapphire/framework": "^4.8.5",

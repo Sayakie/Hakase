@@ -9,8 +9,8 @@ dependencies:
     specifier: ^1.7.0
     version: 1.7.0
   '@frutbits/pino-logger':
-    specifier: ^3.3.0
-    version: 3.3.0
+    specifier: ^4.0.0
+    version: 4.0.0
   '@sapphire/decorators':
     specifier: ^6.0.3
     version: 6.0.3
@@ -915,13 +915,14 @@ packages:
       compare-func: 2.0.0
     dev: true
 
-  /@frutbits/pino-logger@3.3.0:
-    resolution: {integrity: sha512-2SAyhzvqL6MELMRcwXvsrFDNJwyhQ6/RVJ1t3USCDj8YvCO/dhXXPNp27+88/fKynVRRw8E7dJMRNC8NXVHbJw==}
+  /@frutbits/pino-logger@4.0.0:
+    resolution: {integrity: sha512-GpND3Q2gsgJR7rvAZ7FYSahUnc0soLnyL/uw/ILg53biGf0tYOn4Z9fgXN29H2yVivPs0faAuBj4recZEoqmXw==}
     engines: {node: '>=16.6.0', npm: '>=7.0.0'}
     dependencies:
       '@sapphire/framework': 4.8.5
       discord.js: 14.14.1
       pino: 8.16.2
+      tslib: 2.6.2
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
