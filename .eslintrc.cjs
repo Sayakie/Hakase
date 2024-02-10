@@ -4,7 +4,7 @@
  */
 
 const [OFF, WARN, ERROR] = [0, 1, 2];
-const [ALWAYS, NEVER] = ["always", "never"];
+const [ALWAYS, ANY, NEVER] = ["always", "any", "never"];
 
 /**
  * @typedef ESLintAdvancedLinterOptions
@@ -227,6 +227,7 @@ module.exports = {
     // 'import/no-namespace': [WARN],
     // 'import/order': [ERROR, { 'newlines-between': 'always' }],
     "no-tabs": [ERROR, { allowIndentationTabs: false }],
+    "no-process-exit": [OFF],
     "node/no-missing-import": [OFF],
     "node/no-unpublished-import": [OFF],
     "node/no-unsupported-features/es-syntax": [OFF],
