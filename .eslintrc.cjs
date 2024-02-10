@@ -89,15 +89,6 @@ module.exports = {
     "@typescript-eslint/explicit-function-return-type": [OFF],
     "@typescript-eslint/explicit-member-accessibility": [OFF],
     "@typescript-eslint/explicit-module-boundary-types": [OFF],
-    "@typescript-eslint/member-delimiter-style": [
-      ERROR,
-      {
-        multiline: {
-          delimiter: "none",
-          requireLast: false,
-        },
-      },
-    ],
     "@typescript-eslint/member-ordering": [ERROR],
     /** {@link https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/naming-convention.md Docs} */
     "@typescript-eslint/naming-convention": [
