@@ -16,8 +16,9 @@
     "build": "tsup",
     "bump": "cliff-jumper",
     "check-update": "cliff-jumper --dry-run",
-    "lint": "eslint --fix src/**/*.ts",
-    "lint:dry-run": "eslint --fix-dry-run src/**/*.ts"
+    "biome": "biome check --apply .",
+    "biome:unsafe": "biome check --apply-unsafe .",
+    "biome:check": "biome check ."
   },
   "packageManager": "pnpm@^8.12.1",
   "type": "module",
@@ -70,6 +71,7 @@
     "pino-pretty": "^10.3.1"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.5.3",
     "@commitlint/cli": "^18.6.0",
     "@commitlint/config-angular": "^18.6.0",
     "@favware/cliff-jumper": "^2.2.3",

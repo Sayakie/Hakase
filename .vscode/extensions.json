@@ -2,11 +2,9 @@
   // See http://go.microsoft.com/fwlink/?LinkId=827846
   // for the documentation about the extensions.json format
   "recommendations": [
-    "dbaeumer.vscode-eslint",
+    "biomejs.biome",
     "mzato0001.sapphire-i18n-ally",
     "aaron-bond.better-comments",
     "editorconfig.editorconfig",
-    "esbenp.prettier-vscode",
-    "rvest.vs-code-prettier-eslint"
   ]
 }
