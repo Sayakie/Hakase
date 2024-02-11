@@ -54,16 +54,18 @@ export async function connect(): Promise<Client> {
     throw new Error("The client is already connected.");
   }
 
-  client = new Client(clientOptions);
-  await client.login(env.DISCORD_TOKEN).catch((reason) => {
-    process.exitCode = 1;
-
+  try {
+    client = new Client(clientOptions);
+    await client.login(env.DISCORD_TOKEN);
+  } catch (err) {
     if (client) {
-      client.logger.error(reason);
+      client.logger.error(err);
       client.destroy();
       client = null;
     }
-  });
+
+    process.exit(1);
+  }
 
   return client;
 }
