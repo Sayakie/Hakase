@@ -1,6 +1,7 @@
 {
   "extends": "@dareharu/ts-config",
   "compilerOptions": {
+    "noEmit": true,
     "strictNullChecks": true,
     "emitDecoratorMetadata": false
   }
