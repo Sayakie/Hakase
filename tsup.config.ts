@@ -14,5 +14,7 @@ export default defineConfig({
   skipNodeModulesBundle: true,
   sourcemap: true,
   target: "esnext",
+  bundle: false,
+  splitting: false,
   tsconfig: relative(__dirname, resolve(process.cwd(), "tsconfig.json")),
 });
