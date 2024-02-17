@@ -19,10 +19,10 @@ jobs:
         uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@dc021d495cb77b369e4d9d04a501700fd83b8c51 # v2
+        uses: github/codeql-action/init@4a8f20f6b9b5114f354129a1e2f391d75bfd640a # v2
 
       - name: Autobuild
-        uses: github/codeql-action/autobuild@dc021d495cb77b369e4d9d04a501700fd83b8c51 # v2
+        uses: github/codeql-action/autobuild@4a8f20f6b9b5114f354129a1e2f391d75bfd640a # v2
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@dc021d495cb77b369e4d9d04a501700fd83b8c51 # v2
+        uses: github/codeql-action/analyze@4a8f20f6b9b5114f354129a1e2f391d75bfd640a # v2
