@@ -90,7 +90,7 @@
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "is-ci": "^3.0.1",
     "lint-staged": "^15.2.2",
-    "prettier": "^2.8.8",
+    "prettier": "^3.2.5",
     "simple-git-hooks": "^2.9.0",
     "tslib": "^2.6.2",
     "tsup": "^8.0.2",
