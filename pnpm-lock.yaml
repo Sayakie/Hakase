@@ -12,14 +12,14 @@ dependencies:
     specifier: ^4.0.0
     version: 4.0.0
   '@sapphire/decorators':
-    specifier: ^6.0.4
+    specifier: ^6.1.0
     version: 6.1.0
   '@sapphire/discord.js-utilities':
     specifier: ^7.1.6
     version: 7.1.6
   '@sapphire/framework':
-    specifier: ^5.0.7
-    version: 5.0.7
+    specifier: ^5.0.10
+    version: 5.0.10
   '@sapphire/pieces':
     specifier: ^4.2.2
     version: 4.2.2
@@ -1030,8 +1030,8 @@ packages:
       '@sapphire/utilities': 3.15.3
     dev: false
 
-  /@sapphire/framework@5.0.7:
-    resolution: {integrity: sha512-AfCqoW9F5Xu+oAWINfPU25Gm8WVhaz+ETnRXpUCKbfRDSoYT1C8OImbnZeor2HH25DU6KKkKk3A98AfUxzawDA==}
+  /@sapphire/framework@5.0.10:
+    resolution: {integrity: sha512-F6OCGwTHrNd5fmhQoT9ZLVvZOUj2Pa0YJkw/EAe+KyU/bWguBiejytNP4NSOib5jGIdRNM0Qw0N87oU0wxbR/A==}
     engines: {node: '>=v18', npm: '>=7'}
     dependencies:
       '@discordjs/builders': 1.7.0
