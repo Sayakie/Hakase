@@ -18,8 +18,8 @@ dependencies:
     specifier: ^7.2.0
     version: 7.2.0
   '@sapphire/framework':
-    specifier: ^5.1.0
-    version: 5.1.0
+    specifier: ^5.2.0
+    version: 5.2.0
   '@sapphire/pieces':
     specifier: ^4.2.2
     version: 4.2.2
@@ -1262,8 +1262,8 @@ packages:
       '@sapphire/utilities': 3.15.3
     dev: false
 
-  /@sapphire/framework@5.1.0:
-    resolution: {integrity: sha512-T6ulG5e/ymfZ2DMzBdFdlQed6ReVM62Zs+Brqx5AIF2NMwb7rf7cb3HTSPdMXsa9gl/9mmCWWFgenSgo8GS9UA==}
+  /@sapphire/framework@5.2.0:
+    resolution: {integrity: sha512-wYe2aPWi95TeOGj3kOefrn79hEa/iR99ECW15mKFKv0kuWqpqa+c14EO7+7ChzcCSRAG0NM/2wRoPaSiH08QTA==}
     engines: {node: '>=v18', npm: '>=7'}
     dependencies:
       '@discordjs/builders': 1.7.0
