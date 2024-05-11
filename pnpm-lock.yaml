@@ -15,11 +15,11 @@ dependencies:
     specifier: ^6.1.0
     version: 6.1.0
   '@sapphire/discord.js-utilities':
-    specifier: ^7.2.0
-    version: 7.2.0
+    specifier: ^7.2.1
+    version: 7.2.1
   '@sapphire/framework':
-    specifier: ^5.2.0
-    version: 5.2.0
+    specifier: ^5.2.1
+    version: 5.2.1
   '@sapphire/pieces':
     specifier: ^4.2.2
     version: 4.2.2
@@ -1222,8 +1222,8 @@ packages:
       discord-api-types: 0.37.83
     dev: false
 
-  /@sapphire/discord.js-utilities@7.2.0:
-    resolution: {integrity: sha512-FPrSLeZcIsBKBC48B1Fb3zaCop758Lvyvt9RBzjqqt3Fu4IzrO+M63g2bD3FoqOp3FmZ9JE58t2bMYyaujl/cw==}
+  /@sapphire/discord.js-utilities@7.2.1:
+    resolution: {integrity: sha512-Yq9mml/QhH/1GWylo4XyjrIZRo1KVkX5r4e1Vo14cR6Ce2eI9TJLqyFKl/0ZFQiLPr0YDLxfrqxd2WSXA6uUyw==}
     engines: {node: '>=16.6.0', npm: '>=7.0.0'}
     dependencies:
       '@sapphire/discord-utilities': 3.2.3
@@ -1243,7 +1243,7 @@ packages:
     dependencies:
       '@discordjs/builders': 1.8.1
       '@sapphire/discord-utilities': 3.2.3
-      '@sapphire/discord.js-utilities': 7.2.0
+      '@sapphire/discord.js-utilities': 7.2.1
       '@sapphire/lexure': 1.1.7
       '@sapphire/pieces': 3.10.0
       '@sapphire/ratelimits': 2.4.9
@@ -1252,13 +1252,13 @@ packages:
       '@sapphire/utilities': 3.15.3
     dev: false
 
-  /@sapphire/framework@5.2.0:
-    resolution: {integrity: sha512-wYe2aPWi95TeOGj3kOefrn79hEa/iR99ECW15mKFKv0kuWqpqa+c14EO7+7ChzcCSRAG0NM/2wRoPaSiH08QTA==}
+  /@sapphire/framework@5.2.1:
+    resolution: {integrity: sha512-47V3BPe3On3SB+Mbdb4eWPnKfNKV5Js1rLUyt+74WUY+MsS2Utja6Y26gswqk+GW3jqiX67tWTnIK3els+PVsw==}
     engines: {node: '>=v18', npm: '>=7'}
     dependencies:
       '@discordjs/builders': 1.8.1
       '@sapphire/discord-utilities': 3.2.3
-      '@sapphire/discord.js-utilities': 7.2.0
+      '@sapphire/discord.js-utilities': 7.2.1
       '@sapphire/lexure': 1.1.7
       '@sapphire/pieces': 4.2.2
       '@sapphire/ratelimits': 2.4.9
