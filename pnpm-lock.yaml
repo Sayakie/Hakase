@@ -45,8 +45,8 @@ dependencies:
     specifier: ^1.7.12
     version: 1.7.12
   '@sapphire/utilities':
-    specifier: ^3.15.3
-    version: 3.15.3
+    specifier: ^3.16.2
+    version: 3.16.2
   '@skyra/env-utilities':
     specifier: ^1.3.0
     version: 1.3.0
@@ -1205,7 +1205,7 @@ packages:
     resolution: {integrity: sha512-Sc0ebl3aD6RNUx4WkWgBOucI/azyVYGBpmO8oLnyCX6GBtF+YSQv8jODQ2sf/szkimhqTXrFYk6pEhA74CGtYg==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dependencies:
-      '@sapphire/utilities': 3.15.3
+      '@sapphire/utilities': 3.16.2
     dev: false
 
   /@sapphire/decorators@6.1.0:
@@ -1228,7 +1228,7 @@ packages:
     dependencies:
       '@sapphire/discord-utilities': 3.2.3
       '@sapphire/duration': 1.1.2
-      '@sapphire/utilities': 3.15.3
+      '@sapphire/utilities': 3.16.2
       tslib: 2.6.2
     dev: false
 
@@ -1249,7 +1249,7 @@ packages:
       '@sapphire/ratelimits': 2.4.9
       '@sapphire/result': 2.6.6
       '@sapphire/stopwatch': 1.5.2
-      '@sapphire/utilities': 3.15.3
+      '@sapphire/utilities': 3.16.2
     dev: false
 
   /@sapphire/framework@5.2.1:
@@ -1264,7 +1264,7 @@ packages:
       '@sapphire/ratelimits': 2.4.9
       '@sapphire/result': 2.6.6
       '@sapphire/stopwatch': 1.5.2
-      '@sapphire/utilities': 3.15.3
+      '@sapphire/utilities': 3.16.2
     dev: false
 
   /@sapphire/lexure@1.1.7:
@@ -1279,7 +1279,7 @@ packages:
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dependencies:
       '@discordjs/collection': 1.5.3
-      '@sapphire/utilities': 3.15.3
+      '@sapphire/utilities': 3.16.2
       tslib: 2.6.2
     dev: false
 
@@ -1288,7 +1288,7 @@ packages:
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dependencies:
       '@discordjs/collection': 1.5.3
-      '@sapphire/utilities': 3.15.3
+      '@sapphire/utilities': 3.16.2
       tslib: 2.6.2
     dev: false
 
@@ -1296,7 +1296,7 @@ packages:
     resolution: {integrity: sha512-jy7Q/s1TmZNTs3nYC9KRFkojo04rpFD/5V65z/2VkaWZLdBBTu3sjKIu57YDCpHnY4OxGWHOSXAl9xkVuqKaOw==}
     engines: {node: '>=v18', npm: '>=7'}
     dependencies:
-      '@sapphire/utilities': 3.15.3
+      '@sapphire/utilities': 3.16.2
       '@skyra/i18next-backend': 2.0.5
       chokidar: 3.6.0
       i18next: 23.11.4
@@ -1315,7 +1315,7 @@ packages:
     engines: {node: '>=v18', npm: '>=7'}
     dependencies:
       '@sapphire/stopwatch': 1.5.2
-      '@sapphire/utilities': 3.15.3
+      '@sapphire/utilities': 3.16.2
       bullmq: 5.1.3
       tslib: 2.6.2
     transitivePeerDependencies:
@@ -1384,8 +1384,8 @@ packages:
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dev: true
 
-  /@sapphire/utilities@3.15.3:
-    resolution: {integrity: sha512-K5dFGOB5XvblXFN+Av+Tch/dVBAifmxtZ9/2mFo8VqzbiaFJIRUuoPAoNsp8pWYaU423yV8bfD8WsCSNd9w1YQ==}
+  /@sapphire/utilities@3.16.2:
+    resolution: {integrity: sha512-0gRyXPH0hbmfZXwgvCH1z9H/kQwOlLeui86zKafZENpdjmuZznSkDFHRSUksr8Y5W/BxkqnR2WbNEfululh20Q==}
     engines: {node: '>=v14.0.0'}
     dev: false
 
