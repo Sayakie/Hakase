@@ -92,8 +92,8 @@ devDependencies:
     specifier: ^18.6.1
     version: 18.6.1
   '@favware/cliff-jumper':
-    specifier: ^2.2.3
-    version: 2.2.3
+    specifier: ^3.0.3
+    version: 3.0.3
   '@sapphire/ts-config':
     specifier: ^5.0.1
     version: 5.0.1
@@ -890,20 +890,29 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@favware/cliff-jumper@2.2.3:
-    resolution: {integrity: sha512-UQ2ZLv69IVVt28+MXsy/iwUwtdqBx7LX2tOju/ECrljIxS+5jIEMTQVcWebfKK0dovMO68bCEr/3jlqBRVmoiw==}
+  /@favware/cliff-jumper@3.0.3:
+    resolution: {integrity: sha512-YUeNpExxRu0XrV39aHP9msHBpPPNdog2Gad3MGNzmXAEaM5Qu2xxtOsXKwNzZlCjADbsP03S8oL2nKhAp6nb5w==}
     engines: {node: '>=v16'}
     hasBin: true
     dependencies:
+      '@favware/colorette-spinner': 1.0.1
       '@sapphire/result': 2.6.6
-      '@sapphire/utilities': 3.13.0
+      '@sapphire/utilities': 3.15.3
       colorette: 2.0.20
-      commander: 11.1.0
+      commander: 12.1.0
       compare-func: 2.0.0
       conventional-recommended-bump: 9.0.0
-      git-cliff: 1.4.0
+      execa: 8.0.1
+      git-cliff: 2.2.2
       js-yaml: 4.1.0
       semver: 7.6.2
+    dev: true
+
+  /@favware/colorette-spinner@1.0.1:
+    resolution: {integrity: sha512-PPYtcLzhSafdylp8NBOxMCYIcLqTUMNiQc7ciBoAIvxNG2egM+P7e2nNPui5+Svyk89Q+Tnbrp139ZRIIBw3IA==}
+    engines: {node: '>=v16'}
+    dependencies:
+      colorette: 2.0.20
     dev: true
 
   /@frutbits/pino-logger@4.0.0:
@@ -1379,9 +1388,9 @@ packages:
       typescript: 5.4.5
     dev: true
 
-  /@sapphire/utilities@3.13.0:
-    resolution: {integrity: sha512-BD5ycPjZX5dXxrAb90dJTY8ukpPVBXgU17gA5ghK2memS4hwAzFYpvK+R+6zh4d6HYIKVuqrVhGXjvZenAa/Aw==}
-    engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
+  /@sapphire/utilities@3.15.3:
+    resolution: {integrity: sha512-K5dFGOB5XvblXFN+Av+Tch/dVBAifmxtZ9/2mFo8VqzbiaFJIRUuoPAoNsp8pWYaU423yV8bfD8WsCSNd9w1YQ==}
+    engines: {node: '>=v14.0.0'}
     dev: true
 
   /@sapphire/utilities@3.16.2:
@@ -2184,11 +2193,6 @@ packages:
 
   /colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
-
-  /commander@11.1.0:
-    resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
-    engines: {node: '>=16'}
-    dev: true
 
   /commander@12.1.0:
     resolution: {integrity: sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==}
@@ -3175,64 +3179,67 @@ packages:
       get-intrinsic: 1.2.4
     dev: true
 
-  /git-cliff-darwin-arm64@1.4.0:
-    resolution: {integrity: sha512-QCCvi+gIP+2KXWBzCccIDF2GCNbpm9RND7HbDmU79uKP9Qp070ZSYxlqifph6bUxFFw7dRwlVHiKxyUADwnxSQ==}
+  /git-cliff-darwin-arm64@2.2.2:
+    resolution: {integrity: sha512-RxhWAx09YkZQY0FZmorm5fILNCvNvU/PGFpkLVdrJtcVr2D3RcFNBbJB9bXf2VxBvOzqYQXFqjyFkh52eA+ZBA==}
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /git-cliff-darwin-x64@1.4.0:
-    resolution: {integrity: sha512-9b+y3vC4J4G3X9ndNj0s8YiKV1IBux7yU5mDMZhcUA7g9gveoPo+eZZLyPl6+KHxoOE7GCgfHFIhhC+zwh/oWQ==}
+  /git-cliff-darwin-x64@2.2.2:
+    resolution: {integrity: sha512-ZnFM74B7aauHgKUf/vRSxtijjYSnLnLO+Jv+uL6skGx9OmSqxV1PPWSFKLGYoYJOKqaVYV0x3ZMNFFxB+oRwoA==}
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
     dev: true
     optional: true
 
-  /git-cliff-linux-arm64@1.4.0:
-    resolution: {integrity: sha512-caUW7eIkAXZKjzFgQKMlFia+9zkgjPPtnzXeZwkXjtDaSACbzqss+AvaxZUEVy+xfj14+RHOFTn6WCpQJ1NbGw==}
+  /git-cliff-linux-arm64@2.2.2:
+    resolution: {integrity: sha512-/Xqqehb+XbzOcrdcwphpO8AnKDE7Hn3xur4puoScsnoiUz02WEOXG4Z0KCDZ60gosp/zUWkThc+tFuu3QImayA==}
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /git-cliff-linux-x64@1.4.0:
-    resolution: {integrity: sha512-9HNuziC2ZsM1z1xrq+pRfFiH3LSdEwK1QyW/vngJP/f4GlO5Zm3tBX4n7Y+8yLUcyYMezKsR+rPF9MRmIswpgQ==}
+  /git-cliff-linux-x64@2.2.2:
+    resolution: {integrity: sha512-CjJtZKw0s66/TRTtTMZRhE1wXYO1bNaCaP9O81jGIkCNjZh2kB434FVqmtuhpxLsHvkPRmyhGNsMEK+vycr7sA==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
     dev: true
     optional: true
 
-  /git-cliff-windows-arm64@1.4.0:
-    resolution: {integrity: sha512-J0E/74+xowQfuLHHIB3KP6eFp+V39nhPVuAgNLnrLY28Yvqn8AGKCidQStisfjMS2Ot/a7yKFv1JwW/bR0lQjA==}
+  /git-cliff-windows-arm64@2.2.2:
+    resolution: {integrity: sha512-bmCzTqdQuxp9dZXM/LPEkSXfnPgiSrd5MfzhLtLNz83qGYiz005G53y47P5rMeaFfC7iQJ448NxeR6LCwmdlGA==}
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /git-cliff-windows-x64@1.4.0:
-    resolution: {integrity: sha512-w/mOm00QEuu4VPkmJsyaSlaJtjo6kgvb9v7n81eZSj3SnpTRQzNXTjB1JzKavgqnJ6JnAQiypRmPwC1FsCyiFA==}
+  /git-cliff-windows-x64@2.2.2:
+    resolution: {integrity: sha512-kz8gtmJRiksMGoJJ0Bg8lAntoK5YrHyx9fRnmtaWr9Le2tUn6sMxCoqOMy2Otl+yLh7bcEFuEluvjaIw6U3scw==}
     cpu: [x64]
     os: [win32]
     requiresBuild: true
     dev: true
     optional: true
 
-  /git-cliff@1.4.0:
-    resolution: {integrity: sha512-BLHYp/BD5jfOoPA3B6Ht1s1rJxtPcpmgyjQFZSFP53AdjVyfI2kwk7aVmxEfd1RQsBHRBVfPyJ+PNVghsfo3Yg==}
+  /git-cliff@2.2.2:
+    resolution: {integrity: sha512-HR8zg5QSixrf8/pUaJtZjfP9q0F0nILcFIeFbERaT5XyCRc7oTpLtbmnGeInJduJhdlZuKzO8aL/iWbNGQDdhw==}
+    engines: {node: '>=18.19 || >=20.6 || >=21'}
     hasBin: true
+    dependencies:
+      execa: 8.0.1
     optionalDependencies:
-      git-cliff-darwin-arm64: 1.4.0
-      git-cliff-darwin-x64: 1.4.0
-      git-cliff-linux-arm64: 1.4.0
-      git-cliff-linux-x64: 1.4.0
-      git-cliff-windows-arm64: 1.4.0
-      git-cliff-windows-x64: 1.4.0
+      git-cliff-darwin-arm64: 2.2.2
+      git-cliff-darwin-x64: 2.2.2
+      git-cliff-linux-arm64: 2.2.2
+      git-cliff-linux-x64: 2.2.2
+      git-cliff-windows-arm64: 2.2.2
+      git-cliff-windows-x64: 2.2.2
     dev: true
 
   /git-raw-commits@2.0.11:
