@@ -15,8 +15,8 @@ dependencies:
     specifier: ^6.1.0
     version: 6.1.0
   '@sapphire/discord.js-utilities':
-    specifier: ^7.2.1
-    version: 7.2.1
+    specifier: ^7.3.0
+    version: 7.3.0
   '@sapphire/framework':
     specifier: ^5.2.1
     version: 5.2.1
@@ -1222,8 +1222,8 @@ packages:
       discord-api-types: 0.37.87
     dev: false
 
-  /@sapphire/discord.js-utilities@7.2.1:
-    resolution: {integrity: sha512-Yq9mml/QhH/1GWylo4XyjrIZRo1KVkX5r4e1Vo14cR6Ce2eI9TJLqyFKl/0ZFQiLPr0YDLxfrqxd2WSXA6uUyw==}
+  /@sapphire/discord.js-utilities@7.3.0:
+    resolution: {integrity: sha512-SOacsoV8eqPz0YqyXwNNZChNhz09QEhTrrGm+rnG+xZbglODtnoYmEgmLIemr2t6eyxPRerwhakacfyNYGapVg==}
     engines: {node: '>=16.6.0', npm: '>=7.0.0'}
     dependencies:
       '@sapphire/discord-utilities': 3.3.0
@@ -1243,7 +1243,7 @@ packages:
     dependencies:
       '@discordjs/builders': 1.8.2
       '@sapphire/discord-utilities': 3.3.0
-      '@sapphire/discord.js-utilities': 7.2.1
+      '@sapphire/discord.js-utilities': 7.3.0
       '@sapphire/lexure': 1.1.7
       '@sapphire/pieces': 3.10.0
       '@sapphire/ratelimits': 2.4.9
@@ -1258,7 +1258,7 @@ packages:
     dependencies:
       '@discordjs/builders': 1.8.2
       '@sapphire/discord-utilities': 3.3.0
-      '@sapphire/discord.js-utilities': 7.2.1
+      '@sapphire/discord.js-utilities': 7.3.0
       '@sapphire/lexure': 1.1.7
       '@sapphire/pieces': 4.2.2
       '@sapphire/ratelimits': 2.4.9
