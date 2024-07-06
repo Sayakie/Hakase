@@ -47,7 +47,7 @@
     "@sapphire/decorators": "^6.1.0",
     "@sapphire/discord.js-utilities": "^7.3.0",
     "@sapphire/framework": "^5.2.1",
-    "@sapphire/pieces": "^4.2.2",
+    "@sapphire/pieces": "^4.3.1",
     "@sapphire/plugin-i18next": "^7.1.2",
     "@sapphire/plugin-logger": "^4.0.2",
     "@sapphire/plugin-scheduled-tasks": "^10.0.1",
