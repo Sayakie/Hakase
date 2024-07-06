@@ -21,8 +21,8 @@ dependencies:
     specifier: ^5.2.1
     version: 5.2.1
   '@sapphire/pieces':
-    specifier: ^4.2.2
-    version: 4.3.0
+    specifier: ^4.3.1
+    version: 4.3.1
   '@sapphire/plugin-i18next':
     specifier: ^7.1.2
     version: 7.1.2
@@ -1055,7 +1055,7 @@ packages:
       '@sapphire/discord-utilities': 3.3.0
       '@sapphire/discord.js-utilities': 7.3.0
       '@sapphire/lexure': 1.1.7
-      '@sapphire/pieces': 4.3.0
+      '@sapphire/pieces': 4.3.1
       '@sapphire/ratelimits': 2.4.9
       '@sapphire/result': 2.6.6
       '@sapphire/stopwatch': 1.5.2
@@ -1078,8 +1078,8 @@ packages:
       tslib: 2.6.3
     dev: false
 
-  /@sapphire/pieces@4.3.0:
-    resolution: {integrity: sha512-cjxMRN9Lvgd2c/RLKj4I1qWvj9lRDQIHYplMlmqgiL+tFetv8j5Y7D/xNXcX0xVenU93O1L6plYf7DmWMt/M4w==}
+  /@sapphire/pieces@4.3.1:
+    resolution: {integrity: sha512-t42o6i8gPQ3QISIsMl463hj057yfyHsaSrs4FssdiGLmnvL9cuLGLTsjGEPn904wHUhPzS8W5aAPr788RK2/jQ==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dependencies:
       '@discordjs/collection': 1.5.3
