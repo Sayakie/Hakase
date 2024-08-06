@@ -94,7 +94,7 @@
     "simple-git-hooks": "^2.11.1",
     "tslib": "^2.6.3",
     "tsup": "^8.2.4",
-    "turbo": "^1.13.4",
+    "turbo": "^2.0.12",
     "typescript": "^5.5.4",
     "typescript-eslint-language-service": "^5.0.5",
     "typescript-jsdoctag-completions-plugin": "1.5.1-beta",
