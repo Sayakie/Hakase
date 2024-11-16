@@ -72,7 +72,7 @@
   "devDependencies": {
     "@commitlint/cli": "^18.6.1",
     "@commitlint/config-angular": "^18.6.1",
-    "@favware/cliff-jumper": "^2.2.3",
+    "@favware/cliff-jumper": "^5.0.0",
     "@sapphire/ts-config": "^5.0.1",
     "@swc/core": "^1.9.2",
     "@types/node": "^20.17.6",
