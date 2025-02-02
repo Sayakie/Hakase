@@ -19,7 +19,7 @@
     "lint": "eslint --fix src/**/*.ts",
     "lint:dry-run": "eslint --fix-dry-run src/**/*.ts"
   },
-  "packageManager": "pnpm@^8.15.9",
+  "packageManager": "pnpm@^9.15.5",
   "type": "module",
   "main": "./dist/index.js",
   "files": [
