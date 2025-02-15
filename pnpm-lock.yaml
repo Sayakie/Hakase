@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@discordjs/builders':
-    specifier: ^1.10.0
-    version: 1.10.0
+    specifier: ^1.10.1
+    version: 1.10.1
   '@frutbits/pino-logger':
     specifier: ^4.0.0
     version: 4.0.0
@@ -57,19 +57,19 @@ dependencies:
     specifier: ^2.1.3
     version: 2.1.3
   bullmq:
-    specifier: ^5.39.1
-    version: 5.40.2
+    specifier: ^5.41.1
+    version: 5.41.1
   colorette:
     specifier: ^2.0.20
     version: 2.0.20
   discord-api-types:
-    specifier: ^0.37.118
+    specifier: ^0.37.119
     version: 0.37.119
   discord.js:
-    specifier: ^14.17.3
-    version: 14.17.3
+    specifier: ^14.18.0
+    version: 14.18.0
   ioredis:
-    specifier: ^5.4.2
+    specifier: ^5.5.0
     version: 5.5.0
   korean-regexp:
     specifier: ^1.0.13
@@ -87,7 +87,7 @@ dependencies:
 devDependencies:
   '@commitlint/cli':
     specifier: ^18.6.1
-    version: 18.6.1(@types/node@20.17.17)(typescript@5.7.3)
+    version: 18.6.1(@types/node@20.17.19)(typescript@5.7.3)
   '@commitlint/config-angular':
     specifier: ^18.6.1
     version: 18.6.1
@@ -98,11 +98,11 @@ devDependencies:
     specifier: ^5.0.1
     version: 5.0.1
   '@swc/core':
-    specifier: ^1.10.12
-    version: 1.10.15
+    specifier: ^1.10.16
+    version: 1.10.16
   '@types/node':
-    specifier: ^20.17.16
-    version: 20.17.17
+    specifier: ^20.17.19
+    version: 20.17.19
   '@types/parse-json':
     specifier: ^4.0.2
     version: 4.0.2
@@ -132,7 +132,7 @@ devDependencies:
     version: link:vendor/eslint-plugin-prefer-early-return
   eslint-plugin-prettier:
     specifier: ^4.2.1
-    version: 4.2.1(eslint-config-prettier@8.10.0)(eslint@8.57.1)(prettier@3.5.0)
+    version: 4.2.1(eslint-config-prettier@8.10.0)(eslint@8.57.1)(prettier@3.5.1)
   eslint-plugin-simple-import-sort:
     specifier: ^8.0.0
     version: 8.0.0(eslint@8.57.1)
@@ -146,8 +146,8 @@ devDependencies:
     specifier: ^15.4.3
     version: 15.4.3
   prettier:
-    specifier: ^3.4.2
-    version: 3.5.0
+    specifier: ^3.5.1
+    version: 3.5.1
   simple-git-hooks:
     specifier: ^2.11.1
     version: 2.11.1
@@ -156,7 +156,7 @@ devDependencies:
     version: 2.8.1
   tsup:
     specifier: ^8.3.6
-    version: 8.3.6(@swc/core@1.10.15)(typescript@5.7.3)
+    version: 8.3.6(@swc/core@1.10.16)(typescript@5.7.3)
   turbo:
     specifier: ^1.13.4
     version: 1.13.4
@@ -170,8 +170,8 @@ devDependencies:
     specifier: 1.5.1-beta
     version: 1.5.1-beta(typescript@5.7.3)
   vitest:
-    specifier: ^1.6.0
-    version: 1.6.1(@types/node@20.17.17)
+    specifier: ^1.6.1
+    version: 1.6.1(@types/node@20.17.19)
 
 packages:
 
@@ -194,14 +194,14 @@ packages:
       regenerator-runtime: 0.14.1
     dev: false
 
-  /@commitlint/cli@18.6.1(@types/node@20.17.17)(typescript@5.7.3):
+  /@commitlint/cli@18.6.1(@types/node@20.17.19)(typescript@5.7.3):
     resolution: {integrity: sha512-5IDE0a+lWGdkOvKH892HHAZgbAjcj1mT5QrfA/SVbLJV/BbBMGyKN0W5mhgjekPJJwEQdVNvhl9PwUacY58Usw==}
     engines: {node: '>=v18'}
     hasBin: true
     dependencies:
       '@commitlint/format': 18.6.1
       '@commitlint/lint': 18.6.1
-      '@commitlint/load': 18.6.1(@types/node@20.17.17)(typescript@5.7.3)
+      '@commitlint/load': 18.6.1(@types/node@20.17.19)(typescript@5.7.3)
       '@commitlint/read': 18.6.1
       '@commitlint/types': 18.6.1
       execa: 5.1.1
@@ -277,7 +277,7 @@ packages:
       '@commitlint/types': 18.6.1
     dev: true
 
-  /@commitlint/load@18.6.1(@types/node@20.17.17)(typescript@5.7.3):
+  /@commitlint/load@18.6.1(@types/node@20.17.19)(typescript@5.7.3):
     resolution: {integrity: sha512-p26x8734tSXUHoAw0ERIiHyW4RaI4Bj99D8YgUlVV9SedLf8hlWAfyIFhHRIhfPngLlCe0QYOdRKYFt8gy56TA==}
     engines: {node: '>=v18'}
     dependencies:
@@ -287,7 +287,7 @@ packages:
       '@commitlint/types': 18.6.1
       chalk: 4.1.2
       cosmiconfig: 8.3.6(typescript@5.7.3)
-      cosmiconfig-typescript-loader: 5.1.0(@types/node@20.17.17)(cosmiconfig@8.3.6)(typescript@5.7.3)
+      cosmiconfig-typescript-loader: 5.1.0(@types/node@20.17.19)(cosmiconfig@8.3.6)(typescript@5.7.3)
       lodash.isplainobject: 4.0.6
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
@@ -363,8 +363,8 @@ packages:
       chalk: 4.1.2
     dev: true
 
-  /@discordjs/builders@1.10.0:
-    resolution: {integrity: sha512-ikVZsZP+3shmVJ5S1oM+7SveUCK3L9fTyfA8aJ7uD9cNQlTqF+3Irbk2Y22KXTb3C3RNUahRkSInClJMkHrINg==}
+  /@discordjs/builders@1.10.1:
+    resolution: {integrity: sha512-OWo1fY4ztL1/M/DUyRPShB4d/EzVfuUvPTRRHRIt/YxBrUYSz0a+JicD5F5zHFoNs2oTuWavxCOVFV1UljHTng==}
     engines: {node: '>=16.11.0'}
     dependencies:
       '@discordjs/formatters': 0.6.0
@@ -393,8 +393,8 @@ packages:
       discord-api-types: 0.37.119
     dev: false
 
-  /@discordjs/rest@2.4.2:
-    resolution: {integrity: sha512-9bOvXYLQd5IBg/kKGuEFq3cstVxAMJ6wMxO2U3wjrgO+lHv8oNCT+BBRpuzVQh7BoXKvk/gpajceGvQUiRoJ8g==}
+  /@discordjs/rest@2.4.3:
+    resolution: {integrity: sha512-+SO4RKvWsM+y8uFHgYQrcTl/3+cY02uQOH7/7bKbVZsTfrfpoE62o5p+mmV+s7FVhTX82/kQUGGbu4YlV60RtA==}
     engines: {node: '>=18'}
     dependencies:
       '@discordjs/collection': 2.1.1
@@ -405,7 +405,7 @@ packages:
       discord-api-types: 0.37.119
       magic-bytes.js: 1.10.0
       tslib: 2.8.1
-      undici: 6.19.8
+      undici: 6.21.1
     dev: false
 
   /@discordjs/util@1.1.1:
@@ -413,12 +413,12 @@ packages:
     engines: {node: '>=18'}
     dev: false
 
-  /@discordjs/ws@1.2.0:
-    resolution: {integrity: sha512-QH5CAFe3wHDiedbO+EI3OOiyipwWd+Q6BdoFZUw/Wf2fw5Cv2fgU/9UEtJRmJa9RecI+TAhdGPadMaEIur5yJg==}
+  /@discordjs/ws@1.2.1:
+    resolution: {integrity: sha512-PBvenhZG56a6tMWF/f4P6f4GxZKJTBG95n7aiGSPTnodmz4N5g60t79rSIAq7ywMbv8A4jFtexMruH+oe51aQQ==}
     engines: {node: '>=16.11.0'}
     dependencies:
       '@discordjs/collection': 2.1.1
-      '@discordjs/rest': 2.4.2
+      '@discordjs/rest': 2.4.3
       '@discordjs/util': 1.1.1
       '@sapphire/async-queue': 1.5.5
       '@types/ws': 8.5.14
@@ -921,7 +921,7 @@ packages:
     engines: {node: '>=16.6.0', npm: '>=7.0.0'}
     dependencies:
       '@sapphire/framework': 4.8.5
-      discord.js: 14.17.3
+      discord.js: 14.18.0
       pino: 8.21.0
       tslib: 2.8.1
     transitivePeerDependencies:
@@ -1281,7 +1281,7 @@ packages:
     resolution: {integrity: sha512-RvXh3/Mn11D9ZCATG9LxC8LmgDp2zS/ML7rk1vcBKmv57p/X4UaAry4ZRG/CPq23yja/AWNMVn/osZzMtIKGbw==}
     engines: {node: '>=v18', npm: '>=7'}
     dependencies:
-      '@discordjs/builders': 1.10.0
+      '@discordjs/builders': 1.10.1
       '@sapphire/discord-utilities': 3.4.4
       '@sapphire/discord.js-utilities': 7.3.2
       '@sapphire/lexure': 1.1.10
@@ -1296,7 +1296,7 @@ packages:
     resolution: {integrity: sha512-1DU8Lm57mnbcRgchd9ucbpWA5Yfy7TFOaA+m7zdlKlKUa2NzDUJW1XiTnChfcZUI1SDA0uaikh6u7gaN0zRX5Q==}
     engines: {node: '>=v18', npm: '>=7'}
     dependencies:
-      '@discordjs/builders': 1.10.0
+      '@discordjs/builders': 1.10.1
       '@sapphire/discord-utilities': 3.4.4
       '@sapphire/discord.js-utilities': 7.3.2
       '@sapphire/lexure': 1.1.10
@@ -1460,8 +1460,8 @@ packages:
     engines: {node: '>=v18'}
     dev: false
 
-  /@swc/core-darwin-arm64@1.10.15:
-    resolution: {integrity: sha512-zFdZ6/yHqMCPk7OhLFqHy/MQ1EqJhcZMpNHd1gXYT7VRU3FaqvvKETrUlG3VYl65McPC7AhMRfXPyJ0JO/jARQ==}
+  /@swc/core-darwin-arm64@1.10.16:
+    resolution: {integrity: sha512-iikIxwqCQ4Bvz79vJ4ELh26efPf1u5D9TFdmXSJUBs7C3mmMHvk5zyWD9A9cTowXiW6WHs2gE58U1R9HOTTIcg==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [darwin]
@@ -1469,8 +1469,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-darwin-x64@1.10.15:
-    resolution: {integrity: sha512-8g4yiQwbr8fxOOjKXdot0dEkE5zgE8uNZudLy/ZyAhiwiZ8pbJ8/wVrDOu6dqbX7FBXAoDnvZ7fwN1jk4C8jdA==}
+  /@swc/core-darwin-x64@1.10.16:
+    resolution: {integrity: sha512-R2Eb9aktWd62vPfW9H/c/OaQ0e94iURibBo4uzUUcgxNNmB4+wb6piKbHxGdr/5bEsT+vJ1lwZFSRzfb45E7DA==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [darwin]
@@ -1478,8 +1478,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-linux-arm-gnueabihf@1.10.15:
-    resolution: {integrity: sha512-rl+eVOltl2+7WXOnvmWBpMgh6aO13G5x0U0g8hjwlmD6ku3Y9iRcThpOhm7IytMEarUp5pQxItNoPq+VUGjVHg==}
+  /@swc/core-linux-arm-gnueabihf@1.10.16:
+    resolution: {integrity: sha512-mkqN3HBAMnuiSGZ/k2utScuH8rAPshvNj0T1LjBWon+X9DkMNHSA+aMLdWsy0yZKF1zjOPc4L3Uq2l2wzhUlzA==}
     engines: {node: '>=10'}
     cpu: [arm]
     os: [linux]
@@ -1487,8 +1487,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-linux-arm64-gnu@1.10.15:
-    resolution: {integrity: sha512-qxWEQeyAJMWJqjaN4hi58WMpPdt3Tn0biSK9CYRegQtvZWCbewr6v2agtSu5AZ2rudeH6OfCWAMDQQeSgn6PJQ==}
+  /@swc/core-linux-arm64-gnu@1.10.16:
+    resolution: {integrity: sha512-PH/+q/L5nVZJ91CU07CL6Q9Whs6iR6nneMZMAgtVF9Ix8ST0cWVItdUhs6D38kFklCFhaOrpHhS01HlMJ72vWw==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
@@ -1496,8 +1496,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-linux-arm64-musl@1.10.15:
-    resolution: {integrity: sha512-QcELd9/+HjZx0WCxRrKcyKGWTiQ0485kFb5w8waxcSNd0d9Lgk4EFfWWVyvIb5gIHpDQmhrgzI/yRaWQX4YSZQ==}
+  /@swc/core-linux-arm64-musl@1.10.16:
+    resolution: {integrity: sha512-1169+C9XbydKKc6Ec1XZxTGKtHjZHDIFn0r+Nqp/QSVwkORrOY1Vz2Hdu7tn/lWMg36ZkGePS+LnnyV67s/7yg==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [linux]
@@ -1505,8 +1505,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-linux-x64-gnu@1.10.15:
-    resolution: {integrity: sha512-S1+ZEEn3+a/MiMeQqQypbwTGoBG8/sPoCvpNbk+uValyygT+jSn3U0xVr45FbukpmMB+NhBMqfedMLqKA0QnJA==}
+  /@swc/core-linux-x64-gnu@1.10.16:
+    resolution: {integrity: sha512-n2rV0XwkjoHn4MDJmpYp5RBrnyi94/6GsJVpbn6f+/eqSrZn3mh3dT7pdZc9zCN1Qp9eDHo+uI6e/wgvbL22uA==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
@@ -1514,8 +1514,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-linux-x64-musl@1.10.15:
-    resolution: {integrity: sha512-qW+H9g/2zTJ4jP7NDw4VAALY0ZlNEKzYsEoSj/HKi7k3tYEHjMzsxjfsY9I8WZCft23bBdV3RTCPoxCshaj1CQ==}
+  /@swc/core-linux-x64-musl@1.10.16:
+    resolution: {integrity: sha512-EevCpwreBrkPrJjQVIbiM81lK42ukNNSlBmrSRxxbx2V9VGmOd5qxX0cJBn0TRRSLIPi62BuMS76F9iYjqsjgg==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [linux]
@@ -1523,8 +1523,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-win32-arm64-msvc@1.10.15:
-    resolution: {integrity: sha512-AhRB11aA6LxjIqut+mg7qsu/7soQDmbK6MKR9nP3hgBszpqtXbRba58lr24xIbBCMr+dpo6kgEapWt+t5Po6Zg==}
+  /@swc/core-win32-arm64-msvc@1.10.16:
+    resolution: {integrity: sha512-BvE7RWAnKJeELVQWLok6env5I4GUVBTZSvaSN/VPgxnTjF+4PsTeQptYx0xCYhp5QCv68wWYsBnZKuPDS+SBsw==}
     engines: {node: '>=10'}
     cpu: [arm64]
     os: [win32]
@@ -1532,8 +1532,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-win32-ia32-msvc@1.10.15:
-    resolution: {integrity: sha512-UGdh430TQwbDn6KjgvRTg1fO022sbQ4yCCHUev0+5B8uoBwi9a89qAz3emy2m56C8TXxUoihW9Y9OMfaRwPXUw==}
+  /@swc/core-win32-ia32-msvc@1.10.16:
+    resolution: {integrity: sha512-7Jf/7AeCgbLR/JsQgMJuacHIq4Jeie3knf6+mXxn8aCvRypsOTIEu0eh7j24SolOboxK1ijqJ86GyN1VA2Rebg==}
     engines: {node: '>=10'}
     cpu: [ia32]
     os: [win32]
@@ -1541,8 +1541,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core-win32-x64-msvc@1.10.15:
-    resolution: {integrity: sha512-XJzBCqO1m929qbJsOG7FZXQWX26TnEoMctS3QjuCoyBmkHxxQmZsy78KjMes1aomTcKHCyFYgrRGWgVmk7tT4Q==}
+  /@swc/core-win32-x64-msvc@1.10.16:
+    resolution: {integrity: sha512-p0blVm0R8bjaTtmW+FoPmLxLSQdRNbqhuWcR/8g80OzMSkka9mk5/J3kn/5JRVWh+MaR9LHRHZc1Q1L8zan13g==}
     engines: {node: '>=10'}
     cpu: [x64]
     os: [win32]
@@ -1550,8 +1550,8 @@ packages:
     dev: true
     optional: true
 
-  /@swc/core@1.10.15:
-    resolution: {integrity: sha512-/iFeQuNaGdK7mfJbQcObhAhsMqLT7qgMYl7jX2GEIO+VDTejESpzAyKwaMeYXExN8D6e5BRHBCe7M5YlsuzjDA==}
+  /@swc/core@1.10.16:
+    resolution: {integrity: sha512-nOINg/OUcZazCW7B55QV2/UB8QAqz9FYe4+z229+4RYboBTZ102K7ebOEjY5sKn59JgAkhjZTz+5BKmXpDFopw==}
     engines: {node: '>=10'}
     requiresBuild: true
     peerDependencies:
@@ -1563,16 +1563,16 @@ packages:
       '@swc/counter': 0.1.3
       '@swc/types': 0.1.17
     optionalDependencies:
-      '@swc/core-darwin-arm64': 1.10.15
-      '@swc/core-darwin-x64': 1.10.15
-      '@swc/core-linux-arm-gnueabihf': 1.10.15
-      '@swc/core-linux-arm64-gnu': 1.10.15
-      '@swc/core-linux-arm64-musl': 1.10.15
-      '@swc/core-linux-x64-gnu': 1.10.15
-      '@swc/core-linux-x64-musl': 1.10.15
-      '@swc/core-win32-arm64-msvc': 1.10.15
-      '@swc/core-win32-ia32-msvc': 1.10.15
-      '@swc/core-win32-x64-msvc': 1.10.15
+      '@swc/core-darwin-arm64': 1.10.16
+      '@swc/core-darwin-x64': 1.10.16
+      '@swc/core-linux-arm-gnueabihf': 1.10.16
+      '@swc/core-linux-arm64-gnu': 1.10.16
+      '@swc/core-linux-arm64-musl': 1.10.16
+      '@swc/core-linux-x64-gnu': 1.10.16
+      '@swc/core-linux-x64-musl': 1.10.16
+      '@swc/core-win32-arm64-msvc': 1.10.16
+      '@swc/core-win32-ia32-msvc': 1.10.16
+      '@swc/core-win32-x64-msvc': 1.10.16
     dev: true
 
   /@swc/counter@0.1.3:
@@ -1597,8 +1597,8 @@ packages:
     resolution: {integrity: sha512-hov8bUuiLiyFPGyFPE1lwWhmzYbirOXQNNo40+y3zow8aFVTeyn3VWL0VFFfdNddA8S4Vf0Tc062rzyNr7Paag==}
     dev: true
 
-  /@types/node@20.17.17:
-    resolution: {integrity: sha512-/WndGO4kIfMicEQLTi/mDANUu/iVUhT7KboZPdEqqHQ4aTS+3qT3U5gIqWDFV+XouorjfgGqvKILJeHhuQgFYg==}
+  /@types/node@20.17.19:
+    resolution: {integrity: sha512-LEwC7o1ifqg/6r2gn9Dns0f1rhK+fPFDoMiceTJ6kWmVk6bgXBI/9IOWfVan4WiAavK9pIVWdX0/e3J+eEUh5A==}
     dependencies:
       undici-types: 6.19.8
 
@@ -1613,7 +1613,7 @@ packages:
   /@types/ws@8.5.14:
     resolution: {integrity: sha512-bd/YFLW+URhBzMXurx7lWByOu+xzU9+kb3RboOteXYDfW+tr+JZa99OyNmPINEGB/ahzKrEuc8rcv4gnpJmxTw==}
     dependencies:
-      '@types/node': 20.17.17
+      '@types/node': 20.17.19
     dev: false
 
   /@typescript-eslint/eslint-plugin@7.18.0(@typescript-eslint/parser@7.18.0)(eslint@8.57.1)(typescript@5.7.3):
@@ -2055,8 +2055,8 @@ packages:
       - supports-color
     dev: false
 
-  /bullmq@5.40.2:
-    resolution: {integrity: sha512-Cn4NUpwGAF4WnuXR2kTZCTAUEUHajSCn/IqiDG9ry1kVvAwwwg1Ati3J5HN2uZjqD5PBfNDXYnsc2+0PzakDwg==}
+  /bullmq@5.41.1:
+    resolution: {integrity: sha512-bVQGR4ARM+wRJSw66114AKwO8SwS2ZF5TIvwQ9NL6Iepq6f8jnG8EjMMXL8J1pyR1eNz5bOikPeED/8ErLU6FQ==}
     dependencies:
       cron-parser: 4.9.0
       ioredis: 5.5.0
@@ -2291,7 +2291,7 @@ packages:
       meow: 12.1.1
     dev: true
 
-  /cosmiconfig-typescript-loader@5.1.0(@types/node@20.17.17)(cosmiconfig@8.3.6)(typescript@5.7.3):
+  /cosmiconfig-typescript-loader@5.1.0(@types/node@20.17.19)(cosmiconfig@8.3.6)(typescript@5.7.3):
     resolution: {integrity: sha512-7PtBB+6FdsOvZyJtlF3hEPpACq7RQX6BVGsgC7/lfVXnKMvNCu/XY3ykreqG5w/rBNdu2z8LCIKoF3kpHHdHlA==}
     engines: {node: '>=v16'}
     peerDependencies:
@@ -2299,7 +2299,7 @@ packages:
       cosmiconfig: '>=8.2'
       typescript: '>=4'
     dependencies:
-      '@types/node': 20.17.17
+      '@types/node': 20.17.19
       cosmiconfig: 8.3.6(typescript@5.7.3)
       jiti: 1.21.7
       typescript: 5.7.3
@@ -2470,22 +2470,22 @@ packages:
     resolution: {integrity: sha512-WasbGFXEB+VQWXlo6IpW3oUv73Yuau1Ig4AZF/m13tXcTKnMpc/mHjpztIlz4+BM9FG9BHQkEXiPto3bKduQUg==}
     dev: false
 
-  /discord.js@14.17.3:
-    resolution: {integrity: sha512-8/j8udc3CU7dz3Eqch64UaSHoJtUT6IXK4da5ixjbav4NAXJicloWswD/iwn1ImZEMoAV3LscsdO0zhBh6H+0Q==}
+  /discord.js@14.18.0:
+    resolution: {integrity: sha512-SvU5kVUvwunQhN2/+0t55QW/1EHfB1lp0TtLZUSXVHDmyHTrdOj5LRKdR0zLcybaA15F+NtdWuWmGOX9lE+CAw==}
     engines: {node: '>=18'}
     dependencies:
-      '@discordjs/builders': 1.10.0
+      '@discordjs/builders': 1.10.1
       '@discordjs/collection': 1.5.3
       '@discordjs/formatters': 0.6.0
-      '@discordjs/rest': 2.4.2
+      '@discordjs/rest': 2.4.3
       '@discordjs/util': 1.1.1
-      '@discordjs/ws': 1.2.0
+      '@discordjs/ws': 1.2.1
       '@sapphire/snowflake': 3.5.3
       discord-api-types: 0.37.119
       fast-deep-equal: 3.1.3
       lodash.snakecase: 4.1.1
       tslib: 2.8.1
-      undici: 6.19.8
+      undici: 6.21.1
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -2864,7 +2864,7 @@ packages:
       semver: 6.3.1
     dev: true
 
-  /eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.10.0)(eslint@8.57.1)(prettier@3.5.0):
+  /eslint-plugin-prettier@4.2.1(eslint-config-prettier@8.10.0)(eslint@8.57.1)(prettier@3.5.1):
     resolution: {integrity: sha512-f/0rXLXUt0oFYs8ra4w49wYZBG5GKZpAYsJSm6rnYL5uVDjd+zowwMwVZHnAjf4edNrKpCDYfXDgmRE/Ak7QyQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
@@ -2877,7 +2877,7 @@ packages:
     dependencies:
       eslint: 8.57.1
       eslint-config-prettier: 8.10.0(eslint@8.57.1)
-      prettier: 3.5.0
+      prettier: 3.5.1
       prettier-linter-helpers: 1.0.0
     dev: true
 
@@ -4658,8 +4658,8 @@ packages:
       fast-diff: 1.3.0
     dev: true
 
-  /prettier@3.5.0:
-    resolution: {integrity: sha512-quyMrVt6svPS7CjQ9gKb3GLEX/rl3BCL2oa/QkNcXv4YNVBC9olt3s+H7ukto06q7B1Qz46PbrKLO34PR6vXcA==}
+  /prettier@3.5.1:
+    resolution: {integrity: sha512-hPpFQvHwL3Qv5AdRvBFMhnKo4tYxp0ReXiPn2bxkiohEX6mBeBwEpBSQTkD458RaaDKQMYSp4hX4UtfUTA5wDw==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
@@ -5421,7 +5421,7 @@ packages:
   /tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
-  /tsup@8.3.6(@swc/core@1.10.15)(typescript@5.7.3):
+  /tsup@8.3.6(@swc/core@1.10.16)(typescript@5.7.3):
     resolution: {integrity: sha512-XkVtlDV/58S9Ye0JxUUTcrQk4S+EqlOHKzg6Roa62rdjL1nGWNUstG0xgI4vanHdfIpjP448J8vlN0oK6XOJ5g==}
     engines: {node: '>=18'}
     hasBin: true
@@ -5440,7 +5440,7 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@swc/core': 1.10.15
+      '@swc/core': 1.10.16
       bundle-require: 5.1.0(esbuild@0.24.2)
       cac: 6.7.14
       chokidar: 4.0.3
@@ -5650,8 +5650,8 @@ packages:
   /undici-types@6.19.8:
     resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
 
-  /undici@6.19.8:
-    resolution: {integrity: sha512-U8uCCl2x9TK3WANvmBavymRzxbfFYG+tAu+fgx3zxQy3qdagQqBLwJVrdyO1TBfUXvfKveMKJZhpvUYoOjM+4g==}
+  /undici@6.21.1:
+    resolution: {integrity: sha512-q/1rj5D0/zayJB2FraXdaWxbhWiNKDvu8naDT2dl1yTlvJp4BLtOcp2a5BvgGNQpYYJzau7tf1WgKv3b+7mqpQ==}
     engines: {node: '>=18.17'}
     dev: false
 
@@ -5677,7 +5677,7 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite-node@1.6.1(@types/node@20.17.17):
+  /vite-node@1.6.1(@types/node@20.17.19):
     resolution: {integrity: sha512-YAXkfvGtuTzwWbDSACdJSg4A4DZiAqckWe90Zapc/sEX3XvHcw1NdurM/6od8J207tSDqNbSsgdCacBgvJKFuA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -5686,7 +5686,7 @@ packages:
       debug: 4.4.0
       pathe: 1.1.2
       picocolors: 1.1.1
-      vite: 5.4.14(@types/node@20.17.17)
+      vite: 5.4.14(@types/node@20.17.19)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -5699,7 +5699,7 @@ packages:
       - terser
     dev: true
 
-  /vite@5.4.14(@types/node@20.17.17):
+  /vite@5.4.14(@types/node@20.17.19):
     resolution: {integrity: sha512-EK5cY7Q1D8JNhSaPKVK4pwBFvaTmZxEnoKXLG/U9gmdDcihQGNzFlgIvaxezFR4glP1LsuiedwMBqCXH3wZccA==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -5730,7 +5730,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.17.17
+      '@types/node': 20.17.19
       esbuild: 0.21.5
       postcss: 8.5.1
       rollup: 4.34.6
@@ -5738,7 +5738,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest@1.6.1(@types/node@20.17.17):
+  /vitest@1.6.1(@types/node@20.17.19):
     resolution: {integrity: sha512-Ljb1cnSJSivGN0LqXd/zmDbWEM0RNNg2t1QW/XUhYl/qPqyu7CsqeWtqQXHVaJsecLPuDoak2oJcZN2QoRIOag==}
     engines: {node: ^18.0.0 || >=20.0.0}
     hasBin: true
@@ -5763,7 +5763,7 @@ packages:
       jsdom:
         optional: true
     dependencies:
-      '@types/node': 20.17.17
+      '@types/node': 20.17.19
       '@vitest/expect': 1.6.1
       '@vitest/runner': 1.6.1
       '@vitest/snapshot': 1.6.1
@@ -5781,8 +5781,8 @@ packages:
       strip-literal: 2.1.1
       tinybench: 2.9.0
       tinypool: 0.8.4
-      vite: 5.4.14(@types/node@20.17.17)
-      vite-node: 1.6.1(@types/node@20.17.17)
+      vite: 5.4.14(@types/node@20.17.19)
+      vite-node: 1.6.1(@types/node@20.17.19)
       why-is-node-running: 2.3.0
     transitivePeerDependencies:
       - less
