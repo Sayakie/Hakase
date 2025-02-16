@@ -83,7 +83,7 @@
     "eslint-config-prettier": "^8.10.0",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.31.0",
-    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-n": "^14.0.0",
     "eslint-plugin-prefer-early-return": "link:vendor\\eslint-plugin-prefer-early-return",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-simple-import-sort": "^8.0.0",
